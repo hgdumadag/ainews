@@ -22,12 +22,15 @@
       --bad: #e87878;
       --bg-radial-1: rgba(91, 141, 239, 0.12);
       --bg-radial-2: rgba(210, 171, 87, 0.1);
+      --brand-gradient: linear-gradient(135deg, #2f6eb8 0%, #2b8e78 100%);
+      --phrase-gradient: linear-gradient(135deg, rgba(210, 171, 87, 0.2) 0%, rgba(91, 141, 239, 0.2) 100%);
       --masthead-start: #121a28;
       --masthead-end: #0f1623;
       --masthead-sheen: rgba(255, 255, 255, 0.04);
       --latest-end: #121b2a;
       --issue-tag-border: rgba(210, 171, 87, 0.35);
       --issue-tag-text: #f1ddb4;
+      --issue-tag-bg: var(--accent-soft);
       --btn-bg: #1a2536;
       --btn-hover-border: #3b4f6f;
       --btn-hover-bg: #22314a;
@@ -43,33 +46,36 @@
     html[data-theme="light"] {
       --bg: #f2f6fc;
       --panel: #ffffff;
-      --panel-alt: #f3f7ff;
+      --panel-alt: #eef7f7;
       --text: #152033;
       --muted: #5d6d87;
-      --line: #d6dfef;
-      --accent: #9e782b;
-      --accent-soft: rgba(158, 120, 43, 0.14);
-      --ok: #1f8f58;
-      --warn: #b16821;
-      --bad: #c34747;
-      --bg-radial-1: rgba(65, 126, 228, 0.14);
-      --bg-radial-2: rgba(201, 164, 76, 0.16);
-      --masthead-start: #f6f9ff;
-      --masthead-end: #edf3ff;
+      --line: #c8d9ef;
+      --accent: #135EAB;
+      --accent-soft: rgba(19, 94, 171, 0.12);
+      --ok: #0f7a70;
+      --warn: #8f8600;
+      --bad: #9a4f58;
+      --bg-radial-1: rgba(19, 94, 171, 0.16);
+      --bg-radial-2: rgba(4, 149, 95, 0.16);
+      --brand-gradient: linear-gradient(135deg, #135EAB 0%, #04955F 100%);
+      --phrase-gradient: linear-gradient(135deg, rgba(255, 156, 163, 0.3) 0%, rgba(100, 203, 192, 0.32) 60%, rgba(244, 244, 49, 0.26) 100%);
+      --masthead-start: #ecf4ff;
+      --masthead-end: #e8fff5;
       --masthead-sheen: rgba(255, 255, 255, 0.32);
-      --latest-end: #e9f1ff;
-      --issue-tag-border: rgba(158, 120, 43, 0.36);
-      --issue-tag-text: #75571f;
-      --btn-bg: #eef3ff;
-      --btn-hover-border: #9eafcd;
-      --btn-hover-bg: #e4ebfa;
-      --btn-primary-border: rgba(158, 120, 43, 0.5);
-      --btn-primary-start: #f8f0df;
-      --btn-primary-end: #f2e3c3;
-      --btn-primary-text: #563e12;
+      --latest-end: #e8faf2;
+      --issue-tag-border: rgba(19, 94, 171, 0.38);
+      --issue-tag-text: #0e4a87;
+      --issue-tag-bg: var(--phrase-gradient);
+      --btn-bg: #edf5ff;
+      --btn-hover-border: #4f8bc7;
+      --btn-hover-bg: #e3f0ff;
+      --btn-primary-border: rgba(19, 94, 171, 0.45);
+      --btn-primary-start: #135EAB;
+      --btn-primary-end: #04955F;
+      --btn-primary-text: #ffffff;
       --input-bg: #ffffff;
-      --focus-outline: rgba(65, 126, 228, 0.2);
-      --archive-item-bg: #f6f9ff;
+      --focus-outline: rgba(19, 94, 171, 0.22);
+      --archive-item-bg: #f5fbff;
     }
 
     html {
@@ -110,6 +116,17 @@
       background: linear-gradient(180deg, var(--masthead-start) 0%, var(--masthead-end) 100%);
       position: relative;
       overflow: hidden;
+    }
+
+    .masthead::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--brand-gradient);
+      pointer-events: none;
     }
 
     .masthead::after {
@@ -219,7 +236,7 @@
     .issue-tag {
       display: inline-block;
       border: 1px solid var(--issue-tag-border);
-      background: var(--accent-soft);
+      background: var(--issue-tag-bg);
       color: var(--issue-tag-text);
       border-radius: 999px;
       padding: 6px 10px;
@@ -275,6 +292,24 @@
       border-color: var(--btn-primary-border);
       background: linear-gradient(180deg, var(--btn-primary-start) 0%, var(--btn-primary-end) 100%);
       color: var(--btn-primary-text);
+    }
+
+    html[data-theme="light"] .pill.ok {
+      color: #0c5a52;
+      background: rgba(100, 203, 192, 0.34);
+      border-color: rgba(100, 203, 192, 0.7);
+    }
+
+    html[data-theme="light"] .pill.warn {
+      color: #575300;
+      background: rgba(244, 244, 49, 0.36);
+      border-color: rgba(184, 184, 26, 0.75);
+    }
+
+    html[data-theme="light"] .pill.bad {
+      color: #7b3f45;
+      background: rgba(255, 156, 163, 0.35);
+      border-color: rgba(223, 113, 121, 0.72);
     }
 
     .controls {
