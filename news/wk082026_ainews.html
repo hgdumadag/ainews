@@ -31,7 +31,60 @@
   --cyan-dim: rgba(77,201,201,0.12);
   --orange: #e08a3c;
   --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
 }
+
+/* ═══════ LIGHT THEME ═══════ */
+[data-theme="light"] {
+  --bg: #f4f6f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f4f8;
+  --bg-expanded: #ffffff;
+  --border: #d8dde6;
+  --border-accent: #c0c8d4;
+  --text: #1a2332;
+  --text-muted: #4a5568;
+  --text-dim: #8896a8;
+  --accent: #135EAB;
+  --accent-light: #1a74d0;
+  --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030;
+  --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F;
+  --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB;
+  --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1;
+  --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488;
+  --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621;
+  --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4;
+  --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06);
+  --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06);
+  --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05);
+  --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08);
+  --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -48,13 +101,14 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
+  opacity: var(--noise-opacity, 1);
 }
 
 /* HEADER */
 .hero {
   position: relative;
   padding: 60px 40px 50px;
-  background: linear-gradient(180deg, #12151c 0%, var(--bg) 100%);
+  background: linear-gradient(180deg, var(--hero-grad-start) 0%, var(--bg) 100%);
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
@@ -63,8 +117,8 @@ body::before {
   position: absolute;
   top: -50%; left: -20%;
   width: 140%; height: 200%;
-  background: radial-gradient(ellipse at 30% 20%, rgba(201,164,76,0.06) 0%, transparent 50%),
-              radial-gradient(ellipse at 70% 80%, rgba(91,141,239,0.04) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 30% 20%, var(--hero-glow-a) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, var(--hero-glow-b) 0%, transparent 50%);
   pointer-events: none;
 }
 .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
@@ -135,19 +189,82 @@ body::before {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(12,14,18,0.92);
+  background: var(--nav-bg);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  padding: 0 40px;
+  padding: 0 20px 0 20px;
 }
-.nav-inner {
+.nav-wrapper {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+/* Scroll arrows */
+.nav-scroll-btn {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s;
+  opacity: 0;
+  pointer-events: none;
+}
+.nav-scroll-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.nav-scroll-btn:hover { background: var(--bg-card-hover); color: var(--accent); }
+
+/* Scrollable topic area */
+.nav-scroll-area {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.nav-scroll-area::before,
+.nav-scroll-area::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 28px;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  opacity: 0;
+}
+.nav-scroll-area::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg, #0c0e12), transparent);
+}
+.nav-scroll-area::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--bg, #0c0e12), transparent);
+}
+.nav-scroll-area.fade-left::before { opacity: 1; }
+.nav-scroll-area.fade-right::after { opacity: 1; }
+[data-theme="light"] .nav-scroll-area::before { background: linear-gradient(90deg, rgba(244,246,249,0.95), transparent); }
+[data-theme="light"] .nav-scroll-area::after { background: linear-gradient(-90deg, rgba(244,246,249,0.95), transparent); }
+
+.nav-inner {
   display: flex;
   gap: 4px;
   overflow-x: auto;
   scrollbar-width: none;
-  padding: 10px 0;
+  padding: 2px 4px;
+  scroll-behavior: smooth;
 }
 .nav-inner::-webkit-scrollbar { display: none; }
 .nav-btn {
@@ -214,7 +331,7 @@ body::before {
   background: var(--bg-card-hover);
   border-color: var(--border-accent);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 32px var(--shadow-card);
 }
 .card:hover::before { opacity: 1; }
 .card-date {
@@ -254,7 +371,7 @@ body::before {
   display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.75);
+  background: var(--overlay-bg);
   backdrop-filter: blur(8px);
   z-index: 1000;
   justify-content: center;
@@ -342,16 +459,16 @@ body::before {
 
 /* Action Panel - Green */
 .panel-action {
-  background: rgba(76,175,124,0.06);
-  border-color: rgba(76,175,124,0.15);
+  background: var(--panel-action-bg);
+  border-color: var(--panel-action-border);
 }
 .panel-action .panel-label { color: var(--green); }
 .panel-action .panel-label-icon { background: var(--green-dim); color: var(--green); }
 
 /* Risk Panel - Red */
 .panel-risk {
-  background: rgba(224,85,85,0.06);
-  border-color: rgba(224,85,85,0.15);
+  background: var(--panel-risk-bg);
+  border-color: var(--panel-risk-border);
 }
 .panel-risk .panel-label { color: var(--red); }
 .panel-risk .panel-label-icon { background: var(--red-dim); color: var(--red); }
@@ -367,7 +484,7 @@ body::before {
   color: var(--text);
   padding: 8px 0 8px 20px;
   position: relative;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid var(--panel-li-border);
 }
 .panel-list li:last-child { border-bottom: none; }
 .panel-list li::before {
@@ -404,7 +521,8 @@ body::before {
   margin-top: 24px;
   padding: 20px;
   background: var(--accent-dim);
-  border: 1px solid rgba(201,164,76,0.2);
+  border: 1px solid var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 20%, transparent);
   border-radius: 10px;
 }
 .modal-csuite-label {
@@ -457,7 +575,7 @@ body::before {
 /* EXEC SUMMARY */
 .exec-strip {
   background: var(--accent-dim);
-  border: 1px solid rgba(201,164,76,0.15);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
   border-radius: 12px;
   padding: 28px 32px;
   margin-bottom: 48px;
@@ -501,10 +619,151 @@ body::before {
 .icon-cyan { background: var(--cyan-dim); color: var(--cyan); }
 .icon-orange { background: var(--orange-dim); color: var(--orange); }
 
+/* ═══════ THEME TOGGLE ═══════ */
+.theme-toggle {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  position: relative;
+  transition: all 0.25s ease;
+  margin-left: 8px;
+}
+.theme-toggle:hover {
+  background: var(--bg-card-hover);
+  color: var(--accent);
+  border-color: var(--border-accent);
+}
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon { transition: opacity 0.3s, transform 0.3s; position: absolute; }
+.theme-toggle .icon-sun { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+.theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+[data-theme="light"] .theme-toggle .icon-sun { opacity: 1; transform: rotate(0) scale(1); }
+[data-theme="light"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+
+/* Light-mode gradient bar in hero metrics */
+[data-theme="light"] .metrics-bar {
+  background: linear-gradient(135deg, #135EAB, #04955F);
+  gap: 1px;
+}
+[data-theme="light"] .metric {
+  background: rgba(255,255,255,0.95);
+}
+[data-theme="light"] .metric:hover {
+  background: rgba(255,255,255,1);
+}
+[data-theme="light"] .metric-value {
+  background: linear-gradient(135deg, #135EAB, #04955F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Light-mode hero title accent */
+[data-theme="light"] .hero h1 span {
+  background: linear-gradient(135deg, #135EAB, #04955F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Light-mode exec strip */
+[data-theme="light"] .exec-strip {
+  background: linear-gradient(135deg, rgba(19,94,171,0.06), rgba(4,149,95,0.06));
+}
+
+/* Light-mode tags using secondary palette */
+[data-theme="light"] .bg-gold { background: rgba(19,94,171,0.10); color: #135EAB; }
+[data-theme="light"] .bg-red { background: rgba(255,156,163,0.20); color: #b83240; }
+[data-theme="light"] .bg-green { background: rgba(4,149,95,0.10); color: #04955F; }
+[data-theme="light"] .bg-blue { background: rgba(100,203,192,0.15); color: #0a7a6e; }
+[data-theme="light"] .bg-purple { background: rgba(107,70,193,0.10); color: #6b46c1; }
+[data-theme="light"] .bg-cyan { background: rgba(100,203,192,0.15); color: #0d9488; }
+[data-theme="light"] .bg-orange { background: rgba(244,244,49,0.15); color: #8a6d00; }
+
+/* Light-mode card bar colors with gradient */
+[data-theme="light"] .bar-gold::before { background: linear-gradient(180deg, #135EAB, #04955F); }
+[data-theme="light"] .bar-blue::before { background: #135EAB; }
+[data-theme="light"] .bar-green::before { background: #04955F; }
+[data-theme="light"] .bar-red::before { background: #FF9CA3; }
+[data-theme="light"] .bar-purple::before { background: #6b46c1; }
+[data-theme="light"] .bar-cyan::before { background: #64CBC0; }
+[data-theme="light"] .bar-orange::before { background: #F4F431; }
+
+/* Light section icon backgrounds */
+[data-theme="light"] .icon-gold { background: rgba(19,94,171,0.10); }
+[data-theme="light"] .icon-green { background: rgba(4,149,95,0.10); }
+[data-theme="light"] .icon-blue { background: rgba(100,203,192,0.12); }
+[data-theme="light"] .icon-red { background: rgba(255,156,163,0.15); }
+[data-theme="light"] .icon-purple { background: rgba(107,70,193,0.10); }
+[data-theme="light"] .icon-cyan { background: rgba(100,203,192,0.12); }
+[data-theme="light"] .icon-orange { background: rgba(244,244,49,0.15); }
+
+/* Light owner badges */
+[data-theme="light"] .owner-ceo { background: rgba(19,94,171,0.10); color: #135EAB; }
+[data-theme="light"] .owner-cfo { background: rgba(4,149,95,0.10); color: #04955F; }
+[data-theme="light"] .owner-cio { background: rgba(100,203,192,0.15); color: #0a7a6e; }
+[data-theme="light"] .owner-gc { background: rgba(107,70,193,0.10); color: #6b46c1; }
+[data-theme="light"] .owner-ciso { background: rgba(255,156,163,0.15); color: #b83240; }
+[data-theme="light"] .owner-chro { background: rgba(244,244,49,0.15); color: #8a6d00; }
+
+/* Light nav active */
+[data-theme="light"] .nav-btn.active {
+  background: linear-gradient(135deg, rgba(19,94,171,0.10), rgba(4,149,95,0.08));
+  color: #135EAB;
+}
+
+/* Light card subtle shadow */
+[data-theme="light"] .card {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+[data-theme="light"] .card:hover {
+  box-shadow: 0 8px 32px rgba(19,94,171,0.10);
+}
+
+/* Light modal */
+[data-theme="light"] .modal {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  border-color: var(--border);
+}
+[data-theme="light"] .modal-csuite {
+  background: linear-gradient(135deg, rgba(19,94,171,0.06), rgba(4,149,95,0.06));
+}
+
+/* Light-mode related chip hover */
+[data-theme="light"] .related-chip:hover {
+  background: rgba(19,94,171,0.08);
+  border-color: #135EAB;
+  color: #135EAB;
+}
+
+/* Light hero label */
+[data-theme="light"] .hero-label { color: #04955F; }
+[data-theme="light"] .hero-label::before { background: linear-gradient(90deg, #135EAB, #04955F); width: 32px; height: 2px; }
+
+/* Light footer */
+[data-theme="light"] .footer { border-top-color: var(--border); }
+
+/* Smooth transition for theme switch */
+html { transition: background 0.4s ease; }
+body, .hero, .nav-strip, .card, .modal, .exec-strip, .metric, .modal-csuite,
+.panel, .footer, .theme-toggle, .nav-btn { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; }
+
 @media (max-width: 768px) {
   .hero { padding: 40px 20px 32px; }
   .main { padding: 24px 16px; }
-  .nav-strip { padding: 0 16px; }
+  .nav-strip { padding: 0 10px; }
+  .nav-wrapper { gap: 2px; }
+  .nav-scroll-btn { width: 26px; height: 26px; font-size: 13px; }
+  .theme-toggle { width: 30px; height: 30px; font-size: 14px; margin-left: 4px; }
   .metrics-bar { flex-direction: column; }
   .cards-grid { grid-template-columns: 1fr; }
   .modal-body { padding: 24px; }
@@ -530,17 +789,27 @@ body::before {
 </header>
 
 <nav class="nav-strip">
-  <div class="nav-inner">
-    <button class="nav-btn active" data-section="all">All Topics</button>
-    <button class="nav-btn" data-section="platforms">Platform Wars</button>
-    <button class="nav-btn" data-section="funding">Funding &amp; M&amp;A</button>
-    <button class="nav-btn" data-section="markets">Market Impact</button>
-    <button class="nav-btn" data-section="agents">Agentic AI</button>
-    <button class="nav-btn" data-section="regulation">Regulation</button>
-    <button class="nav-btn" data-section="workforce">Workforce</button>
-    <button class="nav-btn" data-section="security">Security &amp; Risk</button>
-    <button class="nav-btn" data-section="infrastructure">Infrastructure</button>
-    <button class="nav-btn" data-section="industry">Industry Impact</button>
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="nav-scroll-left" aria-label="Scroll topics left">‹</button>
+    <div class="nav-scroll-area" id="nav-scroll-area">
+      <div class="nav-inner" id="nav-inner">
+        <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="platforms">Platform Wars</button>
+        <button class="nav-btn" data-section="funding">Funding &amp; M&amp;A</button>
+        <button class="nav-btn" data-section="markets">Market Impact</button>
+        <button class="nav-btn" data-section="agents">Agentic AI</button>
+        <button class="nav-btn" data-section="regulation">Regulation</button>
+        <button class="nav-btn" data-section="workforce">Workforce</button>
+        <button class="nav-btn" data-section="security">Security &amp; Risk</button>
+        <button class="nav-btn" data-section="infrastructure">Infrastructure</button>
+        <button class="nav-btn" data-section="industry">Industry Impact</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="nav-scroll-right" aria-label="Scroll topics right">›</button>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode" title="Switch theme">
+      <span class="icon-moon">🌙</span>
+      <span class="icon-sun">☀️</span>
+    </button>
   </div>
 </nav>
 
@@ -1247,7 +1516,7 @@ document.getElementById('modal-close').addEventListener('click',closeModal);
 document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// NAV
+// NAV — Topic filter buttons
 document.querySelectorAll('.nav-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -1257,6 +1526,58 @@ document.querySelectorAll('.nav-btn').forEach(btn=>{
 });
 
 renderSections();
+
+// ═══════ NAV SCROLL ARROWS ═══════
+(function() {
+  const navInner = document.getElementById('nav-inner');
+  const scrollArea = document.getElementById('nav-scroll-area');
+  const btnLeft = document.getElementById('nav-scroll-left');
+  const btnRight = document.getElementById('nav-scroll-right');
+  const scrollStep = 200;
+
+  function updateScrollState() {
+    const sl = navInner.scrollLeft;
+    const maxScroll = navInner.scrollWidth - navInner.clientWidth;
+    const canLeft = sl > 2;
+    const canRight = sl < maxScroll - 2;
+
+    btnLeft.classList.toggle('visible', canLeft);
+    btnRight.classList.toggle('visible', canRight);
+    scrollArea.classList.toggle('fade-left', canLeft);
+    scrollArea.classList.toggle('fade-right', canRight);
+  }
+
+  btnLeft.addEventListener('click', () => { navInner.scrollBy({ left: -scrollStep, behavior: 'smooth' }); });
+  btnRight.addEventListener('click', () => { navInner.scrollBy({ left: scrollStep, behavior: 'smooth' }); });
+
+  navInner.addEventListener('scroll', updateScrollState, { passive: true });
+  window.addEventListener('resize', updateScrollState);
+
+  // Initial check (small delay so layout is settled)
+  setTimeout(updateScrollState, 100);
+  updateScrollState();
+})();
+
+// ═══════ THEME TOGGLE ═══════
+(function() {
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  
+  // Check saved preference or default to dark
+  const saved = localStorage.getItem('ai-briefing-theme');
+  if (saved === 'light') html.setAttribute('data-theme', 'light');
+  
+  toggle.addEventListener('click', () => {
+    const isLight = html.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('ai-briefing-theme', 'dark');
+    } else {
+      html.setAttribute('data-theme', 'light');
+      localStorage.setItem('ai-briefing-theme', 'light');
+    }
+  });
+})();
 </script>
 </body>
 </html>
