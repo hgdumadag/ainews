@@ -478,8 +478,8 @@
   <script>
     const CONFIG = {
       basePath: "news",
-      lookbackWeeks: 110,
-      filenamePattern: /^wk(?<week>\d{1,2})(?<year>\d{4})_ainews\.html(?:\.html)?$/i
+      lookbackWeeks: 60,
+      probeConcurrency: 12
     };
 
     const state = {
@@ -568,25 +568,6 @@
       writeStoredTheme(nextTheme);
     }
 
-    function parseIssueFilename(filename) {
-      const match = filename.match(CONFIG.filenamePattern);
-      if (!match || !match.groups) {
-        return null;
-      }
-
-      const week = Number(match.groups.week);
-      const year = Number(match.groups.year);
-      if (!Number.isInteger(week) || !Number.isInteger(year) || week < 1 || week > 53) {
-        return null;
-      }
-
-      return {
-        week,
-        year,
-        sortKey: (year * 100) + week
-      };
-    }
-
     function getIsoWeekYear(date) {
       const utc = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
       const dayNum = utc.getUTCDay() || 7;
@@ -596,7 +577,25 @@
       return { week, year: utc.getUTCFullYear() };
     }
 
-    function generateCandidateFilenames(lookbackWeeks) {
+    function buildFilenameVariants(week, year) {
+      const weekPlain = String(week);
+      const weekPadded = weekPlain.padStart(2, "0");
+      const bases = weekPlain === weekPadded
+        ? ["wk" + weekPlain + year + "_ainews"]
+        : [
+            "wk" + weekPadded + year + "_ainews",
+            "wk" + weekPlain + year + "_ainews"
+          ];
+
+      const candidates = [];
+      for (const base of bases) {
+        candidates.push(base + ".html");
+        candidates.push(base + ".html.html");
+      }
+      return candidates;
+    }
+
+    function generateIssueCandidates(lookbackWeeks) {
       const candidates = [];
       const issueKeys = new Set();
       const now = new Date();
@@ -610,19 +609,35 @@
         }
         issueKeys.add(issueKey);
 
-        const weekPlain = String(parts.week);
-        const weekPadded = String(parts.week).padStart(2, "0");
-        const bases = [
-          "wk" + weekPlain + parts.year + "_ainews",
-          "wk" + weekPadded + parts.year + "_ainews"
-        ];
-
-        for (const base of bases) {
-          candidates.push(base + ".html");
-          candidates.push(base + ".html.html");
-        }
+        candidates.push({
+          issueKey,
+          week: parts.week,
+          year: parts.year,
+          sortKey: (parts.year * 100) + parts.week,
+          filenameVariants: buildFilenameVariants(parts.week, parts.year)
+        });
       }
       return candidates;
+    }
+
+    async function mapWithConcurrency(items, limit, mapper) {
+      const results = new Array(items.length);
+      let nextIndex = 0;
+      const workerCount = Math.max(1, Math.min(limit, items.length));
+
+      const workers = Array.from({ length: workerCount }, async () => {
+        while (true) {
+          const currentIndex = nextIndex;
+          nextIndex += 1;
+          if (currentIndex >= items.length) {
+            return;
+          }
+          results[currentIndex] = await mapper(items[currentIndex], currentIndex);
+        }
+      });
+
+      await Promise.all(workers);
+      return results;
     }
 
     async function probeIssue(url) {
@@ -655,7 +670,8 @@
     async function discoverIssues(options) {
       const lookbackWeeks = options.lookbackWeeks || CONFIG.lookbackWeeks;
       const basePath = options.basePath || CONFIG.basePath;
-      const filenames = generateCandidateFilenames(lookbackWeeks);
+      const probeConcurrency = options.probeConcurrency || CONFIG.probeConcurrency;
+      const issueCandidates = generateIssueCandidates(lookbackWeeks);
       const byIssue = new Map();
       const stats = {
         attempted: 0,
@@ -663,43 +679,76 @@
         transportErrors: 0
       };
 
-      for (const filename of filenames) {
-        const parsed = parseIssueFilename(filename);
-        if (!parsed) {
+      const probeResults = await mapWithConcurrency(
+        issueCandidates,
+        probeConcurrency,
+        async (candidate) => {
+          let attempted = 0;
+          let transportErrors = 0;
+
+          for (const filename of candidate.filenameVariants) {
+            const url = basePath + "/" + encodeURIComponent(filename);
+            const check = await probeIssue(url);
+            attempted += 1;
+
+            if (check.transportError) {
+              transportErrors += 1;
+              continue;
+            }
+            if (!check.exists) {
+              continue;
+            }
+
+            return {
+              found: true,
+              filename,
+              url,
+              week: candidate.week,
+              year: candidate.year,
+              sortKey: candidate.sortKey,
+              attempted,
+              transportErrors
+            };
+          }
+
+          return {
+            found: false,
+            week: candidate.week,
+            year: candidate.year,
+            sortKey: candidate.sortKey,
+            attempted,
+            transportErrors
+          };
+        }
+      );
+
+      for (const result of probeResults) {
+        stats.attempted += result.attempted;
+        stats.transportErrors += result.transportErrors;
+
+        if (!result.found) {
           continue;
         }
 
-        const issueKey = parsed.year + "-" + parsed.week;
+        const issueKey = result.year + "-" + result.week;
         if (byIssue.has(issueKey)) {
-          continue;
-        }
-
-        const url = basePath + "/" + encodeURIComponent(filename);
-        const check = await probeIssue(url);
-        stats.attempted += 1;
-
-        if (check.transportErrors) {
-          stats.transportErrors += 1;
-          continue;
-        }
-        if (!check.exists) {
           continue;
         }
 
         /** @type {IssueRecord} */
         const issue = {
-          filename,
-          url,
-          week: parsed.week,
-          year: parsed.year,
-          sortKey: parsed.sortKey,
-          label: formatIssueLabel(parsed.week, parsed.year)
+          filename: result.filename,
+          url: result.url,
+          week: result.week,
+          year: result.year,
+          sortKey: result.sortKey,
+          label: formatIssueLabel(result.week, result.year)
         };
 
         byIssue.set(issueKey, issue);
-        stats.found += 1;
       }
 
+      stats.found = byIssue.size;
       const issues = Array.from(byIssue.values()).sort((a, b) => b.sortKey - a.sortKey);
       return { issues, stats };
     }
