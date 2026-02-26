@@ -345,7 +345,7 @@
     const CONFIG = {
       basePath: "news",
       lookbackWeeks: 110,
-      filenamePattern: /^wk(?<week>\\d{1,2})(?<year>\\d{4})_ainews\\.html(?:\\.html)?$/i
+      filenamePattern: /^wk(?<week>\d{1,2})(?<year>\d{4})_ainews\.html(?:\.html)?$/i
     };
 
     const state = {
@@ -628,7 +628,7 @@
 
     function applyArchiveFilters() {
       const query = state.searchQuery.trim().toLowerCase();
-      const normalized = query.replace(/\\s+/g, " ");
+      const normalized = query.replace(/\s+/g, " ");
 
       let rows = state.archiveIssues.slice();
       if (normalized.length) {
