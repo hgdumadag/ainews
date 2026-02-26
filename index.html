@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Executive Briefing Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f16;
+      --panel: #101723;
+      --panel-alt: #162030;
+      --text: #e8edf7;
+      --muted: #9aa6bc;
+      --line: #263247;
+      --accent: #d2ab57;
+      --accent-soft: rgba(210, 171, 87, 0.16);
+      --ok: #5ac88f;
+      --warn: #e39a65;
+      --bad: #e87878;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "DM Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(91, 141, 239, 0.12), transparent),
+        radial-gradient(1000px 500px at 90% -20%, rgba(210, 171, 87, 0.1), transparent),
+        var(--bg);
+      line-height: 1.5;
+    }
+
+    .shell {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 34px 20px 60px;
+    }
+
+    .masthead {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px 24px;
+      background: linear-gradient(180deg, #121a28 0%, #0f1623 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .masthead::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 40%, rgba(255, 255, 255, 0.04), transparent 70%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .masthead h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(28px, 4.8vw, 48px);
+      line-height: 1.08;
+      margin-bottom: 10px;
+    }
+
+    .masthead p {
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .status-line {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .status-line.ok {
+      color: var(--ok);
+    }
+    .status-line.warn {
+      color: var(--warn);
+    }
+    .status-line.bad {
+      color: var(--bad);
+    }
+
+    .layout {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      padding: 20px;
+    }
+
+    .card h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .latest-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      background: linear-gradient(180deg, var(--panel-alt) 0%, #121b2a 100%);
+      min-height: 228px;
+    }
+
+    .issue-tag {
+      display: inline-block;
+      border: 1px solid rgba(210, 171, 87, 0.35);
+      background: var(--accent-soft);
+      color: #f1ddb4;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-bottom: 14px;
+    }
+
+    .latest-title {
+      font-size: 24px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      background: #1a2536;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      border-color: #3b4f6f;
+      background: #22314a;
+      outline: none;
+    }
+
+    .btn.primary {
+      border-color: rgba(210, 171, 87, 0.45);
+      background: linear-gradient(180deg, #2d2b24 0%, #27241d 100%);
+      color: #f6e8c5;
+    }
+
+    .controls {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 5px;
+    }
+
+    .field label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.2px;
+    }
+
+    .input,
+    .select {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #0d1420;
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+
+    .input:focus-visible,
+    .select:focus-visible {
+      border-color: #3b4f6f;
+      outline: 2px solid rgba(91, 141, 239, 0.2);
+      outline-offset: 1px;
+    }
+
+    .archive-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      max-height: 500px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .archive-item {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #131c2a;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .archive-label {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .archive-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25px;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+    }
+
+    .pill.ok {
+      color: #bfefcf;
+      background: rgba(90, 200, 143, 0.16);
+      border-color: rgba(90, 200, 143, 0.28);
+    }
+
+    .pill.warn {
+      color: #ffd1b0;
+      background: rgba(227, 154, 101, 0.16);
+      border-color: rgba(227, 154, 101, 0.28);
+    }
+
+    .pill.bad {
+      color: #ffd0d0;
+      background: rgba(232, 120, 120, 0.16);
+      border-color: rgba(232, 120, 120, 0.28);
+    }
+
+    .empty-copy {
+      color: var(--muted);
+      font-size: 14px;
+      padding: 10px 0 4px;
+    }
+
+    @media (max-width: 920px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead" aria-labelledby="portal-title">
+      <div class="kicker">Executive Portal</div>
+      <h1 id="portal-title">Weekly AI Executive Briefings</h1>
+      <p>
+        The latest weekly AI briefing is highlighted below. Previous weeks remain searchable in the archive.
+      </p>
+      <div id="statusLine" class="status-line">Scanning <code>news/</code> for available issues...</div>
+    </header>
+
+    <main class="layout">
+      <section class="card" aria-labelledby="latestHeading">
+        <h2 id="latestHeading">Latest Briefing</h2>
+        <article class="latest-card" id="latestCard" aria-live="polite"></article>
+      </section>
+
+      <section class="card" aria-labelledby="archiveHeading">
+        <h2 id="archiveHeading">Archive</h2>
+        <div class="controls">
+          <div class="field">
+            <label for="searchInput">Search week, year, or filename</label>
+            <input
+              class="input"
+              id="searchInput"
+              name="search"
+              type="search"
+              placeholder="e.g. week 8, 2026, wk82026"
+              autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="sortSelect">Sort order</label>
+            <select class="select" id="sortSelect" name="sort">
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+            </select>
+          </div>
+        </div>
+        <ul class="archive-list" id="archiveList" aria-live="polite"></ul>
+        <p class="empty-copy" id="archiveEmpty" hidden>No archived briefings match the current filter.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const CONFIG = {
+      basePath: "news",
+      lookbackWeeks: 110,
+      filenamePattern: /^wk(?<week>\\d{1,2})(?<year>\\d{4})_ainews\\.html(?:\\.html)?$/i
+    };
+
+    const state = {
+      allIssues: [],
+      archiveIssues: [],
+      filteredArchive: [],
+      sortOrder: "newest",
+      searchQuery: ""
+    };
+
+    const statusLine = document.getElementById("statusLine");
+    const latestCard = document.getElementById("latestCard");
+    const archiveList = document.getElementById("archiveList");
+    const archiveEmpty = document.getElementById("archiveEmpty");
+    const searchInput = document.getElementById("searchInput");
+    const sortSelect = document.getElementById("sortSelect");
+
+    /**
+     * @typedef {Object} IssueRecord
+     * @property {string} filename
+     * @property {string} url
+     * @property {number} week
+     * @property {number} year
+     * @property {number} sortKey
+     * @property {string} label
+     */
+
+    function formatIssueLabel(week, year) {
+      return "Week " + week + ", " + year;
+    }
+
+    function parseIssueFilename(filename) {
+      const match = filename.match(CONFIG.filenamePattern);
+      if (!match || !match.groups) {
+        return null;
+      }
+
+      const week = Number(match.groups.week);
+      const year = Number(match.groups.year);
+      if (!Number.isInteger(week) || !Number.isInteger(year) || week < 1 || week > 53) {
+        return null;
+      }
+
+      return {
+        week,
+        year,
+        sortKey: (year * 100) + week
+      };
+    }
+
+    function getIsoWeekYear(date) {
+      const utc = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+      const dayNum = utc.getUTCDay() || 7;
+      utc.setUTCDate(utc.getUTCDate() + 4 - dayNum);
+      const yearStart = new Date(Date.UTC(utc.getUTCFullYear(), 0, 1));
+      const week = Math.ceil((((utc - yearStart) / 86400000) + 1) / 7);
+      return { week, year: utc.getUTCFullYear() };
+    }
+
+    function generateCandidateFilenames(lookbackWeeks) {
+      const candidates = [];
+      const issueKeys = new Set();
+      const now = new Date();
+
+      for (let i = 0; i < lookbackWeeks; i += 1) {
+        const current = new Date(now.getTime() - (i * 7 * 24 * 60 * 60 * 1000));
+        const parts = getIsoWeekYear(current);
+        const issueKey = parts.year + "-" + parts.week;
+        if (issueKeys.has(issueKey)) {
+          continue;
+        }
+        issueKeys.add(issueKey);
+
+        const weekPlain = String(parts.week);
+        const weekPadded = String(parts.week).padStart(2, "0");
+        const bases = [
+          "wk" + weekPlain + parts.year + "_ainews",
+          "wk" + weekPadded + parts.year + "_ainews"
+        ];
+
+        for (const base of bases) {
+          candidates.push(base + ".html");
+          candidates.push(base + ".html.html");
+        }
+      }
+      return candidates;
+    }
+
+    async function probeIssue(url) {
+      const attempt = async (method) => fetch(url, {
+        method,
+        cache: "no-store",
+        credentials: "same-origin"
+      });
+
+      try {
+        const head = await attempt("HEAD");
+        if (head.ok) {
+          return { exists: true, transportError: false };
+        }
+        if (head.status === 405 || head.status === 501 || head.status === 403) {
+          const get = await attempt("GET");
+          return { exists: get.ok, transportError: false };
+        }
+        return { exists: false, transportError: false };
+      } catch (_error) {
+        try {
+          const get = await attempt("GET");
+          return { exists: get.ok, transportError: false };
+        } catch (_nestedError) {
+          return { exists: false, transportError: true };
+        }
+      }
+    }
+
+    async function discoverIssues(options) {
+      const lookbackWeeks = options.lookbackWeeks || CONFIG.lookbackWeeks;
+      const basePath = options.basePath || CONFIG.basePath;
+      const filenames = generateCandidateFilenames(lookbackWeeks);
+      const byIssue = new Map();
+      const stats = {
+        attempted: 0,
+        found: 0,
+        transportErrors: 0
+      };
+
+      for (const filename of filenames) {
+        const parsed = parseIssueFilename(filename);
+        if (!parsed) {
+          continue;
+        }
+
+        const issueKey = parsed.year + "-" + parsed.week;
+        if (byIssue.has(issueKey)) {
+          continue;
+        }
+
+        const url = basePath + "/" + encodeURIComponent(filename);
+        const check = await probeIssue(url);
+        stats.attempted += 1;
+
+        if (check.transportErrors) {
+          stats.transportErrors += 1;
+          continue;
+        }
+        if (!check.exists) {
+          continue;
+        }
+
+        /** @type {IssueRecord} */
+        const issue = {
+          filename,
+          url,
+          week: parsed.week,
+          year: parsed.year,
+          sortKey: parsed.sortKey,
+          label: formatIssueLabel(parsed.week, parsed.year)
+        };
+
+        byIssue.set(issueKey, issue);
+        stats.found += 1;
+      }
+
+      const issues = Array.from(byIssue.values()).sort((a, b) => b.sortKey - a.sortKey);
+      return { issues, stats };
+    }
+
+    function updateStatus(text, statusClass) {
+      statusLine.textContent = text;
+      statusLine.className = "status-line";
+      if (statusClass) {
+        statusLine.classList.add(statusClass);
+      }
+    }
+
+    function renderLatest(issue, diagnostics) {
+      latestCard.innerHTML = "";
+      if (!issue) {
+        const tagClass = diagnostics && diagnostics.problem ? "bad" : "warn";
+        const title = diagnostics && diagnostics.problem
+          ? "Unable to scan folder from this host"
+          : "No briefing files found yet";
+        const detail = diagnostics && diagnostics.problem
+          ? "Fetch requests to local files are blocked here. Serve this folder through a simple web server to enable auto-discovery."
+          : "Add weekly files to news/ using wk<week><year>_ainews.html naming.";
+
+        const badge = document.createElement("span");
+        badge.className = "pill " + tagClass;
+        badge.textContent = diagnostics && diagnostics.problem ? "Connection issue" : "Waiting for first issue";
+
+        const heading = document.createElement("h3");
+        heading.className = "latest-title";
+        heading.textContent = title;
+
+        const meta = document.createElement("p");
+        meta.className = "meta";
+        meta.textContent = detail;
+
+        latestCard.append(badge, heading, meta);
+        return;
+      }
+
+      const issueTag = document.createElement("span");
+      issueTag.className = "issue-tag";
+      issueTag.textContent = "Latest: " + issue.label;
+
+      const title = document.createElement("h3");
+      title.className = "latest-title";
+      title.textContent = "AI Executive Briefing";
+
+      const meta = document.createElement("p");
+      meta.className = "meta";
+      const checkedAt = new Date().toLocaleString();
+      meta.textContent = "Source: " + issue.filename + " | Last checked: " + checkedAt;
+
+      const row = document.createElement("div");
+      row.className = "btn-row";
+
+      const openBtn = document.createElement("a");
+      openBtn.className = "btn primary";
+      openBtn.href = issue.url;
+      openBtn.textContent = "Open Briefing";
+      openBtn.setAttribute("aria-label", "Open latest briefing: " + issue.label);
+
+      const copyBtn = document.createElement("button");
+      copyBtn.className = "btn";
+      copyBtn.type = "button";
+      copyBtn.textContent = "Copy Link";
+      copyBtn.addEventListener("click", async () => {
+        try {
+          const absoluteUrl = new URL(issue.url, window.location.href).href;
+          await navigator.clipboard.writeText(absoluteUrl);
+          copyBtn.textContent = "Copied";
+          window.setTimeout(() => {
+            copyBtn.textContent = "Copy Link";
+          }, 1200);
+        } catch (_err) {
+          copyBtn.textContent = "Copy failed";
+          window.setTimeout(() => {
+            copyBtn.textContent = "Copy Link";
+          }, 1200);
+        }
+      });
+
+      row.append(openBtn, copyBtn);
+      latestCard.append(issueTag, title, meta, row);
+    }
+
+    function renderArchiveList(issues) {
+      archiveList.innerHTML = "";
+      if (!issues.length) {
+        archiveEmpty.hidden = false;
+        return;
+      }
+      archiveEmpty.hidden = true;
+
+      for (const issue of issues) {
+        const li = document.createElement("li");
+        li.className = "archive-item";
+
+        const left = document.createElement("div");
+        const label = document.createElement("div");
+        label.className = "archive-label";
+        label.textContent = issue.label;
+        const meta = document.createElement("div");
+        meta.className = "archive-meta";
+        meta.textContent = issue.filename;
+        left.append(label, meta);
+
+        const open = document.createElement("a");
+        open.href = issue.url;
+        open.className = "btn";
+        open.textContent = "Open";
+        open.setAttribute("aria-label", "Open archive issue: " + issue.label);
+
+        li.append(left, open);
+        archiveList.append(li);
+      }
+    }
+
+    function applyArchiveFilters() {
+      const query = state.searchQuery.trim().toLowerCase();
+      const normalized = query.replace(/\\s+/g, " ");
+
+      let rows = state.archiveIssues.slice();
+      if (normalized.length) {
+        rows = rows.filter((issue) => {
+          const indexText = (
+            issue.label + " " +
+            issue.filename + " " +
+            "week " + issue.week + " " +
+            String(issue.year)
+          ).toLowerCase();
+          return indexText.includes(normalized);
+        });
+      }
+
+      rows.sort((a, b) => {
+        if (state.sortOrder === "oldest") {
+          return a.sortKey - b.sortKey;
+        }
+        return b.sortKey - a.sortKey;
+      });
+
+      state.filteredArchive = rows;
+      renderArchiveList(rows);
+    }
+
+    async function boot() {
+      updateStatus("Scanning news folder for weekly briefings...", "");
+
+      const { issues, stats } = await discoverIssues({
+        basePath: CONFIG.basePath,
+        lookbackWeeks: CONFIG.lookbackWeeks
+      });
+
+      state.allIssues = issues;
+      state.archiveIssues = issues.slice(1);
+      const latest = issues[0] || null;
+
+      const diagnostics = {
+        problem: !issues.length && stats.attempted > 0 && stats.transportErrors === stats.attempted
+      };
+
+      renderLatest(latest, diagnostics);
+      applyArchiveFilters();
+
+      if (diagnostics.problem) {
+        updateStatus("Could not query files from this host. Serve folder over HTTP to enable detection.", "bad");
+      } else if (!issues.length) {
+        updateStatus("No issues found in news/. Add weekly files to populate this portal.", "warn");
+      } else {
+        updateStatus(
+          "Found " + issues.length + " issue(s). Showing latest: " + issues[0].label + ".",
+          "ok"
+        );
+      }
+    }
+
+    searchInput.addEventListener("input", (event) => {
+      state.searchQuery = event.target.value || "";
+      applyArchiveFilters();
+    });
+
+    sortSelect.addEventListener("change", (event) => {
+      state.sortOrder = event.target.value;
+      applyArchiveFilters();
+    });
+
+    boot();
+  </script>
+</body>
+</html>
