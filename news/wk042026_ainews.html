@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>January 2026 AI Intelligence Briefing — C-Suite Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── DESIGN TOKENS ── */
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555;      --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c;    --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def;     --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0;   --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9;     --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c;   --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+
+[data-theme="light"] {
+  --bg: #f4f6f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f4f8;
+  --bg-expanded: #ffffff;
+  --border: #d8dde6;
+  --border-accent: #c0c8d4;
+  --text: #1a2332;
+  --text-muted: #4a5568;
+  --text-dim: #8896a8;
+  --accent: #135EAB;
+  --accent-light: #1a74d0;
+  --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030;      --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F;    --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB;     --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1;   --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488;     --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621;   --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4;
+  --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06);
+  --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06);
+  --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05);
+  --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08);
+  --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  line-height: 1.65;
+  min-height: 100vh;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--noise-opacity, 1);
+}
+
+/* ── THEME TRANSITIONS ── */
+html { transition: background 0.4s ease; }
+body, .hero, .nav-strip, .card, .modal, .exec-strip, .metric,
+.modal-csuite, .panel, .footer, .theme-toggle, .nav-btn {
+  transition: background 0.35s ease, color 0.35s ease,
+              border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  padding: 5rem 2rem 0;
+  background: linear-gradient(180deg, var(--hero-grad-start) 0%, var(--bg) 100%);
+  text-align: center;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, var(--hero-glow-a) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, var(--hero-glow-b) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.hero-label::before, .hero-label::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+[data-theme="light"] .hero-label { color: #04955F; }
+[data-theme="light"] .hero-label::before,
+[data-theme="light"] .hero-label::after {
+  background: linear-gradient(90deg, #135EAB, #04955F);
+  width: 32px;
+  height: 2px;
+  opacity: 1;
+}
+.hero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(32px,5vw,56px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text);
+  max-width: 840px;
+  margin: 0 auto 1rem;
+}
+.hero-sub {
+  font-family: 'Source Serif 4', serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+.metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+[data-theme="light"] .metrics-bar {
+  background: linear-gradient(135deg, #135EAB, #04955F);
+}
+.metric {
+  background: var(--bg-card);
+  padding: 18px 20px;
+  text-align: center;
+  cursor: default;
+  transition: background 0.25s ease;
+}
+.metric:hover { background: var(--bg-card-hover); }
+[data-theme="light"] .metric { background: rgba(255,255,255,0.95); }
+[data-theme="light"] .metric:hover { background: rgba(255,255,255,1); }
+.metric-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+[data-theme="light"] .metric-value {
+  background: linear-gradient(135deg, #135EAB, #04955F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.metric-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ── NAV STRIP ── */
+.nav-strip {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 16px;
+}
+.nav-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-scroll-btn {
+  width: 30px; height: 30px; border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s, background 0.2s;
+}
+.nav-scroll-btn.visible { opacity: 1; pointer-events: auto; }
+.nav-scroll-area {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.nav-scroll-area::before, .nav-scroll-area::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 28px; z-index: 1; pointer-events: none;
+  opacity: 0; transition: opacity 0.2s;
+}
+.nav-scroll-area::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.nav-scroll-area::after  { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
+.nav-scroll-area.fade-left::before { opacity: 1; }
+.nav-scroll-area.fade-right::after { opacity: 1; }
+[data-theme="light"] .nav-scroll-area::before { background: linear-gradient(90deg, rgba(244,246,249,0.95), transparent); }
+[data-theme="light"] .nav-scroll-area::after { background: linear-gradient(-90deg, rgba(244,246,249,0.95), transparent); }
+#nav-inner {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 4px;
+}
+#nav-inner::-webkit-scrollbar { display: none; }
+.nav-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-btn:hover { color: var(--text); background: var(--bg-card); }
+.nav-btn.active { color: var(--accent); background: var(--accent-dim); }
+[data-theme="light"] .nav-btn.active {
+  background: linear-gradient(135deg, rgba(19,94,171,0.10), rgba(4,149,95,0.08));
+  color: #135EAB;
+}
+.theme-toggle {
+  width: 34px; height: 34px; border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  margin-left: 4px;
+  flex-shrink: 0;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  position: absolute;
+  font-size: 15px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.theme-toggle .icon-sun { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+.theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+[data-theme="light"] .theme-toggle .icon-sun { opacity: 1; transform: rotate(0) scale(1); }
+[data-theme="light"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+
+/* ── MAIN LAYOUT ── */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* ── EXEC SUMMARY STRIP ── */
+.exec-strip {
+  background: var(--accent-dim);
+  border: 1px solid rgba(201,164,76,0.18);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 2.5rem 0 2rem;
+}
+[data-theme="light"] .exec-strip {
+  background: linear-gradient(135deg, rgba(19,94,171,0.06), rgba(4,149,95,0.06));
+  border-color: rgba(19,94,171,0.15);
+}
+.exec-strip-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.exec-strip p {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+.exec-strip strong { color: var(--text); font-weight: 600; }
+
+/* ── SECTION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section {
+  margin-bottom: 3.5rem;
+  animation: fadeUp 0.5s ease both;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  flex: 1;
+}
+.section-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 2px 0 0 2px;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--shadow-card);
+}
+.card:hover::before { opacity: 1; }
+[data-theme="light"] .card { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+[data-theme="light"] .card:hover { box-shadow: 0 8px 32px rgba(19,94,171,0.10); }
+.card-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.card-headline {
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.card-summary {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-risk-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.card-expand-hint {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--text-dim);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.card:hover .card-expand-hint { opacity: 1; }
+
+/* ── COLOR CLASSES ── */
+.icon-gold { background: var(--accent-dim); color: var(--accent); }
+.icon-green { background: var(--green-dim); color: var(--green); }
+.icon-red { background: var(--red-dim); color: var(--red); }
+.icon-blue { background: var(--blue-dim); color: var(--blue); }
+.icon-purple { background: var(--purple-dim); color: var(--purple); }
+.icon-cyan { background: var(--cyan-dim); color: var(--cyan); }
+.icon-orange { background: var(--orange-dim); color: var(--orange); }
+[data-theme="light"] .icon-gold { background: rgba(19,94,171,0.10); }
+[data-theme="light"] .icon-green { background: rgba(4,149,95,0.10); }
+[data-theme="light"] .icon-blue { background: rgba(100,203,192,0.12); }
+[data-theme="light"] .icon-red { background: rgba(255,156,163,0.15); }
+[data-theme="light"] .icon-purple { background: rgba(107,70,193,0.10); }
+[data-theme="light"] .icon-cyan { background: rgba(100,203,192,0.12); }
+[data-theme="light"] .icon-orange { background: rgba(244,244,49,0.15); }
+
+.bg-gold { background: var(--accent-dim); color: var(--accent); }
+.bg-red { background: var(--red-dim); color: var(--red); }
+.bg-green { background: var(--green-dim); color: var(--green); }
+.bg-blue { background: var(--blue-dim); color: var(--blue); }
+.bg-purple { background: var(--purple-dim); color: var(--purple); }
+.bg-cyan { background: var(--cyan-dim); color: var(--cyan); }
+.bg-orange { background: var(--orange-dim); color: var(--orange); }
+[data-theme="light"] .bg-gold { background: rgba(19,94,171,0.10); color: #135EAB; }
+[data-theme="light"] .bg-red { background: rgba(255,156,163,0.20); color: #b83240; }
+[data-theme="light"] .bg-green { background: rgba(4,149,95,0.10); color: #04955F; }
+[data-theme="light"] .bg-blue { background: rgba(100,203,192,0.15); color: #0a7a6e; }
+[data-theme="light"] .bg-purple { background: rgba(107,70,193,0.10); color: #6b46c1; }
+[data-theme="light"] .bg-cyan { background: rgba(100,203,192,0.15); color: #0d9488; }
+[data-theme="light"] .bg-orange { background: rgba(244,244,49,0.15); color: #8a6d00; }
+
+.c-gold { color: var(--accent); }
+.c-red { color: var(--red); }
+.c-green { color: var(--green); }
+.c-blue { color: var(--blue); }
+.c-purple { color: var(--purple); }
+.c-cyan { color: var(--cyan); }
+.c-orange { color: var(--orange); }
+
+.bar-gold::before { background: var(--accent); }
+.bar-red::before { background: var(--red); }
+.bar-green::before { background: var(--green); }
+.bar-blue::before { background: var(--blue); }
+.bar-purple::before { background: var(--purple); }
+.bar-cyan::before { background: var(--cyan); }
+.bar-orange::before { background: var(--orange); }
+[data-theme="light"] .bar-gold::before { background: linear-gradient(180deg, #135EAB, #04955F); }
+[data-theme="light"] .bar-blue::before { background: #135EAB; }
+[data-theme="light"] .bar-green::before { background: #04955F; }
+[data-theme="light"] .bar-red::before { background: #FF9CA3; }
+[data-theme="light"] .bar-purple::before { background: #6b46c1; }
+[data-theme="light"] .bar-cyan::before { background: #64CBC0; }
+[data-theme="light"] .bar-orange::before { background: #F4F431; }
+
+/* ── MODAL ── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+  padding: 20px;
+}
+.modal-overlay.active {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+.modal {
+  background: var(--bg-expanded);
+  border: 1px solid var(--border-accent);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+[data-theme="light"] .modal {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  border-color: var(--border);
+}
+.modal-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.modal-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.modal-close {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 14px;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.2s, border-color 0.2s;
+}
+.modal-close:hover { color: var(--text); border-color: var(--border-accent); }
+.modal-body { padding: 28px 32px 32px; }
+.modal-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.modal-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+.modal-content {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.modal-content p { margin-bottom: 14px; }
+.modal-content p:last-child { margin-bottom: 0; }
+.modal-content strong { color: var(--text); font-weight: 600; }
+.panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+@media (max-width: 640px) { .panel-grid { grid-template-columns: 1fr; } }
+.panel {
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.panel-action { background: var(--panel-action-bg); border: 1px solid var(--panel-action-border); }
+.panel-risk { background: var(--panel-risk-bg); border: 1px solid var(--panel-risk-border); }
+.panel-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.panel-action .panel-label { color: var(--green); }
+.panel-risk .panel-label { color: var(--red); }
+.panel-label-icon { font-size: 12px; }
+.panel-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.panel-list li {
+  font-family: 'Source Serif 4', serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--panel-li-border);
+}
+.panel-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.panel-risk .panel-list li::before {
+  content: '▸';
+  color: var(--red);
+  margin-right: 6px;
+  font-size: 10px;
+}
+.owner {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.owner-ceo { background: var(--accent-dim); color: var(--accent); }
+.owner-cfo { background: var(--green-dim); color: var(--green); }
+.owner-cio { background: var(--blue-dim); color: var(--blue); }
+.owner-gc  { background: var(--purple-dim); color: var(--purple); }
+.owner-ciso { background: var(--red-dim); color: var(--red); }
+.owner-chro { background: var(--orange-dim); color: var(--orange); }
+[data-theme="light"] .owner-ceo { background: rgba(19,94,171,0.10); color: #135EAB; }
+[data-theme="light"] .owner-cfo { background: rgba(4,149,95,0.10); color: #04955F; }
+[data-theme="light"] .owner-cio { background: rgba(100,203,192,0.15); color: #0a7a6e; }
+[data-theme="light"] .owner-gc { background: rgba(107,70,193,0.10); color: #6b46c1; }
+[data-theme="light"] .owner-ciso { background: rgba(255,156,163,0.15); color: #b83240; }
+[data-theme="light"] .owner-chro { background: rgba(244,244,49,0.15); color: #8a6d00; }
+
+.modal-csuite {
+  background: var(--accent-dim);
+  border: 1px solid rgba(201,164,76,0.15);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+[data-theme="light"] .modal-csuite {
+  background: linear-gradient(135deg, rgba(19,94,171,0.06), rgba(4,149,95,0.06));
+}
+.modal-csuite-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.modal-csuite p {
+  font-family: 'Source Serif 4', serif;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+.modal-links { margin-bottom: 20px; }
+.modal-links-label, .modal-related-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.modal-link-list { display: flex; flex-direction: column; gap: 6px; }
+.modal-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.modal-link:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+.modal-link-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.modal-link span:nth-child(2) {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex: 1;
+}
+.modal-link-arrow {
+  font-size: 12px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.related-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.related-chip {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.related-chip:hover { background: var(--bg-card-hover); border-color: var(--accent); color: var(--accent); }
+[data-theme="light"] .related-chip:hover {
+  background: rgba(19,94,171,0.08);
+  border-color: #135EAB;
+  color: #135EAB;
+}
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 24px;
+  text-align: center;
+  margin-top: 20px;
+}
+.footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .hero { padding: 3rem 1.5rem 0; }
+  .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+  .metric:last-child { grid-column: 1 / -1; }
+  .main { padding: 0 16px 40px; }
+  .modal-body { padding: 20px; }
+  .cards-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-label">C-Suite Intelligence Briefing</div>
+  <h1>January 2026 AI Intelligence Briefing</h1>
+  <p class="hero-sub">Infrastructure deployment, capital supercycle, and workforce transformation — the month AI became an operational reality</p>
+  <div class="metrics-bar">
+    <div class="metric"><div class="metric-value">$2.52T</div><div class="metric-label">Global AI Spend<br>Forecast 2026</div></div>
+    <div class="metric"><div class="metric-value">$30B+</div><div class="metric-label">AI Funding<br>January Alone</div></div>
+    <div class="metric"><div class="metric-value">~$700B</div><div class="metric-label">Hyperscaler Capex<br>2026 Target</div></div>
+    <div class="metric"><div class="metric-value">108K</div><div class="metric-label">U.S. Layoffs<br>Announced Jan '26</div></div>
+    <div class="metric"><div class="metric-value">–15%</div><div class="metric-label">Software Index<br>Worst Since 2008</div></div>
+  </div>
+</header>
+
+<!-- ── NAV STRIP ── -->
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="nav-scroll-left">‹</button>
+    <div class="nav-scroll-area" id="nav-scroll-area">
+      <div id="nav-inner">
+        <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="platforms">Enterprise Platforms</button>
+        <button class="nav-btn" data-section="funding">Funding &amp; Markets</button>
+        <button class="nav-btn" data-section="infrastructure">Hardware &amp; Infra</button>
+        <button class="nav-btn" data-section="agents">Agentic AI</button>
+        <button class="nav-btn" data-section="regulation">Regulation</button>
+        <button class="nav-btn" data-section="workforce">Workforce</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="nav-scroll-right">›</button>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MAIN ── -->
+<main class="main">
+  <div class="exec-strip">
+    <div class="exec-strip-label">⚡ 30-Second Executive Summary</div>
+    <p>AI crossed a critical threshold in January 2026: the industry shifted decisively from experimentation to <strong>infrastructure-scale deployment</strong>, triggering record capital commitments, a historic software stock selloff, and the largest wave of AI-attributed layoffs since the technology emerged. Three dynamics define the month: hyperscaler capex approaching <strong>$700 billion</strong> for the year; OpenAI introducing advertising while Anthropic captures 40% enterprise market share; and agentic AI platforms launching across every major vendor simultaneously. <strong>AI is no longer a technology bet — it is an operational reality reshaping corporate strategy, capital allocation, and workforce design at once.</strong></p>
+  </div>
+
+  <div id="content-area"></div>
+</main>
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-top-bar">
+      <div class="modal-category" id="modal-category"></div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-headline" id="modal-headline"></h2>
+      <div class="modal-date" id="modal-date"></div>
+      <div class="modal-content" id="modal-content"></div>
+      <div class="panel-grid" id="panel-grid"></div>
+      <div class="modal-csuite" id="modal-csuite">
+        <div class="modal-csuite-label">⚡ Bottom Line</div>
+        <p id="modal-csuite-text"></p>
+      </div>
+      <div class="modal-links">
+        <div class="modal-links-label">Sources &amp; Further Reading</div>
+        <div class="modal-link-list" id="modal-link-list"></div>
+      </div>
+      <div class="modal-related">
+        <div class="modal-related-label">Related Topics</div>
+        <div class="related-chips" id="related-chips"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>January 2026 AI Intelligence Briefing · C-Suite Edition · Period: January 1–31, 2026 · Published: February 2026</p>
+</footer>
+
+<script>
+const sections = [
+  {
+    id: "platforms",
+    title: "Enterprise Platform Wars",
+    icon: "🏛",
+    iconClass: "icon-gold",
+    count: 5,
+    cards: [
+      {
+        id: "openai-healthcare",
+        date: "Jan 7–11, 2026",
+        headline: "Healthcare AI battle opens: OpenAI, Anthropic, Google move in first two weeks",
+        summary: "ChatGPT Health, Claude for Healthcare, and Google's AI Overviews reversal signal regulated industries as the next major enterprise frontier.",
+        tags: [["CEO","bg-gold"],["CIO","bg-blue"],["GC","bg-purple"]],
+        barClass: "bar-gold",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-gold",
+        content: `<p><strong>OpenAI launched ChatGPT Health on January 7</strong>, creating an encrypted medical hub where users connect health records via b.well (covering ~2.2 million U.S. providers) and wellness apps. The product was validated by 260+ physicians across 60 countries who reviewed over 600,000 model outputs. Four days later, <strong>Anthropic launched Claude for Healthcare on January 11</strong> — timed precisely to the J.P. Morgan Healthcare Conference — offering HIPAA-compliant tools with connectors to CMS, ICD-10 codes, PubMed, and prior authorization automation.</p>
+<p>The same week, Google moved in the opposite direction: <strong>removing AI Overviews from certain health searches</strong> after a Guardian investigation flagged potentially misleading medical information. The contrast is stark — two frontier AI companies accelerating into healthcare while the incumbent search-AI player retreats, under regulatory pressure.</p>
+<p>Healthcare is now the first major regulated-industry battleground where all three frontier AI companies have made explicit bets. The question for enterprises is no longer whether to deploy AI in clinical or administrative workflows, but which vendor's compliance architecture and clinical validation process to anchor to.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Audit all current health data flows and identify workflows where ChatGPT Health or Claude for Healthcare could replace or augment existing clinical decision support tools. Require vendor attestation of HIPAA compliance before any pilot."},
+          {owner:"GC", ownerClass:"owner-gc", text:"Map your organization's exposure under HIPAA, state medical privacy laws, and EU GDPR for any AI touching patient data. Establish a healthcare-AI governance committee with compliance, clinical, and IT representation before Q2."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Evaluate whether launching a healthcare AI initiative in 2026 is a competitive necessity vs. a differentiation opportunity — the window before these tools commoditize is narrow."}
+        ],
+        risks: [
+          {text:"Regulatory liability: deploying AI in clinical pathways without established clinical validation protocols exposes organizations to malpractice and HIPAA enforcement risk."},
+          {text:"Vendor consolidation risk: early lock-in to one healthcare AI vendor may prove costly if standards emerge or one platform achieves dominant clinical validation."},
+          {text:"Google's retreat: if the leading AI search platform is pulling back from health, the safety bar may be higher than vendors are representing."}
+        ],
+        csuite: "Healthcare is AI's first major regulated-industry battleground, and the competitive positions being staked now — OpenAI's breadth, Anthropic's compliance posture — will determine vendor selection for years. Organizations that delay healthcare AI governance frameworks risk both competitive disadvantage and regulatory exposure.",
+        links: [
+          {source:"STAT News", title:"OpenAI launches ChatGPT Health with b.well integration", url:"https://www.statnews.com"},
+          {source:"Fierce Healthcare", title:"Anthropic debuts Claude for Healthcare at JP Morgan Conference", url:"https://www.fiercehealthcare.com"},
+          {source:"The Guardian", title:"Google pulls AI Overviews from health searches after accuracy concerns", url:"https://www.theguardian.com"}
+        ],
+        related: ["anthropic-market-share", "openai-ads", "regulation-state"]
+      },
+      {
+        id: "anthropic-market-share",
+        date: "Jan 2026",
+        headline: "Anthropic commands 40% enterprise LLM market as OpenAI declines to 27%",
+        summary: "Menlo Ventures survey data shows a dramatic enterprise share shift — Anthropic now leads, triggering OpenAI to appoint a new enterprise sales head.",
+        tags: [["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass: "bar-blue",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-gold",
+        content: `<p>Per Menlo Ventures' December 2025 enterprise survey, <strong>Anthropic now commands 40% of the enterprise LLM market</strong>. Google Gemini holds 21%. OpenAI has declined from 50% in 2023 to just <strong>27%</strong> — a remarkable reversal in two years. OpenAI responded by appointing <strong>Barret Zoph on January 22</strong> to lead enterprise sales, and expanded a multi-year partnership with ServiceNow on January 20, integrating GPT-5.2 into the platform's 80+ billion annual enterprise workflows.</p>
+<p>Anthropic's ascent is rooted in three structural advantages: it is the <strong>only frontier model available across all three major clouds</strong> — Azure, AWS, and Google Cloud — giving enterprises optionality and negotiating leverage. Its Claude models have gained a reputation for reliability in long-context document work and coding. And its healthcare launch, timed to J.P. Morgan, demonstrates a sharpening enterprise go-to-market motion.</p>
+<p>The competitive dynamics are accelerating. Salesforce Agentforce 360 passed 8,000 customers with $100M annual order value in January. Microsoft Agent 365 now runs in 80% of the Fortune 500. For CIOs, the platform decisions made in the next two quarters will be the foundational choices that shape enterprise AI architecture for years.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Benchmark your current LLM vendor against Anthropic Claude 3.7 and Google Gemini 3 Flash on your actual enterprise workloads — latency, cost per task, accuracy. Run this before renewing any enterprise AI contract in H1 2026."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Review whether your organization's AI vendor choices are positioned for 2026 multi-cloud deployments. Being locked into a single-cloud AI vendor carries increasing risk as the market diversifies."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the total cost difference between Anthropic (cross-cloud), OpenAI (Azure-weighted), and Google Gemini for your actual workload mix before any multi-year enterprise AI contract renewal."}
+        ],
+        risks: [
+          {text:"OpenAI counter-move: the Barret Zoph enterprise hire and ServiceNow partnership signal OpenAI is not ceding enterprise ground without a fight."},
+          {text:"Survey recency: Menlo Ventures December 2025 data may not capture ChatGPT o3 launches or January product moves — the competitive picture is evolving faster than quarterly surveys can track."},
+          {text:"Platform fragmentation: choosing the current leader locks in one integration paradigm; the agent platform wars (Agentforce, Agent 365, Claude Cowork) may matter more than base model selection."}
+        ],
+        csuite: "The enterprise LLM market has inverted in two years — Anthropic leads where OpenAI dominated. But the more consequential decision is which agent platform becomes the enterprise control plane, not which base model powers it. Platform selection in Q2 2026 will prove more durable than model selection.",
+        links: [
+          {source:"Menlo Ventures", title:"State of Enterprise AI 2025 Survey Results", url:"https://menlovc.com"},
+          {source:"Fortune", title:"Anthropic captures enterprise AI lead as OpenAI focuses on consumer", url:"https://fortune.com"},
+          {source:"ServiceNow", title:"ServiceNow and OpenAI expand multi-year enterprise AI partnership", url:"https://www.servicenow.com/newsroom"}
+        ],
+        related: ["openai-ads", "agents-platforms", "openai-healthcare"]
+      },
+      {
+        id: "openai-ads",
+        date: "Jan 16, 2026",
+        headline: "OpenAI introduces ads in ChatGPT — and Anthropic counter-punches immediately",
+        summary: "A new $8/month tier and sponsored responses mark OpenAI's pivot under financial pressure. Anthropic's 'Ads are coming to AI. But not to Claude.' campaign lands within hours.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass: "bar-red",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-gold",
+        content: `<p>On January 16, OpenAI made its most controversial commercial move to date: dual announcement of <strong>ChatGPT Go</strong> (a new $8/month tier) and <strong>ads in ChatGPT's free and Go tiers</strong> for adult U.S. users. Ads appear at the bottom of responses, labeled as "sponsored," with explicit exclusions for politics, health, and mental health topics. The decision reflects acute financial pressure — OpenAI projects <strong>cumulative losses of $14 billion by end of 2026</strong> despite record funding rounds.</p>
+<p>The market reaction was swift. <strong>Google DeepMind CEO Demis Hassabis</strong> publicly criticized the move at Davos. <strong>Anthropic CEO Dario Amodei</strong> went further, authorizing a counter-advertising campaign: "Ads are coming to AI. But not to Claude." The campaign is a direct appeal to enterprise buyers concerned about advertiser influence on AI outputs — a legitimate risk given the ad exclusion carve-outs acknowledge these concerns implicitly.</p>
+<p>For enterprise procurement teams, the advertising announcement has a concrete implication: ChatGPT's free and consumer tiers are now structurally different products from the enterprise API. Any organization relying on free ChatGPT for employee workflows needs to evaluate whether advertiser-influenced outputs are compatible with internal use policies.</p>`,
+        actions: [
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Issue a clear internal policy on whether employees may use ad-supported AI tiers for work tasks. The risk is not just advertising influence — it's the signal that OpenAI's consumer and enterprise interests may increasingly diverge."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Audit all free-tier AI tool usage across the organization. Any usage of ChatGPT Free or Go by employees should be governed by the same policies as enterprise AI tools — or prohibited."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Use OpenAI's advertising pivot as leverage in enterprise contract negotiations. Competitors are actively positioning against it, which gives buyers negotiating room."}
+        ],
+        risks: [
+          {text:"Ad influence on outputs: even with labeled exclusions, enterprise buyers should evaluate whether sponsored content affects quality or objectivity of responses in adjacent topic areas."},
+          {text:"Consumer/enterprise divergence: OpenAI's dual-track model may mean enterprise and consumer product roadmaps increasingly diverge, with enterprise getting less R&D attention as ad revenue scales."},
+          {text:"Regulatory scrutiny: the EU AI Act and FTC may scrutinize AI advertising disclosures, creating potential compliance exposure for enterprises using ad-supported AI in customer-facing applications."}
+        ],
+        csuite: "OpenAI's ad pivot is a financial pressure signal, not a product strategy strength. It gives enterprise buyers genuine leverage in negotiations and a legitimate reason to evaluate whether Anthropic's ad-free positioning delivers better output quality for business-critical tasks. This is the first moment the business model divergence between frontier AI companies has direct procurement implications.",
+        links: [
+          {source:"The Verge", title:"OpenAI introduces ads to ChatGPT free and Go tiers", url:"https://www.theverge.com"},
+          {source:"Bloomberg", title:"OpenAI faces $14 billion in projected losses despite record valuation", url:"https://bloomberg.com"},
+          {source:"Anthropic", title:"Anthropic's response to AI advertising announcement", url:"https://anthropic.com"}
+        ],
+        related: ["anthropic-market-share", "openai-ipo", "regulation-state"]
+      },
+      {
+        id: "agents-platforms",
+        date: "Jan 2026",
+        headline: "Agent platform wars begin in earnest — MCP donated to Linux Foundation",
+        summary: "Agentforce 360, Claude Cowork, Microsoft Agent 365, and Google Gemini Enterprise all launch simultaneously, while MCP becomes the de facto integration standard.",
+        tags: [["CIO","bg-blue"],["CEO","bg-gold"]],
+        barClass: "bar-cyan",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "AGENTIC AI",
+        catColor: "c-cyan",
+        content: `<p>January marked the beginning of the enterprise agent platform wars in earnest. <strong>Salesforce Agentforce 360</strong> passed 8,000 customers and $100M annual order value. <strong>Microsoft Agent 365</strong> is now deployed in 80% of the Fortune 500. <strong>Google Gemini Enterprise</strong> launched with the Universal Commerce Protocol at NRF. <strong>Anthropic launched Claude Cowork on January 12</strong> — a research preview for Max plan subscribers that runs locally in an isolated VM with MCP integrations, expanding to Pro users on January 16.</p>
+<p>The critical infrastructure decision: <strong>Anthropic donated the Model Context Protocol (MCP) to the Linux Foundation's Agentic AI Foundation</strong>, which immediately became the de facto integration standard. MCP now has support from ChatGPT, Claude, Cursor, Gemini, Microsoft Copilot, and VS Code, with 97 million monthly SDK downloads. This open-standard approach mirrors how HTTP and REST became infrastructure — whoever wins the protocol layer shapes the market for a generation.</p>
+<p>CIOs face the most consequential platform lock-in decisions since cloud migration. The agent orchestration layer is becoming the new enterprise "control plane" — the system through which AI agents initiate tasks, access data, and take actions across organizational systems. Fragmented agent deployments that lack a unifying orchestration layer will compound technical debt rapidly.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Commission a 60-day evaluation of the three leading agent platforms (Agentforce 360, Microsoft Agent 365, Claude Cowork/API) against your top 5 enterprise automation use cases. Require MCP compatibility as a baseline criterion — non-compatible platforms create immediate integration debt."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Ensure the agent platform selection decision is made at C-suite level, not delegated to a single IT team. The choice determines which vendor has access to your organizational data flows for the next 3–5 years."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the TCO of agent platform options including: per-seat licensing, API consumption costs, integration labor, and migration costs if you change vendors in 18–24 months."}
+        ],
+        risks: [
+          {text:"Vendor lock-in: agent platforms are integration-heavy — once deployed across dozens of enterprise systems, migration costs can exceed initial implementation costs."},
+          {text:"Data access exposure: agent platforms that operate with broad organizational system access create a new attack surface. Security architecture must be evaluated before deployment, not after."},
+          {text:"MCP fragmentation: while MCP is gaining traction as a standard, proprietary extensions from Microsoft and Salesforce may create incompatibilities that effectively re-create lock-in."}
+        ],
+        csuite: "The agent platform decision is the most strategically significant technology choice of 2026. Unlike buying software licenses, choosing an agent orchestration platform determines which vendor has persistent access to your organizational workflows and data. The window to negotiate favorable terms before lock-in hardens is open now — but it won't stay open.",
+        links: [
+          {source:"Linux Foundation", title:"Anthropic donates MCP to the Agentic AI Foundation", url:"https://linuxfoundation.org"},
+          {source:"Salesforce", title:"Agentforce 360 surpasses 8,000 enterprise customers", url:"https://www.salesforce.com/news"},
+          {source:"Microsoft", title:"Microsoft Agent 365 deployment across Fortune 500", url:"https://www.microsoft.com/en-us/microsoft-365"}
+        ],
+        related: ["anthropic-market-share", "openai-healthcare", "google-ucp"]
+      },
+      {
+        id: "google-ucp",
+        date: "Jan 11, 2026",
+        headline: "Google launches Universal Commerce Protocol at NRF — agentic commerce arrives",
+        summary: "UCP co-developed with Shopify, Walmart, Target, Visa, and Mastercard enables native checkout within Google AI Mode, positioning Google at the center of AI-initiated purchases.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-blue",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-gold",
+        content: `<p>At NRF 2026, Sundar Pichai announced the <strong>Universal Commerce Protocol (UCP)</strong> — an open standard for AI-driven transactions co-developed with Shopify, Etsy, Wayfair, Target, and Walmart. Endorsed by 20+ partners including Visa, Mastercard, American Express, Stripe, Best Buy, and Macy's, UCP enables native checkout within Google Search AI Mode and Gemini. The protocol is compatible with MCP, A2A, and AP2 standards.</p>
+<p>UCP represents the first viable infrastructure for what Pichai called "agentic commerce" — a model where AI agents, not human consumers, initiate purchases on behalf of users. The implications are structural: if agents become the primary interface for product discovery and purchase, then the entire marketing funnel — built around capturing human attention — becomes obsolete. What replaces it is agent optimization: getting your products in the data sets, catalogs, and tool integrations that AI agents consult.</p>
+<p>However, consumer adoption faces a significant trust barrier: a <strong>ChannelEngine survey found only 17% of consumers</strong> are currently comfortable with AI completing transactions. Enterprises have 12–24 months to build UCP-compatible infrastructure before agentic commerce becomes a meaningful revenue channel — but the architecture decisions made now will determine competitive position when adoption does accelerate.</p>`,
+        actions: [
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Evaluate whether your product catalog and pricing infrastructure is UCP-compatible. If your commerce stack can't expose structured data for AI agent queries, you will be invisible to agentic shoppers — a cohort that will grow from 17% to the majority within 3–5 years."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Assess current e-commerce APIs for UCP compatibility. Shopify and Stripe have both committed to UCP — if your tech stack runs on these platforms, integration cost is lower than if you're running proprietary commerce infrastructure."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the revenue-at-risk scenario if 20% of purchase decisions in your category move to AI-agent-initiated transactions by 2028. Map which SKUs and customer segments are most exposed."}
+        ],
+        risks: [
+          {text:"Consumer adoption lag: if agentic commerce adoption is slower than Google projects, early investment in UCP infrastructure may not yield returns within 2026 planning horizons."},
+          {text:"Google lock-in: UCP is Google-led — if it achieves dominance, it positions Google as the intermediary for all AI-initiated commerce, extracting a toll from every transaction."},
+          {text:"Brand control erosion: when AI agents buy on behalf of consumers, brand differentiation signals that worked for human attention (packaging, advertising) may not translate to agent decision criteria."}
+        ],
+        csuite: "Google's UCP is the most significant commerce architecture announcement since Apple Pay — but it targets a future where AI agents, not consumers, complete purchases. Enterprises have a 12–24 month window to build UCP-compatible catalog and pricing infrastructure before the first wave of agentic commerce revenue is contested. Early movers will set the agent optimization playbook.",
+        links: [
+          {source:"Google", title:"Google announces Universal Commerce Protocol at NRF 2026", url:"https://about.google"},
+          {source:"NRF", title:"Retail's biggest conference: AI-driven commerce takes center stage", url:"https://nrf.com"},
+          {source:"ChannelEngine", title:"Consumer Comfort with AI Transactions Survey 2026", url:"https://channelengine.com"}
+        ],
+        related: ["agents-platforms", "anthropic-market-share", "openai-ads"]
+      }
+    ]
+  },
+  {
+    id: "funding",
+    title: "Record Funding & Market Shock",
+    icon: "💰",
+    iconClass: "icon-green",
+    count: 4,
+    cards: [
+      {
+        id: "january-funding",
+        date: "Jan 2026",
+        headline: "$30B+ flows into AI in a single month — xAI leads with $20B Series E",
+        summary: "January's funding totals dwarf entire prior years of VC activity. Top 10 companies captured 76% of all AI funding, and AI represented 47% of all VC activity in 2025.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass: "bar-green",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "FUNDING & M&A",
+        catColor: "c-green",
+        content: `<p>January 2026 saw over <strong>$30 billion</strong> flow into AI companies in a single month — a concentration of capital with no precedent in venture history. The headline round: <strong>xAI raised $20B Series E at a ~$200B valuation</strong> from Fidelity, QIA, MGX, NVIDIA, and Cisco. Other significant rounds included Skild AI ($1.4B Series C at $14B, backed by SoftBank and Jeff Bezos), Etched ($500M at ~$5B for its transformer-specific ASIC chip), and DayOne Data Centers ($2B Series C for hyperscale AI infrastructure).</p>
+<p>The concentration dynamics are stark. <strong>AI represented 47% of all VC activity in 2025</strong>. The top 10 AI companies captured <strong>76% of total AI funding</strong>. Anthropic raised $1.5B at $190B in January, then closed a <strong>$30B Series G at $380B in February</strong> — the largest private technology funding round in history.</p>
+<p>For non-AI enterprises, this concentration dynamic has a direct consequence: the talent, compute, and engineering resources required to build competitive AI capabilities are increasingly flowing to a small number of frontier AI companies. The gap between what frontier labs can build and what enterprise IT teams can deploy is widening, making vendor selection and partnership strategy more consequential than internal build capacity.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Stress-test your AI vendor relationships against funding concentration risk. If a key vendor's valuation is driven primarily by AI optimism rather than revenue multiples, model a scenario where funding dries up and the vendor faces a distressed sale or shutdown."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Evaluate whether your organization's strategic AI investments are positioned to benefit from — or are exposed to — this funding supercycle. Companies that can attract AI-adjacent investment or partnership capital now are in a fundamentally different position than those that cannot."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Maintain a vendor continuity plan for all AI tools with a valuation-to-revenue ratio above 30×. Identify enterprise-grade fallback alternatives for each mission-critical AI dependency."}
+        ],
+        risks: [
+          {text:"Valuation bubble: $30B in a single month at historically unprecedented multiples suggests allocation dynamics driven by FOMO rather than fundamental value — a correction would hit AI vendors' ability to sustain current pricing and investment levels."},
+          {text:"Talent vacuum: mega-rounds at frontier labs accelerate talent concentration, making it harder for non-frontier enterprises to hire or retain AI engineers."},
+          {text:"Concentration fragility: 76% of funding going to 10 companies means the AI ecosystem's health is disproportionately dependent on a handful of bets."}
+        ],
+        csuite: "The January funding surge is simultaneously a signal of confidence and a warning of fragility. Organizations should treat their AI vendor roster as they would a concentrated equity position — with diversification requirements, continuity plans, and regular valuation-to-fundamentals reviews.",
+        links: [
+          {source:"Crunchbase", title:"xAI closes $20B Series E, largest single-company AI round", url:"https://news.crunchbase.com"},
+          {source:"Pitchbook", title:"AI funding reaches 47% of total VC in 2025", url:"https://pitchbook.com"},
+          {source:"Bloomberg", title:"Anthropic $30B Series G breaks private funding records", url:"https://bloomberg.com"}
+        ],
+        related: ["openai-ipo", "software-selloff", "nvidia-results"]
+      },
+      {
+        id: "openai-ipo",
+        date: "Jan 2026",
+        headline: "OpenAI completes PBC conversion; IPO preparation begins at $1T valuation",
+        summary: "The nonprofit becomes OpenAI Foundation with a $130B equity stake. Microsoft holds ~$135B (27%). Q4 2026 IPO is being prepared at an $830B–$1T valuation.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass: "bar-gold",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "FUNDING & M&A",
+        catColor: "c-green",
+        content: `<p>OpenAI finalized its conversion to a <strong>public benefit corporation</strong> (OpenAI Group PBC) in January 2026. The nonprofit entity was renamed the <strong>OpenAI Foundation</strong>, retaining a ~$130 billion equity stake. Microsoft received a ~$135 billion stake representing 27% ownership in the restructured entity. The Foundation committed $25 billion to health and AI resilience initiatives as part of the conversion terms.</p>
+<p>IPO preparation is underway at a potential <strong>$830B–$1T valuation</strong>, targeting Q4 2026. However, the IPO path faces structural complications: Microsoft's disclosure on January 29 that <strong>45% of its $625B cloud backlog is tied to OpenAI</strong> contributed to a 12% single-day stock drop ($440B erased), highlighting the degree to which OpenAI's financial health is entangled with its largest partner's.</p>
+<p>The Databricks and Anthropic IPO signals in January confirm a broader pattern: the top-tier AI companies are preparing for public markets. For enterprises, this means the current era of startup-like flexibility and pricing experimentation at AI vendors is likely entering its final phase. Post-IPO pressure for consistent revenue growth and margin expansion will change how these companies price, prioritize enterprise contracts, and manage customer relationships.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the procurement implications of your key AI vendors going public in 2026–2027. Post-IPO pricing pressure, reduced flexibility on enterprise terms, and new investor scrutiny on margins will change contract dynamics. Lock in favorable multi-year terms now."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Review your organization's equity exposure to pre-IPO AI vendors via pension funds, strategic investments, or employee portfolios. The IPO pipeline includes OpenAI, Databricks, and Anthropic — all at valuations that require significant revenue growth to justify."},
+          {owner:"GC", ownerClass:"owner-gc", text:"Review enterprise AI contracts for change-of-control provisions. A vendor IPO, acquisition, or distressed sale can materially change data handling terms, pricing structures, and product roadmap commitments."}
+        ],
+        risks: [
+          {text:"Post-IPO pricing pressure: public market investors will push AI companies to improve margins, likely through price increases on enterprise contracts and reduction of pre-IPO concessions."},
+          {text:"OpenAI-Microsoft entanglement: 45% of Microsoft's cloud backlog tied to OpenAI creates a systemic risk for enterprises deeply embedded in the Microsoft/Azure/OpenAI stack."},
+          {text:"Valuation correction: $830B–$1T for a company projecting $14B in cumulative losses through 2026 requires extraordinary revenue acceleration — a miss would have enterprise confidence implications."}
+        ],
+        csuite: "The AI IPO pipeline of 2026–2027 marks the end of the startup era for frontier AI. Organizations with favorable enterprise contracts, strategic partnership terms, or pre-IPO negotiating leverage should act now to lock those terms in before public market discipline changes vendor behavior.",
+        links: [
+          {source:"SEC", title:"OpenAI Group PBC corporate conversion filing", url:"https://sec.gov"},
+          {source:"Bloomberg", title:"OpenAI begins IPO preparations at $1 trillion valuation", url:"https://bloomberg.com"},
+          {source:"Microsoft", title:"Q2 FY2026 Earnings: Azure cloud backlog and OpenAI dependency", url:"https://www.microsoft.com/en-us/investor"}
+        ],
+        related: ["software-selloff", "january-funding", "openai-ads"]
+      },
+      {
+        id: "software-selloff",
+        date: "Jan 2026",
+        headline: "Software stocks lose $800B — worst month since October 2008",
+        summary: "The S&P North American Software Index fell 15% in January. Microsoft lost $440B in a single day. Salesforce, ServiceNow, and Gartner all fell 25–30%.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass: "bar-red",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "MARKET IMPACT",
+        catColor: "c-red",
+        content: `<p>The <strong>S&P North American Software Index fell 15% in January 2026</strong> — its worst monthly decline since October 2008. The selloff erased over <strong>$800 billion in market value</strong> from incumbent software companies. The declines were concentrated among the most exposed players: Microsoft (–13%), Salesforce (–25–30%), ServiceNow (–25–30%), and Gartner (–30%). <strong>Microsoft stock plunged 12% on January 29 alone</strong> when the company disclosed that 45% of its $625B cloud backlog is tied to OpenAI.</p>
+<p>The market's logic: if AI agents can automate the workflows that incumbent software was built to support, the license-per-seat pricing model is under structural threat. This is not a sudden realization — the narrative has been building since GPT-4 — but the January selloff marks the moment institutional investors began pricing in disruption rather than just discussing it.</p>
+<p>The counterpoint matters: workflow automation doesn't eliminate the need for enterprise software. It changes the interface layer and potentially the pricing model, but ERP, CRM, and infrastructure software encode organizational logic that doesn't evaporate. The companies with the most defensible positions are those whose value is in <strong>data network effects and workflow integration depth</strong>, not in UI complexity that AI can abstract away.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Audit your enterprise software portfolio for AI disruption exposure. Tier vendors by: (1) deeply integrated with your data, (2) primarily UI/workflow tools that AI can replace, (3) infrastructure software with network effects. Prioritize renegotiating category-2 contracts."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Evaluate which SaaS tools in your portfolio could be replaced by AI agent workflows within 24 months. Build an internal roadmap for potential vendor consolidation — the selloff is a negotiating opportunity."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"If your business model includes software licensing, conduct a board-level review of AI disruption risk to your revenue model. The January selloff reflects investor uncertainty — your organization needs a more concrete answer than the market has reached."}
+        ],
+        risks: [
+          {text:"Vendor instability: companies whose stock falls 25–30% in a month face increased M&A pressure, potential strategic pivots, and leadership uncertainty — all of which affect product roadmaps your enterprise may depend on."},
+          {text:"Procurement leverage misread: the selloff may create a temporary window for aggressive enterprise contract renegotiation — but it may also destabilize vendors in ways that make the renegotiation pyrrhic."},
+          {text:"Second-order effects: software companies facing margin pressure may cut R&D, customer success, and implementation support — the hidden costs of a vendor under financial stress."}
+        ],
+        csuite: "The software selloff is not irrational panic — it reflects a genuine structural question about whether the licensing model that powered software valuations for 30 years survives the agent era. Organizations should use the next 12 months to assess their software portfolio's AI disruption exposure and pursue favorable contract terms while vendors are on the defensive.",
+        links: [
+          {source:"Bloomberg", title:"Software stocks suffer worst month since 2008 financial crisis", url:"https://bloomberg.com"},
+          {source:"WSJ", title:"Microsoft stock falls 12% on OpenAI cloud backlog disclosure", url:"https://wsj.com"},
+          {source:"Financial Times", title:"$800 billion wiped from software valuations as AI disruption fears mount", url:"https://ft.com"}
+        ],
+        related: ["nvidia-results", "openai-ipo", "january-funding"]
+      },
+      {
+        id: "nvidia-results",
+        date: "Jan–Feb 2026",
+        headline: "NVIDIA posts $68B quarter; Rubin platform promises 10× inference cost reduction",
+        summary: "Full-year revenue reached $215.9B with 86% data center market share. Rubin architecture arriving H2 2026 could reshape AI infrastructure economics.",
+        tags: [["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-green",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "AI ECONOMICS",
+        catColor: "c-green",
+        content: `<p><strong>NVIDIA reported fiscal Q4 revenue of $68.1 billion</strong> — up 73% year-over-year — with full-year revenue of $215.9B. Data center revenue alone reached $62.3B in Q4. The company guided Q1 FY27 to <strong>$78 billion (±2%)</strong> and indicated visibility to $500B in revenue from Blackwell and Rubin architectures through end of calendar 2026. NVIDIA's data center market share has grown from 25% in 2021 to <strong>86% today</strong>.</p>
+<p>At CES 2026, NVIDIA CEO Jensen Huang unveiled the <strong>Rubin platform</strong> — a next-generation six-chip architecture (Vera CPU + Rubin GPU) promising a <strong>10× reduction in inference token costs</strong> and <strong>4× fewer GPUs</strong> to train mixture-of-experts models versus Blackwell. Microsoft, AWS, and Google committed to deploying Rubin-based superfactories in H2 2026. For enterprises, Rubin's arrival is the most significant pricing relief signal in the AI infrastructure supercycle.</p>
+<p>Meanwhile, GPU capacity prices are rising sharply. AWS raised GPU Capacity Block prices ~15% on January 4–5. AMD implemented aggressive price increases, NVIDIA expected to follow. DRAM and HBM memory shortages are structurally constraining supply. Dell announced price adjustments of up to 30%. CFOs should build 30–40% contingency into AI infrastructure budgets for 2026 — with the expectation that Rubin may deliver relief in H2 but cannot be relied upon for H1 planning.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Revise AI infrastructure budgets to include 30–40% contingency for GPU cost increases. Model two scenarios: one where Rubin delivers 10× cost reduction in H2 2026, one where it's delayed to 2027. Both scenarios should yield a viable AI deployment roadmap."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Evaluate whether your AI workloads can be structured to delay GPU-intensive training runs until Rubin infrastructure is available at hyperscalers. Inference optimization with current Blackwell hardware may be more cost-effective than re-training at H1 2026 prices."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Validate that your AI investment plan includes a Rubin timing dependency. If your business case for AI ROI depends on H1 2026 cost levels, revise it — costs are rising, not falling, until Rubin arrives."}
+        ],
+        risks: [
+          {text:"Rubin delay risk: if Rubin deployment slips from H2 2026 to 2027, enterprises that deferred infrastructure investment will fall behind competitors who absorbed higher H1 costs and deployed earlier."},
+          {text:"Supply constraint persistence: DRAM and HBM memory shortages are structural, not cyclical — even Rubin's efficiency gains won't fully offset supply-driven price pressures if demand continues at current trajectory."},
+          {text:"NVIDIA concentration: 86% data center market share creates systemic risk for the entire enterprise AI stack — any supply disruption, geopolitical export restriction, or pricing action by NVIDIA has outsized impact."}
+        ],
+        csuite: "NVIDIA's results confirm the AI infrastructure supercycle is real and accelerating. But the near-term picture for enterprise buyers is challenging: costs are rising, Rubin is months away, and supply constraints are structural. The strategic imperative is to prioritize the highest-ROI AI deployments now, while reserving capital for the infrastructure cost reset that Rubin may enable in H2.",
+        links: [
+          {source:"NVIDIA Investor Relations", title:"NVIDIA Q4 FY2026 Earnings: $68.1B revenue, data center dominance", url:"https://investor.nvidia.com"},
+          {source:"CES Official", title:"Jensen Huang CES 2026 Keynote: Rubin platform announcement", url:"https://ces.tech"},
+          {source:"AWS News", title:"AWS GPU Capacity Block pricing update", url:"https://aws.amazon.com/blogs/aws"}
+        ],
+        related: ["january-funding", "software-selloff", "openai-ipo"]
+      }
+    ]
+  },
+  {
+    id: "infrastructure",
+    title: "Hardware & Infrastructure",
+    icon: "⚙️",
+    iconClass: "icon-blue",
+    count: 2,
+    cards: [
+      {
+        id: "hyperscaler-capex",
+        date: "Jan 2026",
+        headline: "Hyperscalers commit ~$700B in 2026 capex — a capital arms race with no precedent",
+        summary: "Amazon ($200B), Alphabet ($175–185B), Microsoft ($145B), and Meta ($115–135B) represent the largest single-year infrastructure investment in technology history.",
+        tags: [["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-blue",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "AI INFRASTRUCTURE",
+        catColor: "c-blue",
+        content: `<p>Combined hyperscaler capital expenditure for 2026 is approaching <strong>$700 billion</strong>: Amazon (~$200B), Alphabet ($175–185B), Microsoft ($145B), and Meta ($115–135B). This represents the largest single-year infrastructure investment in technology history, and it is predominantly directed at AI compute. <strong>Gartner forecast worldwide AI spending at $2.52 trillion in 2026</strong> (up 44% year-over-year), with AI infrastructure alone exceeding $1.36T.</p>
+<p>Yet the ROI picture remains sobering. Gartner placed AI firmly in the <strong>"Trough of Disillusionment"</strong> for 2026. The PwC CEO Survey found only <strong>one-third of enterprises</strong> have seen real revenue increases or cost reductions from AI. Forrester reported just 15% of AI decision-makers saw positive profitability impact — and predicted enterprises will defer 25% of planned 2026 AI spend into 2027. The KPMG Q4 AI Pulse Survey offered a brighter counterpoint: 67% said they would maintain AI spending even in a recession, and enterprises project an average $124M AI deployment over the coming year.</p>
+<p>The paradox for enterprise CFOs: the hyperscalers are making trillion-dollar bets on AI infrastructure while the majority of enterprises can't demonstrate material ROI. This divergence either reflects a timing mismatch — enterprises are behind on deployment maturity — or a structural gap between AI's theoretical capability and its deployable value in complex organizational contexts. The next 12 months will begin to resolve which interpretation is correct.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Require business-unit-level AI ROI accountability in 2026 planning. Each significant AI investment should have a defined metric, baseline, and 12-month target. The 'strategic investment' framing is no longer sufficient for board-level reporting."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Benchmark your organization's AI deployment maturity against the Gartner Trough of Disillusionment curve. If you're in trough, that's the expected position — the imperative is to have a credible path to the Slope of Enlightenment, not to pretend you've already arrived."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Develop a 2026 AI infrastructure roadmap that sequences deployments by ROI confidence, not by technical ambition. Reserve capital for Rubin-era infrastructure (H2 2026 at earliest) and invest current budget in proven ROI use cases: code generation, document analysis, customer service automation."}
+        ],
+        risks: [
+          {text:"ROI timing mismatch: if ROI materially lags hyperscaler infrastructure investment, the AI capex supercycle could reverse sharply — impacting vendor pricing, cloud capacity availability, and the broader enterprise technology environment."},
+          {text:"KPMG optimism vs. Forrester caution: the wide gap between these survey results suggests significant heterogeneity in enterprise AI maturity — organizations in the 'behind' cohort risk being left further behind as leading enterprises compound their advantages."},
+          {text:"Spend deferral cascade: if Forrester's 25% deferral prediction proves accurate, AI vendors will face revenue shortfalls that could force pricing changes, layoffs, or strategic pivots."}
+        ],
+        csuite: "The $700B hyperscaler capex commitment is a structural bet that AI's ROI will materialize at scale, not an indication that it already has. Enterprises should treat 2026 as the 'prove it' year — deploying enough AI to develop institutional knowledge and measure outcomes, while reserving capital for the infrastructure and model improvements that arrive in H2.",
+        links: [
+          {source:"Gartner", title:"Worldwide AI Spending Forecast 2026: $2.52 Trillion", url:"https://gartner.com"},
+          {source:"PwC", title:"26th Annual CEO Survey: AI Investment and ROI 2026", url:"https://pwc.com/ceosurvey"},
+          {source:"Forrester", title:"AI Decision-Makers Survey: ROI Realities and 2027 Deferral Forecast", url:"https://forrester.com"}
+        ],
+        related: ["nvidia-results", "january-funding", "software-selloff"]
+      },
+      {
+        id: "apple-google",
+        date: "Jan 12, 2026",
+        headline: "Apple selects Google Gemini for Siri overhaul — a $1B/year, 1.2T parameter commitment",
+        summary: "After evaluating OpenAI and Anthropic, Apple chose Google to build custom foundation models for iOS 26.4. Enterprises with large iOS deployments should assess implications.",
+        tags: [["CIO","bg-blue"],["CEO","bg-gold"]],
+        barClass: "bar-purple",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "AI INFRASTRUCTURE",
+        catColor: "c-blue",
+        content: `<p>On January 12, Apple and Google announced a <strong>multi-year collaboration</strong> where next-generation Apple Foundation Models will be based on Google's Gemini architecture and cloud technology, powering a comprehensive Siri overhaul expected in iOS 26.4. Apple is reportedly paying <strong>~$1 billion annually</strong>, and Google is building a custom <strong>1.2 trillion parameter Gemini model</strong> specifically for Apple.</p>
+<p>The selection process matters as much as the outcome. Apple evaluated OpenAI and Anthropic before selecting Google — making this a significant validation signal for Gemini's technical and partnership capabilities. The decision reflects Apple's prioritization of on-device privacy architecture compatibility, Google's cloud infrastructure scale, and Gemini's performance on Apple's specific use cases.</p>
+<p>For enterprises, the Apple-Google deal has three direct implications: it consolidates Gemini's position as the AI layer for the world's largest premium device installed base; it means iOS AI capabilities in 2026–2027 will be Gemini-powered, affecting enterprise mobile workflows; and it raises questions about whether enterprise iOS deployments should be specifically optimized for Gemini integrations rather than treating all AI APIs as equivalent.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Assess your enterprise's mobile AI deployment strategy in light of the Apple-Google deal. If your organization has >500 iOS devices, evaluate whether iOS 26.4's Gemini-powered Siri capabilities create new enterprise automation opportunities — or new data governance requirements."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Evaluate what the Apple-Gemini validation signals for Google's competitive position in the enterprise AI race. A company that wins both Apple and the enterprise market is in a structurally different position than its competitors."},
+          {owner:"GC", ownerClass:"owner-gc", text:"Review enterprise data policies for employee iOS devices in light of Gemini integration. On-device AI capabilities create new questions about whether enterprise data processed by Siri is subject to Google's data handling terms via the Apple-Google agreement."}
+        ],
+        risks: [
+          {text:"Data governance complexity: the Apple-Google deal creates a new pathway for enterprise data to be processed by Google infrastructure via Apple devices — potentially bypassing existing enterprise AI data governance frameworks."},
+          {text:"Android/iOS parity gap: if iOS AI capabilities significantly outpace Android equivalents, organizations with mixed device fleets face unequal AI productivity access by device type."},
+          {text:"Competitive concentration: Apple + Google + enterprise dominance by one AI provider reduces competitive pressure on pricing and capability development in ways that historically disadvantage buyers."}
+        ],
+        csuite: "Apple's selection of Google over OpenAI and Anthropic is the enterprise AI landscape's most consequential validation signal of January 2026. It confirms Gemini's technical credibility, accelerates Google's path to being the default AI layer across both the world's most valuable consumer platform and the enterprise cloud — and it narrows the competitive field at the top in ways that will affect pricing and leverage for years.",
+        links: [
+          {source:"Bloomberg", title:"Apple and Google announce multi-year Gemini AI partnership for Siri", url:"https://bloomberg.com"},
+          {source:"The Information", title:"Apple pays $1 billion annually for Google's custom 1.2T Gemini model", url:"https://theinformation.com"},
+          {source:"9to5Mac", title:"iOS 26.4 Siri overhaul: what the Apple-Google deal means for users", url:"https://9to5mac.com"}
+        ],
+        related: ["anthropic-market-share", "agents-platforms", "hyperscaler-capex"]
+      }
+    ]
+  },
+  {
+    id: "regulation",
+    title: "AI Regulation & Governance",
+    icon: "⚖️",
+    iconClass: "icon-purple",
+    count: 2,
+    cards: [
+      {
+        id: "regulation-state",
+        date: "Jan 1, 2026",
+        headline: "Three U.S. state AI laws take effect as federal preemption push begins",
+        summary: "California SB 53, Texas RAIGA, and Illinois HB 3773 create a patchwork compliance reality. Federal AG ordered to challenge state laws by March 11.",
+        tags: [["CEO","bg-gold"],["GC","bg-purple"],["CIO","bg-blue"]],
+        barClass: "bar-purple",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "AI REGULATION",
+        catColor: "c-purple",
+        content: `<p><strong>Three major state AI laws took effect on January 1, 2026</strong>. California's <strong>SB 53</strong> (Transparency in Frontier AI Act) requires documentation and disclosure of AI capabilities. Texas's <strong>RAIGA</strong> (Responsible AI Governance Act) includes civil penalties and a regulatory sandbox — the first state to create formal enforcement infrastructure for AI governance. Illinois's <strong>HB 3773</strong> prohibits employer use of discriminatory AI in hiring, promotion, and performance evaluation.</p>
+<p>Simultaneously, the Trump administration's December 11 executive order became operational in January, directing the Attorney General to establish an <strong>AI Litigation Task Force</strong> to challenge state AI laws — and requiring the Secretary of Commerce to identify "burdensome state regulations" by March 11, 2026. The federal preemption push creates a two-track compliance reality: comply with state laws now, while monitoring whether federal action renders those investments moot.</p>
+<p>For multinationals, the EU AI Act adds a third track: full enforcement for high-risk AI systems arrives on <strong>August 2, 2026</strong>, with penalties reaching <strong>€35 million or 7% of global turnover</strong>. EU standards bodies are behind schedule, meaning many organizations are making compliance investments against unclear standards. The European Commission also launched an investigation into xAI on January 26 over Grok's generation of sexualized deepfake images — the first major content-safety enforcement action under the AI Act framework.</p>`,
+        actions: [
+          {owner:"GC", ownerClass:"owner-gc", text:"Develop a tiered AI compliance architecture: maintain state-level compliance with CA SB 53, TX RAIGA, and IL HB 3773 as the baseline, while building documentation frameworks that would satisfy EU AI Act high-risk requirements by August 2. This investment is durable regardless of federal preemption outcomes."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Conduct an AI inventory audit. Identify all deployed AI systems, classify by risk level under EU AI Act criteria, and establish documentation baselines for training data, model outputs, and human oversight procedures. This documentation is required under all three active state laws and the EU Act."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Brief the board on AI regulatory exposure, specifically: What high-risk AI systems does the organization deploy? What is the EU AI Act penalty exposure (up to 7% of global turnover)? What is the estimated cost of compliance vs. the cost of non-compliance?"}
+        ],
+        risks: [
+          {text:"EU enforcement shock: August 2 creates a hard deadline — organizations without documented AI risk management frameworks for high-risk systems face penalties up to 7% of global turnover, with no grace period."},
+          {text:"State compliance investment stranded: federal preemption could render state compliance investments moot — but non-compliance with state laws before preemption is resolved carries its own enforcement risk."},
+          {text:"AI inventory gap: most enterprises lack complete visibility into all deployed AI systems — including AI features embedded in third-party SaaS tools. Undocumented AI creates silent compliance exposure."}
+        ],
+        csuite: "The AI regulatory environment is the most complex compliance landscape since GDPR — and it arrived faster. The optimal strategy is to build a documentation-first compliance infrastructure that satisfies all three frameworks (state, federal, EU), rather than hedging on which framework will prevail. The August 2 EU deadline is non-negotiable for any organization with European revenue.",
+        links: [
+          {source:"California Legislative Information", title:"SB 53: Transparency in Frontier AI Act — effective January 1, 2026", url:"https://leginfo.legislature.ca.gov"},
+          {source:"Texas Legislature", title:"RAIGA: Responsible AI Governance Act — civil penalties and regulatory sandbox", url:"https://capitol.texas.gov"},
+          {source:"EU AI Office", title:"EU AI Act: High-Risk System Enforcement Timeline and Penalty Structure", url:"https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"}
+        ],
+        related: ["openai-ads", "agents-platforms", "workforce-layoffs"]
+      },
+      {
+        id: "sec-nist",
+        date: "Jan 2026",
+        headline: "SEC elevates AI above crypto in 2026 examination priorities; NIST releases AI cybersecurity framework draft",
+        summary: "\"AI washing\" identified as a specific compliance risk. NIST's first AI-cybersecurity integration framework opens for public comment through January 30.",
+        tags: [["CEO","bg-gold"],["GC","bg-purple"],["CISO","bg-red"]],
+        barClass: "bar-red",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "AI REGULATION",
+        catColor: "c-purple",
+        content: `<p>The <strong>SEC's 2026 Examination Priorities</strong> elevated AI and cybersecurity above cryptocurrency for the first time — a signal of the regulator's growing focus on how financial services firms are representing their AI capabilities to investors. <strong>"AI washing"</strong> — making misleading claims about the nature, extent, or quality of AI capabilities in investor communications — was identified as a specific compliance risk category. For public companies in any sector, this extends the scrutiny to any earnings call, investor presentation, or proxy statement that makes claims about AI capabilities.</p>
+<p>Simultaneously, NIST released an <strong>Initial Preliminary Draft Cybersecurity Framework Profile for AI</strong>, with public comment ending January 30 — the first comprehensive attempt to integrate AI-specific risks into NIST CSF 2.0. The framework addresses AI model integrity, supply chain risks from AI components, and AI-enabled threat actor capabilities. CISOs who haven't yet integrated AI risks into their security frameworks are now working against an emerging federal standard.</p>
+<p>The combined regulatory signal is clear: AI is no longer a technology topic with governance implications — it is a governance topic with technology implementation requirements. Investor disclosure, internal controls, and cybersecurity frameworks are all being rewritten to account for AI's presence in organizational infrastructure.</p>`,
+        actions: [
+          {owner:"GC", ownerClass:"owner-gc", text:"Audit all investor-facing communications — earnings calls, 10-K/10-Q filings, proxy statements, investor presentations — for AI capability claims. Any claim that materially overstates AI revenue attribution, capability, or deployment status is potential SEC AI washing exposure."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Establish an internal review process for all public AI capability claims before release. This includes marketing materials, press releases, and investor communications. The SEC's AI washing focus applies to all public companies — not just financial services."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Map your AI cybersecurity posture against the NIST AI CSF 2.0 draft framework. Even though it's not yet final, the public comment period ends January 30 — submitting comments now positions your organization as an informed stakeholder and gives you advance visibility into the final framework requirements."}
+        ],
+        risks: [
+          {text:"AI washing enforcement: SEC examination priority status means firms can expect specific AI-focused questions in examinations. Organizations without clear documentation of AI revenue attribution and capability claims are exposed."},
+          {text:"NIST framework lag: the AI cybersecurity framework is preliminary — organizations that build security architecture against the draft may need to revise as the final standard evolves."},
+          {text:"AI supply chain vulnerability: NIST's focus on AI supply chain risks highlights a gap most enterprises haven't addressed — the security posture of the AI model providers and training data sources they rely on."}
+        ],
+        csuite: "The SEC and NIST actions in January confirm that AI governance has crossed from aspirational to regulatory. Organizations that treat AI claims as marketing communications rather than regulated disclosures — and that haven't integrated AI into their security risk frameworks — are building exposure that will crystallize in 2026 examinations.",
+        links: [
+          {source:"SEC", title:"2026 Examination Priorities: AI and Cybersecurity Elevated Above Crypto", url:"https://sec.gov/exams/2026-exam-priorities"},
+          {source:"NIST", title:"Initial Preliminary Draft: Cybersecurity Framework Profile for AI Systems", url:"https://csrc.nist.gov/publications/detail/sp/1300"},
+          {source:"Compliance Week", title:"AI Washing: The SEC's New Enforcement Priority Explained", url:"https://complianceweek.com"}
+        ],
+        related: ["regulation-state", "openai-ads", "openai-ipo"]
+      }
+    ]
+  },
+  {
+    id: "workforce",
+    title: "Workforce Disruption",
+    icon: "👥",
+    iconClass: "icon-orange",
+    count: 3,
+    cards: [
+      {
+        id: "workforce-layoffs",
+        date: "Jan 2026",
+        headline: "108,435 U.S. layoffs announced in January — highest since 2008, AI cited widely",
+        summary: "Amazon (16K), Pinterest (15% of workforce), Dow (4.5K), Indeed/Glassdoor (1.3K). 55,000 AI-attributed cuts in 2025 — 12× the number from two years prior.",
+        tags: [["CEO","bg-gold"],["CHRO","bg-orange"]],
+        barClass: "bar-orange",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "WORKFORCE",
+        catColor: "c-orange",
+        content: `<p>U.S. employers announced <strong>108,435 layoffs in January 2026</strong> — a 118% increase from January 2025 and the highest January total since 2008–2009. Only <strong>5,306 new hires</strong> were announced, the lowest January figure since 2009. Major AI-linked cuts included Amazon (16,000 jobs), Pinterest (15% of workforce, explicitly citing an "AI-forward strategy"), Dow (~4,500), Indeed/Glassdoor (~1,300), and CrowdStrike (~500). In 2025, 55,000 job cuts were directly attributed to AI — more than 12× the number cited two years earlier.</p>
+<p>However, a robust counter-narrative emerged. <strong>Oxford Economics</strong> concluded firms don't appear to be replacing workers with AI at significant scale. <strong>Forrester</strong> argued many companies announcing AI layoffs don't have mature AI applications ready. <strong>Deutsche Bank</strong> predicted "AI redundancy washing will be a significant feature of 2026" — using AI as cover for over-hiring corrections driven by macro conditions.</p>
+<p>The truth is likely layered: AI is accelerating structural shifts in labor demand and enabling organizations to operate with leaner headcounts as workflows are automated. But January's spike reflects a convergence of over-hiring corrections, macro uncertainty, and early automation of specific task categories — not a sudden wholesale displacement. The <strong>Dallas Fed</strong> found workers aged 22–25 in AI-exposed occupations experienced a 13% employment decline since 2022 — the most concrete evidence of AI's early distributional impact.</p>`,
+        actions: [
+          {owner:"CHRO", ownerClass:"owner-chro", text:"Audit your workforce composition for AI exposure by role category, not just headcount. Use the Cognizant framework — non-automatable tasks have fallen from 57% to 32% since 2023 — to identify which teams have the most exposure, and build reskilling plans before restructuring becomes necessary."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Establish a clear internal narrative that distinguishes AI-driven productivity improvements from layoffs. Deloitte found 97% of investors penalize companies that fail to upskill on AI — so the communication imperative is to show proactive upskilling, not just headcount reduction."},
+          {owner:"CHRO", ownerClass:"owner-chro", text:"Develop an early warning system for AI-exposed role vulnerability. The Dallas Fed finding — 13% employment decline for workers aged 22–25 in AI-exposed roles — suggests entry-level roles are most immediately at risk. Map these roles, assess AI substitutability, and build transition pipelines."}
+        ],
+        risks: [
+          {text:"Talent pipeline damage: if the organization gains a reputation for AI-driven layoffs without corresponding reskilling investment, top talent in AI-adjacent roles will pursue competitors who offer clearer career development paths."},
+          {text:"AI redundancy washing backlash: if layoffs are attributed to AI without genuine automation readiness, the narrative will be challenged internally and externally — damaging both morale and the organization's credibility as an AI leader."},
+          {text:"Legal exposure in Illinois: Illinois HB 3773 (effective January 1) prohibits discriminatory AI in employment decisions. Any AI-assisted workforce reduction process faces potential legal challenge under this standard."}
+        ],
+        csuite: "January's layoff numbers are the workforce disruption signal the C-suite has been anticipating. The strategic imperative is not to avoid the disruption — the productivity gains from AI automation are real and necessary — but to manage it with transparency, genuine reskilling investment, and an internal narrative that positions AI as a capability amplifier rather than a headcount replacement.",
+        links: [
+          {source:"Challenger, Gray & Christmas", title:"January 2026 Job Cut Report: 108,435 Announced Cuts", url:"https://challengergray.com"},
+          {source:"Dallas Fed", title:"AI Exposure and Employment Outcomes for Young Workers", url:"https://dallasfed.org"},
+          {source:"Oxford Economics", title:"AI and Labor Markets: No Evidence of Large-Scale Displacement Yet", url:"https://oxfordeconomics.com"}
+        ],
+        related: ["workforce-skills", "workforce-leadership", "regulation-state"]
+      },
+      {
+        id: "workforce-skills",
+        date: "Jan 2026",
+        headline: "Skills gap is the binding constraint on AI value — IDC projects $5.5T in lost performance",
+        summary: "IDC: 90%+ of enterprises will face critical AI skills shortages by 2026. Deloitte survey of 3,235 leaders ranks insufficient worker skills as the #1 barrier to AI integration.",
+        tags: [["CEO","bg-gold"],["CHRO","bg-orange"]],
+        barClass: "bar-orange",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "WORKFORCE",
+        catColor: "c-orange",
+        content: `<p><strong>IDC projects over 90% of global enterprises</strong> will face critical AI skills shortages by 2026, risking <strong>$5.5 trillion</strong> in lost market performance. The <strong>Deloitte State of AI in Enterprise 2026 survey</strong> (3,235 leaders) identified insufficient worker skills as the <strong>number-one barrier</strong> to AI integration — ahead of data quality, cost, and regulation. Only <strong>35% of CEOs</strong> feel they have prepared employees effectively for AI, despite 94% identifying AI skills as the top in-demand capability.</p>
+<p>The <strong>Cognizant "New Work, New World 2026" report</strong> quantified the shift: AI can now handle <strong>$4.5 trillion in U.S. work tasks</strong>, with non-automatable tasks plummeting from 57% in 2023 to <strong>32% today</strong>. Yet AI remains unable to automate 40%+ of management and administrative tasks — creating a premium on human judgment, strategic synthesis, and cross-functional coordination. <strong>IMF research</strong> found roles requiring 4+ new AI-adjacent skills command wage premiums of up to 15% in the UK and 8.5% in the U.S.</p>
+<p>The Mercer Global Talent Trends 2026 survey delivered the investor-facing imperative: <strong>97% of investors</strong> said funding decisions would be negatively impacted by firms failing to upskill workers on AI. Employee concerns about AI job loss jumped from 28% in 2024 to 40% in 2026 — a confidence gap that directly affects productivity and retention.</p>`,
+        actions: [
+          {owner:"CHRO", ownerClass:"owner-chro", text:"Develop a role-by-role AI skills gap assessment across the top 50% of roles by headcount. Map current AI skill levels against the IMF's '4+ AI-adjacent skills' threshold for wage premium. This baseline determines where reskilling investment has the highest ROI."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Commission an AI upskilling program at board level — not HR level. Given 97% of investors penalize firms that fail to upskill, this is an investor relations issue as much as a talent issue. The reskilling investment should be disclosed alongside AI technology investments."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the $5.5T IDC skills-gap figure at your organization's scale. Even if you apply a conservative fraction of that estimate to your sector, the NPV of reskilling investment vs. the cost of AI value left unrealized makes a compelling capital allocation case."}
+        ],
+        risks: [
+          {text:"Skills gap compounds over time: every quarter without structured reskilling investment widens the gap between what AI can do and what the organization can operationalize — the cost of catching up grows non-linearly."},
+          {text:"Investor signal: 97% of investors penalizing firms that fail to upskill means this will show up in analyst coverage, ESG ratings, and shareholder engagement in 2026. Non-disclosure is not a neutral position."},
+          {text:"Retention crisis at the skills premium: roles requiring 4+ AI skills command 15% wage premiums. Organizations that haven't built internal AI skill depth will face talent loss to competitors that have."}
+        ],
+        csuite: "The skills gap is the hidden constraint on the AI ROI story. Organizations that have bought the technology but not invested in workforce capability are sitting on stranded assets. The Mercer investor signal — 97% penalizing firms that fail to upskill — makes reskilling a capital markets imperative, not just an HR priority. Treat 2026 reskilling investment as infrastructure spend.",
+        links: [
+          {source:"IDC", title:"Global AI Skills Shortage Report 2026: $5.5T at Risk", url:"https://idc.com"},
+          {source:"Deloitte", title:"State of AI in the Enterprise 2026: 3,235 Leader Survey", url:"https://deloitte.com/us/en/insights/topics/digital-transformation/ai-in-enterprise"},
+          {source:"Cognizant", title:"New Work, New World 2026: $4.5T in Automatable U.S. Tasks", url:"https://cognizant.com/us/en/insights/insights-blog/new-work-new-world"}
+        ],
+        related: ["workforce-layoffs", "workforce-leadership", "hyperscaler-capex"]
+      },
+      {
+        id: "workforce-leadership",
+        date: "Jan 2026",
+        headline: "JPMorgan reclassifies AI as 'core infrastructure'; Microsoft, Meta, Apple restructure leadership",
+        summary: "JPMorgan's reclassification is the bellwether signal. Microsoft restructures with 16 direct-to-Nadella reports. Meta names Scale AI CEO as Chief AI Officer.",
+        tags: [["CEO","bg-gold"],["CHRO","bg-orange"]],
+        barClass: "bar-gold",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "WORKFORCE",
+        catColor: "c-orange",
+        content: `<p><strong>JPMorgan Chase reclassified AI from experimental R&D to "core infrastructure" spending on January 19</strong> — a bellwether signal that the largest U.S. bank by assets has concluded AI is not a technology experiment but a foundational operational requirement. The reclassification carries capital allocation, reporting, and governance implications that other enterprises will face as AI matures in their own organizations.</p>
+<p>Leadership restructuring in January reflected the same institutional shift at the largest AI companies. <strong>Microsoft</strong> restructured to place 16 executives reporting directly to Satya Nadella, creating a new AI agent platform division (Microsoft Discovery). <strong>Meta named Alexandr Wang</strong> — former Scale AI CEO — as Chief AI Officer, importing frontier AI expertise into corporate leadership. <strong>Apple replaced its AI VP</strong>, with Amar Subramanya taking over. <strong>OpenAI hired Arvind KC as Chief People Officer</strong> specifically focused on AI-enabled work transitions.</p>
+<p>At <strong>Davos</strong>, the WEF's Reskilling Revolution initiative reported progress toward reaching 850+ million people, with 25+ tech companies pledging to support 120 million workers by 2030. The institutional architecture of the AI transition — how organizations are led, governed, and staffed during this transformation — is being built in real time, and the decisions made in 2026 will set structural patterns for years.</p>`,
+        actions: [
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Evaluate whether your organization has made the JPMorgan reclassification — treating AI as core infrastructure rather than experimental investment. If AI doesn't yet have a dedicated P&L, a C-suite owner, and board-level reporting, that governance gap is the first thing to close."},
+          {owner:"CHRO", ownerClass:"owner-chro", text:"Assess whether your organization has the leadership talent to run AI as core infrastructure. The Meta/Alexandr Wang and Apple VP replacement moves signal that AI-native leadership talent is now a C-suite requirement — not a technical team luxury."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Define what 'AI as core infrastructure' means for your organizational governance model. This includes: Who owns AI strategy? Who owns AI risk? How does AI investment appear in capital allocation reporting? These are the questions JPMorgan answered in January — and public company boards will begin asking them throughout 2026."}
+        ],
+        risks: [
+          {text:"Governance vacuum: organizations that have AI deployed but not governed at the core infrastructure level have a governance gap that will be visible to regulators, auditors, and investors in 2026 examinations."},
+          {text:"Leadership talent scarcity: Alexandr Wang's move from Scale AI to Meta signals that AI-native C-suite talent is scarce and mobile — organizations that can't offer a genuinely significant AI mandate will lose this talent to frontier companies."},
+          {text:"Reclassification accounting implications: the JPMorgan move from R&D to core infrastructure has specific accounting treatment implications — capital vs. operating expense, depreciation schedules, and capitalization thresholds may all change."}
+        ],
+        csuite: "JPMorgan's reclassification is the signal that marks the end of AI's experimental era and the beginning of its infrastructure era. Organizations still treating AI as a technology pilot are one cycle behind. The leadership moves at Microsoft, Meta, and Apple confirm that the talent and governance requirements for AI at core infrastructure level are substantively different from what worked in the experimental phase.",
+        links: [
+          {source:"JPMorgan Chase", title:"Annual Report 2025: AI Reclassified as Core Infrastructure", url:"https://jpmorganchase.com/ir"},
+          {source:"Bloomberg", title:"Alexandr Wang named Meta's first Chief AI Officer", url:"https://bloomberg.com"},
+          {source:"WEF Davos", title:"Reskilling Revolution 2026: Progress Toward 850M Learners", url:"https://weforum.org/davos"}
+        ],
+        related: ["workforce-skills", "workforce-layoffs", "hyperscaler-capex"]
+      }
+    ]
+  }
+];
+
+// ── RENDER FUNCTIONS ──
+function findCard(id) {
+  for (const s of sections)
+    for (const c of s.cards)
+      if (c.id === id) return { card: c, section: s };
+  return null;
+}
+
+function findCardTitle(id) {
+  const f = findCard(id);
+  return f ? f.card.headline : id;
+}
+
+function renderSections(filter = 'all') {
+  const contentArea = document.getElementById('content-area');
+  contentArea.innerHTML = '';
+  const filtered = filter === 'all' ? sections : sections.filter(s => s.id === filter);
+  filtered.forEach((section, si) => {
+    const el = document.createElement('div');
+    el.className = 'section';
+    el.id = `section-${section.id}`;
+    el.style.animationDelay = `${si * 0.08}s`;
+    el.innerHTML = `
+      <div class="section-header">
+        <div class="section-icon ${section.iconClass}">${section.icon}</div>
+        <div class="section-title">${section.title}</div>
+        <div class="section-count">${section.count} ${section.count === 1 ? 'story' : 'stories'}</div>
+      </div>
+      <div class="cards-grid">
+        ${section.cards.map(c => `
+          <div class="card ${c.barClass}" onclick="openModal('${c.id}')">
+            <div class="card-date">${c.date}</div>
+            <div class="card-headline">${c.headline}</div>
+            <div class="card-summary">${c.summary}</div>
+            <div class="card-tags">${c.tags.map(t => `<span class="tag ${t[1]}">${t[0]}</span>`).join('')}</div>
+            <div class="card-bottom">
+              <span class="card-risk-badge ${c.riskClass}">Risk: ${c.riskLevel}</span>
+              <span class="card-expand-hint">↗ Deep dive</span>
+            </div>
+          </div>`).join('')}
+      </div>`;
+    contentArea.appendChild(el);
+  });
+}
+
+function openModal(cardId) {
+  const found = findCard(cardId);
+  if (!found) return;
+  const { card } = found;
+
+  document.getElementById('modal-category').textContent = card.category;
+  document.getElementById('modal-category').className = `modal-category ${card.catColor}`;
+  document.getElementById('modal-headline').textContent = card.headline;
+  document.getElementById('modal-date').textContent = card.date;
+  document.getElementById('modal-content').innerHTML = card.content;
+
+  document.getElementById('panel-grid').innerHTML = `
+    <div class="panel panel-action">
+      <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+      <ul class="panel-list">
+        ${card.actions.map(a => `<li><span class="owner ${a.ownerClass}">${a.owner}</span> ${a.text}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="panel panel-risk">
+      <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+      <ul class="panel-list">
+        ${card.risks.map(r => `<li>${r.text}</li>`).join('')}
+      </ul>
+    </div>`;
+
+  document.getElementById('modal-csuite-text').textContent = card.csuite;
+
+  document.getElementById('modal-link-list').innerHTML = card.links.map(l => `
+    <a class="modal-link" href="${l.url}" target="_blank" rel="noopener">
+      <span class="modal-link-source">${l.source}</span>
+      <span>${l.title}</span>
+      <span class="modal-link-arrow">↗</span>
+    </a>`).join('');
+
+  document.getElementById('related-chips').innerHTML = card.related.map(r =>
+    `<div class="related-chip" onclick="event.stopPropagation();openModal('${r}')">
+      ${findCardTitle(r).substring(0, 55)}${findCardTitle(r).length > 55 ? '…' : ''}
+    </div>`).join('');
+
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ── EVENT LISTENERS ──
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderSections(btn.dataset.section);
+  });
+});
+
+// ── THEME TOGGLE ──
+(function() {
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  const saved = localStorage.getItem('ai-briefing-theme');
+  if (saved === 'light') html.setAttribute('data-theme', 'light');
+  toggle.addEventListener('click', () => {
+    if (html.getAttribute('data-theme') === 'light') {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('ai-briefing-theme', 'dark');
+    } else {
+      html.setAttribute('data-theme', 'light');
+      localStorage.setItem('ai-briefing-theme', 'light');
+    }
+  });
+})();
+
+// ── NAV SCROLL ──
+(function() {
+  const navInner = document.getElementById('nav-inner');
+  const scrollArea = document.getElementById('nav-scroll-area');
+  const btnLeft = document.getElementById('nav-scroll-left');
+  const btnRight = document.getElementById('nav-scroll-right');
+  const scrollStep = 200;
+
+  function updateScrollState() {
+    const sl = navInner.scrollLeft;
+    const maxScroll = navInner.scrollWidth - navInner.clientWidth;
+    const canLeft = sl > 2;
+    const canRight = sl < maxScroll - 2;
+    btnLeft.classList.toggle('visible', canLeft);
+    btnRight.classList.toggle('visible', canRight);
+    scrollArea.classList.toggle('fade-left', canLeft);
+    scrollArea.classList.toggle('fade-right', canRight);
+  }
+
+  btnLeft.addEventListener('click', () => navInner.scrollBy({ left: -scrollStep, behavior: 'smooth' }));
+  btnRight.addEventListener('click', () => navInner.scrollBy({ left: scrollStep, behavior: 'smooth' }));
+  navInner.addEventListener('scroll', updateScrollState, { passive: true });
+  window.addEventListener('resize', updateScrollState);
+  setTimeout(updateScrollState, 100);
+  updateScrollState();
+})();
+
+// ── INITIAL RENDER ──
+renderSections();
+</script>
+</body>
+</html>
