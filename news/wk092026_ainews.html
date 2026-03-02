@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly AI Intelligence Briefing — Feb 23–Mar 2, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Dark Theme (Default) ── */
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555;      --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c;    --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def;     --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0;   --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9;     --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c;   --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+
+/* ── Light Theme ── */
+[data-theme="light"] {
+  --bg: #f4f6f9; --bg-card: #ffffff; --bg-card-hover: #f0f4f8; --bg-expanded: #ffffff;
+  --border: #d8dde6; --border-accent: #c0c8d4;
+  --text: #1a2332; --text-muted: #4a5568; --text-dim: #8896a8;
+  --accent: #135EAB; --accent-light: #1a74d0; --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030; --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F; --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB; --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1; --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488; --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621; --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4; --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06); --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06); --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05); --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08); --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+
+/* ── Base ── */
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;transition:background 0.4s ease}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65;min-height:100vh}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:var(--noise-opacity,1)}
+body,.hero,.nav-strip,.card,.modal,.exec-strip,.metric,.modal-csuite,.panel,.footer,.theme-toggle,.nav-btn{transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--bg) 100%);padding:clamp(48px,6vw,80px) 24px clamp(36px,4vw,56px);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:-20% -20%;width:140%;height:200%;background:radial-gradient(ellipse at 30% 20%,var(--hero-glow-a) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,var(--hero-glow-b) 0%,transparent 50%);pointer-events:none}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px}
+.hero-label::before{content:'';width:24px;height:2px;background:var(--accent)}
+.hero h1{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(32px,5vw,56px);line-height:1.15;color:var(--text);max-width:900px;margin:0 auto 16px}
+.hero h1 span{color:var(--accent)}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;color:var(--text-muted);max-width:700px;margin:0 auto 32px}
+.metrics-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:10px;max-width:900px;margin:0 auto;overflow:hidden}
+.metric{background:var(--bg-card);padding:18px 20px;text-align:center;transition:background 0.25s}
+.metric:hover{background:var(--bg-card-hover)}
+.metric-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--accent);line-height:1.2;margin-bottom:4px}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);line-height:1.5}
+
+/* ── Nav ── */
+.nav-strip{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 16px}
+.nav-wrapper{display:flex;align-items:center;max-width:1100px;margin:0 auto;gap:4px}
+.nav-scroll-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;pointer-events:none;transition:opacity 0.2s;flex-shrink:0}
+.nav-scroll-btn.visible{opacity:1;pointer-events:auto}
+.nav-scroll-area{flex:1;position:relative;overflow:hidden}
+.nav-scroll-area::before,.nav-scroll-area::after{content:'';position:absolute;top:0;bottom:0;width:28px;z-index:2;pointer-events:none;opacity:0;transition:opacity 0.2s}
+.nav-scroll-area::before{left:0;background:linear-gradient(90deg,var(--bg,#0c0e12),transparent)}
+.nav-scroll-area::after{right:0;background:linear-gradient(-90deg,var(--bg,#0c0e12),transparent)}
+.nav-scroll-area.fade-left::before{opacity:1}
+.nav-scroll-area.fade-right::after{opacity:1}
+.nav-inner{display:flex;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;gap:2px;padding:8px 0}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:var(--text-dim);background:transparent;border:none;padding:8px 14px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.nav-btn:hover{color:var(--text);background:var(--bg-card)}
+.nav-btn.active{background:var(--accent-dim);color:var(--accent)}
+.theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;margin-left:8px;position:relative;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.theme-toggle .icon-sun,.theme-toggle .icon-moon{position:absolute;transition:all 0.3s ease;font-size:16px}
+.theme-toggle .icon-sun{opacity:0;transform:rotate(-90deg) scale(0.5)}
+.theme-toggle .icon-moon{opacity:1;transform:rotate(0) scale(1)}
+[data-theme="light"] .theme-toggle .icon-sun{opacity:1;transform:rotate(0) scale(1)}
+[data-theme="light"] .theme-toggle .icon-moon{opacity:0;transform:rotate(90deg) scale(0.5)}
+
+/* ── Main ── */
+.main{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ── Exec Strip ── */
+.exec-strip{background:var(--accent-dim);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin:32px 0}
+.exec-strip-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.exec-strip p{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75}
+.exec-strip strong{color:var(--text);font-weight:600}
+
+/* ── Sections ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.section{animation:fadeUp 0.5s ease both;margin-bottom:40px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.icon-gold{background:var(--accent-dim);color:var(--accent)}
+.icon-red{background:var(--red-dim);color:var(--red)}
+.icon-green{background:var(--green-dim);color:var(--green)}
+.icon-blue{background:var(--blue-dim);color:var(--blue)}
+.icon-purple{background:var(--purple-dim);color:var(--purple)}
+.icon-cyan{background:var(--cyan-dim);color:var(--cyan)}
+.icon-orange{background:var(--orange-dim);color:var(--orange)}
+.section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text)}
+.section-count{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);background:var(--bg-card);border:1px solid var(--border);padding:3px 10px;border-radius:20px;margin-left:auto}
+
+/* ── Cards ── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px 22px;cursor:pointer;position:relative;transition:all 0.25s ease}
+.card::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:2px;opacity:0;transition:opacity 0.25s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--shadow-card);background:var(--bg-card-hover)}
+.card:hover::before{opacity:1}
+.bar-gold::before{background:var(--accent)}.bar-red::before{background:var(--red)}.bar-green::before{background:var(--green)}.bar-blue::before{background:var(--blue)}.bar-purple::before{background:var(--purple)}.bar-cyan::before{background:var(--cyan)}.bar-orange::before{background:var(--orange)}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.card-headline{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.35}
+.card-summary{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:3px}
+.bg-gold{background:var(--accent-dim);color:var(--accent)}.bg-red{background:var(--red-dim);color:var(--red)}.bg-green{background:var(--green-dim);color:var(--green)}.bg-blue{background:var(--blue-dim);color:var(--blue)}.bg-purple{background:var(--purple-dim);color:var(--purple)}.bg-cyan{background:var(--cyan-dim);color:var(--cyan)}.bg-orange{background:var(--orange-dim);color:var(--orange)}
+.card-bottom{display:flex;justify-content:space-between;align-items:center}
+.card-risk-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:3px}
+.card-expand-hint{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--text-dim)}
+
+/* ── Modal ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:var(--overlay-bg);z-index:200;justify-content:center;align-items:flex-start;padding:40px 20px;overflow-y:auto}
+.modal-overlay.active{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal-overlay.active{animation:fadeIn 0.2s ease}
+.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;max-width:800px;width:100%;animation:slideUp 0.3s ease;max-height:90vh;overflow-y:auto}
+.modal-top-bar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid var(--border)}
+.modal-category{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.c-gold{color:var(--accent)}.c-red{color:var(--red)}.c-green{color:var(--green)}.c-blue{color:var(--blue)}.c-purple{color:var(--purple)}.c-cyan{color:var(--cyan)}.c-orange{color:var(--orange)}
+.modal-close{width:32px;height:32px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.modal-close:hover{background:var(--red-dim);color:var(--red);border-color:var(--red)}
+.modal-body{padding:28px 24px}
+.modal-headline{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.25}
+.modal-date{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
+.modal-content{margin-bottom:24px}
+.modal-content p{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;margin-bottom:14px}
+.modal-content p strong{color:var(--text);font-weight:600}
+
+/* ── Panels ── */
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.panel{border-radius:10px;padding:18px 20px}
+.panel-action{background:var(--panel-action-bg);border:1px solid var(--panel-action-border)}
+.panel-risk{background:var(--panel-risk-bg);border:1px solid var(--panel-risk-border)}
+.panel-label{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.panel-label-icon{font-size:14px}
+.panel-list{list-style:none;padding:0}
+.panel-list li{font-family:'Source Serif 4',serif;font-size:13.5px;color:var(--text-muted);line-height:1.6;padding:8px 0;border-bottom:1px solid var(--panel-li-border)}
+.panel-list li:last-child{border-bottom:none}
+.panel-list .owner{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-right:6px;display:inline-block;vertical-align:middle}
+.owner-ceo{background:var(--accent-dim);color:var(--accent)}
+.owner-cfo{background:var(--green-dim);color:var(--green)}
+.owner-cio{background:var(--blue-dim);color:var(--blue)}
+.owner-gc{background:var(--purple-dim);color:var(--purple)}
+.owner-ciso{background:var(--red-dim);color:var(--red)}
+.owner-chro{background:var(--orange-dim);color:var(--orange)}
+.panel-risk .panel-list li::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:middle}
+
+/* ── C-Suite Box ── */
+.modal-csuite{background:var(--accent-dim);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:24px}
+.modal-csuite-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.modal-csuite p{font-family:'Source Serif 4',serif;font-size:14px;color:var(--text-muted);line-height:1.7}
+
+/* ── Links ── */
+.modal-links{margin-bottom:24px}
+.modal-links-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
+.modal-link{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;text-decoration:none;margin-bottom:6px;transition:all 0.2s}
+.modal-link:hover{background:var(--bg-card-hover);border-color:var(--border-accent)}
+.modal-link-source{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);flex-shrink:0;width:100px}
+.modal-link span:nth-child(2){font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);flex:1}
+.modal-link-arrow{color:var(--text-dim);font-size:14px}
+
+/* ── Related ── */
+.modal-related{margin-bottom:8px}
+.modal-related-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
+.related-chips{display:flex;flex-wrap:wrap;gap:8px}
+.related-chip{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-dim);border:1px solid var(--border);border-radius:20px;padding:5px 14px;cursor:pointer;transition:all 0.2s}
+.related-chip:hover{background:var(--accent-dim);border-color:var(--accent);color:var(--accent)}
+
+/* ── Footer ── */
+.footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border);margin-top:40px}
+.footer p{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim)}
+
+/* ── Light Theme Overrides ── */
+[data-theme="light"] .hero h1 span,[data-theme="light"] .metric-value{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+[data-theme="light"] .metrics-bar{background:linear-gradient(135deg,#135EAB,#04955F)}
+[data-theme="light"] .metric{background:rgba(255,255,255,0.95)}[data-theme="light"] .metric:hover{background:rgba(255,255,255,1)}
+[data-theme="light"] .exec-strip{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06))}
+[data-theme="light"] .bg-gold{background:rgba(19,94,171,0.10);color:#135EAB}
+[data-theme="light"] .bg-red{background:rgba(255,156,163,0.20);color:#b83240}
+[data-theme="light"] .bg-green{background:rgba(4,149,95,0.10);color:#04955F}
+[data-theme="light"] .bg-blue{background:rgba(100,203,192,0.15);color:#0a7a6e}
+[data-theme="light"] .bg-purple{background:rgba(107,70,193,0.10);color:#6b46c1}
+[data-theme="light"] .bg-cyan{background:rgba(100,203,192,0.15);color:#0d9488}
+[data-theme="light"] .bg-orange{background:rgba(244,244,49,0.15);color:#8a6d00}
+[data-theme="light"] .bar-gold::before{background:linear-gradient(180deg,#135EAB,#04955F)}
+[data-theme="light"] .bar-blue::before{background:#135EAB}[data-theme="light"] .bar-green::before{background:#04955F}[data-theme="light"] .bar-red::before{background:#FF9CA3}[data-theme="light"] .bar-purple::before{background:#6b46c1}[data-theme="light"] .bar-cyan::before{background:#64CBC0}[data-theme="light"] .bar-orange::before{background:#F4F431}
+[data-theme="light"] .icon-gold{background:rgba(19,94,171,0.10)}[data-theme="light"] .icon-green{background:rgba(4,149,95,0.10)}[data-theme="light"] .icon-blue{background:rgba(100,203,192,0.12)}[data-theme="light"] .icon-red{background:rgba(255,156,163,0.15)}[data-theme="light"] .icon-purple{background:rgba(107,70,193,0.10)}[data-theme="light"] .icon-cyan{background:rgba(100,203,192,0.12)}[data-theme="light"] .icon-orange{background:rgba(244,244,49,0.15)}
+[data-theme="light"] .owner-ceo{background:rgba(19,94,171,0.10);color:#135EAB}[data-theme="light"] .owner-cfo{background:rgba(4,149,95,0.10);color:#04955F}[data-theme="light"] .owner-cio{background:rgba(100,203,192,0.15);color:#0a7a6e}[data-theme="light"] .owner-gc{background:rgba(107,70,193,0.10);color:#6b46c1}[data-theme="light"] .owner-ciso{background:rgba(255,156,163,0.15);color:#b83240}[data-theme="light"] .owner-chro{background:rgba(244,244,49,0.15);color:#8a6d00}
+[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,rgba(19,94,171,0.10),rgba(4,149,95,0.08));color:#135EAB}
+[data-theme="light"] .card{box-shadow:0 1px 3px rgba(0,0,0,0.04)}[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(19,94,171,0.10)}
+[data-theme="light"] .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);border-color:var(--border)}
+[data-theme="light"] .modal-csuite{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06))}
+[data-theme="light"] .related-chip:hover{background:rgba(19,94,171,0.08);border-color:#135EAB;color:#135EAB}
+[data-theme="light"] .hero-label{color:#04955F}[data-theme="light"] .hero-label::before{background:linear-gradient(90deg,#135EAB,#04955F);width:32px;height:2px}
+[data-theme="light"] .nav-scroll-area::before{background:linear-gradient(90deg,rgba(244,246,249,0.95),transparent)}
+[data-theme="light"] .nav-scroll-area::after{background:linear-gradient(-90deg,rgba(244,246,249,0.95),transparent)}
+
+/* ── Responsive ── */
+@media(max-width:768px){.hero{padding:36px 16px 28px}.metrics-bar{grid-template-columns:repeat(2,1fr)}.metrics-bar .metric:last-child{grid-column:span 2}.cards-grid{grid-template-columns:1fr}.main{padding:0 16px}.modal-body{padding:20px 16px}}
+@media(max-width:640px){.panel-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-label">Weekly C-Suite Intelligence Briefing</div>
+  <h1>AI Intelligence Briefing: <span>Feb 23 – Mar 2, 2026</span></h1>
+  <p class="hero-sub">OpenAI's record $110B round, Anthropic's Pentagon crisis, the SaaS selloff deepens, and Block's 4,000-person AI layoff signal a week the enterprise operating model changed permanently</p>
+  <div class="metrics-bar">
+    <div class="metric"><div class="metric-value">$110B</div><div class="metric-label">OpenAI Round<br>Largest in History</div></div>
+    <div class="metric"><div class="metric-value">$840B</div><div class="metric-label">OpenAI Post-Money<br>Valuation</div></div>
+    <div class="metric"><div class="metric-value">–30%</div><div class="metric-label">Software Index<br>From Highs YTD</div></div>
+    <div class="metric"><div class="metric-value">4,000+</div><div class="metric-label">Block Layoffs<br>Single Day</div></div>
+    <div class="metric"><div class="metric-value">$1.2B+</div><div class="metric-label">Alt-Chip Funding<br>In One Week</div></div>
+  </div>
+</header>
+
+<!-- ══ NAV ══ -->
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="navLeft" onclick="scrollNav(-200)">‹</button>
+    <div class="nav-scroll-area" id="navArea">
+      <div class="nav-inner" id="navInner">
+        <button class="nav-btn active" data-section="all" onclick="filterSection('all',this)">All Stories</button>
+        <button class="nav-btn" data-section="mega-deals" onclick="filterSection('mega-deals',this)">Mega-Deals</button>
+        <button class="nav-btn" data-section="market-impact" onclick="filterSection('market-impact',this)">Market Impact</button>
+        <button class="nav-btn" data-section="enterprise" onclick="filterSection('enterprise',this)">Enterprise AI</button>
+        <button class="nav-btn" data-section="chips" onclick="filterSection('chips',this)">Chips &amp; Infra</button>
+        <button class="nav-btn" data-section="regulation" onclick="filterSection('regulation',this)">Regulation</button>
+        <button class="nav-btn" data-section="workforce" onclick="filterSection('workforce',this)">Workforce</button>
+        <button class="nav-btn" data-section="security" onclick="filterSection('security',this)">Security</button>
+        <button class="nav-btn" data-section="imperatives" onclick="filterSection('imperatives',this)">Imperatives</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="navRight" onclick="scrollNav(200)">›</button>
+    <button class="theme-toggle" onclick="toggleTheme()"><span class="icon-sun">☀</span><span class="icon-moon">☽</span></button>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ══ EXECUTIVE SUMMARY ══ -->
+<div class="exec-strip">
+  <div class="exec-strip-label">Executive Summary</div>
+  <p>The week of February 23–March 2, 2026 delivered the most consequential cluster of AI events since the technology entered enterprise consciousness. <strong>OpenAI closed $110 billion</strong> — the largest private funding round in history — reshaping cloud alliances as AWS became its exclusive third-party provider. <strong>Anthropic was banned from the Pentagon</strong> after refusing to drop safety guardrails, creating a new category of government-vendor risk. <strong>NVIDIA beat every earnings metric yet lost $260 billion in market cap</strong>, as investors confronted the gap between AI spending and AI returns. <strong>Block cut half its workforce in a single day</strong>, the largest AI-attributed layoff in U.S. history, while its stock surged 17%. The software sector's rout deepened to –30% from highs YTD. For C-suite leaders, this week's message is unambiguous: <strong>the rules governing cloud partnerships, government risk, workforce design, and SaaS economics all changed simultaneously</strong>.</p>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION: MEGA-DEALS & FUNDING -->
+<!-- ══════════════════════════════════════ -->
+<section class="section" data-cat="mega-deals" id="sec-mega-deals">
+  <div class="section-header">
+    <div class="section-icon icon-gold">◆</div>
+    <div class="section-title">Mega-Deals &amp; Funding</div>
+    <div class="section-count">3 stories</div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- Card 1: OpenAI $110B -->
+    <div class="card bar-gold" onclick="openModal('openai-round')">
+      <div class="card-date">Feb 27, 2026</div>
+      <div class="card-headline">OpenAI Closes $110B — Largest Private Round in History</div>
+      <div class="card-summary">Amazon $50B, NVIDIA $30B, SoftBank $30B push valuation to $840B. AWS becomes exclusive third-party cloud, reshaping alliance structures across the hyperscaler map.</div>
+      <div class="card-tags"><span class="tag bg-gold">CEO</span><span class="tag bg-green">CFO</span><span class="tag bg-blue">CIO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-red">Critical</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <!-- Card 2: Anthropic Pentagon -->
+    <div class="card bar-red" onclick="openModal('anthropic-pentagon')">
+      <div class="card-date">Feb 23–27, 2026</div>
+      <div class="card-headline">Anthropic Banned from Pentagon After Refusing to Drop Safety Guardrails</div>
+      <div class="card-summary">Trump ordered agencies to stop using Anthropic; Defense Secretary designated it a "supply chain risk." $200M contract terminated. 360+ employees at rival firms signed support letters.</div>
+      <div class="card-tags"><span class="tag bg-gold">CEO</span><span class="tag bg-purple">GC</span><span class="tag bg-blue">CIO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-red">Critical</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <!-- Card 3: Chip Funding Wave -->
+    <div class="card bar-green" onclick="openModal('chip-funding')">
+      <div class="card-date">Feb 24–25, 2026</div>
+      <div class="card-headline">$1.2B+ Floods Into NVIDIA Alternatives in a Single Week</div>
+      <div class="card-summary">MatX ($500M), SambaNova ($350M+), Axelera AI ($250M+) raise massive rounds. Cerebras files confidentially for Q2 IPO at $23B. The NVIDIA monoculture is under assault.</div>
+      <div class="card-tags"><span class="tag bg-green">CFO</span><span class="tag bg-blue">CIO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-gold">High</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION: MARKET IMPACT -->
+<!-- ══════════════════════════════════════ -->
+<section class="section" data-cat="market-impact" id="sec-market-impact">
+  <div class="section-header">
+    <div class="section-icon icon-red">◆</div>
+    <div class="section-title">Market Impact</div>
+    <div class="section-count">3 stories</div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- Card 4: NVIDIA Earnings Paradox -->
+    <div class="card bar-red" onclick="openModal('nvidia-paradox')">
+      <div class="card-date">Feb 25–27, 2026</div>
+      <div class="card-headline">NVIDIA Beats Every Metric, Then Loses $260B in Market Cap</div>
+      <div class="card-summary">Q4 revenue $68.1B (+73% YoY), EPS $1.62 (+82%), guidance $78B crushed consensus. Stock fell 5.5% as investors questioned AI spending sustainability.</div>
+      <div class="card-tags"><span class="tag bg-green">CFO</span><span class="tag bg-gold">CEO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-red">Critical</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <!-- Card 5: SaaSpocalypse -->
+    <div class="card bar-red" onclick="openModal('saaspocalypse')">
+      <div class="card-date">Feb 23–28, 2026</div>
+      <div class="card-headline">The SaaSpocalypse Deepens — Software Sector Down 30% from Highs</div>
+      <div class="card-summary">IBM plunged 13% on Anthropic's COBOL demo. Adobe, Salesforce, ServiceNow each down 25–30% YTD. P/S ratios compressed from 9× to 6×. The market has decided AI is a SaaS extinction event.</div>
+      <div class="card-tags"><span class="tag bg-green">CFO</span><span class="tag bg-gold">CEO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-red">Critical</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <!-- Card 6: Block Layoff -->
+    <div class="card bar-orange" onclick="openModal('block-layoff')">
+      <div class="card-date">Feb 26, 2026</div>
+      <div class="card-headline">Block Cuts 4,000+ Jobs — Largest AI Layoff in U.S. History</div>
+      <div class="card-summary">Dorsey: "Something happened in December where models got an order of magnitude more capable." Stock surged 17%. Predicted most companies will reach the same conclusion within a year.</div>
+      <div class="card-tags"><span class="tag bg-gold">CEO</span><span class="tag bg-orange">CHRO</span><span class="tag bg-green">CFO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-red">Critical</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION: ENTERPRISE AI -->
+<!-- ══════════════════════════════════════ -->
+<section class="section" data-cat="enterprise" id="sec-enterprise">
+  <div class="section-header">
+    <div class="section-icon icon-blue">◆</div>
+    <div class="section-title">Enterprise AI &amp; Agentic Platforms</div>
+    <div class="section-count">3 stories</div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- Card 7: Agentic Product Wave -->
+    <div class="card bar-blue" onclick="openModal('agentic-wave')">
+      <div class="card-date">Feb 25–26, 2026</div>
+      <div class="card-headline">Agentic AI Goes Mainstream: Copilot Tasks, Perplexity Computer, Samsung S26</div>
+      <div class="card-summary">Microsoft's "to-do list that does itself," Perplexity's $200/mo multi-model orchestrator, and Samsung's on-device agents mark the week agentic AI reached consumer products.</div>
+      <div class="card-tags"><span class="tag bg-blue">CIO</span><span class="tag bg-gold">CEO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-gold">High</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <!-- Card 8: Gemini 3.1 Pro -->
+    <div class="card bar-purple" onclick="openModal('gemini-31')">
+      <div class="card-date">Feb 19–26, 2026</div>
+      <div class="card-headline">Google Gemini 3.1 Pro Doubles Benchmark Scores, Adds Three-Tier Thinking</div>
+      <div class="card-summary">77.1% ARC-AGI-2 (2× predecessor), 80.6% SWE-Bench Verified. Three-tier reasoning system positions Google as the enterprise frontier model leader.</div>
+      <div class="card-tags"><span class="tag bg-blue">CIO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-gold">High</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <!-- Card 9: MCP Security Crisis -->
+    <div class="card bar-red" onclick="openModal('mcp-security')">
+      <div class="card-date">Feb 2026</div>
+      <div class="card-headline">MCP Security Crisis: 8,000+ Servers Exposed, Critical Vulnerabilities Found</div>
+      <div class="card-summary">36.7% vulnerable to SSRF attacks. Three CVEs in Anthropic's reference Git MCP server enable RCE via prompt injection. 135K+ exposed OpenClaw instances. Agentic AI's first systemic security crisis.</div>
+      <div class="card-tags"><span class="tag bg-red">CISO</span><span class="tag bg-blue">CIO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-red">Critical</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION: CHIPS & INFRA -->
+<!-- ══════════════════════════════════════ -->
+<section class="section" data-cat="chips" id="sec-chips">
+  <div class="section-header">
+    <div class="section-icon icon-cyan">◆</div>
+    <div class="section-title">Chips, Infrastructure &amp; Energy</div>
+    <div class="section-count">2 stories</div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- Card 10: HBM4 -->
+    <div class="card bar-cyan" onclick="openModal('hbm4')">
+      <div class="card-date">Feb 2026</div>
+      <div class="card-headline">HBM4 Mass Production Begins as Memory Bottleneck Intensifies</div>
+      <div class="card-summary">SK Hynix and Samsung launch HBM4 production. SK Hynix's $15.1B fab targets ~70% share for NVIDIA Rubin. DRAM prices up 172% YoY. No relief expected until 2028.</div>
+      <div class="card-tags"><span class="tag bg-blue">CIO</span><span class="tag bg-green">CFO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-gold">High</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <!-- Card 11: Data Center Power -->
+    <div class="card bar-orange" onclick="openModal('dc-power')">
+      <div class="card-date">Feb 25, 2026</div>
+      <div class="card-headline">Trump's "Rate Payer Pledge" Forces Hyperscalers to Self-Power Data Centers</div>
+      <div class="card-summary">Amazon, Google, Meta, Microsoft, xAI, Oracle, OpenAI must build/bring/buy own power after consumer bills rose 7%. NY proposes 3-year data center moratorium. Community backlash intensifies.</div>
+      <div class="card-tags"><span class="tag bg-green">CFO</span><span class="tag bg-gold">CEO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-gold">High</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION: REGULATION -->
+<!-- ══════════════════════════════════════ -->
+<section class="section" data-cat="regulation" id="sec-regulation">
+  <div class="section-header">
+    <div class="section-icon icon-purple">◆</div>
+    <div class="section-title">Regulation &amp; Compliance</div>
+    <div class="section-count">2 stories</div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- Card 12: Federal-State Clash -->
+    <div class="card bar-purple" onclick="openModal('fed-state-clash')">
+      <div class="card-date">Mar 11 Deadline</div>
+      <div class="card-headline">Federal–State AI Law Showdown: March 11 Deadline Triggers Collision</div>
+      <div class="card-summary">Commerce Secretary must identify "burdensome" state laws. 280+ state lawmakers and 36 AGs plan legal challenges. 78 chatbot safety bills active across 27 states. Three-track compliance reality deepens.</div>
+      <div class="card-tags"><span class="tag bg-purple">GC</span><span class="tag bg-gold">CEO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-red">Critical</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <!-- Card 13: NIST Agents -->
+    <div class="card bar-purple" onclick="openModal('nist-agents')">
+      <div class="card-date">Feb 17, 2026</div>
+      <div class="card-headline">NIST Launches First U.S. Framework for Autonomous AI Agents</div>
+      <div class="card-summary">AI Agent Standards Initiative with RFI on agent security due March 9. EU AI Act high-risk obligations take effect August 2 unless Digital Omnibus extends to December 2027.</div>
+      <div class="card-tags"><span class="tag bg-blue">CIO</span><span class="tag bg-purple">GC</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-gold">High</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION: WORKFORCE -->
+<!-- ══════════════════════════════════════ -->
+<section class="section" data-cat="workforce" id="sec-workforce">
+  <div class="section-header">
+    <div class="section-icon icon-orange">◆</div>
+    <div class="section-title">Workforce Disruption</div>
+    <div class="section-count">2 stories</div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- Card 14: Workforce Data -->
+    <div class="card bar-orange" onclick="openModal('workforce-data')">
+      <div class="card-date">Feb 23–25, 2026</div>
+      <div class="card-headline">Goldman, Brookings, Dallas Fed Paint Converging Picture of AI Labor Disruption</div>
+      <div class="card-summary">6.1M U.S. workers face high AI exposure + low adaptive capacity. 86% are women. Young worker employment in AI-exposed roles fell from 16.4% to 15.5%. Goldman: AI's GDP impact "basically zero" so far.</div>
+      <div class="card-tags"><span class="tag bg-orange">CHRO</span><span class="tag bg-gold">CEO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-red">Critical</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <!-- Card 15: Cybersecurity -->
+    <div class="card bar-red" onclick="openModal('cyber-threats')">
+      <div class="card-date">Feb 24–27, 2026</div>
+      <div class="card-headline">AI-Enabled Attacks Surge 89% — Agentic AI Named Top 2026 Threat</div>
+      <div class="card-summary">CrowdStrike: average breakout time 29 minutes (fastest: 27 seconds). IBM: vulnerability exploitation is #1 attack vector. WEF: 87% of leaders see AI vulnerabilities as fastest-growing risk.</div>
+      <div class="card-tags"><span class="tag bg-red">CISO</span><span class="tag bg-blue">CIO</span></div>
+      <div class="card-bottom"><span class="card-risk-badge bg-red">Critical</span><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION: SECURITY -->
+<!-- ══════════════════════════════════════ -->
+<section class="section" data-cat="security" id="sec-security" style="display:none">
+  <!-- Security cards are shown via the cyber-threats card in workforce section -->
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION: IMPERATIVES -->
+<!-- ══════════════════════════════════════ -->
+<section class="section" data-cat="imperatives" id="sec-imperatives">
+  <div class="section-header">
+    <div class="section-icon icon-gold">◆</div>
+    <div class="section-title">Strategic Imperatives</div>
+    <div class="section-count">5 imperatives</div>
+  </div>
+  <div class="cards-grid">
+
+    <div class="card bar-gold" onclick="openModal('imp-cloud')">
+      <div class="card-date">Imperative 01</div>
+      <div class="card-headline">Reassess Your Cloud Calculus — The Alliance Map Just Changed</div>
+      <div class="card-summary">OpenAI's AWS exclusivity, Anthropic's cross-cloud position, and the Pentagon ban create a new risk matrix for every cloud-dependent enterprise.</div>
+      <div class="card-tags"><span class="tag bg-blue">CIO</span><span class="tag bg-gold">CEO</span><span class="tag bg-green">CFO</span></div>
+      <div class="card-bottom"><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <div class="card bar-gold" onclick="openModal('imp-gov')">
+      <div class="card-date">Imperative 02</div>
+      <div class="card-headline">Government Risk Is Now Bilateral — Model Your Exposure</div>
+      <div class="card-summary">Anthropic's ban shows that vendor principles can become your regulatory risk. Map your AI supply chain by government exposure before the next executive order.</div>
+      <div class="card-tags"><span class="tag bg-gold">CEO</span><span class="tag bg-purple">GC</span></div>
+      <div class="card-bottom"><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <div class="card bar-gold" onclick="openModal('imp-saas')">
+      <div class="card-date">Imperative 03</div>
+      <div class="card-headline">The SaaSpocalypse Creates an M&amp;A Window</div>
+      <div class="card-summary">With software P/S ratios at 6× (down from 9×), this is a once-in-a-cycle opportunity for strategic acquirers with AI integration theses.</div>
+      <div class="card-tags"><span class="tag bg-green">CFO</span><span class="tag bg-gold">CEO</span></div>
+      <div class="card-bottom"><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <div class="card bar-gold" onclick="openModal('imp-workforce')">
+      <div class="card-date">Imperative 04</div>
+      <div class="card-headline">Workforce Restructuring Is Accelerating Faster Than Frameworks</div>
+      <div class="card-summary">Block's playbook will be replicated. Build your workforce transition plan now, before the talent market absorbs the signal.</div>
+      <div class="card-tags"><span class="tag bg-orange">CHRO</span><span class="tag bg-gold">CEO</span></div>
+      <div class="card-bottom"><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+
+    <div class="card bar-gold" onclick="openModal('imp-security')">
+      <div class="card-date">Imperative 05</div>
+      <div class="card-headline">Agent Security Is the Next Crisis — and You're Already Exposed</div>
+      <div class="card-summary">8,000+ exposed MCP servers, 89% surge in AI-enabled attacks, 27-second breakout times. The agentic AI attack surface is expanding faster than controls.</div>
+      <div class="card-tags"><span class="tag bg-red">CISO</span><span class="tag bg-blue">CIO</span></div>
+      <div class="card-bottom"><span class="card-expand-hint">Click to expand →</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>Weekly AI Intelligence Briefing · Feb 23–Mar 2, 2026 · Prepared for C-Suite Decision Makers</p>
+</footer>
+
+<!-- ══════════════════════════════════════ -->
+<!-- MODALS -->
+<!-- ══════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+
+<!-- MODAL: OpenAI $110B -->
+<div class="modal" id="modal-openai-round" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-gold">Mega-Deals &amp; Funding</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">OpenAI Closes $110B — Largest Private Funding Round in History</div>
+    <div class="modal-date">February 27, 2026</div>
+    <div class="modal-content">
+      <p>OpenAI closed a <strong>$110 billion funding round</strong> — the largest private capital raise in history — at a pre-money valuation of $730 billion and post-money valuation of <strong>$840 billion</strong>. The round was led by Amazon ($50B), NVIDIA ($30B), and SoftBank ($30B), with the structure creating transformative alliance shifts across the hyperscaler landscape.</p>
+      <p>As part of the deal, <strong>AWS became OpenAI's exclusive third-party cloud provider</strong>, with an expanded $100 billion AWS agreement over eight years consuming approximately 2 gigawatts of Trainium capacity. This is a seismic shift: OpenAI had previously operated primarily on Microsoft Azure, and the AWS exclusivity creates new questions about Microsoft's $135 billion stake and 27% ownership in OpenAI.</p>
+      <p>OpenAI disclosed operating metrics alongside the round: <strong>900 million+ weekly ChatGPT users</strong>, 50 million+ consumer subscribers, 9 million+ business users, and more than <strong>$20 billion in annualized revenue</strong>. The same day, OpenAI announced a Pentagon contract with "technical safeguards" — a pointed contrast to Anthropic's simultaneous Pentagon ban.</p>
+      <p>The round's investor composition signals strategic intent beyond capital: Amazon gains deep integration with the frontier model leader, NVIDIA cements its position in the inference stack, and SoftBank continues building a vertically integrated AI ecosystem through its Stargate and Cristal Ball initiatives.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-cio">CIO</span> Reassess cloud strategy given OpenAI-AWS exclusivity — evaluate Azure exposure if OpenAI models are critical to your stack</li>
+          <li><span class="owner owner-cfo">CFO</span> Model cost implications of potential AWS lock-in for OpenAI inference workloads vs. multi-cloud alternatives</li>
+          <li><span class="owner owner-ceo">CEO</span> Request board-level briefing on AI vendor concentration risk — your largest AI supplier just changed its cloud allegiance</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Microsoft-OpenAI relationship dynamics may shift unpredictably, affecting Azure-dependent OpenAI deployments</li>
+          <li>$840B valuation implies expectations of $80–100B+ revenue within 3–4 years — execution risk is extreme</li>
+          <li>AWS Trainium dependency introduces single-chip-architecture risk for OpenAI inference pricing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>This round doesn't just fund OpenAI — it restructures the cloud alliance map. Every enterprise with significant Azure + OpenAI deployments should scenario-plan for a world where OpenAI's primary infrastructure partner is no longer Microsoft.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('nvidia-paradox'),300)">NVIDIA Earnings Paradox</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('anthropic-pentagon'),300)">Anthropic Pentagon Ban</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('saaspocalypse'),300)">SaaSpocalypse</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: Anthropic Pentagon -->
+<div class="modal" id="modal-anthropic-pentagon" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-red">Mega-Deals &amp; Funding</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Anthropic Banned from Pentagon After Refusing to Drop Safety Guardrails</div>
+    <div class="modal-date">February 23–27, 2026</div>
+    <div class="modal-content">
+      <p>In the most consequential AI-government confrontation to date, <strong>Anthropic was banned from all Pentagon activity</strong> after refusing to drop safety guardrails that prohibited mass domestic surveillance and autonomous weapons applications. The crisis unfolded over five days.</p>
+      <p>On February 23, <strong>xAI signed a Pentagon deal</strong> agreeing to an "all lawful purposes" standard — with no usage restrictions. Anthropic was presented with similar terms and refused. On February 27, <strong>President Trump ordered all federal agencies to stop using Anthropic products</strong>, and Defense Secretary Pete Hegseth designated Anthropic a "supply chain risk to national security," banning all Pentagon contractors from any commercial activity with the company. Anthropic's $200 million Pentagon contract was terminated.</p>
+      <p>The industry response was unprecedented: <strong>60+ OpenAI employees and 300+ Google employees signed public letters</strong> supporting Anthropic's position. Anthropic vowed to mount a legal challenge. Separately, Anthropic acquired <strong>Vercept on February 25</strong> for computer-use agent capabilities, continuing its product expansion despite the government crisis.</p>
+      <p>For enterprises, the Anthropic ban creates a new category of risk: <strong>vendor-principle risk</strong>. An AI provider's ethical positions can now directly affect your government contracts, regulatory standing, and supply chain compliance.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-gc">GC</span> Audit all contracts for government flow-down clauses that could be triggered by AI vendor bans</li>
+          <li><span class="owner owner-cio">CIO</span> Ensure multi-vendor AI strategy — Anthropic remains available on AWS, Azure, and Google Cloud for non-government work</li>
+          <li><span class="owner owner-ceo">CEO</span> Assess whether your organization's government contracts or subcontracts create exposure to Anthropic "supply chain risk" designation</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Pentagon contractor ban may cascade — any firm doing business with Anthropic could face compliance scrutiny</li>
+          <li>Legal challenge outcome could take months; plan for extended uncertainty</li>
+          <li>Other AI vendors may face similar pressure to accept "all lawful purposes" standards</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>This is the first time a major AI company has been banned by the U.S. government for maintaining safety principles. It creates a precedent where vendor ethics become enterprise risk factors — requiring a fundamentally new dimension in AI vendor due diligence.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('fed-state-clash'),300)">Federal–State AI Law Clash</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('openai-round'),300)">OpenAI $110B Round</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: Chip Funding -->
+<div class="modal" id="modal-chip-funding" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-green">Mega-Deals &amp; Funding</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">$1.2B+ Floods Into NVIDIA Alternatives in a Single Week</div>
+    <div class="modal-date">February 24–25, 2026</div>
+    <div class="modal-content">
+      <p>Over $1.2 billion poured into NVIDIA-alternative chip companies in a single week — the most concentrated bet against the GPU monoculture since the AI hardware boom began.</p>
+      <p><strong>MatX raised $500 million</strong> (Series B) from Jane Street, Leopold Aschenbrenner's fund, Marvell, and the Stripe founders. The company, founded by ex-Google TPU engineers, claims 10× GPU performance for LLM training with chips manufactured by TSMC, targeting 2027 shipments. <strong>SambaNova raised $350 million+</strong> (Series E) from Vista Equity and Intel (~$100M), with Intel CEO Lip-Bu Tan joining the board. <strong>Axelera AI raised $250 million+</strong> from Innovation Industries, BlackRock, and Samsung — the largest EU AI semiconductor investment ever.</p>
+      <p>Separately, <strong>Cerebras filed confidentially for a Q2 2026 IPO</strong> at a $23 billion valuation. And <strong>Wayve raised $1.2 billion</strong> (Series D) at an $8.6 billion valuation for autonomous driving AI, backed by Eclipse, Balderton, SoftBank, Microsoft, NVIDIA, and Uber.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-cio">CIO</span> Begin evaluating NVIDIA-alternative roadmaps — MatX (2027), SambaNova (available now), Cerebras (available now) — for inference cost reduction</li>
+          <li><span class="owner owner-cfo">CFO</span> Factor 2027–2028 chip diversification into AI infrastructure budget planning; current NVIDIA lock-in premium may be temporary</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Alternative chips face CUDA ecosystem lock-in — software migration costs often exceed hardware savings</li>
+          <li>NVIDIA's Rubin platform (H2 2026) may reset competitive dynamics before alternatives ship at scale</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>The GPU monoculture is beginning to fracture. While NVIDIA remains dominant, the volume of capital flowing into alternatives — and the caliber of investors involved — suggests that procurement leverage will improve materially by 2027–2028.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('nvidia-paradox'),300)">NVIDIA Earnings Paradox</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('hbm4'),300)">HBM4 Memory Bottleneck</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: NVIDIA Paradox -->
+<div class="modal" id="modal-nvidia-paradox" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-red">Market Impact</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">NVIDIA Beats Every Metric, Then Loses $260B in Market Cap</div>
+    <div class="modal-date">February 25–27, 2026</div>
+    <div class="modal-content">
+      <p><strong>NVIDIA reported fiscal Q4 FY2026 revenue of $68.13 billion</strong>, up 73% year-over-year, with earnings per share of $1.62 (up 82%). Data center revenue alone hit $62.3 billion (+75%). Q1 FY2027 guidance of <strong>$78 billion</strong> crushed the $72.8 billion consensus. By every operational measure, it was a dominant quarter.</p>
+      <p>Yet the stock fell <strong>5.46% on February 26</strong>, erasing approximately $260 billion in market cap — its worst single day since April 2025. Shares declined further on February 27 to $177.19. Analysts cited the stalled $100 billion OpenAI infrastructure deal, broader AI bubble anxiety, and sustainability concerns about the pace of hyperscaler spending.</p>
+      <p><strong>Bank of America raised its price target to $300</strong>, citing an "agentic AI inflection" as the next demand catalyst. Jensen Huang appeared on CNBC to defend software stocks, saying "the market's got it wrong" about AI replacing SaaS companies. NVIDIA's data center market share has grown from 25% to <strong>86% since 2021</strong>, and the company guided visibility to $500 billion in revenue from Blackwell and Rubin through end of calendar 2026.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-cfo">CFO</span> The NVIDIA sell-the-news pattern signals market nervousness about AI ROI timelines — monitor how this sentiment affects your own AI budget approvals</li>
+          <li><span class="owner owner-ceo">CEO</span> Huang's defense of software stocks may be self-interested but is worth studying — if AI augments rather than replaces SaaS, the M&amp;A calculus changes</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>86% data center market share is historically unusual — regulatory or customer concentration risk is real</li>
+          <li>If OpenAI's $100B infrastructure deal stalls permanently, NVIDIA's forward guidance faces material risk</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>NVIDIA's paradox — beating every metric while losing a quarter-trillion in value — is the market's way of saying: "We believe AI spending is real, but we're no longer sure it produces returns." Every CFO presenting an AI business case to their board this quarter will face the same question.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('saaspocalypse'),300)">SaaSpocalypse</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('chip-funding'),300)">Alt-Chip Funding Wave</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('openai-round'),300)">OpenAI $110B Round</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: SaaSpocalypse -->
+<div class="modal" id="modal-saaspocalypse" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-red">Market Impact</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">The SaaSpocalypse Deepens — Software Sector Down 30% from Highs</div>
+    <div class="modal-date">February 23–28, 2026</div>
+    <div class="modal-content">
+      <p>The software sector's AI-driven rout deepened to historic levels this week. The <strong>IGV software ETF fell approximately 23% year-to-date</strong>, with the broader S&amp;P North American Software Index down 30% from recent highs. Price-to-sales ratios compressed from 9× to 6× across the sector.</p>
+      <p>The catalyst: on February 23, <strong>Anthropic published a blog post demonstrating Claude Code automating COBOL modernization</strong>. IBM stock plunged 13.2% to $223.35, erasing $31 billion in market cap — its worst single-day decline since October 2000. IBM was down 27% for the month of February.</p>
+      <p><strong>Adobe, Salesforce, and ServiceNow</strong> each fell 25–30% year-to-date. Salesforce reported $11.20 billion in quarterly revenue (+12%) with Agentforce ARR of $800 million (+169% across 29,000 deals), but FY27 guidance missed expectations and shares fell 5% after hours. <strong>Dell surged 22%</strong> after reporting $33.4B in revenue (+39%) with $34.1B in AI server orders and a $43B AI backlog — showing that hardware beneficiaries continue to outperform.</p>
+      <p><strong>CoreWeave reported $1.57 billion in Q4 revenue</strong> (+110%) but delivered a massive EPS miss, falling 18.5% — a reminder that even AI infrastructure pure-plays face margin pressure.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-cfo">CFO</span> Software P/S compression to 6× creates a strategic M&amp;A window — identify acquisition targets where AI integration would compound value</li>
+          <li><span class="owner owner-ceo">CEO</span> If you're a SaaS company, accelerate your "AI-native" strategy. If you're a buyer of SaaS, renegotiate contracts while vendors are under pressure</li>
+          <li><span class="owner owner-cio">CIO</span> Evaluate which enterprise software could be replaced or augmented by AI agents within 12–18 months</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>SaaS vendor financial distress could affect service continuity — monitor key vendors' balance sheets</li>
+          <li>Compressed valuations may trigger consolidation waves that reduce competition</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>The market has rendered its verdict: AI is a SaaS disruption event, not just a SaaS enhancement. This creates asymmetric opportunity — for acquirers, for AI-native startups, and for any enterprise willing to rethink its software stack around agent-native architectures.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('nvidia-paradox'),300)">NVIDIA Earnings Paradox</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('block-layoff'),300)">Block 4,000 Layoffs</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('agentic-wave'),300)">Agentic AI Wave</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: Block Layoff -->
+<div class="modal" id="modal-block-layoff" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-orange">Market Impact</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Block Cuts 4,000+ Jobs — Largest Single-Day AI Layoff in U.S. History</div>
+    <div class="modal-date">February 26, 2026</div>
+    <div class="modal-content">
+      <p>Jack Dorsey cut <strong>4,000+ jobs at Block</strong> — nearly half the workforce, reducing headcount from over 10,000 to fewer than 6,000. It was the <strong>largest single-day AI-attributed layoff in U.S. history</strong>.</p>
+      <p>Dorsey's explanation was blunt: <strong>"Something happened in December where models got an order of magnitude more capable."</strong> He predicted that the "majority of companies will reach the same conclusion within the next year." Block's stock surged <strong>16.8% the following day</strong> — the market rewarding workforce reduction as a signal of AI-driven efficiency.</p>
+      <p>The Block action punctuated a broader wave. Other major AI-attributed cuts this period included <strong>Amazon (16,000 jobs), Salesforce (~1,000), Baker McKenzie (600–1,000), Pinterest (15% of workforce), and Meta (~1,500 in Reality Labs)</strong>. Challenger, Gray &amp; Christmas reported that 55,000 job cuts were directly attributed to AI in 2025 — 12× the number cited two years earlier. January 2026 alone saw 108,435 announced layoffs (+118% year-over-year), the highest since 2009.</p>
+      <p>However, <strong>Forrester predicted that half of AI-attributed layoffs will be "quietly rehired offshore or at lower salaries"</strong> — suggesting the efficiency narrative masks a more complex labor arbitrage.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-ceo">CEO</span> Block's 17% stock surge for cutting half its workforce creates board pressure for similar action — prepare a defensible position on your AI-workforce strategy</li>
+          <li><span class="owner owner-chro">CHRO</span> Conduct a task-level automation audit: which roles have >60% of tasks now automatable? Build transition plans before announcements become reactive</li>
+          <li><span class="owner owner-cfo">CFO</span> Model the financial impact of AI-driven headcount scenarios — both the savings and the severance, retraining, and institutional knowledge loss costs</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Aggressive AI layoffs risk institutional knowledge loss that may take years to rebuild</li>
+          <li>Regulatory and reputational risk if layoffs disproportionately affect protected classes (Brookings: 86% of high-exposure workers are women)</li>
+          <li>Forrester's "rehired offshore" pattern suggests reported cost savings may be overstated</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>Block just demonstrated the new playbook: cut fast, cite AI, collect the stock premium. Whether you follow or resist this playbook, every board in America will ask the question. Having a principled, data-driven answer is now a CEO-level obligation.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('workforce-data'),300)">Workforce Disruption Data</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('saaspocalypse'),300)">SaaSpocalypse</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: Agentic Wave -->
+<div class="modal" id="modal-agentic-wave" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-blue">Enterprise AI</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Agentic AI Goes Mainstream: Copilot Tasks, Perplexity Computer, Samsung S26</div>
+    <div class="modal-date">February 25–26, 2026</div>
+    <div class="modal-content">
+      <p>Three product launches in 48 hours signaled that agentic AI crossed from enterprise pilot to consumer product.</p>
+      <p><strong>Microsoft launched Copilot Tasks on February 26</strong> — described as a "to-do list that does itself" — using Cloud PC infrastructure to give AI agents browser and computer access. The system includes human-in-the-loop governance for spending and messaging actions. It is already deployed across 80% of the Fortune 500 through the existing Copilot footprint.</p>
+      <p><strong>Perplexity launched "Computer" on February 25</strong>, a $200/month consumer and $325/month enterprise product that orchestrates 19 frontier models including Claude Opus 4.6, Gemini, and Grok, with 400+ app integrations. It represents the first major multi-model agent orchestration platform for end users.</p>
+      <p>On the hardware side, <strong>Samsung unveiled the Galaxy S26 on February 25</strong> with on-device agentic capabilities including Now Nudge (proactive AI suggestions), AI Call Screening, and an enhanced Bixby with real-time web search. Separately, <strong>Intuit and Anthropic announced a partnership on February 24</strong> integrating Claude Agent SDK into QuickBooks, TurboTax, Mailchimp, and Credit Karma — bringing agentic AI to small business financial workflows.</p>
+      <p>Cisco-Omdia survey data reinforces the urgency: <strong>80% of 650 executives</strong> view agentic AI as critical to organizational survival by 2027.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-cio">CIO</span> Evaluate Copilot Tasks, Perplexity Computer, and Claude Cowork for knowledge worker augmentation — pilot with IT and finance teams first</li>
+          <li><span class="owner owner-ceo">CEO</span> The Intuit-Anthropic partnership model is replicable — assess which of your workflows could integrate agentic AI through similar SDK partnerships</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Agent-initiated transactions and communications create new liability exposure — governance frameworks are immature</li>
+          <li>Multi-model orchestration (Perplexity's approach) adds complexity and potential attack surface</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>Agentic AI just left the lab. When Microsoft ships "a to-do list that does itself" to 80% of the Fortune 500, the question for every CIO shifts from "should we pilot agents?" to "how fast can we govern them?"</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('mcp-security'),300)">MCP Security Crisis</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('gemini-31'),300)">Gemini 3.1 Pro</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('nist-agents'),300)">NIST Agent Framework</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: Gemini 3.1 Pro -->
+<div class="modal" id="modal-gemini-31" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-purple">Enterprise AI</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Google Gemini 3.1 Pro Doubles Benchmark Scores, Adds Three-Tier Thinking</div>
+    <div class="modal-date">February 19–26, 2026</div>
+    <div class="modal-content">
+      <p>Google released <strong>Gemini 3.1 Pro</strong>, achieving 77.1% on ARC-AGI-2 — <strong>2× the score of its predecessor</strong>, Gemini 3 Pro — and 80.6% on SWE-Bench Verified, establishing new frontier benchmarks. The model introduces a <strong>three-tier reasoning system</strong> that dynamically allocates compute based on task complexity, optimizing cost-per-inference for enterprise workloads.</p>
+      <p>This positions Google competitively against Claude Opus 4.6 and GPT-5.2 for enterprise reasoning tasks, particularly in code generation and complex analytical workflows. The three-tier thinking architecture is significant for CIOs because it allows a single model deployment to serve low-latency simple queries and deep-reasoning complex tasks without manual routing.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-cio">CIO</span> Benchmark Gemini 3.1 Pro against current model deployments for code generation and analytical reasoning use cases — the three-tier system may reduce inference costs significantly</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Benchmark scores don't always translate to production performance — test on your own data and workflows</li>
+          <li>Frequent model releases create migration overhead; standardize on APIs, not specific model versions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>Google's three-tier thinking system may be the enterprise efficiency innovation of Q1 2026 — a single model that self-optimizes compute allocation could materially reduce inference costs while improving output quality.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('agentic-wave'),300)">Agentic AI Wave</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('openai-round'),300)">OpenAI $110B Round</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: MCP Security -->
+<div class="modal" id="modal-mcp-security" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-red">Enterprise AI</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">MCP Security Crisis: 8,000+ Servers Exposed, Critical Vulnerabilities Found</div>
+    <div class="modal-date">February 2026</div>
+    <div class="modal-content">
+      <p>The Model Context Protocol (MCP) — now the de facto agent integration standard supported by ChatGPT, Claude, Gemini, Microsoft Copilot, and VS Code — faces its first systemic security crisis.</p>
+      <p>Security researchers discovered <strong>8,000+ MCP servers exposed publicly</strong>, with <strong>36.7% vulnerable to Server-Side Request Forgery (SSRF) attacks</strong>. Three CVEs were identified in Anthropic's reference Git MCP server, enabling <strong>remote code execution via prompt injection</strong>. Additionally, <strong>135,000+ exposed OpenClaw instances</strong> (an MCP tool registry) were found.</p>
+      <p>This is compounded by the broader agentic AI threat landscape. <strong>Barracuda Networks identified agentic AI as the most dangerous 2026 cybersecurity threat</strong> (February 27), noting that autonomous agents "respond and adapt while in the system, and continue until their goal is achieved or they are shut down."</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-ciso">CISO</span> Audit all MCP server deployments immediately — check for public exposure, update to patched versions, and implement network segmentation</li>
+          <li><span class="owner owner-cio">CIO</span> Mandate security review for any agent-to-agent integration. Treat MCP servers as critical infrastructure, not developer tools</li>
+          <li><span class="owner owner-ciso">CISO</span> Respond to NIST's AI Agent Security RFI (due March 9) to influence emerging standards</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Prompt injection in MCP enables attackers to hijack AI agents — cascading access through connected tools</li>
+          <li>Agent autonomy means compromised agents can take actions at machine speed before detection</li>
+          <li>No mature monitoring tools exist for agent-to-agent communication chains</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>MCP is to AI agents what HTTP is to the web — foundational infrastructure. Finding that 36.7% of servers are vulnerable to SSRF is equivalent to discovering that a third of web servers had unpatched critical vulnerabilities. Treat this as a board-level security disclosure.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('cyber-threats'),300)">AI-Enabled Attacks Surge</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('nist-agents'),300)">NIST Agent Framework</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('agentic-wave'),300)">Agentic AI Wave</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: HBM4 -->
+<div class="modal" id="modal-hbm4" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-cyan">Chips &amp; Infrastructure</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">HBM4 Mass Production Begins as Memory Bottleneck Intensifies</div>
+    <div class="modal-date">February 2026</div>
+    <div class="modal-content">
+      <p><strong>SK Hynix and Samsung began mass production of HBM4</strong> — the next-generation high-bandwidth memory critical for NVIDIA's Rubin platform. SK Hynix committed $15.1 billion to its M15X facility in Cheongju, partnering with TSMC on 12nm logic dies. UBS projects SK Hynix will capture approximately <strong>70% market share</strong> for NVIDIA Rubin platform memory.</p>
+      <p>Samsung is targeting a <strong>50% capacity increase to approximately 250,000 wafers per month</strong> by year-end. DRAM prices have risen <strong>172% year-over-year</strong> through Q3 2025, with TrendForce projecting an additional 55–60% quarter-over-quarter increase in Q1 2026.</p>
+      <p>TSMC's CoWoS advanced packaging — required for combining HBM with AI accelerators — remains <strong>fully booked</strong>. Intel CEO Lip-Bu Tan stated there will be "no relief until 2028" on packaging constraints. Combined hyperscaler capex for 2026 is tracking at $650–700 billion: Amazon ~$200B, Google ~$175–185B, Meta ~$115–135B, and Microsoft ~$140B+.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-cfo">CFO</span> Budget 30–40% cost contingency for AI infrastructure through 2027 — memory constraints will keep prices elevated</li>
+          <li><span class="owner owner-cio">CIO</span> Secure GPU and memory capacity commitments now for H2 2026 and 2027 deployments; spot availability will be scarce</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Memory pricing is structural, not cyclical — plan for elevated costs through at least 2028</li>
+          <li>Packaging constraints (TSMC CoWoS) may bottleneck even customers who secure GPU allocations</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>The AI infrastructure bottleneck has shifted from GPUs to memory and packaging. CFOs who budgeted based on declining hardware cost curves need to revise upward — the supply chain says costs stay elevated through 2028.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('chip-funding'),300)">Alt-Chip Funding Wave</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('dc-power'),300)">Data Center Power Crisis</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: DC Power -->
+<div class="modal" id="modal-dc-power" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-orange">Chips &amp; Infrastructure</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Trump's "Rate Payer Pledge" Forces Hyperscalers to Self-Power Data Centers</div>
+    <div class="modal-date">February 25, 2026</div>
+    <div class="modal-content">
+      <p>The Trump administration's <strong>"Rate Payer Protection Pledge"</strong> requires Amazon, Google, Meta, Microsoft, xAI, Oracle, and OpenAI to build, bring, or buy their own power for new data center capacity. The policy responds to consumer electric bills rising 7% in 2025 and utilities requesting a record $31 billion in rate increases.</p>
+      <p>Community opposition to data center expansion is intensifying. <strong>New York proposed a 3-year data center moratorium</strong>, and New Orleans passed a 1-year moratorium. An Echelon poll found <strong>46% of respondents oppose data centers in their community</strong>. Meanwhile, <strong>Blackstone announced plans for a publicly traded acquisition company</strong> on February 27, targeting "tens of billions" in data center acquisitions — a signal that infrastructure investors see the power challenge as an opportunity.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-cfo">CFO</span> Factor self-generation or PPA (power purchase agreement) costs into AI infrastructure planning — grid power for new data centers is no longer guaranteed</li>
+          <li><span class="owner owner-ceo">CEO</span> Engage with community stakeholders proactively if expanding data center footprint — political risk is rising</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Local moratoriums could delay data center timelines by 1–3 years in key markets</li>
+          <li>Self-power requirements add 15–25% to data center construction costs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>The AI power problem is no longer a future concern — it's constraining current expansion plans. Enterprises dependent on cloud capacity should monitor their providers' power strategies and factor energy risk into availability planning.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('hbm4'),300)">HBM4 Memory Bottleneck</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('nvidia-paradox'),300)">NVIDIA Earnings Paradox</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: Federal-State Clash -->
+<div class="modal" id="modal-fed-state-clash" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-purple">Regulation</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Federal–State AI Law Showdown: March 11 Deadline Triggers Collision</div>
+    <div class="modal-date">March 11, 2026 Deadline</div>
+    <div class="modal-content">
+      <p>The <strong>March 11, 2026 deadline</strong> marks a critical inflection in U.S. AI regulation. The Commerce Secretary is required to identify state AI laws deemed "burdensome" to innovation, and the FTC is directed to issue AI policy guidance. In response, <strong>280+ state lawmakers and 36 state attorneys general</strong> are preparing legal challenges, led by Colorado's AG and California Senator Wiener.</p>
+      <p>The state-level pipeline continues to grow: <strong>78 chatbot safety bills are active across 27 states</strong>. Florida's AI Bill of Rights passed committee 18-0. Georgia's SB 488 was approved 7-1. Virginia tabled most AI legislation until 2027 — a sign that some states are choosing to wait for federal clarity.</p>
+      <p>For multinationals, the <strong>EU AI Act's high-risk obligations take effect August 2, 2026</strong> unless the Digital Omnibus extends the deadline to December 2027. Ireland's DPC opened a privacy investigation into xAI's Grok (February 17) over non-consensual deepfake generation. The <strong>Bartz v. Anthropic $1.5 billion settlement</strong> has a claims deadline of March 30 and final hearing April 23.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-gc">GC</span> Maintain three-track compliance: state laws (California/Texas/Illinois in force), federal direction (March 11 output), EU AI Act (August 2 deadline)</li>
+          <li><span class="owner owner-gc">GC</span> Document AI inventory, risk classifications, and third-party due diligence regardless of which framework prevails — all tracks require it</li>
+          <li><span class="owner owner-ciso">CISO</span> Respond to NIST RFI on AI Agent Security by March 9 to influence emerging standards</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Federal preemption attempts may trigger extended legal uncertainty rather than clarity</li>
+          <li>EU AI Act penalties reach €35 million or 7% of global turnover — non-compliance risk is existential</li>
+          <li>Bartz v. Anthropic claims deadline (March 30) may set precedent for AI training data liability</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>The regulatory environment is fragmenting, not consolidating. Enterprises that wait for a single framework will be perpetually behind. The winning strategy is investing in compliance infrastructure that satisfies the most stringent requirements — then adapting downward as frameworks clarify.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('anthropic-pentagon'),300)">Anthropic Pentagon Ban</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('nist-agents'),300)">NIST Agent Framework</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: NIST Agents -->
+<div class="modal" id="modal-nist-agents" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-purple">Regulation</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">NIST Launches First U.S. Framework for Autonomous AI Agents</div>
+    <div class="modal-date">February 17, 2026</div>
+    <div class="modal-content">
+      <p>NIST released the <strong>AI Agent Standards Initiative</strong> on February 17 — the first U.S. government framework specifically addressing autonomous AI agents. The initiative includes a Request for Information (RFI) on AI Agent Security with responses due <strong>March 9, 2026</strong>.</p>
+      <p>The framework addresses agent lifecycle governance, human oversight requirements, inter-agent communication security, and accountability chains. It builds on NIST's Cybersecurity Framework 2.0 and the preliminary AI Risk Management Profile released in January 2026.</p>
+      <p>This is particularly significant in the context of MCP's security vulnerabilities and the rapid proliferation of agentic AI products — providing a compliance anchor for enterprises deploying AI agents at scale.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-cio">CIO</span> Align agent deployment governance with the NIST framework structure — early alignment reduces future compliance cost</li>
+          <li><span class="owner owner-ciso">CISO</span> Submit organizational input to NIST's AI Agent Security RFI by March 9</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Framework is still in initial phase — expect significant evolution through 2026–2027</li>
+          <li>NIST frameworks are voluntary but often become de facto requirements through procurement mandates</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>NIST is the canary for what becomes mandatory. Organizations that align with this framework early will be positioned to meet whatever compliance requirements emerge — whether from federal agencies, industry regulators, or enterprise procurement teams.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('mcp-security'),300)">MCP Security Crisis</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('fed-state-clash'),300)">Federal–State AI Law Clash</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: Workforce Data -->
+<div class="modal" id="modal-workforce-data" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-orange">Workforce</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Goldman, Brookings, Dallas Fed Paint Converging Picture of AI Labor Disruption</div>
+    <div class="modal-date">February 23–25, 2026</div>
+    <div class="modal-content">
+      <p>Three authoritative research publications in a single week produced a converging — and sobering — picture of AI's labor market impact.</p>
+      <p><strong>Goldman Sachs (February 23–24)</strong> concluded that AI's 2025 GDP contribution was "basically zero" (~0.2%), but projected it could push unemployment modestly higher in 2026 in administrative, customer service, and mid-skill roles. The gap between massive AI investment and near-zero economic return is the central tension CFOs must navigate.</p>
+      <p><strong>Brookings (February 25)</strong> identified <strong>6.1 million U.S. workers (4.2% of the workforce)</strong> facing high AI exposure combined with low adaptive capacity. Critically, <strong>approximately 86% of these workers are women</strong>, concentrated in clerical and administrative roles — creating significant diversity, equity, and legal risk for employers who automate these functions.</p>
+      <p>The <strong>Dallas Fed (February 24)</strong> found that employment share for workers aged 20–24 in AI-exposed occupations fell from 16.4% to 15.5% since November 2022 — driven by reduced hiring rather than layoffs. This "invisible displacement" doesn't show up in layoff statistics but represents measurable harm to early-career workers.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-chro">CHRO</span> Conduct demographic impact analysis of AI automation plans — 86% female concentration in high-exposure roles creates disparate impact liability</li>
+          <li><span class="owner owner-ceo">CEO</span> Goldman's "basically zero" GDP finding undermines AI ROI narratives — ensure your business cases are grounded in measurable outcomes, not market assumptions</li>
+          <li><span class="owner owner-chro">CHRO</span> Audit entry-level hiring pipelines — the Dallas Fed's "invisible displacement" may be hollowing out your talent pipeline without triggering WARN Act notifications</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>Disparate impact on women in clerical roles may trigger EEOC or state-level discrimination claims</li>
+          <li>Entry-level hiring freezes compound over time — organizations may face a 3–5 year talent gap in mid-career pipelines</li>
+          <li>Goldman's "zero GDP" finding may be cited by AI skeptics on boards and in Congress to slow investment</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>Three credible institutions are saying the same thing: AI is disrupting labor before it's generating economic returns, and the impact falls disproportionately on women and young workers. This is a pre-litigation signal for any company automating clerical or entry-level functions.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('block-layoff'),300)">Block 4,000 Layoffs</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('saaspocalypse'),300)">SaaSpocalypse</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: Cyber Threats -->
+<div class="modal" id="modal-cyber-threats" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-red">Security</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">AI-Enabled Attacks Surge 89% — Agentic AI Named Top 2026 Threat</div>
+    <div class="modal-date">February 24–27, 2026</div>
+    <div class="modal-content">
+      <p>Three major cybersecurity reports released in a single week painted an alarming picture of AI-accelerated threats.</p>
+      <p><strong>CrowdStrike's 2026 Global Threat Report (February 24)</strong> documented an <strong>89% year-over-year increase in AI-enabled attacks</strong>. The average eCrime breakout time — from initial access to lateral movement — is now <strong>29 minutes</strong>, with the fastest recorded at just <strong>27 seconds</strong>. Adversaries exploited generative AI at 90+ organizations via prompt injection.</p>
+      <p><strong>IBM X-Force (February 25)</strong> reported vulnerability exploitation as the number-one attack vector (40% of incidents), with active ransomware groups up 49% year-over-year and supply chain compromises approximately 4× since 2020. North Korean IT workers were found using AI for synthetic identity generation to infiltrate organizations.</p>
+      <p>The <strong>WEF 2026 Global Cybersecurity Outlook</strong> found that 87% of leaders see AI vulnerabilities as the fastest-growing risk. CEOs now rank fraud as the top threat, overtaking ransomware for the first time — with 77% reporting fraud increases. The <strong>AI Incident Database</strong> recorded 346 AI incidents in 2025, of which 179 involved deepfakes and 81% of AI fraud cases were deepfake-driven.</p>
+      <p><strong>Barracuda Networks (February 27)</strong> identified agentic AI as the most dangerous 2026 cybersecurity threat, noting that autonomous agents "respond and adapt while in the system, and continue until their goal is achieved or they are shut down."</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel panel-action">
+        <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+        <ul class="panel-list">
+          <li><span class="owner owner-ciso">CISO</span> Update incident response playbooks for 27-second breakout times — traditional SOC escalation timelines are now too slow</li>
+          <li><span class="owner owner-ciso">CISO</span> Deploy deepfake detection for executive impersonation scenarios — 81% of AI fraud is now deepfake-driven</li>
+          <li><span class="owner owner-cio">CIO</span> Implement identity verification for AI agent actions — agentic threats require agent-aware security architectures</li>
+        </ul>
+      </div>
+      <div class="panel panel-risk">
+        <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+        <ul class="panel-list">
+          <li>27-second breakout times mean automated detection and response is no longer optional — it's survival</li>
+          <li>Supply chain compromises (4× since 2020) mean your vendors' AI security posture is your risk</li>
+          <li>North Korean synthetic identity operations target IT hiring — validate contractor identities with enhanced diligence</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">C-Suite Significance</div><p>The attacker-defender asymmetry has shifted decisively. When breakout times are measured in seconds and deepfakes drive 81% of AI fraud, the question is no longer whether you'll face an AI-enabled attack — it's whether your response architecture can match attacker speed.</p></div>
+    <div class="modal-related"><div class="modal-related-label">Related Stories</div><div class="related-chips"><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('mcp-security'),300)">MCP Security Crisis</span><span class="related-chip" onclick="closeModal();setTimeout(()=>openModal('nist-agents'),300)">NIST Agent Framework</span></div></div>
+  </div>
+</div>
+
+<!-- MODAL: Imperative 1 - Cloud -->
+<div class="modal" id="modal-imp-cloud" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-gold">Strategic Imperative 01</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Reassess Your Cloud Calculus — The Alliance Map Just Changed</div>
+    <div class="modal-date">Action Required: Q1 2026</div>
+    <div class="modal-content">
+      <p>The OpenAI–AWS exclusivity deal restructures the competitive landscape for every enterprise using frontier AI models on cloud infrastructure. If your AI strategy depends on OpenAI models running on Azure, you now face a medium-term migration question. If your strategy depends on multi-cloud flexibility, Anthropic — the only frontier model available across AWS, Azure, and Google Cloud — has gained unique positioning, but also carries government risk from the Pentagon ban.</p>
+      <p>The recommended action: <strong>conduct a cloud-AI coupling audit</strong>. Map which AI models run on which cloud, what the contractual lock-in terms are, and what migration would cost. Then scenario-plan for a world where AI model availability is cloud-specific, not cloud-agnostic.</p>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">Owners</div><p><strong>CIO</strong> leads cloud-AI coupling audit. <strong>CFO</strong> models cost scenarios. <strong>CEO</strong> approves vendor strategy at board level.</p></div>
+  </div>
+</div>
+
+<!-- MODAL: Imperative 2 - Gov Risk -->
+<div class="modal" id="modal-imp-gov" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-gold">Strategic Imperative 02</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Government Risk Is Now Bilateral — Model Your Exposure</div>
+    <div class="modal-date">Action Required: Immediate</div>
+    <div class="modal-content">
+      <p>Before the Anthropic ban, AI vendor risk was primarily commercial — model quality, pricing, availability. Now it includes <strong>government-principle alignment risk</strong>. An AI vendor's ethical positions can become your supply chain compliance risk overnight, through executive orders you cannot predict or influence.</p>
+      <p>The recommended action: <strong>map your entire AI supply chain by government exposure</strong>. For each AI vendor, document: government contracts and dependencies, stated ethical positions, regulatory standing in each jurisdiction you operate in, and fallback options if that vendor is banned or restricted. This is the new minimum due diligence standard.</p>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">Owners</div><p><strong>CEO</strong> and <strong>General Counsel</strong> co-own. Legal conducts the supply chain mapping. CEO presents to board as enterprise risk.</p></div>
+  </div>
+</div>
+
+<!-- MODAL: Imperative 3 - SaaS M&A -->
+<div class="modal" id="modal-imp-saas" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-gold">Strategic Imperative 03</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">The SaaSpocalypse Creates an M&amp;A Window</div>
+    <div class="modal-date">Action Required: Q1–Q2 2026</div>
+    <div class="modal-content">
+      <p>Software P/S ratios have compressed from 9× to 6× — a valuation reset not seen since 2008. Companies like IBM (–27% in February alone), Adobe, Salesforce, and ServiceNow (each –25–30% YTD) represent potential acquisition targets for enterprises with AI integration theses. The market is pricing in AI disruption of these businesses before AI has actually disrupted them — creating a window for strategic acquirers who believe in augmentation over replacement.</p>
+      <p>The recommended action: <strong>activate M&amp;A screening</strong> for software companies in your industry vertical whose data assets, customer relationships, or distribution channels would compound with your AI strategy. The window is open now, before either (a) valuations recover as the "augmentation" thesis gains traction, or (b) these companies are acquired by AI-native competitors.</p>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">Owners</div><p><strong>CFO</strong> leads screening and valuation. <strong>CEO</strong> sets strategic criteria. <strong>CIO</strong> evaluates technical integration feasibility.</p></div>
+  </div>
+</div>
+
+<!-- MODAL: Imperative 4 - Workforce -->
+<div class="modal" id="modal-imp-workforce" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-gold">Strategic Imperative 04</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Workforce Restructuring Is Accelerating Faster Than Frameworks</div>
+    <div class="modal-date">Action Required: Immediate</div>
+    <div class="modal-content">
+      <p>Block's playbook — cut fast, cite AI capabilities, collect the stock premium — will be replicated. The market has shown it rewards AI-driven headcount reduction. This creates urgent pressure on every CEO, whether you follow the playbook or resist it.</p>
+      <p>The Brookings finding that 86% of high-exposure workers are women adds legal and reputational dimensions that most companies have not modeled. The Dallas Fed's "invisible displacement" of young workers suggests your talent pipeline is already being affected even without layoffs.</p>
+      <p>The recommended action: <strong>build a defensible workforce transition plan before the next board meeting</strong>. This means: task-level automation audit, demographic impact analysis, reskilling investment plan with measurable outcomes, and a clear narrative for employees, investors, and regulators.</p>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">Owners</div><p><strong>CHRO</strong> leads the task-level audit and demographic analysis. <strong>CEO</strong> owns the narrative. <strong>General Counsel</strong> evaluates disparate impact risk.</p></div>
+  </div>
+</div>
+
+<!-- MODAL: Imperative 5 - Security -->
+<div class="modal" id="modal-imp-security" style="display:none">
+  <div class="modal-top-bar"><span class="modal-category c-gold">Strategic Imperative 05</span><button class="modal-close" onclick="closeModal()">✕</button></div>
+  <div class="modal-body">
+    <div class="modal-headline">Agent Security Is the Next Crisis — and You're Already Exposed</div>
+    <div class="modal-date">Action Required: Immediate</div>
+    <div class="modal-content">
+      <p>The convergence of MCP vulnerabilities (8,000+ exposed servers, 36.7% SSRF-vulnerable), AI-enabled attack surges (+89%), and sub-30-second breakout times means the agentic AI attack surface is expanding faster than security controls can adapt. If you've deployed any MCP servers, AI agents with tool access, or multi-model orchestration systems, you are already exposed.</p>
+      <p>The recommended action: <strong>treat agentic AI security as a board-level disclosure</strong>. Audit all MCP server deployments for public exposure. Implement network segmentation for agent-to-agent communication. Update incident response for machine-speed threats. And respond to NIST's AI Agent Security RFI (due March 9) to influence the standards you'll eventually be held to.</p>
+    </div>
+    <div class="modal-csuite"><div class="modal-csuite-label">Owners</div><p><strong>CISO</strong> leads the MCP audit and incident response update. <strong>CIO</strong> owns agent governance architecture. Both report to board as part of quarterly cybersecurity disclosure.</p></div>
+  </div>
+</div>
+
+</div><!-- end modal overlay -->
+
+<script>
+// ── Theme Toggle ──
+function toggleTheme(){
+  const html=document.documentElement;
+  const current=html.getAttribute('data-theme');
+  html.setAttribute('data-theme',current==='light'?'dark':'light');
+}
+
+// ── Section Filtering ──
+function filterSection(cat,btn){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>{
+    if(cat==='all'){s.style.display='';}
+    else{s.style.display=s.dataset.cat===cat?'':'none';}
+  });
+  // Also show security cards when filtering by security
+  if(cat==='security'){
+    document.querySelectorAll('.section').forEach(s=>{
+      if(s.dataset.cat==='workforce')s.style.display='';
+    });
+  }
+}
+
+// ── Modal ──
+function openModal(id){
+  const overlay=document.getElementById('modalOverlay');
+  document.querySelectorAll('.modal').forEach(m=>m.style.display='none');
+  const modal=document.getElementById('modal-'+id);
+  if(modal){modal.style.display='block';}
+  overlay.classList.add('active');
+  overlay.scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ── Nav Scroll ──
+function scrollNav(px){
+  document.getElementById('navInner').scrollBy({left:px,behavior:'smooth'});
+}
+function updateNavFades(){
+  const el=document.getElementById('navInner');
+  const area=document.getElementById('navArea');
+  const left=document.getElementById('navLeft');
+  const right=document.getElementById('navRight');
+  if(!el||!area)return;
+  const sl=el.scrollLeft;const sw=el.scrollWidth;const cw=el.clientWidth;
+  if(sl>8){area.classList.add('fade-left');left.classList.add('visible');}
+  else{area.classList.remove('fade-left');left.classList.remove('visible');}
+  if(sl<sw-cw-8){area.classList.add('fade-right');right.classList.add('visible');}
+  else{area.classList.remove('fade-right');right.classList.remove('visible');}
+}
+document.getElementById('navInner')?.addEventListener('scroll',updateNavFades);
+window.addEventListener('resize',updateNavFades);
+window.addEventListener('load',updateNavFades);
+
+// ── Scroll Animations ──
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.animationDelay=(Array.from(document.querySelectorAll('.section')).indexOf(e.target)*0.08)+'s';e.target.style.opacity='1';}});
+},{threshold:0.05});
+document.querySelectorAll('.section').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
