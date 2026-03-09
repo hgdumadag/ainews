@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — Week of March 2–9, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── DESIGN TOKENS: DARK (DEFAULT) ── */
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555;      --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c;    --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def;     --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0;   --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9;     --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c;   --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+/* ── LIGHT THEME ── */
+[data-theme="light"] {
+  --bg: #f4f6f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f4f8;
+  --bg-expanded: #ffffff;
+  --border: #d8dde6;
+  --border-accent: #c0c8d4;
+  --text: #1a2332;
+  --text-muted: #4a5568;
+  --text-dim: #8896a8;
+  --accent: #135EAB;
+  --accent-light: #1a74d0;
+  --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030;      --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F;    --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB;     --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1;   --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488;     --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621;   --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4;
+  --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06);
+  --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06);
+  --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05);
+  --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08);
+  --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.65;
+  min-height: 100vh;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999;
+  opacity: var(--noise-opacity, 1);
+}
+/* ── TRANSITIONS ── */
+html { transition: background 0.4s ease; }
+body, .hero, .nav-strip, .card, .modal, .exec-strip, .metric,
+.modal-csuite, .panel, .footer, .theme-toggle, .nav-btn {
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+/* ── HERO ── */
+.hero {
+  position: relative;
+  background: linear-gradient(180deg, var(--hero-grad-start) 0%, var(--bg) 100%);
+  padding: 72px 24px 0;
+  text-align: center;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, var(--hero-glow-a) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, var(--hero-glow-b) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.hero-label::before, .hero-label::after {
+  content: '';
+  display: block;
+  width: 32px; height: 1px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+[data-theme="light"] .hero-label { color: #04955F; }
+[data-theme="light"] .hero-label::before,
+[data-theme="light"] .hero-label::after {
+  background: linear-gradient(90deg, #135EAB, #04955F);
+  height: 2px; opacity: 1;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.12;
+  color: var(--text);
+  max-width: 820px;
+  margin: 0 auto 16px;
+}
+[data-theme="light"] .hero h1 span {
+  background: linear-gradient(135deg, #135EAB, #04955F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-family: 'Source Serif 4', serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+.metrics-bar {
+  display: flex;
+  gap: 1px;
+  background: var(--border);
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+}
+[data-theme="light"] .metrics-bar {
+  background: linear-gradient(135deg, #135EAB, #04955F);
+}
+.metric {
+  flex: 1;
+  background: var(--bg-card);
+  padding: 20px 16px;
+  text-align: center;
+  transition: background 0.25s;
+}
+.metric:hover { background: var(--bg-card-hover); }
+[data-theme="light"] .metric { background: rgba(255,255,255,0.95); }
+[data-theme="light"] .metric:hover { background: rgba(255,255,255,1); }
+.metric-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+[data-theme="light"] .metric-value {
+  background: linear-gradient(135deg, #135EAB, #04955F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.metric-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+/* ── NAV ── */
+.nav-strip {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+  gap: 4px;
+}
+.nav-scroll-btn {
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s;
+}
+.nav-scroll-btn.visible { opacity: 1; pointer-events: auto; }
+.nav-scroll-btn:hover { color: var(--accent); border-color: var(--accent); }
+.nav-scroll-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.nav-scroll-area::before, .nav-scroll-area::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0;
+  width: 28px; z-index: 2; pointer-events: none;
+  opacity: 0; transition: opacity 0.2s;
+}
+.nav-scroll-area::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.nav-scroll-area::after  { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
+.nav-scroll-area.fade-left::before { opacity: 1; }
+.nav-scroll-area.fade-right::after { opacity: 1; }
+[data-theme="light"] .nav-scroll-area::before { background: linear-gradient(90deg, rgba(244,246,249,0.95), transparent); }
+[data-theme="light"] .nav-scroll-area::after  { background: linear-gradient(-90deg, rgba(244,246,249,0.95), transparent); }
+.nav-inner {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 8px 0;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.nav-btn:hover { color: var(--text); background: var(--border); }
+.nav-btn.active { background: var(--accent-dim); color: var(--accent); }
+[data-theme="light"] .nav-btn.active {
+  background: linear-gradient(135deg, rgba(19,94,171,0.10), rgba(4,149,95,0.08));
+  color: #135EAB;
+}
+.theme-toggle {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  position: absolute;
+  font-size: 15px;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.theme-toggle .icon-sun { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+.theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+[data-theme="light"] .theme-toggle .icon-sun { opacity: 1; transform: rotate(0) scale(1); }
+[data-theme="light"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+/* ── MAIN ── */
+.main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+/* ── EXEC SUMMARY STRIP ── */
+.exec-strip {
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 48px;
+}
+[data-theme="light"] .exec-strip {
+  background: linear-gradient(135deg, rgba(19,94,171,0.06), rgba(4,149,95,0.06));
+}
+.exec-strip-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.exec-strip p {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+.exec-strip strong { color: var(--text); font-weight: 600; }
+/* ── SECTION ── */
+.section {
+  margin-bottom: 56px;
+  animation: fadeUp 0.5s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.section-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  flex: 1;
+}
+.section-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: var(--border);
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+/* ── CARDS GRID ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+/* ── CARD ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 22px 18px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.card::before {
+  content: '';
+  position: absolute; left: 0; top: 16px; bottom: 16px;
+  width: 3px; border-radius: 0 2px 2px 0;
+  opacity: 0; transition: opacity 0.25s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--shadow-card);
+  border-color: var(--border-accent);
+  background: var(--bg-card-hover);
+}
+.card:hover::before { opacity: 1; }
+[data-theme="light"] .card { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+[data-theme="light"] .card:hover { box-shadow: 0 8px 32px rgba(19,94,171,0.10); }
+.card-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.card-headline {
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.card-summary {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-tags {
+  display: flex; flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.card-risk-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.card-expand-hint {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--text-dim);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.card:hover .card-expand-hint { opacity: 1; }
+/* ── COLOR CLASSES ── */
+.c-gold { color: var(--accent); }   .c-red { color: var(--red); }
+.c-green { color: var(--green); }   .c-blue { color: var(--blue); }
+.c-purple { color: var(--purple); } .c-cyan { color: var(--cyan); }
+.c-orange { color: var(--orange); }
+.bg-gold { background: var(--accent-dim); color: var(--accent); }
+.bg-red  { background: var(--red-dim);    color: var(--red); }
+.bg-green{ background: var(--green-dim);  color: var(--green); }
+.bg-blue { background: var(--blue-dim);   color: var(--blue); }
+.bg-purple{background: var(--purple-dim); color: var(--purple); }
+.bg-cyan { background: var(--cyan-dim);   color: var(--cyan); }
+.bg-orange{background: var(--orange-dim); color: var(--orange); }
+.bar-gold::before   { background: var(--accent); }
+.bar-red::before    { background: var(--red); }
+.bar-green::before  { background: var(--green); }
+.bar-blue::before   { background: var(--blue); }
+.bar-purple::before { background: var(--purple); }
+.bar-cyan::before   { background: var(--cyan); }
+.bar-orange::before { background: var(--orange); }
+.icon-gold   { background: var(--accent-dim);  color: var(--accent); }
+.icon-red    { background: var(--red-dim);     color: var(--red); }
+.icon-green  { background: var(--green-dim);   color: var(--green); }
+.icon-blue   { background: var(--blue-dim);    color: var(--blue); }
+.icon-purple { background: var(--purple-dim);  color: var(--purple); }
+.icon-cyan   { background: var(--cyan-dim);    color: var(--cyan); }
+.icon-orange { background: var(--orange-dim);  color: var(--orange); }
+/* Light overrides */
+[data-theme="light"] .bg-gold   { background: rgba(19,94,171,0.10);   color: #135EAB; }
+[data-theme="light"] .bg-red    { background: rgba(255,156,163,0.20); color: #b83240; }
+[data-theme="light"] .bg-green  { background: rgba(4,149,95,0.10);    color: #04955F; }
+[data-theme="light"] .bg-blue   { background: rgba(100,203,192,0.15); color: #0a7a6e; }
+[data-theme="light"] .bg-purple { background: rgba(107,70,193,0.10);  color: #6b46c1; }
+[data-theme="light"] .bg-cyan   { background: rgba(100,203,192,0.15); color: #0d9488; }
+[data-theme="light"] .bg-orange { background: rgba(244,244,49,0.15);  color: #8a6d00; }
+[data-theme="light"] .bar-gold::before   { background: linear-gradient(180deg, #135EAB, #04955F); }
+[data-theme="light"] .bar-blue::before   { background: #135EAB; }
+[data-theme="light"] .bar-green::before  { background: #04955F; }
+[data-theme="light"] .bar-red::before    { background: #FF9CA3; }
+[data-theme="light"] .bar-purple::before { background: #6b46c1; }
+[data-theme="light"] .bar-cyan::before   { background: #64CBC0; }
+[data-theme="light"] .bar-orange::before { background: #F4F431; }
+[data-theme="light"] .icon-gold   { background: rgba(19,94,171,0.10); }
+[data-theme="light"] .icon-green  { background: rgba(4,149,95,0.10); }
+[data-theme="light"] .icon-blue   { background: rgba(100,203,192,0.12); }
+[data-theme="light"] .icon-red    { background: rgba(255,156,163,0.15); }
+[data-theme="light"] .icon-purple { background: rgba(107,70,193,0.10); }
+[data-theme="light"] .icon-cyan   { background: rgba(100,203,192,0.12); }
+[data-theme="light"] .icon-orange { background: rgba(244,244,49,0.15); }
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+.modal-overlay.active {
+  display: flex;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal {
+  background: var(--bg-expanded);
+  border: 1px solid var(--border-accent);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 800px;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+  flex-shrink: 0;
+}
+[data-theme="light"] .modal { box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-color: var(--border); }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.modal-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.modal-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.modal-close {
+  background: var(--border);
+  border: none;
+  color: var(--text-muted);
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.modal-close:hover { background: var(--red-dim); color: var(--red); }
+.modal-body { padding: 28px 28px 32px; }
+.modal-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.modal-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+.modal-content { margin-bottom: 24px; }
+.modal-content p {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+.modal-content p:last-child { margin-bottom: 0; }
+.modal-content strong { color: var(--text); font-weight: 600; }
+/* Panel grid */
+.panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+@media (max-width: 640px) { .panel-grid { grid-template-columns: 1fr; } }
+.panel {
+  border-radius: 10px;
+  padding: 18px 18px;
+}
+.panel-action {
+  background: var(--panel-action-bg);
+  border: 1px solid var(--panel-action-border);
+}
+.panel-risk {
+  background: var(--panel-risk-bg);
+  border: 1px solid var(--panel-risk-border);
+}
+.panel-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.panel-action .panel-label { color: var(--green); }
+.panel-risk .panel-label { color: var(--red); }
+.panel-label-icon { font-size: 11px; }
+.panel-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.panel-list li {
+  font-family: 'Source Serif 4', serif;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--panel-li-border);
+}
+.panel-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.panel-risk .panel-list li::before {
+  content: '·';
+  color: var(--red);
+  font-weight: 700;
+  margin-right: 6px;
+}
+/* Owner badges */
+.owner {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.owner-ceo  { background: var(--accent-dim); color: var(--accent); }
+.owner-cfo  { background: var(--green-dim);  color: var(--green); }
+.owner-cio  { background: var(--blue-dim);   color: var(--blue); }
+.owner-gc   { background: var(--purple-dim); color: var(--purple); }
+.owner-ciso { background: var(--red-dim);    color: var(--red); }
+.owner-chro { background: var(--orange-dim); color: var(--orange); }
+[data-theme="light"] .owner-ceo  { background: rgba(19,94,171,0.10);   color: #135EAB; }
+[data-theme="light"] .owner-cfo  { background: rgba(4,149,95,0.10);    color: #04955F; }
+[data-theme="light"] .owner-cio  { background: rgba(100,203,192,0.15); color: #0a7a6e; }
+[data-theme="light"] .owner-gc   { background: rgba(107,70,193,0.10);  color: #6b46c1; }
+[data-theme="light"] .owner-ciso { background: rgba(255,156,163,0.15); color: #b83240; }
+[data-theme="light"] .owner-chro { background: rgba(244,244,49,0.15);  color: #8a6d00; }
+/* Modal csuite */
+.modal-csuite {
+  background: var(--accent-dim);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 22px;
+}
+[data-theme="light"] .modal-csuite {
+  background: linear-gradient(135deg, rgba(19,94,171,0.06), rgba(4,149,95,0.06));
+}
+.modal-csuite-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.modal-csuite p {
+  font-family: 'Source Serif 4', serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.modal-csuite strong { color: var(--text); font-weight: 600; }
+/* Links */
+.modal-links { margin-bottom: 20px; }
+.modal-links-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.modal-link-list { display: flex; flex-direction: column; gap: 6px; }
+.modal-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.modal-link:hover { border-color: var(--accent); background: var(--bg-card-hover); }
+.modal-link-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  flex-shrink: 0;
+  min-width: 80px;
+}
+.modal-link span:nth-child(2) {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex: 1;
+}
+.modal-link-arrow {
+  color: var(--text-dim);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+/* Related chips */
+.modal-related { }
+.modal-related-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.related-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.related-chip {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.related-chip:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+[data-theme="light"] .related-chip:hover {
+  background: rgba(19,94,171,0.08);
+  border-color: #135EAB;
+  color: #135EAB;
+}
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 24px;
+  text-align: center;
+}
+.footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .hero { padding: 48px 16px 0; }
+  .main { padding: 28px 16px 60px; }
+  .metrics-bar { flex-wrap: wrap; }
+  .metric { flex: 0 0 50%; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .modal-body { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-label">C-Suite Intelligence Briefing</div>
+  <h1><span>AI Intelligence Briefing</span><br>Week of March 2–9, 2026</h1>
+  <p class="hero-sub">The Pentagon AI reckoning, GPT-5.4's enterprise offensive, Nvidia's strategic pivot, and AI's first empirical labor displacement map</p>
+  <div class="metrics-bar">
+    <div class="metric">
+      <div class="metric-value">$730B</div>
+      <div class="metric-label">OpenAI Valuation<br>Post $110B Round</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">87.3%</div>
+      <div class="metric-label">GPT-5.4 Score<br>IB Analyst Benchmark</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">#1</div>
+      <div class="metric-label">Claude App Store Rank<br>Post Pentagon Dispute</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">+295%</div>
+      <div class="metric-label">ChatGPT Uninstalls<br>After Pentagon Deal</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">75%</div>
+      <div class="metric-label">Programmer Tasks<br>AI-Covered (Anthropic)</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="nav-scroll-left">‹</button>
+    <div class="nav-scroll-area" id="nav-scroll-area">
+      <div class="nav-inner" id="nav-inner">
+        <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="governance">National Security</button>
+        <button class="nav-btn" data-section="platforms">Enterprise Platforms</button>
+        <button class="nav-btn" data-section="funding">Funding &amp; Markets</button>
+        <button class="nav-btn" data-section="workforce">Workforce &amp; Labor</button>
+        <button class="nav-btn" data-section="infrastructure">Infrastructure</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="nav-scroll-right">›</button>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☽</span>
+    </button>
+  </div>
+</nav>
+
+<main class="main">
+  <!-- EXEC SUMMARY -->
+  <div class="exec-strip">
+    <div class="exec-strip-label">⚡ 30-Second Executive Summary</div>
+    <p>The week of March 2–9 will be remembered as the moment AI's political, commercial, and labor dimensions collided simultaneously. <strong>Anthropic's $200M Pentagon contract collapsed</strong> over AI weapons and surveillance guardrails — and <strong>OpenAI rushed in</strong> with a competing deal that Altman later admitted was "opportunistic and sloppy," triggering user backlash, a top robotics engineer's resignation, and Claude surging to the #1 App Store spot. Meanwhile, <strong>OpenAI launched GPT-5.4</strong> with native computer use and ChatGPT embedded directly in Excel with FactSet, Moody's, and S&P Global integrations — a direct assault on enterprise financial workflows. <strong>Nvidia's Jensen Huang</strong> declared the company's AI lab investments are ending, a signal of strategic realignment. And <strong>Anthropic published the first empirical AI labor displacement map</strong>, revealing 75% programmer task coverage while showing unemployment effects remain limited — so far.</p>
+  </div>
+
+  <div id="content-area"></div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-top-bar">
+      <div class="modal-category" id="modal-category"></div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-headline" id="modal-headline"></h2>
+      <div class="modal-date" id="modal-date"></div>
+      <div class="modal-content" id="modal-content"></div>
+      <div class="panel-grid" id="panel-grid"></div>
+      <div class="modal-csuite" id="modal-csuite">
+        <div class="modal-csuite-label">⚡ Bottom Line</div>
+        <p id="modal-csuite-text"></p>
+      </div>
+      <div class="modal-links">
+        <div class="modal-links-label">Sources &amp; Further Reading</div>
+        <div class="modal-link-list" id="modal-link-list"></div>
+      </div>
+      <div class="modal-related">
+        <div class="modal-related-label">Related Topics</div>
+        <div class="related-chips" id="related-chips"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>AI Intelligence Briefing — Week of March 2–9, 2026 · Prepared by Claude for C-Suite Decision Makers · Sources verified as of March 9, 2026</p>
+</footer>
+
+<script>
+const sections = [
+  {
+    id: "governance",
+    title: "National Security & AI Governance",
+    icon: "⚖️",
+    iconClass: "icon-purple",
+    count: 3,
+    cards: [
+      {
+        id: "anthropic-pentagon-breakdown",
+        date: "Feb 27 – Mar 5, 2026",
+        headline: "Anthropic's Pentagon contract collapses — DoD designates it a 'supply-chain risk'",
+        summary: "Talks broke down over the military's demand for unrestricted AI use. Anthropic refused to drop language prohibiting mass surveillance and autonomous weapons. Trump directed agencies to phase out Claude within six months.",
+        tags: [["CEO","bg-gold"],["GC","bg-purple"],["CISO","bg-red"]],
+        barClass: "bar-purple",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "NATIONAL SECURITY",
+        catColor: "c-purple",
+        content: `<p>The week's defining story began February 27 when Anthropic's <strong>$200 million DoD contract</strong> — the first deployment of a frontier AI model across the Pentagon's classified networks — collapsed over a single clause. The Defense Department demanded Anthropic accept language allowing military use of Claude for <strong>"any lawful use."</strong> Anthropic refused, insisting on explicit prohibitions against domestic mass surveillance and autonomous weapons systems, particularly concerned about language covering <strong>"analysis of bulk acquired data"</strong> — the exact scenario the company feared most.</p>
+        <p>Defense Secretary <strong>Pete Hegseth</strong> responded by pledging to designate Anthropic a "supply-chain risk" — a designation typically reserved for foreign adversaries like Huawei — and President Trump directed federal agencies to phase out Claude within six months. Under-Secretary of Defense Emil Michael called CEO <strong>Dario Amodei</strong> a "liar" with a "God complex" on the All-In podcast, while revealing that Claude had become so embedded in Pentagon operations (including AI-assisted targeting in ongoing U.S. operations in Iran) that losing access created genuine operational risk: "Holy shit, what if this software went down… and we left our people at risk?"</p>
+        <p>By March 5, the Financial Times and Bloomberg reported Amodei had quietly resumed negotiations with Michael in a last-ditch effort to reach a compromise. Meanwhile, the legal designation remains in limbo — Anthropic confirmed it will challenge a formal supply-chain risk designation in court, and a tech industry group including Nvidia and Google sent a letter to Hegseth expressing concern about designating a U.S. company with such a label.</p>`,
+        actions: [
+          {owner:"GC", ownerClass:"owner-gc", text:"Assess legal exposure across all U.S. government contracts. If AI vendors are caught in the federal-vs-safety crossfire, which agreements could be unilaterally renegotiated or terminated?"},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Engage your AI vendors directly about their Pentagon posture. A supply-chain designation for any major AI provider could cascade into enterprise contract disruptions and cloud service dependencies."},
+          {owner:"CISO", ownerClass:"owner-ciso", text:"Audit which enterprise AI deployments rely on Anthropic Claude. Model an operational continuity plan if federal pressure forces vendor switching in government-adjacent contracts."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Distinguish AI safety posture as a reputational and procurement signal. Boards and investors are watching how AI companies navigate this conflict — it affects who enterprises should partner with."}
+        ],
+        risks: [
+          {text:"Vendor disruption risk: If the DoD supply-chain designation is upheld or formalized, enterprises with government-adjacent contracts using Claude could face compliance complications or forced migration."},
+          {text:"Legal gray zone: The Pentagon's demand for 'any lawful use' represents a precedent-setting reinterpretation of AI vendor governance — any enterprise AI contract could face similar pushback."},
+          {text:"Mission drift signal: Anthropic's Safeguards Research head resigned this week citing difficulty 'letting values govern actions' — a senior talent signal that internal culture is under pressure at major AI labs."},
+          {text:"Concentration risk: Claude is the only frontier AI model deployed across all three major cloud providers. Its disruption would have disproportionate enterprise impact versus other lab disruptions."}
+        ],
+        csuite: "This is not merely a vendor dispute — it is the first time a U.S. government has threatened to blacklist a domestic AI company for setting safety boundaries. The outcome of Anthropic's court challenge and resumed negotiations will set a precedent for whether AI companies can maintain ethical constraints under government pressure. Every enterprise that depends on frontier AI should treat this as a systemic governance stress test.",
+        links: [
+          {source:"CNBC", title:"Anthropic and the Pentagon are back at the negotiating table, FT reports", url:"https://www.cnbc.com/2026/03/05/anthropic-pentagon-ai-deal-department-of-defense-openai-.html"},
+          {source:"Fortune", title:"Top Pentagon official recalls the 'whoa moment' when defense leaders realized how indispensable Anthropic is", url:"https://fortune.com/2026/03/07/pentagon-emil-michael-anthropic-claude-defense-ai-openai-iran-war-palantir/"},
+          {source:"TechCrunch", title:"Will the Pentagon's Anthropic controversy scare startups away from defense work?", url:"https://techcrunch.com/2026/03/08/will-the-pentagons-anthropic-controversy-scare-startups-away-from-defense-work/"}
+        ],
+        related: ["openai-pentagon-deal","anthropic-labor-report"]
+      },
+      {
+        id: "openai-pentagon-deal",
+        date: "Feb 28 – Mar 8, 2026",
+        headline: "OpenAI's rushed Pentagon deal triggers backlash, executive resignation, and user revolt",
+        summary: "Altman announced a classified AI deal hours after Anthropic's collapse. The speed and optics prompted +295% ChatGPT uninstalls, Claude's App Store #1 ranking, and a top OpenAI robotics engineer's public resignation.",
+        tags: [["CEO","bg-gold"],["GC","bg-purple"],["CISO","bg-red"]],
+        barClass: "bar-red",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "NATIONAL SECURITY",
+        catColor: "c-purple",
+        content: `<p>Within hours of Anthropic's Pentagon breakdown on February 27, OpenAI CEO <strong>Sam Altman</strong> announced his company had reached its own classified military AI deal — one that he said honored the same "red lines" Anthropic had held. The timing appeared opportunistic to many. By March 2, Altman was performing damage control via X, acknowledging the deal "was definitely rushed, and the optics don't look good," and admitting the company "shouldn't have rushed" its announcement.</p>
+        <p>The backlash was swift and measurable. ChatGPT app <strong>uninstalls surged 295%</strong> in the days following the announcement, while Anthropic's Claude shot to <strong>#1 on Apple's App Store</strong> — a rare instance of a competitor's controversy directly driving a competitor's user acquisition. At OpenAI's Tuesday all-hands, Altman reiterated that rushing the deal was "a mistake" but defended the substance, saying the company couldn't weigh in on individual military use cases. He told employees that Defense Secretary Pete Hegseth would retain "ultimate authority" over how the Pentagon uses OpenAI's technology.</p>
+        <p>Most damaging internally: <strong>Caitlin Kalinowski</strong>, OpenAI's head of robotics hardware, announced her public resignation, citing the same concerns Anthropic had raised. "Surveillance of Americans without judicial oversight and lethal autonomy without human authorization are lines that deserved more deliberation than they got," she wrote on X. OpenAI employee Leo Gao publicly criticized the deal on X as "window dressing." MIT Technology Review concluded the difference between OpenAI and Anthropic's positions was not ethical but strategic: OpenAI relied on legal assumptions rather than contractual prohibitions, effectively accepting "any lawful use" under a softer framing.</p>`,
+        actions: [
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Brief your board on the enterprise implications of OpenAI's Pentagon posture. If your company uses OpenAI in sensitive workflows, assess whether the 'any lawful use' defense standard raises compliance or reputational concerns."},
+          {owner:"GC", ownerClass:"owner-gc", text:"Review OpenAI enterprise contracts for language governing government data sharing and model usage restrictions. The Pentagon deal's 'lawful use' framing could affect enterprise API terms over time."},
+          {owner:"CISO", ownerClass:"owner-ciso", text:"Model multi-vendor AI risk scenarios. The OpenAI/Anthropic fault line on safety governance suggests enterprise AI portfolios should not be single-vendor dependent."}
+        ],
+        risks: [
+          {text:"Trust deficit: The user revolt against OpenAI's Pentagon deal demonstrates that AI governance decisions have direct commercial consequences — consumers and enterprise buyers are watching."},
+          {text:"Employee governance: Three OpenAI executives departed or publicly dissented this week over safety and ethics decisions — a pattern that raises questions about the stability of OpenAI's internal guardrails as it approaches IPO."},
+          {text:"IPO risk: With OpenAI targeting a Q4 2026 IPO at $730B+ valuation, this governance controversy could affect investor sentiment and pre-IPO due diligence findings."},
+          {text:"Regulatory escalation: Congressional members have already requested briefings on Pentagon AI procurement practices following this dispute. Bipartisan AI legislation could accelerate as a result."}
+        ],
+        csuite: "The OpenAI-Pentagon episode is a live demonstration of AI governance risk materializing in real time — affecting brand equity, talent retention, user trust, and regulatory exposure simultaneously. Whether your enterprise uses OpenAI, Anthropic, or Google, this week established that your AI vendor's geopolitical and ethical decisions are now part of your own reputational risk profile.",
+        links: [
+          {source:"CNBC", title:"OpenAI's Altman admits defense deal 'looked opportunistic and sloppy' amid backlash", url:"https://www.cnbc.com/2026/03/03/openai-sam-altman-pentagon-deal-amended-surveillance-limits.html"},
+          {source:"MIT Tech Review", title:"OpenAI's compromise with the Pentagon is what Anthropic feared", url:"https://www.technologyreview.com/2026/03/02/1133850/openais-compromise-with-the-pentagon-is-what-anthropic-feared/"},
+          {source:"Fortune", title:"The Anthropic–OpenAI feud and their Pentagon dispute expose a deeper problem with AI safety", url:"https://fortune.com/2026/03/05/anthropic-openai-feud-pentagon-dispute-ai-safety-dilemma-personalities/"},
+          {source:"CNN", title:"Some OpenAI staff are fuming about its Pentagon deal", url:"https://www.cnn.com/2026/03/04/tech/pentagon-anthropic-openai-staff-reactions"}
+        ],
+        related: ["anthropic-pentagon-breakdown","nvidia-pullback"]
+      },
+      {
+        id: "ai-safety-exodus",
+        date: "Mar 2–8, 2026",
+        headline: "AI safety talent exodus: Anthropic's safeguards head and OpenAI robotics engineer quit in same week",
+        summary: "Mrinank Sharma, head of Anthropic's Safeguards Research team, posted a cryptic warning that 'the world is in peril.' At OpenAI, robotics hardware chief Caitlin Kalinowski resigned publicly over the Pentagon deal's ethics.",
+        tags: [["CEO","bg-gold"],["CHRO","bg-orange"],["GC","bg-purple"]],
+        barClass: "bar-orange",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "GOVERNANCE",
+        catColor: "c-orange",
+        content: `<p>The same week that the Pentagon dispute dominated headlines, two senior AI safety figures made very public departures from leading AI labs. <strong>Mrinank Sharma</strong>, head of Anthropic's Safeguards Research team, posted on Tuesday that he was leaving with a warning that "the world is in peril" — without specifying his reasons but noting that "throughout my time here, I've repeatedly seen how hard it is to truly let our values govern our actions." Anthropic said it was grateful for his work but provided no further context.</p>
+        <p>At OpenAI, <strong>Caitlin Kalinowski</strong>, who led the company's robotics hardware division, publicly resigned on Saturday specifically citing the Pentagon deal. "This wasn't an easy call," she wrote. "AI has an important role in national security. But surveillance of Americans without judicial oversight and lethal autonomy without human authorization are lines that deserved more deliberation than they got." Her resignation was notable because it came from inside a company that had just publicly claimed its deal protected against those exact concerns. CNN reported that many OpenAI employees "really respect" Anthropic for its refusal and are frustrated with OpenAI's handling.</p>
+        <p>These departures continue a pattern of safety-focused talent leaving frontier AI labs as commercial and governmental pressures intensify. In February, OpenAI confirmed it had disbanded its Mission Alignment team after just 16 months. OpenAI also reportedly fired a top safety executive after she opposed the rollout of adult content features — a separate personnel action the company said was "unrelated."</p>`,
+        actions: [
+          {owner:"CHRO", ownerClass:"owner-chro", text:"Monitor AI talent market dynamics. Senior safety researchers exiting frontier labs often bring risk-informed perspectives to enterprise AI governance roles — a hiring opportunity for organizations building internal AI ethics capability."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Evaluate vendor stability signals. When senior safety leaders exit AI companies with public warnings, it warrants increased scrutiny of that vendor's governance practices and reliability as a long-term partner."},
+          {owner:"GC", ownerClass:"owner-gc", text:"Document AI vendor governance assessments in procurement due diligence records, including public executive departures and safety policy changes that could affect enterprise compliance downstream."}
+        ],
+        risks: [
+          {text:"Systemic safety risk: The simultaneous departure of senior safety researchers from both Anthropic and OpenAI in a single week is an unusual signal that safety cultures at frontier labs are under pressure."},
+          {text:"Talent scarcity: AI safety specialists are extremely rare. Each departure from a frontier lab represents both a governance weakening at those companies and a potential enterprise governance gain if hired strategically."},
+          {text:"Vendor reliability: If safety guardrails are weakening at AI labs, enterprise deployments may face higher rates of model misbehavior, hallucinations, and compliance failures at a time when AI is taking on higher-stakes workflows."}
+        ],
+        csuite: "The flight of safety talent from frontier AI labs is the canary in the coal mine for enterprise AI risk. Organizations that have deployed AI in sensitive workflows — HR, legal, finance, healthcare — should use this moment to audit whether the safety guarantees they signed for in 2024-2025 vendor contracts still match the companies they're actually working with in 2026.",
+        links: [
+          {source:"CNN", title:"AI researchers are sounding the alarm on their way out the door", url:"https://www.cnn.com/2026/02/11/business/openai-anthropic-departures-nightcap"},
+          {source:"The Intercept", title:"OpenAI on Surveillance and Autonomous Killings: You're Going to Have to Trust Us", url:"https://theintercept.com/2026/03/08/openai-anthropic-military-contract-ethics-surveillance/"}
+        ],
+        related: ["anthropic-pentagon-breakdown","openai-pentagon-deal"]
+      }
+    ]
+  },
+  {
+    id: "platforms",
+    title: "Enterprise Platform Wars",
+    icon: "🏛",
+    iconClass: "icon-gold",
+    count: 2,
+    cards: [
+      {
+        id: "gpt54-launch",
+        date: "Mar 5, 2026",
+        headline: "OpenAI launches GPT-5.4 — most capable model with 1M context and native computer use",
+        summary: "GPT-5.4 scores 87.3% on IB analyst benchmarks (vs 68.4% for GPT-5.2), uses 47% fewer tokens on many tasks, and is the first OpenAI model with native computer-use in Codex. 1 million token context window unlocks long-horizon agentic tasks.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-gold",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-gold",
+        content: `<p>On March 5, OpenAI released <strong>GPT-5.4</strong> across ChatGPT, Codex, and the API — its most capable and efficient model to date. The headline capability is a <strong>1 million token context window</strong> in the API (up from 400,000 in GPT-5), allowing agents to read entire codebases, contracts, or research archives in a single call. GPT-5.4 is also the first mainline OpenAI reasoning model to incorporate the coding capabilities of GPT-5.3-Codex, and the first to ship with <strong>native computer-use</strong> in Codex and the API — enabling agents to operate computers and execute multi-step workflows across applications autonomously.</p>
+        <p>On OpenAI's internal investment banking benchmark, GPT-5.4 scored <strong>87.3%</strong> on tasks like building three-statement financial models — compared to 68.4% for GPT-5.2 and 43.7% for GPT-5. On BigLaw Bench, it scored <strong>91%</strong> on complex legal drafting. On OpenAI's workplace task benchmark across 44 job roles, <strong>GPT-5.4 outperformed office employees 83% of the time.</strong> The model is also significantly more efficient: <strong>47% fewer tokens</strong> on many tasks, and 33% less likely to include factual errors versus GPT-5.2.</p>
+        <p>Pricing is higher per token than GPT-5.2, but OpenAI argues efficiency gains offset cost for most use cases. A notable pricing caveat: input costs <strong>double beyond 272,000 tokens</strong> in API calls. GPT-5.4 Thinking is available to Plus, Team, and Pro ChatGPT users immediately, replacing GPT-5.2 Thinking. GPT-5.2 Thinking remains in the legacy picker until it is retired on <strong>June 5, 2026</strong>.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Evaluate GPT-5.4's computer-use capability for enterprise RPA and agent workflows. Native computer use eliminates the need for dedicated automation middleware for many tasks — reprice your automation vendor stack accordingly."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the token-cost economics before migrating enterprise workloads to GPT-5.4. The 1M context window is powerful but doubles in cost beyond 272K tokens — audit your highest-token-usage workflows first."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Plan GPT-5.2 deprecation. OpenAI is retiring GPT-5.2 Thinking on June 5, 2026 — any enterprise workflow depending on it must be migrated within 90 days or risk production breaks."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Brief the board on the 83% benchmark result across 44 job roles. This metric is the most enterprise-relevant AI capability signal of the quarter — it has direct implications for workforce planning assumptions made in 2025."}
+        ],
+        risks: [
+          {text:"Workforce disruption acceleration: GPT-5.4 outperforming office employees 83% of the time across 44 roles makes AI labor displacement timelines significantly more near-term than most enterprise workforce plans assume."},
+          {text:"Cost complexity: The token pricing cliff at 272K inputs for 1M context creates unpredictable cost spikes for long-document workflows — enterprises using the API at scale must instrument per-call cost controls."},
+          {text:"Competitor response: Google Gemini 3 and Anthropic Claude 4 are expected to respond with capability updates within weeks, making GPT-5.4's benchmarks a moving target for platform selection decisions."},
+          {text:"Rapid deprecation cycles: GPT-5.2 retiring in 90 days underscores OpenAI's accelerating release cadence — enterprises that hard-code model strings risk cascading production failures."}
+        ],
+        csuite: "GPT-5.4 is the most consequential enterprise AI capability release since GPT-4. Its native computer use, 1M context window, and 83% benchmark against human office workers make it the first model that can credibly be positioned as a partial substitute — not just a tool — for junior knowledge workers across finance, legal, and strategy functions. Every workforce plan built in 2025 needs a GPT-5.4 scenario.",
+        links: [
+          {source:"OpenAI", title:"Introducing GPT-5.4", url:"https://openai.com/index/introducing-gpt-5-4/"},
+          {source:"VentureBeat", title:"OpenAI launches GPT-5.4 with native computer use mode, financial plugins for Microsoft Excel, Google Sheets", url:"https://venturebeat.com/technology/openai-launches-gpt-5-4-with-native-computer-use-mode-financial-plugins-for"},
+          {source:"TechInformed", title:"OpenAI releases GPT-5.4 with native computer use and a finance-focused enterprise bundle", url:"https://techinformed.com/openai-releases-gpt-5-4-with-native-computer-use-and-a-finance-focused-enterprise-bundle/"}
+        ],
+        related: ["chatgpt-excel","anthropic-labor-report"]
+      },
+      {
+        id: "chatgpt-excel",
+        date: "Mar 5, 2026",
+        headline: "ChatGPT embeds in Excel with FactSet, Moody's & S&P Global — direct assault on financial workflows",
+        summary: "OpenAI launched a beta Excel add-in powered by GPT-5.4 that builds financial models via natural language. Financial data integrations from 9 providers including FactSet, Moody's, MSCI, Third Bridge, and Dow Jones Factiva launched simultaneously.",
+        tags: [["CFO","bg-green"],["CIO","bg-blue"],["CEO","bg-gold"]],
+        barClass: "bar-green",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-green",
+        content: `<p>Alongside GPT-5.4's launch, OpenAI unveiled <strong>ChatGPT for Excel</strong> — a beta add-in that embeds GPT-5.4 directly into workbooks, allowing analysts to describe what they need in plain English and have the AI build, update, or analyze live spreadsheet models. The tool links its outputs to specific cells for transparency and requires user approval before making changes. It targets investment banking, financial planning and analysis, and accounting workflows that today consume disproportionate junior analyst time.</p>
+        <p>Simultaneously, OpenAI launched <strong>nine financial data integrations</strong> in ChatGPT: FactSet, Moody's, Dow Jones Factiva, MSCI, Third Bridge, MT Newswire, LSEG, Daloopa, and S&P Global — with more described as "coming soon." These MCP-based connectors allow ChatGPT to pull real-time market data, filings, transcripts, credit reports, and earnings data directly into research and modeling workflows without leaving the interface. Enterprise outputs can be exported to <strong>PDF or Microsoft Word</strong>.</p>
+        <p>The competitive implications are significant. OpenAI is now directly entering the market where <strong>Anthropic's Claude for Financial Services</strong> (launched July 2025) has been the enterprise frontrunner, and where Bloomberg Terminal, FactSet's own tools, and Refinitiv have long dominated. The announcement caused immediate investor anxiety in financial data provider stocks, many of which were already down double digits in 2026. The Excel beta is available to ChatGPT Plus, Team, Enterprise, and Edu users in the U.S., Canada, and Australia, with enterprise data protected from model training.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Pilot ChatGPT for Excel with your FP&A and investor relations teams within 30 days. Benchmark analyst productivity on DCF models, earnings summaries, and comparables analysis against the current workflow."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Audit contracts with FactSet, Bloomberg, Refinitiv, and Moody's before their renewal dates. AI workflow integrations now replicate many use cases of these platforms — renegotiate based on reduced seat utilization."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Assess data residency and compliance implications of the ChatGPT Enterprise financial integrations. Confirm that client data entering OpenAI APIs via FactSet/Moody's connectors is not used for model training under enterprise agreements."},
+          {owner:"CHRO", ownerClass:"owner-chro", text:"Begin a skills inventory of junior finance staff. ChatGPT for Excel directly automates the three-statement model construction, scenario analysis, and comp table tasks that define the first two years of an analyst's career."}
+        ],
+        risks: [
+          {text:"Financial data provider displacement: The nine-provider financial data integration in ChatGPT directly cannibilizes the value proposition of Bloomberg, FactSet, and Refinitiv for research synthesis. CFOs should expect significant renegotiation leverage on those contracts."},
+          {text:"Junior finance talent implications: If GPT-5.4 builds investment banking models at 87.3% benchmark accuracy, traditional analyst staffing pyramids need immediate redesign — both for efficiency and for the pipeline of future finance leaders."},
+          {text:"Accuracy risk in regulated contexts: Financial model outputs from AI in SEC-filing and board-presentation contexts require human review standards that are not yet codified. Enterprises must not deploy without an explicit human-in-the-loop sign-off protocol."},
+          {text:"Microsoft ecosystem tension: OpenAI is embedding GPT-5.4 into Excel — a Microsoft product — while simultaneously building products that compete with GitHub, another Microsoft asset. This partnership tension could affect product roadmaps and enterprise terms."}
+        ],
+        csuite: "ChatGPT for Excel is not a productivity tool — it is a structural disruption to enterprise financial and legal talent models. The combination of natural-language financial modeling, real-time data from nine major providers, and 87.3% analyst benchmark accuracy means CFOs must now make an active choice about which analyst tasks they are keeping human and why. Deferring that choice is itself a strategic decision.",
+        links: [
+          {source:"OpenAI", title:"Introducing ChatGPT for Excel and new financial data integrations", url:"https://openai.com/index/chatgpt-for-excel/"},
+          {source:"Fortune", title:"OpenAI launches GPT-5.4, its most powerful model for enterprise work", url:"https://fortune.com/2026/03/05/openai-new-model-gpt5-4-enterprise-agentic-anthropic/"},
+          {source:"VentureBeat", title:"OpenAI launches GPT-5.4 with native computer use mode, financial plugins for Microsoft Excel", url:"https://venturebeat.com/technology/openai-launches-gpt-5-4-with-native-computer-use-mode-financial-plugins-for"}
+        ],
+        related: ["gpt54-launch","anthropic-labor-report","openai-funding"]
+      }
+    ]
+  },
+  {
+    id: "funding",
+    title: "Funding & Market Dynamics",
+    icon: "💰",
+    iconClass: "icon-green",
+    count: 2,
+    cards: [
+      {
+        id: "openai-funding",
+        date: "Feb 27 – Mar 4, 2026",
+        headline: "OpenAI closes $110B round at $730B valuation — largest private funding in history",
+        summary: "Amazon invested $50B, Nvidia $30B, and SoftBank $30B, lifting OpenAI to $730B pre-money — up from $500B in October. The round remains open. OpenAI is targeting $600B in compute spend by 2030 and $280B in annual revenue.",
+        tags: [["CFO","bg-green"],["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass: "bar-green",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "FUNDING & MARKETS",
+        catColor: "c-green",
+        content: `<p>On February 27, OpenAI finalized <strong>$110 billion in private funding</strong> — the largest private funding round in history, more than doubling its previous record-breaking $40 billion SoftBank-led raise from 2025. The round values the company at <strong>$730 billion pre-money</strong>, a 46% jump from its $500 billion October secondary valuation. Amazon contributed <strong>$50 billion</strong>, while Nvidia and SoftBank each contributed <strong>$30 billion</strong>. The round remains open, with additional investors expected.</p>
+        <p>The Amazon investment is notable because it deepens a relationship between a cloud provider and an AI lab that is already a customer relationship (OpenAI uses AWS infrastructure). For Nvidia, the $30 billion investment is significantly below the <strong>up to $100 billion</strong> Huang had previously pledged — a discrepancy that became the subject of scrutiny at the Morgan Stanley TMT conference days later. As part of the agreement, OpenAI committed to deploying <strong>3 gigawatts of inference capacity and 2 gigawatts of training capacity</strong> on Nvidia's Vera Rubin systems.</p>
+        <p>OpenAI told investors it is targeting <strong>$280 billion in total revenue by 2030</strong> — with contributions split roughly evenly between consumer and enterprise segments. Annualized revenue as of late February 2026 was approximately <strong>$25 billion</strong>, a 17% jump from its year-end run rate of $21.4 billion. The company is projecting <strong>$30 billion in 2026 full-year revenue</strong>. A Q4 2026 IPO remains on track at a potential $830 billion to $1 trillion valuation.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model OpenAI's IPO as a market event for your own enterprise software and AI tool valuations. A $730B–$1T OpenAI public listing will reset the entire enterprise AI sector's valuation benchmarks and could trigger a wave of secondary funding rounds."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Review OpenAI enterprise contract terms in the context of its aggressive compute buildout. As OpenAI scales to $600B in compute spend by 2030, expect significant API infrastructure improvements — but also potential pricing renegotiation as capacity tightens."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Evaluate enterprise AI vendor IPO pipelines. OpenAI, Anthropic, and Databricks are all on Q4 2026 / 2027 IPO tracks. Pre-IPO enterprise agreements typically offer favorable pricing that post-IPO companies are under shareholder pressure to revise upward."}
+        ],
+        risks: [
+          {text:"Valuation bubble risk: OpenAI at $730B is valued at more than ExxonMobil or Johnson & Johnson. If revenue ramp to $280B by 2030 misses materially, a public-market correction would ripple through the entire enterprise AI vendor ecosystem."},
+          {text:"Circular investment dynamics: Amazon and Nvidia are simultaneously suppliers, partners, and investors in OpenAI — creating potential conflicts of interest that regulators and enterprise procurement teams should scrutinize."},
+          {text:"Competitive pressure: With $110B newly raised, OpenAI will accelerate enterprise products, potentially disrupting enterprise software categories — CRM, ERP analytics, financial services — faster than incumbent vendors can respond."}
+        ],
+        csuite: "OpenAI's $730 billion valuation is not just a financial milestone — it is a signal that capital markets have accepted AI infrastructure as the defining industrial investment of the decade. For CFOs evaluating enterprise AI spend, this round validates that AI vendors are now durable counterparties, not startups. But it also raises the stakes on ROI: enterprises that haven't demonstrated measurable AI returns are increasingly at odds with the market's expectations.",
+        links: [
+          {source:"CNBC", title:"OpenAI announces $110 billion funding round with backing from Amazon, Nvidia, SoftBank", url:"https://www.cnbc.com/2026/02/27/open-ai-funding-round-amazon.html"},
+          {source:"TechCrunch", title:"OpenAI raises $110B in one of the largest private funding rounds in history", url:"https://techcrunch.com/2026/02/27/openai-raises-110b-in-one-of-the-largest-private-funding-rounds-in-history/"},
+          {source:"Bloomberg", title:"OpenAI Finalizes $110 Billion Funding at $730 Billion Value", url:"https://www.bloomberg.com/news/articles/2026-02-27/openai-finalizes-110-billion-funding-at-730-billion-valuation"}
+        ],
+        related: ["nvidia-pullback","gpt54-launch"]
+      },
+      {
+        id: "nvidia-pullback",
+        date: "Mar 4, 2026",
+        headline: "Jensen Huang signals Nvidia is done investing in OpenAI and Anthropic — the era of chip-maker-as-backer ends",
+        summary: "At the Morgan Stanley TMT conference, Huang confirmed Nvidia's investments in both labs are likely its last. Nvidia's final OpenAI investment came in at $30B — well below the $100B previously pledged. A strategic realignment signal for the entire AI investment landscape.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-blue",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "MARKET DYNAMICS",
+        catColor: "c-blue",
+        content: `<p>Speaking Wednesday at the <strong>Morgan Stanley Technology, Media and Telecom conference</strong> in San Francisco, Nvidia CEO <strong>Jensen Huang</strong> confirmed that his company's investments in OpenAI and Anthropic are likely to be its last in the AI lab space. His stated rationale: once the companies go public as expected later this year, the investment window closes. But industry observers noted the discrepancy between Nvidia's initial pledge of up to $100 billion in OpenAI and the <strong>$30 billion</strong> it ultimately invested — a $70 billion shortfall that Huang has not fully explained.</p>
+        <p>Industry analysts have identified several potential explanations. MIT Sloan professor Michael Cusumano had described earlier chip-maker investments in AI labs as "kind of a wash" — circular arrangements where Nvidia invests in AI labs that use the proceeds to buy Nvidia chips. Growing concern about this circularity and potential bubble dynamics may have prompted the strategic pullback. Huang dismissed allegations of "bad blood" with OpenAI as "nonsense," but the timing — simultaneous with OpenAI's Pentagon controversy and safety talent departures — raises questions about whether Nvidia is distancing itself from reputational risk.</p>
+        <p>The strategic implications are significant. Nvidia supplying chips to OpenAI and Anthropic will continue — that relationship is untouched. But losing Nvidia as a direct investor shifts the power dynamic around GPU access agreements, strategic roadmap influence, and the kind of preferential hardware allocation that shaped the AI lab buildout of 2023–2025. Industry insiders are now speculating whether Nvidia is redirecting capital toward vertical AI companies, sovereign AI infrastructure, or its own AI services stack.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Monitor Nvidia stock and AI infrastructure pricing as Nvidia realigns investment strategy. Its core chip business remains dominant, but strategic shifts toward its own AI services could affect GPU pricing and availability for enterprise buyers."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Assess whether Nvidia's pullback reflects a broader inflection in the AI investment super-cycle. If the chipmaker-as-backer model is ending, it signals the market believes the growth in AI infrastructure will moderate — relevant for your own AI capex planning."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Explore Nvidia's sovereign AI and enterprise AI services buildout. As Nvidia exits AI lab equity, it will likely double down on direct enterprise relationships — including its own AI platform products that could bypass lab middlemen."}
+        ],
+        risks: [
+          {text:"Hardware access: Preferential GPU allocation has been a significant advantage for labs with chip-maker investor relationships. OpenAI and Anthropic may face a more arms-length vendor dynamic with Nvidia going forward."},
+          {text:"Market signal interpretation: Nvidia's $70B shortfall on its OpenAI pledge could be interpreted as private-market skepticism about AI lab valuations at a point when public markets are still pricing in hyper-growth assumptions."},
+          {text:"Strategic realignment risk: If Nvidia pivots to building its own AI services and applications, it could become a competitor to the very labs it has been supporting — disrupting the current AI vendor ecosystem hierarchy."}
+        ],
+        csuite: "Nvidia's exit from the AI lab investment game is a meaningful market signal that the venture phase of AI infrastructure is maturing. The chip-maker's decision to focus on its core hardware business rather than equity positions in labs suggests that returns from direct investment are becoming less attractive relative to simply selling the picks and shovels. For enterprise CFOs, this is a healthy sign of market normalization — but it also means AI lab funding will need to come from other sources as IPO windows open.",
+        links: [
+          {source:"TechCrunch", title:"Jensen Huang says Nvidia is pulling back from OpenAI and Anthropic investments", url:"https://techcrunch.com/2026/03/04/jensen-huang-says-nvidia-is-pulling-back-from-openai-and-anthropic-but-his-explanation-raises-more-questions-than-it-answers/"},
+          {source:"TechBuzz", title:"Nvidia Pulls Back from OpenAI, Anthropic Investments", url:"https://www.techbuzz.ai/articles/nvidia-pulls-back-from-openai-anthropic-investments"},
+          {source:"CNBC", title:"OpenAI announces $110 billion funding round with backing from Amazon, Nvidia, SoftBank", url:"https://www.cnbc.com/2026/02/27/open-ai-funding-round-amazon.html"}
+        ],
+        related: ["openai-funding","anthropic-pentagon-breakdown"]
+      }
+    ]
+  },
+  {
+    id: "workforce",
+    title: "Workforce & Labor Disruption",
+    icon: "👥",
+    iconClass: "icon-orange",
+    count: 1,
+    cards: [
+      {
+        id: "anthropic-labor-report",
+        date: "Mar 5–8, 2026",
+        headline: "Anthropic publishes landmark labor displacement map — AI covers 75% of programmer tasks now",
+        summary: "Using anonymized Claude usage data across 800 occupations, Anthropic's economists found actual AI coverage is a fraction of theoretical potential — but occupations most exposed correlate strongly with weaker BLS job growth projections through 2034.",
+        tags: [["CEO","bg-gold"],["CHRO","bg-orange"],["CFO","bg-green"]],
+        barClass: "bar-orange",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "WORKFORCE",
+        catColor: "c-orange",
+        content: `<p>On March 5, Anthropic published a landmark research paper titled <strong>"Labor market impacts of AI: A new measure and early evidence,"</strong> authored by economists Maxim Massenkoff and Peter McCrory. Unlike previous AI labor displacement studies that theorized about capability, Anthropic built its analysis on <strong>actual Claude usage data</strong> — what people are genuinely using AI for at work — weighted to emphasize fully automated over merely assisted uses. The result is the first empirical measurement of the gap between AI capability and AI deployment across 800 occupations.</p>
+        <p>Key findings: <strong>Computer programmers see 75% task coverage</strong> by current AI usage. Customer service representatives, data entry keyers, and medical records specialists follow closely. Across the Computer and Math occupation group, AI's theoretical capability is <strong>94%</strong> — but actual observed coverage is only <strong>33%</strong>. Office and Admin shows 90% theoretical vs. 25% actual. Business and Financial Operations: 85% theoretical vs. 20% actual. Legal: 80% theoretical vs. 15% actual. The gap between blue (capability) and red (usage) across every category represents untapped automation potential that the report explicitly frames as approaching rapidly.</p>
+        <p>Crucially, the report finds <strong>no systematic increase in unemployment</strong> for highly exposed workers — yet. But it does find <strong>"suggestive evidence" that hiring of younger workers aged 22–25 has slowed</strong> in AI-exposed occupations. Workers most exposed are more likely to be older, female, more educated, and higher-paid — inverting the intuition that AI primarily threatens low-skill workers. Anthropic frames the study as an early-warning system, noting that the effects of AI may play out like the "China shock" of the early 2000s — quietly, below the surface of aggregate unemployment data, over several years.</p>`,
+        actions: [
+          {owner:"CHRO", ownerClass:"owner-chro", text:"Commission an internal AI exposure audit mapped to the Anthropic taxonomy for your top 20 job families. The gap between theoretical and observed coverage is your reskilling runway — measure it before it closes."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Revise your talent strategy documents to reflect Anthropic's finding that exposed roles are disproportionately held by senior, educated, higher-paid workers — not entry-level. The 'AI only threatens junior workers' assumption is empirically wrong."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Build AI labor exposure into workforce cost modeling. If 75% of programmer tasks are already AI-covered, budget headcount assumptions for technical roles in 2027–2028 operating plans should account for this directly."},
+          {owner:"CHRO", ownerClass:"owner-chro", text:"Formalize an AI upskilling program with measurable outcomes in Q2 2026. IDC projects 90%+ of enterprises face critical AI skills shortages — companies that invest now capture reskilled talent before the labor market tightens further."}
+        ],
+        risks: [
+          {text:"Silent layoff pressure: The hiring slowdown for workers aged 22–25 in AI-exposed roles is not showing in unemployment data yet — meaning boards and C-suites may be underestimating the social and political liability building in affected communities."},
+          {text:"Regulatory response: As AI labor data becomes clearer and more public, expect state and federal legislators to accelerate worker protection legislation — advance labor impact disclosures, mandated reskilling programs, and AI-usage reporting requirements."},
+          {text:"Talent pipeline risk: If junior hiring slows in AI-exposed roles, the pipeline of future senior professionals in those domains narrows — creating long-term expertise gaps that AI cannot fill (strategic judgment, client relationships, complex negotiations)."},
+          {text:"ESG and investor expectations: 97% of investors in the Mercer Global Talent Trends 2026 survey said funding decisions would be negatively impacted by firms failing to upskill AI workers. This report gives institutional investors a framework to assess those claims."}
+        ],
+        csuite: "Anthropic's labor report is the most important workforce document of 2026. It confirms that AI displacement is real, measurable, and already affecting hiring in high-exposure roles — while providing enough time for organizations to respond before unemployment effects become unmistakable. The organizations that use this empirical framework to make proactive workforce decisions in Q2 2026 will be significantly better positioned than those waiting for the data to become 'clearer.'",
+        links: [
+          {source:"Anthropic", title:"Labor market impacts of AI: A new measure and early evidence", url:"https://www.anthropic.com/research/labor-market-impacts"},
+          {source:"Axios", title:"Anthropic launches AI job destruction detector", url:"https://www.axios.com/2026/03/05/anthropic-ai-jobs-claude"},
+          {source:"Fortune", title:"Anthropic just mapped out which jobs AI could potentially replace", url:"https://fortune.com/2026/03/06/ai-job-losses-report-anthropic-research-great-recession-for-white-collar-workers/"},
+          {source:"CBS News", title:"Anthropic is tracking which jobs are most exposed to AI. These 10 professions top the list.", url:"https://www.cbsnews.com/news/anthropic-ai-jobs-most-exposed-risk/"}
+        ],
+        related: ["gpt54-launch","chatgpt-excel","ai-safety-exodus"]
+      }
+    ]
+  },
+  {
+    id: "infrastructure",
+    title: "Infrastructure & Connectivity",
+    icon: "⚙️",
+    iconClass: "icon-blue",
+    count: 1,
+    cards: [
+      {
+        id: "mwc-2026",
+        date: "Mar 2–5, 2026",
+        headline: "MWC 2026 'The IQ Era': AI declared core telecom infrastructure — 6G, agentic chips, and Samsung S26",
+        summary: "Over 109,000 attendees from 205 countries descended on Barcelona. Qualcomm CEO declared 2026 'the year of agents.' Samsung launched the Galaxy S26 with agentic cross-app AI. Nokia unveiled AI-native RAN. The entire industry reframed connectivity as AI infrastructure.",
+        tags: [["CIO","bg-blue"],["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass: "bar-cyan",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "INFRASTRUCTURE",
+        catColor: "c-cyan",
+        content: `<p><strong>Mobile World Congress 2026</strong>, themed "The IQ Era," held March 2–5 in Barcelona, marked a decisive shift in how the global telecom industry frames itself: no longer a connectivity infrastructure play, but an AI-native intelligence layer. <strong>Qualcomm CEO Cristiano Amon</strong> opened his keynote declaring 2026 "the year of agents," announcing the Snapdragon X105 5G Modem-RF — the world's first Release-19-ready modem bridging 5G-Advanced to 6G — along with the Snapdragon 8 Elite 2, which delivers a <strong>45% improvement in NPU throughput</strong> and can run 13-billion-parameter models entirely on-device without cloud round-trips.</p>
+        <p><strong>Samsung</strong> unveiled the Galaxy S26 series, featuring what it described as "true agentic AI" — cross-app orchestration allowing the phone to complete multi-step tasks autonomously across different applications. Samsung Knox AI, its enterprise management layer, gives IT administrators granular control over which agentic capabilities are enabled on managed devices. <strong>Nokia</strong> CEO Pekka Lundmark presented the AirGile AI-RAN Platform, embedding machine learning directly into radio access network controllers for autonomous, self-healing networks. <strong>Deutsche Telekom and T-Mobile US</strong> announced a joint 6G Innovation Hub, designing 6G as a "fully AI-native system" with three focus areas: Autonomous Networks, secure sensing, and positioning.</p>
+        <p>For enterprise CIOs, the practical implications of MWC 2026 are twofold: first, enterprise mobility management must evolve to govern agentic AI capabilities on employee devices — Samsung Knox AI represents the first serious enterprise control layer for on-device agents. Second, the 5G-to-6G transition, now targeting 2029–2030 commercialization, will carry AI agent workloads as a first-class citizen, not an afterthought. The global AI in telecom market is projected at <strong>$38.8 billion by 2028, growing at 42% CAGR.</strong></p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Update mobile device management policies to account for on-device agentic AI. The Samsung Galaxy S26 and Qualcomm's 8 Elite 2 chip enable 13B-parameter AI models running locally — your current MDM policies almost certainly don't address on-device AI governance."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Engage your telecom vendors on 5G-Advanced capability timelines. The 5G-A to 6G bridge technology announced at MWC — including Qualcomm's X105 modem — affects your network refresh cycle planning for 2026–2028."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Revisit mobile fleet TCO models. On-device AI inference eliminating cloud round-trips for common enterprise tasks could reduce data plan costs and latency — model the impact of upgrading to AI-capable hardware cohorts in 2026–2027."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Position your enterprise as an early adopter of AI-native network capabilities with strategic telco partners. Deutsche Telekom's 6G hub and Microsoft Copilot telecom integrations announced at MWC signal that competitive advantage will accrue to enterprises that co-develop AI network use cases with carriers."}
+        ],
+        risks: [
+          {text:"On-device AI governance gap: Enterprise AI governance frameworks built for cloud-based AI models are not designed to manage 13B-parameter models running entirely on employee phones. This governance gap requires immediate policy attention."},
+          {text:"6G timing uncertainty: While commercialization targets of 2029–2030 seem fixed, spectrum allocation, standards finalization, and geopolitical chip supply chain issues (particularly regarding Huawei 5G equipment) could shift timelines materially."},
+          {text:"AI security at the edge: Deutsche Telekom's dedicated deepfake security exhibit at MWC highlighted enterprise-specific threats from AI agents impersonating legitimate enterprise systems — a security threat category most enterprises have no specific defenses against yet."}
+        ],
+        csuite: "MWC 2026 confirmed that AI is no longer a layer on top of connectivity — it is the architecture of connectivity going forward. For enterprise CIOs, this means the mobile and network refresh cycles of 2026–2028 are not business-as-usual hardware upgrades: they are foundational AI infrastructure decisions. The enterprises that frame their device and network investments through an AI-agent lens in 2026 will be structurally better positioned when 6G commercializes.",
+        links: [
+          {source:"MWC/Techloy", title:"AI Was Everywhere at MWC 2026 — Here Are the Biggest Announcements", url:"https://www.techloy.com/ai-was-everywhere-at-mwc-2026-here-are-the-biggest-announcements/"},
+          {source:"Telecom Infra Blog", title:"MWC 2026: The Dawn of AI-Native Telecom and the Road to 6G", url:"https://telecominfra.wordpress.com/2026/03/06/mwc-2026-the-dawn-of-ai-native-telecom-and-the-road-to-6g/"},
+          {source:"Bloomberg", title:"MWC Barcelona 2026 Preview: Mobile Industry Reckons With AI and Geopolitics", url:"https://www.bloomberg.com/news/articles/2026-03-02/mwc-barcelona-2026-preview-mobile-industry-reckons-with-ai-and-geopolitics"}
+        ],
+        related: ["gpt54-launch","nvidia-pullback"]
+      }
+    ]
+  }
+];
+
+// ── RENDERING ──
+function renderSections(filter = 'all') {
+  const area = document.getElementById('content-area');
+  area.innerHTML = '';
+  const filtered = filter === 'all' ? sections : sections.filter(s => s.id === filter);
+  filtered.forEach((section, si) => {
+    const el = document.createElement('div');
+    el.className = 'section';
+    el.id = `section-${section.id}`;
+    el.style.animationDelay = `${si * 0.08}s`;
+    el.innerHTML = `
+      <div class="section-header">
+        <div class="section-icon ${section.iconClass}">${section.icon}</div>
+        <div class="section-title">${section.title}</div>
+        <div class="section-count">${section.count} ${section.count === 1 ? 'story' : 'stories'}</div>
+      </div>
+      <div class="cards-grid">
+        ${section.cards.map(c => `
+          <div class="card ${c.barClass}" onclick="openModal('${c.id}')">
+            <div class="card-date">${c.date}</div>
+            <div class="card-headline">${c.headline}</div>
+            <div class="card-summary">${c.summary}</div>
+            <div class="card-tags">${c.tags.map(t => `<span class="tag ${t[1]}">${t[0]}</span>`).join('')}</div>
+            <div class="card-bottom">
+              <span class="card-risk-badge ${c.riskClass}">Risk: ${c.riskLevel}</span>
+              <span class="card-expand-hint">↗ Deep dive</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>`;
+    area.appendChild(el);
+  });
+}
+
+function findCard(id) {
+  for (const s of sections)
+    for (const c of s.cards)
+      if (c.id === id) return { card: c, section: s };
+  return null;
+}
+function findCardTitle(id) {
+  const f = findCard(id);
+  return f ? f.card.headline : id;
+}
+
+function openModal(cardId) {
+  const found = findCard(cardId);
+  if (!found) return;
+  const { card } = found;
+  document.getElementById('modal-category').textContent = card.category;
+  document.getElementById('modal-category').className = `modal-category ${card.catColor}`;
+  document.getElementById('modal-headline').textContent = card.headline;
+  document.getElementById('modal-date').textContent = card.date;
+  document.getElementById('modal-content').innerHTML = card.content;
+  document.getElementById('panel-grid').innerHTML = `
+    <div class="panel panel-action">
+      <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+      <ul class="panel-list">
+        ${card.actions.map(a => `<li><span class="owner ${a.ownerClass}">${a.owner}</span> ${a.text}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="panel panel-risk">
+      <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+      <ul class="panel-list">
+        ${card.risks.map(r => `<li>${r.text}</li>`).join('')}
+      </ul>
+    </div>`;
+  document.getElementById('modal-csuite-text').innerHTML = card.csuite;
+  document.getElementById('modal-link-list').innerHTML = card.links.map(l => `
+    <a class="modal-link" href="${l.url}" target="_blank" rel="noopener">
+      <span class="modal-link-source">${l.source}</span>
+      <span>${l.title}</span>
+      <span class="modal-link-arrow">↗</span>
+    </a>`).join('');
+  document.getElementById('related-chips').innerHTML = card.related.map(r =>
+    `<div class="related-chip" onclick="event.stopPropagation();openModal('${r}')">${findCardTitle(r).substring(0, 52)}${findCardTitle(r).length > 52 ? '…' : ''}</div>`
+  ).join('');
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Nav filter
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderSections(btn.dataset.section);
+  });
+});
+
+renderSections();
+
+// ── NAV SCROLL ──
+(function() {
+  const navInner = document.getElementById('nav-inner');
+  const scrollArea = document.getElementById('nav-scroll-area');
+  const btnLeft = document.getElementById('nav-scroll-left');
+  const btnRight = document.getElementById('nav-scroll-right');
+  const scrollStep = 200;
+  function updateScrollState() {
+    const sl = navInner.scrollLeft;
+    const maxScroll = navInner.scrollWidth - navInner.clientWidth;
+    const canLeft = sl > 2;
+    const canRight = sl < maxScroll - 2;
+    btnLeft.classList.toggle('visible', canLeft);
+    btnRight.classList.toggle('visible', canRight);
+    scrollArea.classList.toggle('fade-left', canLeft);
+    scrollArea.classList.toggle('fade-right', canRight);
+  }
+  btnLeft.addEventListener('click', () => navInner.scrollBy({ left: -scrollStep, behavior: 'smooth' }));
+  btnRight.addEventListener('click', () => navInner.scrollBy({ left: scrollStep, behavior: 'smooth' }));
+  navInner.addEventListener('scroll', updateScrollState, { passive: true });
+  window.addEventListener('resize', updateScrollState);
+  setTimeout(updateScrollState, 100);
+  updateScrollState();
+})();
+
+// ── THEME TOGGLE ──
+(function() {
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  const saved = localStorage.getItem('ai-briefing-theme');
+  if (saved === 'light') html.setAttribute('data-theme', 'light');
+  toggle.addEventListener('click', () => {
+    if (html.getAttribute('data-theme') === 'light') {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('ai-briefing-theme', 'dark');
+    } else {
+      html.setAttribute('data-theme', 'light');
+      localStorage.setItem('ai-briefing-theme', 'light');
+    }
+  });
+})();
+</script>
+</body>
+</html>
