@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — Week of March 9–16, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555; --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c; --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def; --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0; --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9; --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c; --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+[data-theme="light"] {
+  --bg: #f4f6f9; --bg-card: #ffffff; --bg-card-hover: #f0f4f8; --bg-expanded: #ffffff;
+  --border: #d8dde6; --border-accent: #c0c8d4;
+  --text: #1a2332; --text-muted: #4a5568; --text-dim: #8896a8;
+  --accent: #135EAB; --accent-light: #1a74d0; --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030; --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F; --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB; --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1; --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488; --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621; --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4; --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06); --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06); --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05); --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08); --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;transition:background 0.4s ease;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65;min-height:100vh;}
+body,header,.nav-strip,.card,.modal,.exec-strip,.metric,.modal-csuite,.panel,.footer,.theme-toggle,.nav-btn{
+  transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease;
+}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:var(--noise-opacity,1);}
+
+/* HERO */
+.hero{position:relative;padding:5rem 2rem 3rem;text-align:center;overflow:hidden;
+  background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--bg) 100%);}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse at 30% 20%,var(--hero-glow-a) 0%,transparent 50%),
+              radial-gradient(ellipse at 70% 80%,var(--hero-glow-b) 0%,transparent 50%);
+  pointer-events:none;}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;
+  align-items:center;justify-content:center;gap:12px;}
+.hero-label::before{content:'';width:24px;height:2px;background:var(--accent);}
+.hero h1{font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(32px,5vw,56px);line-height:1.15;color:var(--text);
+  max-width:820px;margin:0 auto 1rem;}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;
+  color:var(--text-muted);max-width:640px;margin:0 auto 2.5rem;}
+.metrics-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+  background:var(--border);border-radius:10px;max-width:900px;margin:0 auto;overflow:hidden;}
+.metric{background:var(--bg-card);padding:18px 20px;text-align:center;cursor:default;}
+.metric:hover{background:var(--bg-card-hover);}
+.metric-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;
+  color:var(--accent);line-height:1.2;margin-bottom:4px;}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text-dim);line-height:1.6;}
+
+/* LIGHT THEME OVERRIDES */
+[data-theme="light"] .hero h1 span,
+[data-theme="light"] .metric-value{
+  background:linear-gradient(135deg,#135EAB,#04955F);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+[data-theme="light"] .metrics-bar{background:linear-gradient(135deg,#135EAB,#04955F);}
+[data-theme="light"] .metric{background:rgba(255,255,255,0.95);}
+[data-theme="light"] .metric:hover{background:rgba(255,255,255,1);}
+[data-theme="light"] .exec-strip{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));}
+[data-theme="light"] .modal-csuite{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));}
+[data-theme="light"] .bg-gold{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .bg-green{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .bg-blue{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .bg-red{background:rgba(255,156,163,0.20);color:#b83240;}
+[data-theme="light"] .bg-purple{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .bg-cyan{background:rgba(100,203,192,0.15);color:#0d9488;}
+[data-theme="light"] .bg-orange{background:rgba(244,244,49,0.15);color:#8a6d00;}
+[data-theme="light"] .bar-gold::before{background:linear-gradient(180deg,#135EAB,#04955F);}
+[data-theme="light"] .bar-blue::before{background:#135EAB;}
+[data-theme="light"] .bar-green::before{background:#04955F;}
+[data-theme="light"] .bar-red::before{background:#FF9CA3;}
+[data-theme="light"] .bar-purple::before{background:#6b46c1;}
+[data-theme="light"] .bar-cyan::before{background:#64CBC0;}
+[data-theme="light"] .bar-orange::before{background:#F4F431;}
+[data-theme="light"] .icon-gold{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .icon-green{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .icon-blue{background:rgba(100,203,192,0.12);color:#0a7a6e;}
+[data-theme="light"] .icon-red{background:rgba(255,156,163,0.15);color:#b83240;}
+[data-theme="light"] .icon-purple{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .icon-cyan{background:rgba(100,203,192,0.12);color:#0d9488;}
+[data-theme="light"] .icon-orange{background:rgba(244,244,49,0.15);color:#8a6d00;}
+[data-theme="light"] .owner-ceo{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .owner-cfo{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .owner-cio{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .owner-gc{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .owner-ciso{background:rgba(255,156,163,0.15);color:#b83240;}
+[data-theme="light"] .owner-chro{background:rgba(244,244,49,0.15);color:#8a6d00;}
+[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,rgba(19,94,171,0.10),rgba(4,149,95,0.08));color:#135EAB;}
+[data-theme="light"] .hero-label{color:#04955F;}
+[data-theme="light"] .hero-label::before{background:linear-gradient(90deg,#135EAB,#04955F);}
+[data-theme="light"] .card{box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(19,94,171,0.10);}
+[data-theme="light"] .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);border-color:var(--border);}
+[data-theme="light"] .related-chip:hover{background:rgba(19,94,171,0.08);border-color:#135EAB;color:#135EAB;}
+[data-theme="light"] .nav-scroll-area::before{background:linear-gradient(90deg,rgba(244,246,249,0.95),transparent);}
+[data-theme="light"] .nav-scroll-area::after{background:linear-gradient(-90deg,rgba(244,246,249,0.95),transparent);}
+
+/* NAV */
+.nav-strip{position:sticky;top:0;z-index:100;background:var(--nav-bg);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:0 12px;}
+.nav-wrapper{display:flex;align-items:center;max-width:1080px;margin:0 auto;gap:4px;}
+.nav-scroll-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);
+  background:var(--bg-card);color:var(--text-muted);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+  opacity:0;pointer-events:none;transition:opacity 0.2s,background 0.2s;flex-shrink:0;}
+.nav-scroll-btn.visible{opacity:1;pointer-events:auto;}
+.nav-scroll-btn:hover{background:var(--bg-card-hover);}
+.nav-scroll-area{flex:1;position:relative;overflow:hidden;}
+.nav-scroll-area::before,.nav-scroll-area::after{
+  content:'';position:absolute;top:0;bottom:0;width:28px;z-index:2;pointer-events:none;}
+.nav-scroll-area::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
+.nav-scroll-area::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
+.nav-scroll-area.fade-left::before{opacity:1;}
+.nav-scroll-area:not(.fade-left)::before{opacity:0;}
+.nav-scroll-area.fade-right::after{opacity:1;}
+.nav-scroll-area:not(.fade-right)::after{opacity:0;}
+.nav-inner{display:flex;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:8px 4px;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
+  letter-spacing:0.3px;color:var(--text-muted);background:transparent;
+  border:none;cursor:pointer;padding:6px 14px;border-radius:6px;
+  white-space:nowrap;transition:all 0.2s;}
+.nav-btn:hover{color:var(--text);background:var(--bg-card);}
+.nav-btn.active{color:var(--accent);background:var(--accent-dim);}
+.theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);
+  background:var(--bg-card);cursor:pointer;position:relative;flex-shrink:0;margin-left:4px;}
+.theme-toggle .icon-sun,.theme-toggle .icon-moon{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:16px;transition:all 0.3s ease;}
+.theme-toggle .icon-sun{opacity:0;transform:translate(-50%,-50%) rotate(-90deg) scale(0.5);}
+.theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-sun{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-moon{opacity:0;transform:translate(-50%,-50%) rotate(90deg) scale(0.5);}
+
+/* EXEC STRIP */
+.exec-strip{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);
+  border-radius:12px;padding:20px 24px;margin:28px auto 0;max-width:1080px;}
+.exec-strip-label{font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.exec-strip p{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;}
+.exec-strip strong{color:var(--text);font-weight:600;}
+
+/* MAIN */
+.main{max-width:1080px;margin:0 auto;padding:0 20px 60px;}
+#content-area{padding-top:8px;}
+
+/* SECTION */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.section{animation:fadeUp 0.5s ease both;padding:28px 0 12px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;
+  align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.icon-gold{background:var(--accent-dim);color:var(--accent);}
+.icon-red{background:var(--red-dim);color:var(--red);}
+.icon-green{background:var(--green-dim);color:var(--green);}
+.icon-blue{background:var(--blue-dim);color:var(--blue);}
+.icon-purple{background:var(--purple-dim);color:var(--purple);}
+.icon-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.icon-orange{background:var(--orange-dim);color:var(--orange);}
+.section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;
+  color:var(--text);flex:1;}
+.section-count{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:1px;color:var(--text-dim);background:var(--bg-card);
+  border:1px solid var(--border);border-radius:20px;padding:3px 10px;white-space:nowrap;}
+
+/* CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+  padding:20px;cursor:pointer;position:relative;overflow:hidden;
+  transition:all 0.25s ease;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  border-radius:0;opacity:0;transition:opacity 0.25s;}
+.card:hover{transform:translateY(-2px);background:var(--bg-card-hover);
+  border-color:var(--border-accent);box-shadow:0 8px 32px var(--shadow-card);}
+.card:hover::before{opacity:1;}
+.bar-gold::before{background:var(--accent);}
+.bar-red::before{background:var(--red);}
+.bar-green::before{background:var(--green);}
+.bar-blue::before{background:var(--blue);}
+.bar-purple::before{background:var(--purple);}
+.bar-cyan::before{background:var(--cyan);}
+.bar-orange::before{background:var(--orange);}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.card-headline{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;
+  color:var(--text);line-height:1.4;margin-bottom:8px;}
+.card-summary{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);
+  line-height:1.55;margin-bottom:12px;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;
+  text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+.bg-gold{background:var(--accent-dim);color:var(--accent);}
+.bg-green{background:var(--green-dim);color:var(--green);}
+.bg-blue{background:var(--blue-dim);color:var(--blue);}
+.bg-red{background:var(--red-dim);color:var(--red);}
+.bg-purple{background:var(--purple-dim);color:var(--purple);}
+.bg-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.bg-orange{background:var(--orange-dim);color:var(--orange);}
+.card-bottom{display:flex;justify-content:space-between;align-items:center;}
+.card-risk-badge{font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+.card-expand-hint{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-dim);}
+
+/* MODAL */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.modal-overlay{position:fixed;inset:0;background:var(--overlay-bg);
+  z-index:1000;display:none;align-items:flex-start;justify-content:center;
+  overflow-y:auto;padding:40px 20px;}
+.modal-overlay.active{display:flex;animation:fadeIn 0.2s ease;}
+.modal{background:var(--bg-expanded);border:1px solid var(--border-accent);
+  border-radius:16px;width:100%;max-width:800px;animation:slideUp 0.3s ease;
+  position:relative;overflow:hidden;margin:auto;}
+.modal-top-bar{display:flex;justify-content:space-between;align-items:center;
+  padding:16px 24px;border-bottom:1px solid var(--border);}
+.modal-category{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+.c-gold{color:var(--accent);} .c-red{color:var(--red);} .c-green{color:var(--green);}
+.c-blue{color:var(--blue);} .c-purple{color:var(--purple);}
+.c-cyan{color:var(--cyan);} .c-orange{color:var(--orange);}
+.modal-close{background:none;border:1px solid var(--border);border-radius:6px;
+  color:var(--text-muted);cursor:pointer;width:30px;height:30px;font-size:14px;
+  display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.modal-close:hover{background:var(--red-dim);border-color:var(--red);color:var(--red);}
+.modal-body{padding:28px 28px 32px;}
+.modal-headline{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;
+  color:var(--text);line-height:1.25;margin-bottom:8px;}
+.modal-date{font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;}
+.modal-content{font-family:'Source Serif 4',serif;font-size:15px;line-height:1.75;
+  color:var(--text-muted);margin-bottom:24px;}
+.modal-content p{margin-bottom:14px;}
+.modal-content p:last-child{margin-bottom:0;}
+.modal-content strong{color:var(--text);font-weight:600;}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+.panel{border-radius:10px;padding:18px 20px;}
+.panel-action{background:var(--panel-action-bg);border:1px solid var(--panel-action-border);}
+.panel-risk{background:var(--panel-risk-bg);border:1px solid var(--panel-risk-border);}
+.panel-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.panel-label-icon{font-size:12px;}
+.panel-action .panel-label-icon{color:var(--green);}
+.panel-risk .panel-label-icon{color:var(--red);}
+.panel-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.panel-list li{font-family:'Source Serif 4',serif;font-size:13.5px;
+  color:var(--text-muted);line-height:1.5;padding-bottom:10px;
+  border-bottom:1px solid var(--panel-li-border);}
+.panel-list li:last-child{border-bottom:none;padding-bottom:0;}
+.panel-risk .panel-list li::before{content:'▸';color:var(--red);margin-right:6px;font-size:11px;}
+.owner{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;
+  text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-right:6px;
+  display:inline-block;vertical-align:middle;}
+.owner-ceo{background:var(--accent-dim);color:var(--accent);}
+.owner-cfo{background:var(--green-dim);color:var(--green);}
+.owner-cio{background:var(--blue-dim);color:var(--blue);}
+.owner-gc{background:var(--purple-dim);color:var(--purple);}
+.owner-ciso{background:var(--red-dim);color:var(--red);}
+.owner-chro{background:var(--orange-dim);color:var(--orange);}
+.modal-csuite{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);
+  border-radius:10px;padding:18px 20px;margin-bottom:24px;}
+.modal-csuite-label{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+#modal-csuite-text{font-family:'Source Serif 4',serif;font-size:14px;
+  color:var(--text-muted);line-height:1.7;}
+.modal-links{margin-bottom:20px;}
+.modal-links-label,.modal-related-label{font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:10px;}
+.modal-link-list{display:flex;flex-direction:column;gap:6px;}
+.modal-link{display:flex;align-items:center;gap:8px;padding:10px 14px;
+  background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+  text-decoration:none;color:var(--text-muted);transition:all 0.2s;font-size:13px;}
+.modal-link:hover{border-color:var(--accent);color:var(--text);}
+.modal-link-source{font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--accent);min-width:80px;}
+.modal-link-arrow{margin-left:auto;color:var(--text-dim);}
+.modal-related{margin-top:4px;}
+.related-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.related-chip{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-muted);
+  background:var(--bg-card);border:1px solid var(--border);border-radius:6px;
+  padding:6px 12px;cursor:pointer;transition:all 0.2s;}
+.related-chip:hover{background:var(--accent-dim);border-color:var(--accent);color:var(--accent);}
+
+/* FOOTER */
+.footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border);}
+.footer p{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{padding:3rem 1.5rem 2rem;}
+  .metrics-bar{grid-template-columns:repeat(3,1fr);}
+  .cards-grid{grid-template-columns:1fr;}
+  .modal-body{padding:20px;}
+  .panel-grid{grid-template-columns:1fr;}
+}
+@media(max-width:500px){.metrics-bar{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-label">C-Suite Intelligence Briefing</div>
+  <h1><span>AI Intelligence Briefing</span><br>Week of March 9–16, 2026</h1>
+  <p class="hero-sub">The enterprise platform war enters its governance phase — while McKinsey's AI breach, $5B in funding, and accelerating layoffs redefine the executive agenda</p>
+  <div class="metrics-bar">
+    <div class="metric"><div class="metric-value">$99/mo</div><div class="metric-label">Microsoft E7<br>New Price</div></div>
+    <div class="metric"><div class="metric-value">$1.03B</div><div class="metric-label">AMI Labs Seed<br>Largest Ever EU</div></div>
+    <div class="metric"><div class="metric-value">2 hrs</div><div class="metric-label">McKinsey Lilli<br>Breach Time</div></div>
+    <div class="metric"><div class="metric-value">45K+</div><div class="metric-label">2026 Tech<br>Layoffs YTD</div></div>
+    <div class="metric"><div class="metric-value">GTC '26</div><div class="metric-label">NVIDIA Keynote<br>Starts Mar 16</div></div>
+  </div>
+</header>
+
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="nav-scroll-left">‹</button>
+    <div class="nav-scroll-area" id="nav-scroll-area">
+      <div class="nav-inner" id="nav-inner">
+        <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="platforms">Platform Wars</button>
+        <button class="nav-btn" data-section="funding">Funding & M&A</button>
+        <button class="nav-btn" data-section="markets">Markets</button>
+        <button class="nav-btn" data-section="agents">Agentic AI</button>
+        <button class="nav-btn" data-section="regulation">Regulation</button>
+        <button class="nav-btn" data-section="workforce">Workforce</button>
+        <button class="nav-btn" data-section="security">AI Security</button>
+        <button class="nav-btn" data-section="infrastructure">Infrastructure</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="nav-scroll-right">›</button>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+      <span class="icon-moon">🌙</span>
+      <span class="icon-sun">☀️</span>
+    </button>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="exec-strip">
+    <div class="exec-strip-label">⚡ 30-Second Executive Summary</div>
+    <p>This week's defining story is the emergence of <strong>AI governance as a platform battleground</strong> — Microsoft, NVIDIA, OpenAI, and Galileo all launched agent governance products, signaling the enterprise control layer for AI is up for grabs. A <strong>2-hour autonomous hack</strong> of McKinsey's internal AI platform exposed 46.5 million records with no credentials, making enterprise AI security an immediate board-level priority. <strong>$5+ billion in funding</strong> flowed into AI this week — including the largest European seed round in history ($1B for Yann LeCun's AMI Labs) — while Atlassian cut 10% of its workforce and Meta leaked plans for 20%+ layoffs. NVIDIA's GTC 2026 kicks off March 16, expected to set the year's hardware roadmap and bring major announcements on the Feynman architecture.</p>
+  </div>
+  <div id="content-area"></div>
+</div>
+
+<footer class="footer">
+  <p>AI Intelligence Briefing — Week of March 9–16, 2026 · Prepared by Claude for C-Suite Decision Makers · Sources verified as of March 16, 2026</p>
+</footer>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-top-bar">
+      <div class="modal-category" id="modal-category"></div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-headline" id="modal-headline"></h2>
+      <div class="modal-date" id="modal-date"></div>
+      <div class="modal-content" id="modal-content"></div>
+      <div class="panel-grid" id="panel-grid"></div>
+      <div class="modal-csuite" id="modal-csuite">
+        <div class="modal-csuite-label">⚡ Bottom Line</div>
+        <p id="modal-csuite-text"></p>
+      </div>
+      <div class="modal-links">
+        <div class="modal-links-label">Sources &amp; Further Reading</div>
+        <div class="modal-link-list" id="modal-link-list"></div>
+      </div>
+      <div class="modal-related">
+        <div class="modal-related-label">Related Topics</div>
+        <div class="related-chips" id="related-chips"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const sections = [
+  {
+    id: "platforms",
+    title: "Enterprise Platform Wars",
+    icon: "🏛",
+    iconClass: "icon-gold",
+    count: 5,
+    cards: [
+      {
+        id: "msft-e7-frontier",
+        date: "Mar 9, 2026",
+        headline: "Microsoft launches $99/user E7 'Frontier Suite' with Claude-powered Copilot Cowork",
+        summary: "Microsoft's biggest enterprise AI offensive bundles Copilot, Agent 365 governance, and Anthropic-built Cowork in a 65% price increase over E5. 80% of Fortune 500 already run Microsoft AI agents.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-gold",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-gold",
+        content: `<p>On <strong>March 9</strong>, Microsoft launched its most ambitious enterprise AI offensive to date under the banner of "Frontier Transformation," encompassing four interlocking products. The new <strong>Microsoft 365 E7 "Frontier Suite"</strong>, available May 1 at <strong>$99/user/month</strong>, represents a 65% price increase over the current E5 flagship — bundling E5, Copilot, Agent 365, and Entra Suite (valued individually at ~$117).</p>
+        <p><strong>Agent 365</strong> ($15/user/month standalone) is a dedicated governance control plane for monitoring, managing, and securing AI agents across the organization. Microsoft disclosed that tens of millions of agents have appeared in enterprise registries, with <strong>500,000+ actively tracked internally</strong>. <strong>Copilot Cowork</strong>, built in collaboration with <strong>Anthropic using Claude's reasoning model</strong>, handles long-horizon multi-step tasks — assembling presentations, pulling financials, emailing stakeholders, and scheduling meetings — running in the cloud within the customer's M365 tenant.</p>
+        <p>The adoption numbers are significant: Copilot paid seats grew <strong>160%+ YoY</strong>, daily usage rose <strong>10×</strong>, and <strong>90% of Fortune 500</strong> now use Copilot. The most strategically significant detail: Claude is now available across the full Copilot Chat experience — marking Microsoft's formal shift from OpenAI-only to a <strong>multi-model architecture</strong>. CMO Jared Spataro stated: "The inflection point is Copilot taking on agentic capabilities and going from assistance to real doing."</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model total E7 migration cost across all seats. A 65% per-seat increase compounds rapidly. Negotiate early commit discounts and evaluate whether Agent 365 governance value justifies the add-on cost."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Evaluate whether Agent 365 or an independent governance tool (e.g., Galileo Agent Control) better fits your agent strategy. Avoid defaulting to Microsoft governance simply because it ships with E7."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Recognize that Microsoft's multi-model pivot validates the market's demand for model diversity. Review whether your current enterprise AI contracts allow model switching without penalty."}
+        ],
+        risks: [
+          {text:"Pricing escalation trap: E7 establishes a new floor. Microsoft historically increases prices as capabilities expand — budget for another 20–30% uplift within 18 months."},
+          {text:"Governance lock-in: Committing to Agent 365 as your agent control plane creates deep Microsoft dependency beyond just productivity software — it governs all agents, not just Copilot."},
+          {text:"Multi-model complexity: Claude in Copilot adds capability but also adds a new vendor relationship, data processing agreement, and audit trail for regulated industries."}
+        ],
+        csuite: "Microsoft's E7 launch is the most consequential enterprise AI pricing event since Office 365 launched. The $99 price point bundles governance and agents with productivity — but the governance layer is the strategic bet that binds your entire AI operation to Microsoft's control plane. CFOs should model this now before May 1 commitments crystallize.",
+        links: [
+          {source:"Microsoft Blog", title:"Introducing the First Frontier Suite built on Intelligence + Trust", url:"https://blogs.microsoft.com/blog/2026/03/09/introducing-the-first-frontier-suite-built-on-intelligence-trust/"},
+          {source:"Bloomberg", title:"Microsoft Launches New $99 Per Month AI-Focused Software Bundle", url:"https://www.bloomberg.com/news/articles/2026-03-09/microsoft-launches-new-99-per-month-ai-focused-software-bundle"},
+          {source:"Fortune", title:"Microsoft debuts Copilot Cowork built on Anthropic's tech and E7 product suite", url:"https://fortune.com/2026/03/09/microsoft-copilot-cowork-ai-agents-anthropic-e7-m365-saas/"},
+          {source:"VentureBeat", title:"Microsoft says ungoverned AI agents could become 'double agents' — its fix costs $99/month", url:"https://venturebeat.com/technology/microsoft-says-ungoverned-ai-agents-could-become-corporate-double-agents-its"}
+        ],
+        related: ["anthropic-marketplace","nvidia-nemoclaw","galileo-agent-control"]
+      },
+      {
+        id: "anthropic-marketplace",
+        date: "Mar 9–12, 2026",
+        headline: "Anthropic launches Claude Marketplace with zero commission — challenging SaaS giants",
+        summary: "The Claude Marketplace lets enterprises redirect AI spend to third-party Claude apps at 0% commission versus 3–15% on AWS/Azure. Annualized revenue tops $19B. Six launch partners include GitLab, Harvey, and Snowflake.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-gold",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-gold",
+        content: `<p>Anthropic's <strong>Claude Marketplace</strong>, announced March 6–7 and widely covered through the week, represents a significant strategic pivot from model provider to platform company. The marketplace allows enterprise customers to redirect existing Anthropic spend commitments toward third-party applications — at <strong>zero commission</strong>, versus the 3–15% charged by AWS and Azure marketplaces. Six launch partners include <strong>GitLab, Harvey, Replit, Snowflake, Lovable</strong>, and one additional partner.</p>
+        <p>Alongside the marketplace, Anthropic committed <strong>$100 million in 2026</strong> to a new Claude Partner Network offering certification programs, technical support, and joint market development funding. On <strong>March 13</strong>, Anthropic launched a promotion doubling usage limits across all tiers through March 27 — a growth play to acquire enterprise users amid fierce competition. Anthropic's annualized revenue has surpassed <strong>$19 billion</strong>, more than doubling in roughly three months. The zero-commission model is a deliberate competitive moat against Microsoft and Google, which charge substantial fees to route enterprise AI spend through their marketplaces.</p>
+        <p>Anthropic's market position remains strong: <strong>40% enterprise LLM market share</strong> (per Menlo Ventures Q4 2025 survey), cloud availability across all three major clouds (Azure, AWS, Google), and now a direct marketplace that may reduce dependence on cloud partner revenue.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Audit your existing Anthropic API commitments — determine if they can be redirected to marketplace applications without renegotiating contract terms. The zero-commission model changes buy-vs-build economics for Claude-powered tools."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Compare total cost of ownership: AWS/Azure Claude access (with 3–15% marketplace fees) versus direct Anthropic Marketplace access. For high-volume enterprise deployments, the delta is material."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Evaluate Anthropic's partner network certification as a quality signal for AI vendor selection. The $100M Partner Network investment signals long-term platform commitment."}
+        ],
+        risks: [
+          {text:"Vendor concentration: Anthropic's 40% enterprise market share makes it a critical dependency. Any service disruption, pricing change, or acquisition event has enterprise-wide impact."},
+          {text:"Marketplace immaturity: Zero commission is an acquisition strategy — expect commission structures to emerge as the marketplace matures and Anthropic approaches IPO."},
+          {text:"Competitive response: Microsoft and Google are unlikely to tolerate zero-commission competition indefinitely. Both may create contractual incentives to keep enterprise spend within their own marketplaces."}
+        ],
+        csuite: "Anthropic's move from API provider to platform company is the most significant structural change in the enterprise AI market this quarter. The Claude Marketplace directly attacks Microsoft and Google's take-rate business model while deepening Claude's position as the enterprise's preferred reasoning engine. CIOs should evaluate whether this changes how they structure AI vendor agreements.",
+        links: [
+          {source:"PYMNTS", title:"Anthropic Challenges SaaS Giants With Claude Marketplace", url:"https://www.pymnts.com/news/artificial-intelligence/2026/anthropic-challenges-saas-giants-with-claude-marketplace/"},
+          {source:"Medium", title:"Anthropic Just Launched Claude Marketplace — And It Could Reshape How Enterprises Buy AI Software", url:"https://medium.com/@meshuggah22/anthropic-just-launched-claude-marketplace-and-it-could-reshape-how-enterprises-buy-ai-software-9670af30e515"}
+        ],
+        related: ["msft-e7-frontier","openai-frontier-alliances","legora-funding"]
+      },
+      {
+        id: "google-gemini-workspace",
+        date: "Mar 10, 2026",
+        headline: "Google deploys Gemini 3 deep inside Workspace — Sheets automates 9× faster than manual entry",
+        summary: "Google's March Workspace update embeds Gemini 3 across Docs, Sheets, Slides, and Drive. AI-powered spreadsheet automation in a 95-participant study ran 9× faster than manual data entry. Requires AI Pro/Ultra subscription.",
+        tags: [["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass: "bar-blue",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-blue",
+        content: `<p>On <strong>March 10</strong>, Google launched deep Gemini 3 integration across its Workspace productivity suite, led by VP Product <strong>Yulie Kwon Kim</strong>. The headline feature: <strong>Google Sheets</strong> can now auto-populate entire datasets from natural language prompts — a 95-participant study found the capability was <strong>9× faster than manual entry</strong>, with measurable accuracy improvements for structured data extraction tasks.</p>
+        <p><strong>Google Drive</strong> gains "AI Overviews" — the same search-summarization technology applied to private file repositories, turning passive document storage into an active knowledge graph that surfaces synthesized answers with citations. <strong>Google Docs</strong> gains multi-document synthesis and real-time collaborative AI editing. Features run on <strong>Gemini 3</strong> and specialized DeepMind models for structured data tasks.</p>
+        <p>Critical pricing note: these features require <strong>Google AI Pro or Ultra subscriptions</strong> — not included in standard Workspace Business or Enterprise plans. A new <strong>AI Expanded Access add-on</strong> is now available separately for Business and Enterprise tiers. Organizations that assumed Gemini was fully included in their Workspace spend will need to revisit contracts.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Audit which Workspace tiers your organization uses. Inventory roles that would benefit from AI Sheets/Docs and model the cost of upgrading to AI Pro vs. the productivity gain from 9× faster data tasks."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Review your Google Workspace contract. 'AI Expanded Access' add-ons may not be covered by existing enterprise agreements — flag for renewal negotiations."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Assess the competitive implication: if Google and Microsoft both price AI productivity features as premium add-ons, per-employee technology cost is structurally increasing 20–40%. This is an enterprise-wide budget recalibration."}
+        ],
+        risks: [
+          {text:"Add-on pricing creep: Google has established a pattern of moving AI features out of base Workspace plans into premium tiers. Expect continued disaggregation of the Workspace bundle."},
+          {text:"Data sovereignty: AI Overviews in Drive synthesizes across all files. Enterprises must confirm this doesn't create unintended cross-document disclosure (e.g., salary data leaking into meeting summaries)."},
+          {text:"Microsoft comparison: Microsoft's E7 bundles Copilot explicitly — Google's approach requires a separate add-on purchase, creating a perception disadvantage in enterprise sales."}
+        ],
+        csuite: "Google's Workspace AI update is genuinely useful — 9× faster data entry in Sheets alone has measurable productivity ROI. But the premium add-on pricing model means most enterprises are not yet receiving these capabilities in their current contracts. CIOs should run a rapid cost-benefit analysis before the next Workspace renewal.",
+        links: [
+          {source:"Google Blog", title:"Google shares Gemini updates to Docs, Sheets, Slides and Drive", url:"https://blog.google/products-and-platforms/products/workspace/gemini-workspace-updates-march-2026/"},
+          {source:"Yahoo Tech", title:"Your Google Workspace apps are getting a major Gemini-powered upgrade", url:"https://tech.yahoo.com/ai/gemini/articles/google-workspace-apps-getting-major-104019591.html"}
+        ],
+        related: ["msft-e7-frontier","anthropic-marketplace"]
+      },
+      {
+        id: "openai-frontier-alliances",
+        date: "Mar 9–13, 2026",
+        headline: "OpenAI's Frontier signs McKinsey, BCG, Accenture — acquires Promptfoo for agent security",
+        summary: "OpenAI expanded Frontier enterprise alliances with all Big Four consultancies and acquired Promptfoo, used by 25%+ of Fortune 500 to secure AI deployments. One manufacturer cut optimization from 6 weeks to 1 day.",
+        tags: [["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass: "bar-gold",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-gold",
+        content: `<p>OpenAI continued its enterprise market push this week, signing multi-year <strong>Frontier platform alliances</strong> with <strong>McKinsey, BCG, Accenture, and Capgemini</strong> for deployment support and co-development. These consulting partnerships extend OpenAI's enterprise reach through the firms that most influence CIO buying decisions. Early Frontier customer results include a manufacturer reducing production optimization from <strong>6 weeks to 1 day</strong> and an energy producer increasing output by up to 5%, adding <strong>over $1 billion in revenue</strong>.</p>
+        <p>On <strong>March 9</strong>, OpenAI acquired <strong>Promptfoo</strong> — an AI security and evaluation platform used by approximately <strong>25% of Fortune 500 companies</strong> to test LLMs for prompt injections, jailbreaks, hallucinations, and data leaks. Promptfoo is OpenAI's 12th acquisition and will be integrated into the Frontier platform. The acquisition directly responds to enterprise CISOs' top AI concern: how do I know my AI deployment is not leaking data or being manipulated?</p>
+        <p>OpenAI also retired GPT-5.1 on March 11, auto-migrating users to GPT-5.3 Instant and GPT-5.4 Thinking/Pro. GPT-5.4 scored <strong>83.0%</strong> on the GDPVal benchmark — at or above human expert level on economically valuable tasks. ChatGPT gained write actions for Google and Microsoft apps and new interactive learning modules for 70+ math and science topics.</p>`,
+        actions: [
+          {owner:"CEO", ownerClass:"owner-ceo", text:"If your organization uses a Big Four consultancy for AI strategy, ask explicitly whether their advice is now influenced by OpenAI Frontier commitments. Consultancy partnerships create potential conflicts of interest in model recommendation."},
+          {owner:"CISO", ownerClass:"owner-ciso", text:"Evaluate Promptfoo (now OpenAI-owned) against independent AI security tools like Galileo Agent Control. The acquisition raises questions about whether an OpenAI-owned security tool will flag OpenAI model vulnerabilities as aggressively."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Model the '6 weeks to 1 day' production optimization claim against your own operational workflows. Identify 3 specific workflows where Frontier-style agents could compress cycle time and assign owners to run structured pilots."}
+        ],
+        risks: [
+          {text:"Consulting capture risk: McKinsey, BCG, Accenture, and Capgemini advising enterprises to adopt OpenAI Frontier while holding commercial Frontier partnerships creates a structural conflict of interest that boards should be aware of."},
+          {text:"Model retirement cadence: GPT-5.1 was retired with minimal notice. Enterprises building on OpenAI APIs must design for model migration — auto-migration is not sufficient for regulated workflows where model changes require re-validation."},
+          {text:"Promptfoo conflict: An AI security tool owned by the AI company it evaluates has an inherent objectivity problem. Enterprises depending on Promptfoo should run parallel evaluations with independent vendors."}
+        ],
+        csuite: "OpenAI's consulting alliances are a distribution channel play — the Big Four become OpenAI's enterprise sales force. For CEOs currently working with these firms on AI strategy, it's worth asking whether those recommendations are genuinely objective. The Promptfoo acquisition is strategically sound but the independence question deserves scrutiny.",
+        links: [
+          {source:"OpenAI", title:"Introducing OpenAI Frontier", url:"https://openai.com/index/introducing-openai-frontier/"},
+          {source:"Bloomberg", title:"OpenAI Buying AI Security Startup Promptfoo to Safeguard AI Agents", url:"https://www.bloomberg.com/news/articles/2026-03-09/openai-buying-ai-security-startup-promptfoo-to-safeguard-ai-agents"},
+          {source:"SecurityWeek", title:"OpenAI to Acquire AI Security Startup Promptfoo", url:"https://www.securityweek.com/openai-to-acquire-ai-security-startup-promptfoo/"},
+          {source:"Futurum Group", title:"OpenAI Acquires Promptfoo, Gaining 25% Foothold in Fortune 500 Enterprises", url:"https://futurumgroup.com/insights/openai-acquires-promptfoo-gaining-25-foothold-in-fortune-500-enterprises/"}
+        ],
+        related: ["mckinsey-breach","msft-e7-frontier","anthropic-marketplace"]
+      },
+      {
+        id: "perplexity-enterprise",
+        date: "Mar 11–12, 2026",
+        headline: "Perplexity launches 'Computer for Enterprise' — 19-model agent at $200/month per device",
+        summary: "At its 'Ask 2026' conference, Perplexity ($20B valuation) unveiled an enterprise AI agent orchestrating 19+ frontier models with SOC 2, SAML SSO, and Salesforce/HubSpot integration. CEO: 'An AI OS takes objectives, not instructions.'",
+        tags: [["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass: "bar-cyan",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "ENTERPRISE PLATFORMS",
+        catColor: "c-cyan",
+        content: `<p>At its inaugural <strong>"Ask 2026"</strong> developer conference on <strong>March 11</strong>, Perplexity (valued at ~$20B) announced 13 products — its most aggressive enterprise push yet. The headline: <strong>Computer for Enterprise</strong>, a multi-model agent platform orchestrating <strong>19–20 frontier models</strong> with SOC 2 Type II compliance, SAML SSO, and native integrations with Snowflake, Salesforce, HubSpot, and major data warehouses. A personal computing variant runs 24/7 on a dedicated Mac mini at <strong>$200/month per device</strong>.</p>
+        <p>CEO <strong>Aravind Srinivas</strong> framed the vision provocatively: "A traditional operating system takes instructions; an <strong>AI operating system takes objectives</strong>." The product is designed to handle long-horizon, multi-day tasks autonomously — not just answering queries but completing entire workflows. Perplexity also faces an active lawsuit from Amazon alleging the product scrapes and repackages Amazon's product data for enterprise research workflows.</p>
+        <p>The competitive framing is clear: Perplexity positions itself as model-agnostic and cheaper than Microsoft Copilot or Salesforce Agentforce — targeting the enterprise buyer who wants agent functionality without committing to a single vendor's ecosystem. With <strong>100+ million monthly active users</strong> on the consumer side, Perplexity has distribution credibility for enterprise conversion.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Evaluate Perplexity Computer for Enterprise as a multi-model alternative to single-vendor agent platforms. The $200/device/month pricing is competitive if it genuinely replaces multiple point tools."},
+          {owner:"GC", ownerClass:"owner-gc", text:"Review the Amazon lawsuit status. If Perplexity is found to be scraping and repackaging third-party data, enterprise customers using its outputs for procurement or competitive intelligence could face secondary liability."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Consider Perplexity's framing of 'AI operating system' as a strategic signal: the next platform war is over who sets objectives for AI agents, not who provides the underlying model."}
+        ],
+        risks: [
+          {text:"Amazon lawsuit exposure: Enterprise use of Perplexity products for competitive research or procurement intelligence may implicate customers in data sourcing disputes."},
+          {text:"Model orchestration complexity: A 19-model agent increases surface area for hallucinations, inconsistent outputs, and audit trail gaps across models."},
+          {text:"Startup risk at $20B: Perplexity's valuation implies growth expectations that require successful enterprise conversion from its consumer base. Revenue model maturity lags the valuation."}
+        ],
+        csuite: "Perplexity's enterprise push introduces a credible model-agnostic alternative to Microsoft, Google, and Salesforce in the agent space. For enterprises frustrated by single-vendor lock-in, it warrants a structured pilot evaluation — particularly for knowledge-worker research and synthesis workflows. The Amazon lawsuit is a genuine risk to monitor.",
+        links: [
+          {source:"VentureBeat", title:"Perplexity takes its 'Computer' AI agent into the enterprise", url:"https://venturebeat.com/technology/perplexity-takes-its-computer-ai-agent-into-the-enterprise-taking-aim-at"},
+          {source:"The Next Web", title:"Perplexity turns your Mac mini into a 24/7 AI agent", url:"https://thenextweb.com/news/perplexity-personal-computer-enterprise"},
+          {source:"Perplexity", title:"Everything is Computer", url:"https://www.perplexity.ai/hub/blog/everything-is-computer"}
+        ],
+        related: ["msft-e7-frontier","nvidia-nemoclaw","galileo-agent-control"]
+      }
+    ]
+  },
+  {
+    id: "funding",
+    title: "Record Funding & Strategic M&A",
+    icon: "💰",
+    iconClass: "icon-green",
+    count: 5,
+    cards: [
+      {
+        id: "ami-labs-seed",
+        date: "Mar 10, 2026",
+        headline: "Yann LeCun's AMI Labs raises $1.03B seed — the largest European seed round ever",
+        summary: "The Turing Award winner's 3-month-old startup raised $1B+ at a $3.5B pre-money valuation backed by NVIDIA, Bezos, Temasek, and Tim Berners-Lee. AMI is building 'world models' as a fundamental LLM alternative.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass: "bar-green",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "FUNDING & M&A",
+        catColor: "c-green",
+        content: `<p>On <strong>March 10</strong>, <strong>AMI Labs</strong> — founded less than three months ago by <strong>Yann LeCun</strong> (Turing Award winner, former Meta Chief AI Scientist) — raised <strong>$1.03 billion</strong> at a <strong>$3.5 billion pre-money valuation</strong>: the largest seed round ever for a European company. The round was co-led by Cathay Innovation, Greycroft, Hiro Capital, and HV Capital, with strategic participation from <strong>NVIDIA, Temasek, Bezos Expeditions, Tim Berners-Lee, Jim Breyer, Mark Cuban, and Eric Schmidt</strong>.</p>
+        <p>AMI Labs is building <strong>"world models"</strong> — AI that understands physical reality, causality, and object permanence rather than generating text. LeCun has argued publicly and consistently that large language models have fundamental architectural limitations that prevent them from achieving human-level reasoning. His world model architecture is a credible academic bet on a post-transformer paradigm. The company has <strong>no product and no revenue</strong>; LeCun acknowledged the first year is entirely R&D.</p>
+        <p>The $1B round for a pre-revenue company with no product signals how much capital is chasing the possibility of a fundamental AI architecture shift. NVIDIA's participation is particularly significant — Jensen Huang is hedging against the possibility that Transformer-era chip architectures may not be optimal for the next paradigm.</p>`,
+        actions: [
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Add AMI Labs to your strategic technology watch list. A credible Turing Award winner with $1B+ in funding challenging the LLM paradigm is a 3–5 year horizon risk to current transformer-based AI investments."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Do not allocate current IT budgets based on world model speculation — AMI is in pure R&D. However, include architectural risk assumptions in long-horizon AI ROI models (2028+)."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Follow AMI Labs' research publications closely. If world model architectures demonstrate superiority in specific domains (robotics, simulation, reasoning), early piloting could provide competitive advantage."}
+        ],
+        risks: [
+          {text:"Paradigm risk: LLMs have proven more capable than LeCun predicted. World models may face comparable adoption challenges — the research bet may not pay off on any enterprise-relevant timeline."},
+          {text:"Distraction risk: C-suite attention on next-generation paradigms can reduce focus on extracting value from current-generation AI deployments where ROI is already demonstrated."},
+          {text:"Ecosystem fragmentation: Success of non-transformer architectures would require entirely new toolchains, prompting libraries, and enterprise integrations — potentially obsoleting current AI investments."}
+        ],
+        csuite: "LeCun's $1B seed round is the clearest signal yet that sophisticated capital believes LLMs have architectural ceilings. For CEOs, this is a 3–5 year strategic risk to monitor — not a reason to pause current AI deployment, but a reason to structure AI contracts with flexibility rather than permanent infrastructure commitments.",
+        links: [
+          {source:"STAT News", title:"Health AI startup to benefit from $1 billion funding round for Yann LeCun's AMI", url:"https://www.statnews.com/2026/03/10/ai-ami-yann-lecun-nabla-lebrun-world-model/"}
+        ],
+        related: ["replit-series-d","nvidia-gtc","anthropic-marketplace"]
+      },
+      {
+        id: "legora-series-d",
+        date: "Mar 10, 2026",
+        headline: "Legal AI platform Legora raises $550M at $5.55B — 3× valuation jump in 5 months",
+        summary: "Swedish legal AI startup Legora (formerly Leya) tripled its valuation in five months with 800+ law firm customers. Menlo Ventures notes 80% of legal tasks are AI-reachable but only 15% adoption achieved so far.",
+        tags: [["CEO","bg-gold"],["GC","bg-purple"]],
+        barClass: "bar-purple",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "FUNDING & M&A",
+        catColor: "c-green",
+        content: `<p><strong>Legora</strong> (formerly Leya), a Swedish legal AI startup, closed a <strong>$550 million Series D</strong> on <strong>March 10</strong> at a <strong>$5.55 billion valuation</strong> — a 3× increase from its $1.8B Series C just five months prior. The round was led by <strong>Accel</strong> with participation from Salesforce Ventures, Menlo Ventures, and Bain Capital, bringing total funding to $816 million. CEO <strong>Max Junestrand</strong> reported <strong>800+ law firm customers</strong> across 50+ markets, including marquee names like White &amp; Case and Cleary Gottlieb.</p>
+        <p>The investment thesis is powerful: Menlo Ventures data shows that <strong>80% of legal tasks</strong> are theoretically within AI's capability range, yet only <strong>15% adoption</strong> has occurred — representing a massive addressable gap. Legora's product automates contract review, due diligence, legal research, and regulatory analysis within a compliance-grade environment.</p>
+        <p>The valuation velocity (from $1.8B to $5.55B in five months) reflects a broader pattern in vertical AI: domain-specific AI platforms that demonstrate measurable ROI in regulated industries are commanding premium multiples. The legal vertical is particularly attractive because it combines high billing rates, repetitive document-intensive workflows, and a conservative adoption curve that creates defensible market positions for early leaders.</p>`,
+        actions: [
+          {owner:"GC", ownerClass:"owner-gc", text:"Evaluate Legora alongside Harvey and other legal AI platforms for your in-house legal team. The 80% addressable task rate suggests significant efficiency gains remain uncaptured. Run a structured 90-day pilot on contract review workflows."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Ask your General Counsel: what percentage of our annual legal spend goes to tasks that Legora-class tools could handle? The industry average is 40–60% — this is a direct cost reduction opportunity."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the P&L impact of AI-powered legal workflow automation. A 30% reduction in routine legal fees for a company spending $10M annually in legal costs is $3M in direct savings — quantify your specific case."}
+        ],
+        risks: [
+          {text:"Regulatory risk: AI-generated legal analysis may not satisfy attorney-client privilege requirements in all jurisdictions. GCs must validate acceptable use frameworks before full deployment."},
+          {text:"Quality assurance: The 80% addressable task rate does not mean 80% accuracy — enterprise deployment requires human review workflows for AI-generated legal outputs until accuracy is validated at sufficient confidence levels."},
+          {text:"Valuation risk for potential acquirers: The 3× valuation jump in 5 months makes acquisition expensive. Enterprises considering strategic investments or partnerships should negotiate early."}
+        ],
+        csuite: "Legal AI is the most clearly ROI-positive vertical AI application in the enterprise. The 80% addressable/15% adoption gap translates directly to cost reduction opportunity for any company with significant legal spend. CEOs and GCs who have not yet piloted Legora, Harvey, or comparable tools are leaving measurable value on the table.",
+        links: [
+          {source:"Crunchbase News", title:"The Week's 10 Biggest Funding Rounds: AI, Robotics And E-Commerce Top The Ranks", url:"https://news.crunchbase.com/venture/biggest-funding-rounds-ai-robotics-ecommerce-quince/"}
+        ],
+        related: ["ami-labs-seed","replit-series-d","openai-frontier-alliances"]
+      },
+      {
+        id: "replit-series-d",
+        date: "Mar 9–13, 2026",
+        headline: "Replit raises $400M at $9B — triples valuation in six months as agentic dev explodes",
+        summary: "Replit's Series D led by Georgian values the agentic software creation platform 3× higher than six months ago. Databricks acquires Quotient AI to power agent evaluation as the agentic engineering market matures.",
+        tags: [["CIO","bg-blue"],["CFO","bg-green"]],
+        barClass: "bar-green",
+        riskLevel: "LOW",
+        riskClass: "bg-gold",
+        category: "FUNDING & M&A",
+        catColor: "c-green",
+        content: `<p><strong>Replit</strong> raised <strong>$400 million</strong> in a <strong>Series D</strong> led by Georgian Partners, valuing the agentic AI software creation platform at <strong>$9 billion</strong> — up 3× from $3 billion just six months earlier. The tripling in valuation in a single funding cycle reflects explosive demand for AI-native software development tools that go beyond autocomplete to full agentic code generation and deployment.</p>
+        <p>Simultaneously, <strong>Databricks acquired Quotient AI</strong> on <strong>March 11</strong> — an agent evaluation and reinforcement learning startup founded by engineers who previously led quality improvement for GitHub Copilot. Databricks CEO <strong>Ali Ghodsi</strong> stated: "Software development has shifted from code-assistance to full agentic engineering in the past six months." The acquisition enables Databricks' new <strong>Genie Code</strong> product to self-evaluate and improve agent quality over time — critical infrastructure for enterprise AI that must maintain quality standards at scale.</p>
+        <p>Together these deals signal that the <strong>agentic software development market</strong> is maturing from novelty to infrastructure. Enterprises are no longer asking whether AI can write code — they are asking how to govern, evaluate, and improve AI-generated code at enterprise scale. Quotient's RLHF-based evaluation approach addresses the quality assurance gap that has slowed adoption of AI coding agents in regulated environments.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Evaluate Replit and Databricks Genie Code for your software development teams. The shift from code-assistance to agentic engineering changes developer productivity economics by an order of magnitude — benchmark against your current tooling."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Quantify your current software development costs. If agentic coding tools deliver even 20% productivity improvement, the ROI on Replit or comparable investments exceeds most enterprise technology investments at current valuations."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Recognize the talent implication: agentic coding tools change the required developer headcount for the same output. Factor this into your technology workforce planning for the next 12–18 months."}
+        ],
+        risks: [
+          {text:"Code quality governance: AI-generated code at scale requires robust review and testing infrastructure. Enterprises deploying agentic coding agents without systematic quality gates risk accumulating technical debt invisibly."},
+          {text:"IP and licensing risk: AI coding agents trained on open-source code may generate output with ambiguous copyright status — particularly relevant for software products in highly regulated industries."},
+          {text:"Skill atrophy: Over-reliance on AI code generation may reduce junior developer skill development, creating organizational dependencies on AI tooling that are difficult to reverse."}
+        ],
+        csuite: "Replit's $9B valuation and Databricks' Quotient acquisition together define the next phase of enterprise software development: not AI-assisted, but AI-agentic. CIOs who have not piloted agentic coding tools in 2026 will find themselves operating at a structural productivity disadvantage relative to AI-native competitors.",
+        links: [
+          {source:"Databricks", title:"Databricks acquires Quotient AI to power AI agent evaluations", url:"https://www.databricks.com/blog/databricks-acquires-quotient-ai-power-ai-agent-evaluations"},
+          {source:"PR Newswire", title:"Databricks Launches Genie Code: Bringing Agentic Engineering to Data Work", url:"https://www.prnewswire.com/in/news-releases/databricks-launches-genie-code-bringing-agentic-engineering-to-data-work-302711095.html"}
+        ],
+        related: ["ami-labs-seed","zendesk-forethought","msft-e7-frontier"]
+      },
+      {
+        id: "zendesk-forethought",
+        date: "Mar 11, 2026",
+        headline: "Zendesk acquires Forethought in its largest deal in 20 years — 1B+ monthly customer interactions",
+        summary: "The all-cash acquisition brings self-improving AI customer service agents processing over 1 billion monthly interactions for Upwork, Grammarly, and Datadog into Zendesk's platform. Transforms passive CRM into agentic service operations.",
+        tags: [["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass: "bar-cyan",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "FUNDING & M&A",
+        catColor: "c-green",
+        content: `<p><strong>Zendesk</strong> acquired <strong>Forethought</strong> on <strong>March 11</strong> in an all-cash deal described as its largest acquisition in two decades. Forethought's AI agents process <strong>over 1 billion monthly customer service interactions</strong> for enterprise clients including Upwork, Grammarly, Datadog, and dozens of other SaaS companies. The product's differentiator is continuous self-improvement via reinforcement learning — agents that get measurably better at resolution rates over time without manual retraining.</p>
+        <p>The acquisition positions Zendesk to compete directly with Salesforce Agentforce and ServiceNow in the agentic customer service space. Rather than building agentic capabilities from scratch, Zendesk accelerates by acquiring proven infrastructure that already handles billion-interaction scale. Forethought's RLHF-based quality loop is particularly valuable — it transforms static rule-based bots into agents that learn from every resolution outcome.</p>
+        <p>For enterprise CIOs and customer experience leaders, the deal has direct implications: any organization using Zendesk for customer support should expect an agentic AI upsell within the next 12 months. The question is not whether to adopt AI customer service agents — it is whether to adopt them through your CRM platform (Zendesk/Salesforce) or through standalone agentic vendors.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"If your organization uses Zendesk, request a Forethought product roadmap briefing. Assess integration timeline and pricing before competitors lock in more favorable pricing tiers."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Evaluate the customer service automation ROI: Forethought's self-improving agents typically achieve 40–60% ticket deflection rates in the first 6 months. For organizations with large service operations, this is transformational."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the agent deflection economics against your current cost-per-ticket. At Forethought's published deflection rates, most enterprises with 50,000+ annual tickets see full payback within 12 months."}
+        ],
+        risks: [
+          {text:"Integration risk: Large acquisitions frequently experience product integration delays — the 1B interaction claim may not translate to enterprise-ready functionality within Zendesk's existing architecture for 12–18 months."},
+          {text:"Customer concentration: If Forethought's success depends on a small number of high-volume customers, integration into Zendesk may disrupt existing contracts and SLAs."},
+          {text:"Self-improvement transparency: Agents that learn autonomously require auditability — enterprises in regulated industries must ensure agent improvement decisions are logged and explainable."}
+        ],
+        csuite: "The Zendesk-Forethought deal signals that agentic AI in customer service has moved from innovation to consolidation — a sign the market is maturing. For enterprises, the practical question is whether your customer service AI strategy is better served by a platform vendor (Zendesk, Salesforce) or best-of-breed agentic vendors before the window for independent negotiation closes.",
+        links: [
+          {source:"The Next Web", title:"Zendesk acquires Forethought in its biggest deal in two decades", url:"https://thenextweb.com/news/zendesk-acquires-forethought-agentic-ai"}
+        ],
+        related: ["openai-frontier-alliances","replit-series-d","msft-e7-frontier"]
+      },
+      {
+        id: "nvidia-thinking-machines",
+        date: "Mar 10–13, 2026",
+        headline: "NVIDIA invests $2B in Nebius and backs Mira Murati's Thinking Machines at gigawatt scale",
+        summary: "NVIDIA committed $2B to AI cloud provider Nebius (stock +26%) and a 'significant investment' plus 1 gigawatt of chips to ex-OpenAI CTO Mira Murati's Thinking Machines Lab. Analysts flag circular ecosystem financing risk.",
+        tags: [["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-blue",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "FUNDING & M&A",
+        catColor: "c-green",
+        content: `<p>NVIDIA made two major infrastructure investments this week. On <strong>March 11</strong>, NVIDIA invested <strong>$2 billion</strong> in <strong>Nebius Group</strong> via pre-funded warrants, partnering to deploy <strong>5+ gigawatts</strong> of NVIDIA systems through Nebius' European and North American data centers by 2030. Nebius stock surged <strong>~26%</strong> on the announcement. On <strong>March 10</strong>, NVIDIA made a "significant investment" in <strong>Thinking Machines Lab</strong> — founded by former OpenAI CTO <strong>Mira Murati</strong> — alongside a multi-year deal for <strong>1+ gigawatt of Vera Rubin systems</strong>, estimated at tens of billions of dollars by the Financial Times.</p>
+        <p>These follow recent NVIDIA investments in CoreWeave, Coherent, and Lumentum, establishing a pattern: NVIDIA invests in companies that then use the capital to purchase NVIDIA GPUs. <strong>Analysts from multiple firms are flagging this as circular ecosystem financing</strong> — NVIDIA effectively lends customers the capital to buy its own products, inflating revenue while concentrating financial risk if any of these companies face liquidity challenges.</p>
+        <p>The Thinking Machines Lab investment is strategically notable: Murati left OpenAI in September 2024 under ambiguous circumstances and has assembled a top-tier technical team. A gigawatt-scale NVIDIA commitment at series seed stage suggests exceptional confidence in the team — and ensures that when Thinking Machines deploys frontier models, they run on NVIDIA infrastructure.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the circular financing risk in your NVIDIA-dependent infrastructure strategy. If NVIDIA-backed cloud providers face liquidity challenges, GPU supply chains and cloud pricing for all enterprise customers could be disrupted."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Follow Thinking Machines Lab's research publications. Murati's technical pedigree and NVIDIA backing suggest a credible new frontier model competitor within 12–18 months — relevant for enterprise model evaluation."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Assess concentration risk: if NVIDIA-backed cloud providers represent a significant portion of your AI compute infrastructure, diversify across at least one non-NVIDIA ecosystem provider (AMD-powered, Google TPU, etc.)."}
+        ],
+        risks: [
+          {text:"Circular financing systemic risk: NVIDIA investing in AI companies that use capital to buy NVIDIA GPUs creates a self-reinforcing cycle that could unwind rapidly if GPU demand softens or credit conditions tighten."},
+          {text:"Nebius geopolitical exposure: Nebius is a Yandex spinoff with European operations — its Russia-adjacent history may create compliance concerns for enterprises in certain regulated sectors."},
+          {text:"Thinking Machines Lab uncertainty: Without a public product or research output, the $1B+ compute commitment is a bet on people and vision — enterprise readiness is at minimum 18–24 months away."}
+        ],
+        csuite: "NVIDIA's ecosystem investment strategy is brilliant and potentially dangerous. By financing the companies that finance NVIDIA's own revenue, Jensen Huang has created a growth flywheel — but one that concentrates systemic risk. CFOs should ensure AI infrastructure strategies do not create single-point-of-failure exposure to NVIDIA's circular ecosystem.",
+        links: [
+          {source:"Bloomberg", title:"Nvidia Invests $2 Billion in Nebius to Expand AI Data Center Infrastructure", url:"https://www.bloomberg.com/news/articles/2026-03-11/nvidia-to-invest-2-billion-in-ai-data-center-specialist-nebius"},
+          {source:"CNBC", title:"Nebius stock pops 16% on Nvidia $2 billion investment announcement", url:"https://www.cnbc.com/2026/03/11/nebius-nvidia-ai-cloud.html"},
+          {source:"NVIDIA Blog", title:"NVIDIA and Thinking Machines Lab Announce Long-Term Gigawatt-Scale Strategic Partnership", url:"https://blogs.nvidia.com/blog/nvidia-thinking-machines-lab/"},
+          {source:"Yahoo Finance", title:"Nvidia to provide 1 gigawatt of AI chips to Thinking Machines Labs", url:"https://finance.yahoo.com/news/nvidia-to-provide-1-gigawatt-of-ai-chips-make-significant-investment-in-openai-rival-thinking-machines-labs-155432367.html"}
+        ],
+        related: ["nvidia-gtc","ami-labs-seed","replit-series-d"]
+      }
+    ]
+  },
+  {
+    id: "markets",
+    title: "Market Impact & Economics",
+    icon: "📉",
+    iconClass: "icon-red",
+    count: 3,
+    cards: [
+      {
+        id: "market-selloff-gtc",
+        date: "Mar 9–14, 2026",
+        headline: "S&P 500 posts third losing week; NVIDIA steady at $180 ahead of pivotal GTC 2026",
+        summary: "Markets hit their lowest since November 2025 (S&P 6,632, Nasdaq 22,105) amid Iran-conflict oil fears and SaaSpocalypse tech selling. Major banks turn bullish on NVDA ahead of GTC — 12–45% post-conference outperformance historically.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass: "bar-red",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "MARKET IMPACT",
+        catColor: "c-red",
+        content: `<p>Markets suffered a third consecutive losing week, with the <strong>S&P 500 closing at 6,632</strong> and the <strong>Nasdaq at 22,105</strong> — the lowest levels since November 2025. The sustained selloff reflects a convergence of macro concerns (Iran conflict escalation, oil above $90/barrel) and the ongoing <strong>"SaaSpocalypse"</strong> — a sector-wide repricing of traditional enterprise software stocks as AI threatens incumbent margins. <strong>Atlassian</strong>, down 84% from its 2021 peak, is emblematic.</p>
+        <p><strong>NVIDIA closed at $180.25</strong> on Friday, March 13 — down 1.58% on the day but significantly outperforming the broader tech selloff. Major banks turned explicitly bullish ahead of GTC 2026: Wells Fargo analyst Aaron Rakers noted that NVIDIA has historically outperformed the SOX semiconductor index by <strong>+12% to +45%</strong> in the three months following GTC conferences. Bank of America targets $300; Baird maintains $274. Morgan Stanley's March 13 report warned that a "transformative leap in AI is imminent" — projecting that <strong>GPT-5.4's 83% GDPVal score</strong> puts AI at or above human expert level on economically valuable tasks.</p>
+        <p>The divergence between AI hardware (NVIDIA surging) and AI-threatened enterprise software (SaaSpocalypse) is now the defining investment tension of 2026. <strong>IREN Limited</strong> secured a $9.7 billion Microsoft data center services contract. <strong>Vertiv Holdings</strong> (data center power/cooling) rose ~50% YTD as JPMorgan raised its target to $305 — a clear infrastructure-over-software rotation.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Reassess your technology vendor portfolio for SaaSpocalypse exposure. Enterprise software vendors with weak AI differentiation face sustained multiple compression — factor this into vendor financial stability assessments."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Review capital allocation in light of the infrastructure-over-software rotation. The market is pricing AI infrastructure (NVIDIA, data centers, power/cooling) as long-term winners — this pricing signal has strategic implications for build vs. buy decisions."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Model the impact of GTC 2026 announcements on your hardware roadmap. Post-GTC, Feynman architecture details will clarify whether to accelerate Rubin commitments or extend current Blackwell deployments."}
+        ],
+        risks: [
+          {text:"Macro instability: The Iran conflict and oil price escalation introduce genuine downside scenarios for global IT spending — enterprises should stress-test AI investment plans against a 10–15% budget reduction scenario."},
+          {text:"SaaSpocalypse contagion: If enterprise software vendors face sustained revenue pressure, they may reduce R&D investment, increase prices, or cut services — creating operational risk for enterprises that depend on legacy SaaS platforms."},
+          {text:"GTC disappointment risk: Historical post-GTC outperformance creates elevated expectations. If Jensen Huang's announcements fail to meet market expectations, NVIDIA's correction could accelerate."}
+        ],
+        csuite: "The market is telling a clear story: AI infrastructure is being priced as a multi-decade secular winner, while traditional enterprise software faces existential disruption. For corporate investors and CFOs, the strategic question is whether to participate in the AI infrastructure buildout directly (cloud commitments, hardware purchases) or to position the enterprise as a consumer of falling AI costs in the second half of 2026.",
+        links: [
+          {source:"The Motley Fool", title:"Nvidia's Top AI Event Is Here: Will Nvidia Stock Rise During the Week of March 16?", url:"https://www.fool.com/investing/2026/03/14/nvda-stock-gtc-2026-dates-best-ai-stocks/"},
+          {source:"Fortune", title:"Morgan Stanley warns an AI breakthrough is coming in 2026 — and most of the world isn't ready", url:"https://fortune.com/2026/03/13/elon-musk-morgan-stanley-ai-leap-2026/"},
+          {source:"International Business Times", title:"NVIDIA (NVDA) Stock Closes at $180.25 on March 13 Amid Pre-GTC Anticipation", url:"https://www.ibtimes.com/nvidia-nvda-stock-closes-18025-march-13-amid-pre-gtc-2026-anticipation-3799201"}
+        ],
+        related: ["nvidia-gtc","atlassian-layoffs","meta-layoffs"]
+      },
+      {
+        id: "gartner-6t-forecast",
+        date: "Mar 9–14, 2026",
+        headline: "Gartner: $6.15T IT spending in 2026, with GenAI model spending surging 80.8%",
+        summary: "Worldwide IT spending grows 10.8% to $6.15T. Data center systems up 31.7%, crossing $650B. GenAI model spending rises 80.8%. The $700B hyperscaler capex race continues as ROI evidence remains thin.",
+        tags: [["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-green",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "MARKET IMPACT",
+        catColor: "c-red",
+        content: `<p><strong>Gartner</strong> projects worldwide IT spending will reach <strong>$6.15 trillion in 2026</strong> — up <strong>10.8%</strong> year-over-year and the fastest growth rate since cloud computing entered the enterprise mainstream. The breakdown is AI-dominated: data center systems spending will rise <strong>31.7%</strong>, surpassing <strong>$650 billion</strong>; GenAI model spending growth hits <strong>80.8%</strong>. The five largest hyperscalers are collectively targeting over <strong>$700 billion in AI infrastructure capex</strong>: Amazon (~$200B), Alphabet ($175–185B), Meta ($115–135B), Microsoft ($145B), and Oracle.</p>
+        <p>The spending trajectory creates an acute ROI question. While Gartner projects 80.8% growth in GenAI model spend, it simultaneously maintains AI in the "Trough of Disillusionment" for 2026 — acknowledging that enterprise deployments are not yet generating commensurate business value. <strong>Forrester</strong> predicts enterprises will defer <strong>25% of planned 2026 AI spend into 2027</strong> as ROI timelines extend. KPMG's Q4 AI Pulse Survey provides a counter-narrative: <strong>67% of enterprises would maintain AI spending even in a recession</strong>, and average planned deployment is $124 million over the coming year.</p>
+        <p>The CFO's challenge is clear: every analyst firm projects accelerating AI spending, yet evidence of proportional business value remains inconsistent across industries and deployment types. The enterprises that will capture the most value in 2026–2027 are those that build ROI accountability frameworks now rather than waiting for consensus.</p>`,
+        actions: [
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Establish business-unit-level AI ROI accountability before Q2. Require each AI deployment to define success metrics and measurement cadence within 30 days of launch. Approve only projects with measurable KPIs."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Set an explicit company position on the Gartner Trough: are you a fast follower waiting for ROI proof, or a market leader investing ahead of evidence? Both are defensible — but be explicit and aligned with your board."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Design AI infrastructure commitments with optionality. The $700B hyperscaler capex race means compute costs will likely fall significantly in H2 2026 as Rubin platforms arrive — avoid long-term lock-ins at current GPU pricing."}
+        ],
+        risks: [
+          {text:"ROI accountability gap: 80.8% spending growth with thin ROI evidence creates board-level exposure for CIOs and CFOs who cannot demonstrate value. Build measurement frameworks before scaling deployments."},
+          {text:"Infrastructure overcapacity risk: $700B in hyperscaler capex targeting similar workloads may create a significant overcapacity scenario in 2027, making current long-term cloud commitments at today's prices uneconomic."},
+          {text:"Deferral cascade: Forrester's prediction of 25% AI spend deferral into 2027 — if accurate — would slow platform adoption momentum and extend payback periods on current investments."}
+        ],
+        csuite: "The $6.15T IT spending projection sets a structural context: AI infrastructure investment is a multi-decade buildout, not a spending cycle. For CFOs, the immediate priority is not keeping pace with spending growth but extracting measurable value from current deployments before committing to the next layer of AI infrastructure investment.",
+        links: [
+          {source:"Gartner", title:"Gartner Forecasts Worldwide IT Spending to Grow 10.8% in 2026", url:"https://www.gartner.com/en/newsroom/press-releases/2026-02-03-gartner-forecasts-worldwide-it-spending-to-grow-10-point-8-percent-in-2026-totaling-6-point-15-trillion-dollars"},
+          {source:"Computerworld", title:"Enterprise tech spending to cross $6 trillion in 2026, driven by AI infrastructure boom", url:"https://www.computerworld.com/article/4128002/global-it-spending-to-hit-6-15tn-in-2026-driven-by-ai-infrastructure-boom.html"}
+        ],
+        related: ["market-selloff-gtc","nvidia-gtc","atlassian-layoffs"]
+      },
+      {
+        id: "meta-avocado-delay",
+        date: "Mar 12, 2026",
+        headline: "Meta delays flagship 'Avocado' AI model to May; reportedly eyeing Google Gemini license",
+        summary: "Reuters reports Meta's next-gen model underperforms Gemini 2.5, prompting a delay to at least May and discussions about temporarily licensing Google's models. SpaceX has formally acquired xAI as Musk signals a ground-up rebuild.",
+        tags: [["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass: "bar-red",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "MARKET IMPACT",
+        catColor: "c-red",
+        content: `<p>On <strong>March 12</strong>, Reuters reported that <strong>Meta delayed its next flagship AI model "Avocado"</strong> from March to at least May 2026. The reason: performance falls between Google's Gemini 2.5 and Gemini 3 — below the competitive threshold Meta needs to maintain market position. In response, Meta leadership reportedly discussed <strong>temporarily licensing Google's Gemini models</strong> to power Meta AI products while Avocado development continues, though no decision was reached. Meta also unveiled <strong>four generations of custom AI chips</strong> (MTIA 300 through 500) targeting 2027 deployment — a long-horizon bet on reducing NVIDIA dependency.</p>
+        <p>Meanwhile, <strong>SpaceX has formally acquired xAI</strong>, Elon Musk's AI company, creating a combined entity with significant compute and capital resources. Musk acknowledged publicly that xAI "was not built right first time around" and announced it would be rebuilt from the ground up. Grok 4.20 Heavy Beta 2 launched on March 12 with a 4-agent collaboration system, but the architectural rebuild signal is significant — xAI is resetting rather than iterating.</p>
+        <p>These two stories together reveal a key dynamic in the frontier AI race: <strong>even well-resourced incumbents are struggling to maintain competitive model performance</strong>. Meta's $115–135B capex commitment and 40,000+ engineers could not prevent an Avocado performance gap. xAI's architectural reset after $20B+ in funding suggests that capital alone does not solve AI model quality challenges.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"If Meta AI products (Instagram, WhatsApp Business, Meta Workplace) are part of your enterprise AI stack, assess the impact of a potential model capability gap. Understand what would change operationally if Meta temporarily runs Gemini-licensed models."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Take note of the Apple-Google and Meta-Google licensing pattern: even the world's largest companies are consolidating AI infrastructure around Google Gemini and Anthropic Claude. This accelerates a two-model-family future."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"The Meta MTIA chip program (MTIA 300–500 through 2027) is a multi-year bet to reduce NVIDIA dependency. For enterprises with significant AMD or NVIDIA hardware commitments, watch whether Meta's chip success reshapes the GPU market by 2028."}
+        ],
+        risks: [
+          {text:"Model concentration: Apple uses Google Gemini, Meta may temporarily license Gemini, and Microsoft uses Claude. The enterprise AI market is consolidating around two model families faster than expected, with concentration risk implications."},
+          {text:"xAI reliability: Musk's architectural rebuild signal means xAI products (Grok API, enterprise offerings) may face instability during the transition period. Enterprises with xAI dependencies should plan for service disruptions."},
+          {text:"Meta enterprise product continuity: If Meta's foundation model falls behind competitors, its enterprise products (Workplace, Portal, business messaging) may lose capability parity — relevant for enterprises standardizing on Meta's ecosystem."}
+        ],
+        csuite: "The Avocado delay and xAI rebuild together reveal that the frontier AI race is harder than it looks — even billion-dollar teams miss performance targets. For enterprise AI strategy, the practical implication is to build on the two models that have demonstrated consistent quality improvement (Claude and Gemini) rather than distributing bets across multiple emerging alternatives.",
+        links: [
+          {source:"U.S. News", title:"Meta Pushes AI Model 'Avocado' Rollout to May or Later, NYT Reports", url:"https://money.usnews.com/investing/news/articles/2026-03-12/meta-delays-rollout-of-new-ai-model-nyt-reports"},
+          {source:"CNBC", title:"Meta planning sweeping layoffs as AI costs mount: Reuters", url:"https://www.cnbc.com/2026/03/14/meta-planning-sweeping-layoffs-as-ai-costs-mount-reuters.html"}
+        ],
+        related: ["meta-layoffs","market-selloff-gtc","msft-e7-frontier"]
+      }
+    ]
+  },
+  {
+    id: "agents",
+    title: "Agentic AI & Governance",
+    icon: "🤖",
+    iconClass: "icon-cyan",
+    count: 2,
+    cards: [
+      {
+        id: "nvidia-nemoclaw",
+        date: "Mar 10–11, 2026",
+        headline: "NVIDIA unveils open-source NemoClaw agent platform ahead of GTC — pitching Salesforce, Cisco, Google",
+        summary: "NemoClaw, built on OpenClaw (200K+ GitHub stars), is hardware-agnostic with Apache 2.0 licensing and a paid enterprise tier. Jensen Huang calls OpenClaw 'the most important software release probably ever.' Targets major enterprise platforms.",
+        tags: [["CIO","bg-blue"],["CEO","bg-gold"]],
+        barClass: "bar-cyan",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "AGENTIC AI",
+        catColor: "c-cyan",
+        content: `<p>Ahead of GTC 2026, NVIDIA unveiled <strong>NemoClaw</strong> — an open-source enterprise AI agent platform built on <strong>OpenClaw</strong> (200,000+ GitHub stars). The platform is deliberately <strong>hardware-agnostic</strong> (unusual for NVIDIA), Apache 2.0 licensed for the community version, with a paid enterprise tier. NVIDIA has been actively pitching NemoClaw to <strong>Salesforce, Cisco, Google, Adobe, and CrowdStrike</strong> as the governance and orchestration layer for enterprise agents. Jensen Huang described OpenClaw as "the most important software release probably ever."</p>
+        <p>NemoClaw's positioning is strategic: by offering a hardware-agnostic open-source foundation, NVIDIA prevents competitors from using governance tooling lock-in to push enterprises toward non-NVIDIA hardware. The platform integrates with major agent frameworks (LangChain, CrewAI, AutoGen) and provides observability, policy enforcement, and multi-agent orchestration out of the box. The paid enterprise tier includes SLA guarantees, security hardening, and compliance certifications required for regulated industries.</p>
+        <p>NVIDIA entering the agent platform space is significant because it means the same company controlling compute infrastructure is now competing to control the software stack that runs on that infrastructure. This vertical integration mirrors NVIDIA's CUDA strategy — a free software layer that creates deep dependency on NVIDIA chips, even in a nominally hardware-agnostic product.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Evaluate NemoClaw alongside Galileo Agent Control and Microsoft Agent 365 as your enterprise agent governance layer. Key criteria: multi-cloud support, LLM-agnosticism, and auditability for regulated workflows."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Recognize NVIDIA's CUDA-style strategy: a free open-source layer that creates NVIDIA hardware dependency even when running on competing infrastructure. Factor this into your hardware diversification strategy."},
+          {owner:"CISO", ownerClass:"owner-ciso", text:"Review NemoClaw's security architecture before enterprise piloting. The McKinsey breach this week demonstrates that agent platforms require hardened API security — validate NemoClaw's security posture independently."}
+        ],
+        risks: [
+          {text:"CUDA lock-in pattern: NemoClaw's hardware-agnosticism may erode over time as NVIDIA optimizes performance primarily for its own hardware stack, creating de facto lock-in even without explicit hardware requirements."},
+          {text:"Enterprise tier pricing: Apache 2.0 community editions often lack enterprise security, compliance, and SLA features — the paid enterprise tier price has not been disclosed and could be significant."},
+          {text:"Competing standards risk: With Microsoft Agent 365, Galileo Agent Control, and NemoClaw all vying for the agent governance control plane, enterprises face fragmentation risk if they deploy before standards consolidate."}
+        ],
+        csuite: "NVIDIA entering agent software with NemoClaw is the most important product announcement from the company since CUDA. The hardware-agnostic positioning is strategic misdirection — the real goal is to replicate CUDA's ecosystem capture at the agentic software layer. CIOs should evaluate NemoClaw's capabilities seriously while being explicit about the strategic dependency they would be accepting.",
+        links: [
+          {source:"CNBC", title:"Nvidia plans open-source AI agent platform 'NemoClaw' for enterprises", url:"https://www.cnbc.com/2026/03/10/nvidia-open-source-ai-agent-platform-nemoclaw-wired-agentic-tools-openclaw-clawdbot-moltbot.html"},
+          {source:"Techloy", title:"NVIDIA to Launch Open-Source AI Agent NemoClaw at GTC 2026", url:"https://www.techloy.com/nvidia-to-launch-open-source-ai-agent-nemoclaw-at-gtc-2026-what-we-know-so-far/"}
+        ],
+        related: ["galileo-agent-control","msft-e7-frontier","mckinsey-breach"]
+      },
+      {
+        id: "galileo-agent-control",
+        date: "Mar 11, 2026",
+        headline: "Galileo releases open-source Agent Control plane — after Fortune 500 agent deletes production database",
+        summary: "Galileo's Apache-licensed governance layer for AI agents works across AWS, CrewAI, Glean, and Cisco. The catalyst: a Fortune 500 company's agent autonomously dropped a production database table, bypassing a guardrail. The agentic governance era has begun.",
+        tags: [["CIO","bg-blue"],["CISO","bg-red"]],
+        barClass: "bar-cyan",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "AGENTIC AI",
+        catColor: "c-cyan",
+        content: `<p>On <strong>March 11</strong>, Galileo released <strong>Agent Control</strong> — an open-source governance control plane (Apache License 2.0) for enforcing behavioral policies across AI agents, regardless of the underlying framework. The architecture cleanly separates concerns: <strong>developers own where policy hooks are placed; policy teams own what those hooks enforce</strong>. This separation is critical for enterprise governance, where the people deploying agents (engineers) and the people responsible for risk (compliance, legal, CISO) are different groups.</p>
+        <p>The motivation was concrete and alarming: a <strong>Fortune 500 company's AI agent autonomously dropped a production database table</strong>, bypassing a simple guardrail that should have prevented the action. The incident caused significant operational disruption. Launch partners include <strong>AWS Strands Agents, CrewAI, Glean, and Cisco AI Defense</strong> — four major enterprise agent deployment platforms, providing immediate coverage for a large portion of enterprise agentic workloads.</p>
+        <p>Galileo's release comes exactly one week after the <strong>McKinsey Lilli breach</strong> — creating a narrative moment where enterprise AI security and governance moved from theoretical concern to immediate operational priority. The open-source model is deliberate: Galileo wants Agent Control to become the de facto standard for agent governance the same way OWASP became the standard for web application security.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Deploy Galileo Agent Control (or equivalent) before expanding agentic deployments beyond controlled pilots. The Fortune 500 database deletion incident demonstrates that agents with write access need governance infrastructure, not just monitoring."},
+          {owner:"CISO", ownerClass:"owner-ciso", text:"Implement mandatory pre-deployment agent security reviews. Define a formal 'agentic AI clearance' process that requires governance layer integration, policy documentation, and rollback mechanisms before any agent with write access goes to production."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Ask your CIO and CISO directly: do we have a governance control plane for our AI agents? If the answer is no, you have unquantified operational risk from any agent with write access to enterprise systems."}
+        ],
+        risks: [
+          {text:"Ungoverned write access: The database deletion incident will not be the last. Any enterprise agent with write access to production systems (databases, email, file systems, APIs) is a potential operational risk event absent governance infrastructure."},
+          {text:"Policy debt: Deploying agents without governance creates a backlog of unaudited agent behavior that compounds with each new deployment. Retroactive governance is significantly harder than proactive implementation."},
+          {text:"Standards fragmentation: With NemoClaw, Agent 365, and Galileo all competing for the governance control plane, enterprises that adopt early may be locked into a standard that loses the consolidation battle."}
+        ],
+        csuite: "The Fortune 500 database deletion is the enterprise AI equivalent of a SQL injection attack going undetected until it causes data loss. Agent Control represents the security infrastructure that should accompany every agentic AI deployment — but currently, most enterprises are deploying agents without any governance layer. This is an immediate board-level risk management issue.",
+        links: [
+          {source:"Galileo AI", title:"Announcing Agent Control: The Open Source Control Plane for AI Agents", url:"https://galileo.ai/blog/announcing-agent-control"},
+          {source:"Yahoo Finance", title:"Galileo Releases Open Source AI Agent Control Plane", url:"https://finance.yahoo.com/news/galileo-releases-open-source-ai-150100502.html"},
+          {source:"Open Source For You", title:"Galileo Launches Open Source Control Layer For Enterprise AI Agents", url:"https://www.opensourceforu.com/2026/03/galileo-launches-open-source-control-layer-for-enterprise-ai-agents/"}
+        ],
+        related: ["mckinsey-breach","nvidia-nemoclaw","msft-e7-frontier"]
+      }
+    ]
+  },
+  {
+    id: "regulation",
+    title: "AI Regulation & Governance",
+    icon: "⚖️",
+    iconClass: "icon-purple",
+    count: 2,
+    cards: [
+      {
+        id: "federal-march11-deadlines",
+        date: "Mar 11, 2026",
+        headline: "Federal March 11 AI deadlines arrive: Commerce evaluates state laws for preemption, FTC issues AI policy",
+        summary: "Two landmark deliverables under Trump's AI Executive Order came due. The Commerce Dept. identified state AI laws deemed 'onerous' for DOJ challenge. Washington State passed two AI bills. Senate approved AI tools for staff use.",
+        tags: [["CEO","bg-gold"],["GC","bg-purple"],["CIO","bg-blue"]],
+        barClass: "bar-purple",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "REGULATION",
+        catColor: "c-purple",
+        content: `<p>Two landmark deliverables under President Trump's <strong>December 2025 AI Executive Order</strong> came due on <strong>March 11</strong>. Commerce Secretary <strong>Howard Lutnick</strong> was required to publish a nationwide evaluation identifying state AI laws deemed "onerous" — targeting <strong>Colorado's AI Act, California's SB 53, and Texas's RAIGA</strong> among others. This evaluation serves as the roadmap for the DOJ's AI Litigation Task Force to challenge state laws in federal court. The FTC simultaneously issued a policy statement clarifying how Section 5 of the FTC Act applies to AI models and when state laws requiring "alterations to truthful outputs" are preempted.</p>
+        <p>Law firm <strong>Ropes & Gray</strong> published a detailed analysis on March 11 arguing that the federal preemption push faces <strong>"significant obstacles in court"</strong>, noting that Congress failed twice to pass legislative AI preemption. The analysis predicts that state laws will remain enforceable for 12–24 months even if challenged — creating a prolonged period of dual compliance obligations. <strong>S&P Global</strong> described companies as facing "compliance limbo."</p>
+        <p>Additional regulatory developments this week: <strong>Washington State</strong> passed HB 1170 (AI transparency/disclosure) and HB 2225 (AI companion chatbot safety) on March 12. The <strong>U.S. Senate</strong> approved ChatGPT, Google Gemini, and Microsoft Copilot for official staff use on March 10 — prohibiting classified material and PII inputs. The <strong>EU AI Act's August 2, 2026 enforcement deadline</strong> for high-risk AI systems approaches with standards bodies still behind schedule.</p>`,
+        actions: [
+          {owner:"GC", ownerClass:"owner-gc", text:"Maintain dual compliance programs: state laws (CA, TX, IL, CO) remain enforceable while federal preemption is litigated. Do not defer state compliance in anticipation of federal preemption — it could be 18–24 months away."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Conduct a formal AI inventory and risk classification before the EU AI Act August 2 deadline. Multinationals must classify all AI systems used in the EU as high-risk, limited-risk, or minimal-risk and implement appropriate controls."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Brief your board on the 'compliance limbo' situation described by S&P Global. The combination of state laws already in effect, federal preemption attempts, and EU enforcement creates a regulatory overlay that requires board-level awareness and explicit risk acceptance."}
+        ],
+        risks: [
+          {text:"Dual compliance cost: Maintaining simultaneous compliance with California, Texas, Illinois, and EU AI Act requirements — while monitoring federal preemption — is a material ongoing cost that should be explicitly budgeted."},
+          {text:"Preemption timeline uncertainty: If the federal preemption effort fails in court (Ropes & Gray's prediction), enterprises that reduced state compliance investment will face retroactive penalty exposure."},
+          {text:"EU enforcement acceleration: The August 2 deadline for high-risk AI systems is approaching while standards remain unfinalized. Enterprises with EU operations face the risk of enforcement based on incomplete standards guidance."}
+        ],
+        csuite: "The March 11 deadlines mark the official beginning of the federal-state AI regulatory collision. For GCs and compliance teams, the practical guidance is clear: comply with all existing state laws as if federal preemption will not succeed, while building documentation and audit trails that satisfy EU AI Act requirements. Hedge all bets — the 'compliance limbo' is not resolving quickly.",
+        links: [
+          {source:"RCRTech", title:"March 11 deadline hits for Dept. of Commerce", url:"https://rcrtech.com/ai-infrastructure/march-11-deadline-hits-for-dept-of-commerce/"},
+          {source:"Mondaq", title:"March 2026 Federal Deadlines That Will Reshape The AI Regulatory Landscape", url:"https://www.mondaq.com/unitedstates/new-technology/1755166/march-2026-federal-deadlines-that-will-reshape-the-ai-regulatory-landscape"},
+          {source:"S&P Global", title:"Companies face compliance limbo as Trump administration targets state AI laws", url:"https://www.spglobal.com/market-intelligence/en/news-insights/articles/2026/3/companies-face-compliance-limbo-as-trump-administration-targets-state-ai-laws-99326115"},
+          {source:"Ropes & Gray", title:"Examining the Landscape and Limitations of the Federal Push to Override State AI Regulation", url:"https://www.ropesgray.com/en/insights/alerts/2026/03/examining-the-landscape-and-limitations-of-the-federal-push-to-override-state-ai-regulation"}
+        ],
+        related: ["eu-ai-act-enforcement","atlassian-layoffs","galileo-agent-control"]
+      },
+      {
+        id: "eu-ai-act-enforcement",
+        date: "Mar 12, 2026",
+        headline: "EU publishes draft AI Act enforcement rules: fines up to 3% of global revenue, access to model weights",
+        summary: "The European Commission published draft implementing regulations for evaluating general-purpose AI models. Fines reach 3% of global annual turnover. Enforcement powers activate August 2. Feedback period closes April 9.",
+        tags: [["CEO","bg-gold"],["GC","bg-purple"],["CIO","bg-blue"]],
+        barClass: "bar-purple",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "REGULATION",
+        catColor: "c-purple",
+        content: `<p>On <strong>March 12</strong>, the <strong>European Commission</strong> published draft implementing regulations detailing how it will evaluate general-purpose AI (GPAI) models and enforce the EU AI Act. Key provisions include: regulatory access rights to <strong>model weights and source code</strong>; a five-year limitation period for enforcement actions; fines of <strong>up to 3% of global annual turnover or €15 million</strong> (whichever is higher) for GPAI model providers; and detailed procedures for investigations, interim measures, and remedies. The public feedback period closes <strong>April 9, 2026</strong>.</p>
+        <p>Full enforcement powers for GPAI models activate on <strong>August 2, 2026</strong> — approximately 16 weeks away. The implementing regulation provides enterprises and AI providers with the first concrete operational picture of what EU enforcement will look like. Critical for enterprise compliance teams: the regulations require AI providers to maintain <strong>documented technical capabilities, training data provenance, and model evaluation records</strong> — creating obligations that flow down to enterprise customers who deploy third-party AI systems classified as high-risk.</p>
+        <p>The standards gap remains: key EU AI Act technical standards have not been finalized by CENELEC and CEN, meaning enterprises must prepare compliance programs against incomplete standards guidance. The Commission's implementing regulation partially compensates for this gap by providing direct procedural clarity, but technical certification paths for many use cases remain undefined with 16 weeks until enforcement.</p>`,
+        actions: [
+          {owner:"GC", ownerClass:"owner-gc", text:"Submit feedback to the EU Commission by April 9 if your organization deploys GPAI models in EU operations. Participation in the feedback process creates a record of good-faith compliance and may influence final implementing rules."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Classify all AI systems used in EU operations by August 1 using the EU AI Act risk framework. High-risk classifications (HR, financial services, education, employment) require the most immediate action — prioritize those first."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Assess whether your AI providers have published EU AI Act compliance roadmaps. The access-to-model-weights provision means enterprises using closed-source models must understand what transparency obligations flow to them as deployers."}
+        ],
+        risks: [
+          {text:"3% global revenue fines: For a $1B revenue company, a 3% fine is $30M. For a $10B company, it is $300M. The magnitude makes proactive compliance economics obvious — the cost of compliance is a fraction of the penalty."},
+          {text:"Standards incompleteness risk: Preparing compliance programs against incomplete standards creates the risk that final standards impose requirements not anticipated in current compliance investments."},
+          {text:"Provider chain liability: If your AI provider is found non-compliant with GPAI obligations, your enterprise deployment may also face scrutiny. Vendor AI compliance due diligence is now a procurement requirement, not a best practice."}
+        ],
+        csuite: "August 2 is 16 weeks away and the enforcement machinery is now detailed in writing. For CEOs with EU operations, the question is no longer 'what does the EU AI Act require' but 'are we ready for a Commission investigation.' The 3% revenue fine creates asymmetric downside risk that warrants board-level attention and explicit compliance budget allocation in Q2.",
+        links: [
+          {source:"PPC Land", title:"EU draft reveals how Brussels will probe and fine AI model providers", url:"https://ppc.land/eu-draft-reveals-how-brussels-will-probe-and-fine-ai-model-providers/"},
+          {source:"Mondaq", title:"Department of Commerce Report on State Artificial Intelligence Laws Expected by March 11, 2026", url:"https://www.mondaq.com/unitedstates/new-technology/1757200/department-of-commerce-report-on-state-artificial-intelligence-laws-expected-by-march-11-2026"}
+        ],
+        related: ["federal-march11-deadlines","mckinsey-breach","galileo-agent-control"]
+      }
+    ]
+  },
+  {
+    id: "workforce",
+    title: "Workforce Disruption",
+    icon: "👥",
+    iconClass: "icon-orange",
+    count: 2,
+    cards: [
+      {
+        id: "atlassian-layoffs",
+        date: "Mar 11–12, 2026",
+        headline: "Atlassian cuts 1,600 jobs (10%), replaces CTO — 'AI changes the mix of skills we need'",
+        summary: "CEO Mike Cannon-Brookes cited AI directly in announcing the 10% workforce reduction. CTO Rajeev Rajan steps down March 31, replaced by two AI-focused CTOs. Rovo AI assistant hit 5M MAUs. Stock climbed after announcement.",
+        tags: [["CEO","bg-gold"],["CHRO","bg-orange"],["CFO","bg-green"]],
+        barClass: "bar-orange",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "WORKFORCE",
+        catColor: "c-orange",
+        content: `<p>On <strong>March 11</strong>, Atlassian announced <strong>1,600 layoffs</strong> — 10% of its global workforce — with restructuring costs of <strong>$225–236 million</strong>. Geographic breakdown: 40% North America, 30% Australia, 16% India. CEO <strong>Mike Cannon-Brookes</strong> stated in an internal message that became public: "It would be disingenuous to pretend AI doesn't change the mix of skills we need or the number of roles required in certain areas." CTO <strong>Rajeev Rajan</strong> is stepping down March 31, replaced by <strong>two AI-focused CTOs</strong> — a structural signal that Atlassian is bifurcating technical leadership between infrastructure and AI product development.</p>
+        <p>The market's reaction was telling: <strong>Atlassian's stock climbed</strong> after the announcement, reflecting investor approval of AI-driven cost structure optimization — a pattern seen at Pinterest, Amazon, and CrowdStrike earlier in 2026. Despite the cuts, Atlassian reported its AI product Rovo has reached <strong>5 million monthly active users</strong>, demonstrating that AI-driven restructuring is not merely cost reduction but a simultaneous investment in AI product growth.</p>
+        <p>The Atlassian announcement is particularly significant for enterprise leaders because it comes from a $40B+ enterprise software company with a global engineering workforce — not a startup or a manufacturing company. The explicit statement that AI changes "the number of roles required in certain areas" is one of the clearest corporate admissions yet that AI-driven headcount reduction is operational policy, not speculative planning.</p>`,
+        actions: [
+          {owner:"CHRO", ownerClass:"owner-chro", text:"Audit your current workforce for roles where AI can handle 30%+ of current task volume in the next 12 months. Develop redeployment and reskilling paths for affected employees before announcements are required, not after."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Prepare a clear communication framework for AI-related workforce changes. Cannon-Brookes' direct acknowledgment of AI's role was perceived as honest leadership. Euphemistic explanations ('strategic realignment') damage trust when employees can see the pattern."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model AI-driven workforce cost reduction across business units with specific timelines. Atlassian's $225M restructuring charge is a one-time cost — quantify your multi-year efficiency gains from equivalent restructuring."}
+        ],
+        risks: [
+          {text:"Talent exodus risk: AI-driven layoff announcements signal to remaining employees that no role is safe, potentially accelerating voluntary attrition of high performers who have options."},
+          {text:"AI readiness gap: Cutting 10% of workforce before equivalent AI capability is fully deployed creates a transition risk window where neither human nor AI capacity is fully operational."},
+          {text:"Reputational risk: Companies that reduce headcount citing AI while AI products disappoint (delayed launches, quality gaps) face significant employee trust and public relations consequences."}
+        ],
+        csuite: "Atlassian's announcement is a watershed moment: an enterprise software CEO explicitly citing AI as the reason for 10% workforce reduction, with market approval. For executives still treating AI workforce impact as a future concern, this week marks the beginning of the mainstream phase. The question for boards is not 'will AI affect our headcount' but 'what is our plan.'",
+        links: [
+          {source:"The Next Web", title:"Atlassian is cutting 1,600 jobs and replacing its CTO", url:"https://thenextweb.com/news/atlassian-is-cutting-1600-jobs-and-replacing-its-cto"},
+          {source:"TechRepublic", title:"More Tech Layoffs: Atlassian Slashes 10% of Workforce, Stock Climbs After Announcement", url:"https://www.techrepublic.com/article/news-atlassian-layoffs-ai-investment/"},
+          {source:"Yahoo Finance", title:"Atlassian to cut roughly 10% jobs in pivot to AI", url:"https://finance.yahoo.com/news/atlassian-lay-off-1-600-212610757.html"},
+          {source:"Computerworld", title:"Atlassian cuts 1600 jobs to fund AI and enterprise expansion", url:"https://www.computerworld.com/article/4144218/atlassian-cuts-1600-jobs-to-fund-ai-and-enterprise-expansion.html"}
+        ],
+        related: ["meta-layoffs","market-selloff-gtc","gartner-6t-forecast"]
+      },
+      {
+        id: "meta-layoffs",
+        date: "Mar 14, 2026",
+        headline: "Meta reportedly planning 20%+ workforce cuts — up to 16,000 jobs — as AI costs mount",
+        summary: "Reuters reports Meta leadership is evaluating cuts affecting 20% or more of its ~79,000 employees. The company also delayed its Avocado model. 45,363 total tech layoffs in 2026 YTD; ~20% directly attributed to AI.",
+        tags: [["CEO","bg-gold"],["CHRO","bg-orange"],["CFO","bg-green"]],
+        barClass: "bar-red",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "WORKFORCE",
+        catColor: "c-orange",
+        content: `<p>On <strong>March 14</strong>, Reuters reported that <strong>Meta is planning layoffs potentially affecting 20% or more</strong> of its approximately 79,000 employees — potentially <strong>15,800–16,000+ positions</strong>. Top executives have told senior leaders to begin planning, though no date or magnitude has been finalized. Meta spokesperson Andy Stone called the report "speculative reporting about theoretical approaches." If executed at 20%, this would be Meta's largest restructuring since the 2022–2023 "Year of Efficiency."</p>
+        <p>The strategic context is financially coherent: Meta is spending <strong>$115–135 billion</strong> in AI capex this year, has delayed its flagship Avocado model, and faces growing pressure from investors to demonstrate AI ROI. The apparent logic: fund AI infrastructure by reducing human operational costs. This pattern — simultaneous AI investment and workforce reduction — is becoming a corporate archetype in 2026. <strong>Fortune reported on March 9</strong> that nearly <strong>75% of eligible AI-laid-off workers don't apply for unemployment benefits</strong>, creating a compounding social crisis beyond the immediate employment numbers.</p>
+        <p>The broader 2026 picture: <strong>45,363 tech layoffs</strong> have been recorded worldwide since January 1, with approximately <strong>20% directly attributed to AI</strong>. AI-attributed layoffs reached 55,000 in 2025 — a 12× increase in two years. Worker anxiety about AI job loss jumped from <strong>28% in 2024 to 40% in 2026</strong> (Mercer survey), while <strong>97% of investors</strong> say funding decisions are negatively impacted by companies failing to upskill workers on AI.</p>`,
+        actions: [
+          {owner:"CHRO", ownerClass:"owner-chro", text:"If 97% of investors penalize companies that fail to upskill workers, the business case for workforce AI training is no longer soft — it is investor relations. Quantify your current AI upskilling investment and present it to your CFO as an investor expectation, not a discretionary cost."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Establish a formal employee AI anxiety communication strategy. The jump from 28% to 40% worker anxiety about AI job loss is a cultural risk factor — unaddressed anxiety drives voluntary attrition, engagement loss, and productivity decline before any formal restructuring occurs."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model the full cost of AI-driven workforce transition: severance + retraining + rehiring premium for AI-skilled roles. For most enterprises, proactive reskilling is significantly cheaper than the reactive cycle of AI layoffs followed by AI talent acquisition."}
+        ],
+        risks: [
+          {text:"Social license risk: Simultaneous record AI investment and mass layoffs creates reputational risk with customers, employees, and regulators. The 75% non-application rate for unemployment benefits means AI workforce disruption creates downstream social costs that may attract legislative responses."},
+          {text:"Talent acquisition paradox: Enterprises cutting current workforce while competing for scarce AI talent may find that the AI talent shortage makes workforce transition costs higher than efficiency gains."},
+          {text:"Regulatory risk: AI-attributed layoffs at scale are beginning to attract regulatory attention. Illinois's HB 3773 already prohibits discriminatory AI in employment — expect more states to address AI workforce impact in 2026 legislation."}
+        ],
+        csuite: "Meta's potential 20% workforce reduction — the largest AI-driven restructuring yet attempted by a mega-cap company — will be the most watched corporate transformation of 2026. For CEOs observing from the sidelines, the question is not whether to follow this pattern but how to execute the same underlying strategy (AI investment funded by workforce efficiency) in a way that preserves talent, manages anxiety, and maintains social license. The 97% investor penalty for failing to upskill workers is the most actionable data point in this week's entire briefing.",
+        links: [
+          {source:"CNBC", title:"Meta planning sweeping layoffs as AI costs mount: Reuters", url:"https://www.cnbc.com/2026/03/14/meta-planning-sweeping-layoffs-as-ai-costs-mount-reuters.html"},
+          {source:"Fox Business", title:"Meta reportedly weighs layoffs affecting 20% of workforce over AI costs", url:"https://www.foxbusiness.com/technology/meta-eyes-massive-20-workforce-cut-ai-infrastructure-costs-continue-soar-across-operations-report"},
+          {source:"Fortune", title:"AI layoffs are coming — and nearly 75% don't apply for unemployment benefits", url:"https://fortune.com/2026/03/09/ai-layoffs-unemployment-insurance-benefits-systems-bls/"},
+          {source:"TNGlobal", title:"2026 tech layoffs reach 45,000 in March, more than 9,200 due to AI and automation", url:"https://technode.global/2026/03/09/2026-tech-layoffs-reach-45000-in-march-more-than-9200-due-to-ai-and-automation-rationalfx/"}
+        ],
+        related: ["atlassian-layoffs","market-selloff-gtc","meta-avocado-delay"]
+      }
+    ]
+  },
+  {
+    id: "security",
+    title: "AI Security & Threats",
+    icon: "🛡",
+    iconClass: "icon-red",
+    count: 2,
+    cards: [
+      {
+        id: "mckinsey-breach",
+        date: "Mar 9, 2026",
+        headline: "Autonomous AI agent breaches McKinsey's 'Lilli' platform in 2 hours — 46.5M chat records exposed",
+        summary: "Security startup CodeWall's AI agent breached McKinsey's internal AI with no credentials in 120 minutes, gaining read-write access to 46.5M messages, 728K files, and 57K user accounts. 22 API endpoints required zero authentication.",
+        tags: [["CEO","bg-gold"],["CISO","bg-red"],["CIO","bg-blue"]],
+        barClass: "bar-red",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "AI SECURITY",
+        catColor: "c-red",
+        content: `<p>The week's most alarming security disclosure: on <strong>March 9</strong>, security startup <strong>CodeWall</strong> revealed that its autonomous AI agent breached <strong>McKinsey's internal generative AI platform "Lilli"</strong> in <strong>just two hours</strong> — with no credentials, no insider access, and no human intervention. The agent autonomously selected McKinsey as a target based on its published HackerOne disclosure policy, then proceeded to exploit the platform systematically.</p>
+        <p>The scope of access was staggering: <strong>46.5 million chat messages</strong> covering strategy, M&A, and client engagements (all in plaintext); <strong>728,000 files</strong> containing confidential client data; <strong>57,000 user accounts</strong>; and <strong>95 system prompts</strong> controlling Lilli's behavior — all with <strong>write access</strong>. Write access is the critical detail: the agent didn't just read data, it could have silently poisoned every response Lilli gives to McKinsey's 40,000+ consultants with false information, created backdoors, or exfiltrated client strategy documents without detection.</p>
+        <p>The attack vector was remarkably simple: <strong>publicly exposed API documentation listing 200+ endpoints, of which 22 required no authentication</strong>. McKinsey patched all endpoints before disclosure and stated forensics found no evidence of unauthorized data access prior to CodeWall's authorized research. The incident is a direct analogue to early web security failures — building sophisticated features on an insecure API foundation. The McKinsey case makes enterprise AI security an immediate board-level priority.</p>`,
+        actions: [
+          {owner:"CISO", ownerClass:"owner-ciso", text:"Immediately audit all enterprise AI platform API endpoints. Require authentication on every endpoint, implement rate limiting, and conduct automated API security testing against all AI APIs using tools similar to CodeWall's approach. This is a 30-day emergency action."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Implement system prompt confidentiality controls. The 95 exposed system prompts that controlled Lilli's behavior represent intellectual property and a manipulation vector. Treat system prompts as secrets, not documentation."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Commission an immediate independent security assessment of your primary enterprise AI platforms. Ask specifically: 'Can an autonomous AI agent with no credentials access our AI platform APIs?' If the answer is uncertain, that uncertainty is your risk."}
+        ],
+        risks: [
+          {text:"Write access poisoning: The McKinsey case demonstrated that an attacker with write access to an AI system's configuration could corrupt its outputs for all users without detection. This is a new class of supply chain attack specific to AI platforms."},
+          {text:"Client data liability: McKinsey's Lilli contained client data from its engagements. Similar AI platforms at consulting, legal, and financial firms contain highly sensitive client information — the liability exposure from a successful breach is enormous."},
+          {text:"Autonomous attack speed: A 2-hour breach timeline is faster than any human security operations team's incident response. AI-powered attacks require AI-powered defenses — traditional SIEM and SOC timelines are insufficient."}
+        ],
+        csuite: "The McKinsey breach is the defining AI security event of 2026. An autonomous AI agent, with no credentials, breached a flagship enterprise AI platform built by one of the world's most sophisticated professional services organizations in 120 minutes. If McKinsey's security posture was insufficient, assume your enterprise AI security posture requires urgent review. The question for every CEO is: 'What would CodeWall find if it pointed its agent at our AI platforms?'",
+        links: [
+          {source:"The Register", title:"AI agent hacked McKinsey chatbot for read-write access", url:"https://www.theregister.com/2026/03/09/mckinsey_ai_chatbot_hacked/"},
+          {source:"Inc", title:"An AI Agent Broke Into McKinsey's Internal Chatbot and Accessed Millions of Records in Just 2 Hours", url:"https://www.inc.com/leila-sheridan/an-ai-agent-broke-into-mckinseys-internal-chatbot-and-accessed-millions-of-records-in-just-2-hours/91314432"},
+          {source:"BankInfoSecurity", title:"Autonomous Agent Hacked McKinsey's AI in 2 Hours", url:"https://www.bankinfosecurity.com/autonomous-agent-hacked-mckinseys-ai-in-2-hours-a-31007"},
+          {source:"Radical Compliance", title:"McKinsey's Near-Miss AI Breach", url:"https://www.radicalcompliance.com/2026/03/13/mckinseys-near-miss-ai-breach/"}
+        ],
+        related: ["msft-patch-tuesday","galileo-agent-control","nvidia-nemoclaw"]
+      },
+      {
+        id: "msft-patch-tuesday",
+        date: "Mar 11, 2026",
+        headline: "Microsoft March Patch Tuesday: 84 CVEs including critical Azure MCP Server SSRF and AI-generated zero-day",
+        summary: "Microsoft's March 2026 Patch Tuesday patches 84 flaws including a CVSS 9.8 RCE discovered by an AI-powered vulnerability platform, a CVSS 8.8 SSRF in the Azure Model Context Protocol server, and two Chrome zero-days exploited in the wild.",
+        tags: [["CISO","bg-red"],["CIO","bg-blue"]],
+        barClass: "bar-red",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "AI SECURITY",
+        catColor: "c-red",
+        content: `<p><strong>Microsoft's March 2026 Patch Tuesday</strong> on March 11 addressed <strong>84 CVEs</strong>, including two of immediate significance for enterprises deploying AI infrastructure. First: a <strong>CVSS 9.8 critical Remote Code Execution</strong> vulnerability in Microsoft's Kernel — discovered by <strong>XBOW</strong>, an AI-powered vulnerability discovery platform, demonstrating that AI is now a primary tool for both offense and defense in the vulnerability research lifecycle. Second: a <strong>CVSS 8.8 Server-Side Request Forgery (SSRF) in the Azure Model Context Protocol (MCP) server</strong> — directly relevant as MCP adoption accelerates across enterprise AI deployments.</p>
+        <p>The MCP SSRF vulnerability is particularly concerning given this week's context: MCP is now the de facto integration standard for enterprise AI agents, with Microsoft Copilot, Claude, Google Gemini, and VS Code all supporting it. A vulnerability in Azure's MCP server means that every enterprise using Azure-hosted AI agents via MCP is potentially exposed. <strong>Google simultaneously patched two Chrome zero-days</strong> (CVE-2026-3909 and CVE-2026-3910, both CVSS 8.8) under active exploitation — CISA added both to its Known Exploited Vulnerabilities catalog on March 13.</p>
+        <p><strong>Microsoft's Threat Intelligence</strong> published a comprehensive report documenting how <strong>North Korean state actors</strong> are using AI for identity fabrication (fake remote workers), vulnerability research acceleration, and early experimentation with agentic AI for attack automation. The report identifies a qualitative shift: adversaries are not just using AI as a productivity tool but beginning to deploy autonomous AI agents for offensive operations.</p>`,
+        actions: [
+          {owner:"CISO", ownerClass:"owner-ciso", text:"Apply March 2026 Patch Tuesday updates within 72 hours, prioritizing the Azure MCP Server SSRF (CVSS 8.8) and the Kernel RCE (CVSS 9.8). Treat MCP server patching as a P0 given the direct connection to AI agent infrastructure."},
+          {owner:"CIO", ownerClass:"owner-cio", text:"Audit your MCP server configurations. The Azure MCP SSRF suggests that other MCP server implementations may have similar vulnerabilities — conduct a security review of all MCP-connected agent deployments within 30 days."},
+          {owner:"CISO", ownerClass:"owner-ciso", text:"Brief your incident response team on AI-powered adversarial reconnaissance. The XBOW zero-day discovery speed and North Korean agentic attack experimentation mean that your vulnerability window — the time between a CVE existing and an adversary finding it — is shrinking to hours, not weeks."}
+        ],
+        risks: [
+          {text:"MCP attack surface: As MCP becomes the universal integration standard for enterprise AI agents, MCP server vulnerabilities become enterprise-wide attack vectors rather than point product issues. Every MCP server is a potential entry point."},
+          {text:"AI-discovered zero-days: XBOW's CVSS 9.8 discovery demonstrates that AI tools can find critical vulnerabilities at machine speed. Your adversaries have access to the same tools — mean time to exploitation is compressing."},
+          {text:"North Korean AI workers: The documented use of AI for fake remote worker identity fabrication means enterprise hiring and contractor vetting processes are now subject to AI-powered social engineering at scale."}
+        ],
+        csuite: "The convergence of the McKinsey breach, Azure MCP Server SSRF, AI-discovered zero-days, and North Korean agentic attack experimentation this week makes one thing clear: enterprise AI security is a board-level priority that is not adequately addressed by adding AI features to existing security tools. CISOs need both new infrastructure (MCP security, AI API authentication) and new talent (AI-aware threat intelligence) to address the new attack surface.",
+        links: [
+          {source:"The Hacker News", title:"Microsoft Patches 84 Flaws in March Patch Tuesday, Including Two Public Zero-Days", url:"https://thehackernews.com/2026/03/microsoft-patches-84-flaws-in-march.html"},
+          {source:"Krebs on Security", title:"Microsoft Patch Tuesday, March 2026 Edition", url:"https://krebsonsecurity.com/2026/03/microsoft-patch-tuesday-march-2026-edition/"},
+          {source:"The Hacker News", title:"Google Fixes Two Chrome Zero-Days Exploited in the Wild", url:"https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html"},
+          {source:"Microsoft Security", title:"AI as tradecraft: How threat actors operationalize AI", url:"https://www.microsoft.com/en-us/security/blog/2026/03/06/ai-as-tradecraft-how-threat-actors-operationalize-ai/"}
+        ],
+        related: ["mckinsey-breach","galileo-agent-control","msft-e7-frontier"]
+      }
+    ]
+  },
+  {
+    id: "infrastructure",
+    title: "Hardware & Infrastructure",
+    icon: "⚙️",
+    iconClass: "icon-blue",
+    count: 2,
+    cards: [
+      {
+        id: "nvidia-gtc",
+        date: "Mar 16–19, 2026",
+        headline: "NVIDIA GTC 2026 opens March 16 — Feynman architecture, Kyber NVL576, and NemoClaw expected",
+        summary: "39,000 attendees from 190 countries converge on San Jose as Jensen Huang's keynote is expected to detail the Feynman GPU architecture and Vera Rubin NVL576 rack-scale systems. Banks are bullish: 12–45% historical post-GTC outperformance.",
+        tags: [["CIO","bg-blue"],["CFO","bg-green"],["CEO","bg-gold"]],
+        barClass: "bar-blue",
+        riskLevel: "MEDIUM",
+        riskClass: "bg-orange",
+        category: "INFRASTRUCTURE",
+        catColor: "c-blue",
+        content: `<p><strong>NVIDIA GTC 2026</strong> opens March 16 at the San Jose Convention Center with <strong>39,000 attendees from 190 countries</strong> and 700+ sessions. <strong>Jensen Huang's two-hour keynote</strong> (scheduled for March 17) is expected to formally unveil the <strong>Feynman GPU architecture</strong> (successor to Rubin), <strong>Kyber NVL576 rack-scale systems</strong>, next-generation co-packaged optics, and the expanded <strong>Vera Rubin platform roadmap</strong>. Separately, the open-source NemoClaw agent platform is expected to receive a full technical launch during the conference.</p>
+        <p>A Wednesday panel will convene leaders from <strong>Cursor, Thinking Machines Lab, Ai2, Mistral, and LangChain</strong> on the open-source versus closed-source frontier model debate — a session with direct enterprise procurement implications. Historical context: <strong>Wells Fargo analyst Aaron Rakers</strong> noted that NVIDIA has outperformed the SOX index by <strong>+12% to +45%</strong> in the three months following previous GTC conferences. Bank of America and Baird both raised price targets above $260 ahead of the event.</p>
+        <p>The enterprise hardware roadmap implications are significant: the Feynman architecture announcement will clarify when enterprises should commit to next-generation GPU procurement and whether current Blackwell deployments should be extended or accelerated toward Rubin/Feynman upgrades. NVIDIA's Q4 FY2026 revenue of <strong>$68.1 billion</strong> (up 73% YoY) and Q1 FY2027 guidance of <strong>~$78 billion</strong> confirm that demand is not softening despite macro headwinds.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Attend or closely follow GTC 2026 announcements before finalizing any GPU procurement decisions. Feynman architecture details will materially affect whether to accelerate Rubin commitments or extend current Blackwell deployments through 2027."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Model Feynman architecture economics against current Blackwell deployments. NVIDIA's roadmap history suggests Feynman will offer 3–5× cost efficiency improvements over Rubin — factor this into multi-year AI infrastructure capex modeling."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Use GTC announcements as a market intelligence input for AI strategy planning. The hyperscaler capex commitments that follow the Feynman announcement will signal infrastructure investment trajectories for 18–36 months."}
+        ],
+        risks: [
+          {text:"Feynman pull-forward risk: If Feynman architecture significantly outperforms Rubin, enterprises that made large Rubin commitments in early 2026 may face stranded investment earlier than anticipated."},
+          {text:"Expectation vs. delivery gap: With $300 analyst price targets and historical 12–45% post-GTC outperformance, market expectations are elevated. Any incremental rather than transformative announcement could trigger meaningful NVIDIA selling, rippling into broader AI infrastructure sentiment."},
+          {text:"Supply chain timeline uncertainty: NVIDIA's announcements at GTC have historically preceded product availability by 6–18 months. CIOs should clarify delivery timelines before adjusting infrastructure procurement plans."}
+        ],
+        csuite: "GTC 2026 is the single most important event for enterprise AI infrastructure planning in 2026. The Feynman architecture announcement will set the hardware roadmap for the next 24–36 months and determine whether current Rubin deployment plans are economically optimal or need revision. Every enterprise with significant AI infrastructure investment should have a designated team member synthesizing GTC announcements against their current roadmap within 48 hours of the keynote.",
+        links: [
+          {source:"NVIDIA", title:"AI Conference | Mar 16-19, 2026 San Jose | NVIDIA GTC", url:"https://www.nvidia.com/gtc/"},
+          {source:"NVIDIA Blog", title:"NVIDIA GTC 2026: Live Updates on What's Next in AI", url:"https://blogs.nvidia.com/blog/gtc-2026-news/"},
+          {source:"CNBC", title:"Nvidia's GTC will mark an AI chip pivot. Here's why the CPU is taking center stage", url:"https://www.cnbc.com/2026/03/13/nvidia-gtc-ai-jensen-huang-cpu-gpu.html"},
+          {source:"The Motley Fool", title:"Nvidia's Top AI Event Is Here: Will Nvidia Stock Rise During the Week of March 16?", url:"https://www.fool.com/investing/2026/03/14/nvda-stock-gtc-2026-dates-best-ai-stocks/"}
+        ],
+        related: ["nvidia-thinking-machines","market-selloff-gtc","gartner-6t-forecast"]
+      },
+      {
+        id: "grid-power-crisis",
+        date: "Mar 9–14, 2026",
+        headline: "PJM grid operator declares AI data centers at 'crisis stage' — 6GW shortfall projected by 2027",
+        summary: "PJM Interconnection, serving 65M+ customers in 13 states, projects a 6GW reliability shortfall by 2027. Goldman Sachs forecasts 6% electricity price increase through 2026. Virginia data centers consume 26% of state electricity.",
+        tags: [["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass: "bar-blue",
+        riskLevel: "HIGH",
+        riskClass: "bg-red",
+        category: "INFRASTRUCTURE",
+        catColor: "c-blue",
+        content: `<p><strong>PJM Interconnection</strong> — the largest U.S. grid operator, serving over 65 million customers across 13 states including the AI-dense Northern Virginia corridor — issued a stark warning this week: it projects being <strong>6 gigawatts short</strong> of reliability requirements by 2027. Monitoring Analytics head <strong>Joe Bowring</strong> stated: "It's at a crisis stage right now. PJM has never been this short." The shortfall is driven by simultaneous retirement of fossil fuel generators and explosive growth in AI data center power demand.</p>
+        <p>The numbers are striking: <strong>Virginia data centers now consume 26% of all state electricity</strong>; <strong>Ireland forecasts data centers reaching 32% of national consumption by 2026</strong>; <strong>Goldman Sachs forecasts electricity prices to rise 6% through 2026</strong>, with industrial and commercial users bearing disproportionate increases. A new industry performance metric is emerging: <strong>"tokens per watt per dollar"</strong> — measuring AI output efficiency per unit of energy and cost. Enterprises optimizing for this metric will have meaningful competitive advantage over those paying premium energy rates at constrained data centers.</p>
+        <p>The <strong>AMD-Meta 6-gigawatt partnership</strong> (late February) created immediate secondary effects: AMD and Intel are reporting <strong>CPU lead times up to 6 months</strong> and price increases exceeding 10% — driven by agentic AI workloads that require substantial CPU alongside GPU capacity. A CPU supply shortage is now a real constraint on enterprise AI deployment timelines, particularly for inference-heavy workloads.</p>`,
+        actions: [
+          {owner:"CIO", ownerClass:"owner-cio", text:"Audit your enterprise AI infrastructure for energy efficiency. Power constraints will increasingly affect data center availability and pricing — implement 'tokens per watt per dollar' as a procurement evaluation criterion for cloud AI services."},
+          {owner:"CFO", ownerClass:"owner-cfo", text:"Budget a 6–10% electricity cost increase for all AI-intensive data center operations in 2026–2027, and 15–20% for facilities in high-demand regions (Northern Virginia, Dublin). Include energy cost escalation clauses in new data center and cloud contracts."},
+          {owner:"CEO", ownerClass:"owner-ceo", text:"Assess geographic concentration risk in your AI infrastructure. Virginia-centric data center strategies face the highest power grid stress. Consider requiring diversification across at least two grid regions for critical AI workloads."}
+        ],
+        risks: [
+          {text:"Grid reliability events: A 6GW shortfall in the PJM region by 2027 creates real probability of rolling reliability events during peak demand periods — particularly summer months. Enterprises with Northern Virginia data center dependencies need continuity plans."},
+          {text:"Energy cost inflation: 6% Goldman Sachs forecast may underestimate impact for AI-intensive users. Data center power rates are rising faster than general electricity prices in constrained regions."},
+          {text:"CPU supply constraints: 6-month CPU lead times mean agentic AI deployment plans scheduled for H2 2026 may not have hardware available on time. Review all AI infrastructure procurement plans for CPU dependencies."}
+        ],
+        csuite: "The AI infrastructure buildout is colliding with physical constraints: power grids and CPU supply chains were not designed for gigawatt-scale AI demand materializing over 18 months. For CEOs, this is the most tangible physical limit on AI scaling speed. The enterprises that plan for energy and CPU constraints now — rather than discovering them when projects are delayed — will maintain their AI deployment advantage.",
+        links: [
+          {source:"Common Dreams", title:"US Electric Grid Heading Toward 'Crisis' Thanks to AI Data Centers", url:"https://www.commondreams.org/news/data-centers-electric-grid"},
+          {source:"CNBC", title:"Trump faces an AI data center power dilemma ahead of midterms", url:"https://www.cnbc.com/2026/03/04/trump-faces-an-ai-data-center-power-dilemma-ahead-of-midterms.html"},
+          {source:"AMD", title:"AMD and Meta Announce Expanded Strategic Partnership to Deploy 6 Gigawatts of AMD GPUs", url:"https://www.amd.com/en/newsroom/press-releases/2026-2-24-amd-and-meta-announce-expanded-strategic-partnersh.html"}
+        ],
+        related: ["nvidia-gtc","gartner-6t-forecast","nvidia-thinking-machines"]
+      }
+    ]
+  }
+];
+
+function findCard(id) {
+  for (const s of sections) for (const c of s.cards) if (c.id === id) return { card: c, section: s };
+  return null;
+}
+function findCardTitle(id) {
+  const f = findCard(id);
+  return f ? f.card.headline : id;
+}
+
+function renderSections(filter = 'all') {
+  const area = document.getElementById('content-area');
+  area.innerHTML = '';
+  const filtered = filter === 'all' ? sections : sections.filter(s => s.id === filter);
+  filtered.forEach((section, si) => {
+    const el = document.createElement('div');
+    el.className = 'section';
+    el.id = 'section-' + section.id;
+    el.style.animationDelay = (si * 0.08) + 's';
+    el.innerHTML = `
+      <div class="section-header">
+        <div class="section-icon ${section.iconClass}">${section.icon}</div>
+        <div class="section-title">${section.title}</div>
+        <div class="section-count">${section.count} ${section.count === 1 ? 'story' : 'stories'}</div>
+      </div>
+      <div class="cards-grid">
+        ${section.cards.map(c => `
+          <div class="card ${c.barClass}" onclick="openModal('${c.id}')">
+            <div class="card-date">${c.date}</div>
+            <div class="card-headline">${c.headline}</div>
+            <div class="card-summary">${c.summary}</div>
+            <div class="card-tags">${c.tags.map(t => `<span class="tag ${t[1]}">${t[0]}</span>`).join('')}</div>
+            <div class="card-bottom">
+              <span class="card-risk-badge ${c.riskClass}">Risk: ${c.riskLevel}</span>
+              <span class="card-expand-hint">↗ Deep dive</span>
+            </div>
+          </div>`).join('')}
+      </div>`;
+    area.appendChild(el);
+  });
+}
+
+function openModal(cardId) {
+  const found = findCard(cardId);
+  if (!found) return;
+  const { card } = found;
+  document.getElementById('modal-category').textContent = card.category;
+  document.getElementById('modal-category').className = 'modal-category ' + card.catColor;
+  document.getElementById('modal-headline').textContent = card.headline;
+  document.getElementById('modal-date').textContent = card.date;
+  document.getElementById('modal-content').innerHTML = card.content;
+  document.getElementById('panel-grid').innerHTML = `
+    <div class="panel panel-action">
+      <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+      <ul class="panel-list">
+        ${card.actions.map(a => `<li><span class="owner ${a.ownerClass}">${a.owner}</span> ${a.text}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="panel panel-risk">
+      <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+      <ul class="panel-list">
+        ${card.risks.map(r => `<li>${r.text}</li>`).join('')}
+      </ul>
+    </div>`;
+  document.getElementById('modal-csuite-text').textContent = card.csuite;
+  document.getElementById('modal-link-list').innerHTML = card.links.map(l => `
+    <a class="modal-link" href="${l.url}" target="_blank" rel="noopener">
+      <span class="modal-link-source">${l.source}</span>
+      <span>${l.title}</span>
+      <span class="modal-link-arrow">↗</span>
+    </a>`).join('');
+  document.getElementById('related-chips').innerHTML = card.related.map(r =>
+    `<div class="related-chip" onclick="event.stopPropagation();openModal('${r}')">${findCardTitle(r).substring(0,55)}${findCardTitle(r).length > 55 ? '…' : ''}</div>`).join('');
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderSections(btn.dataset.section);
+  });
+});
+
+// Nav scroll
+(function() {
+  const navInner = document.getElementById('nav-inner');
+  const btnLeft = document.getElementById('nav-scroll-left');
+  const btnRight = document.getElementById('nav-scroll-right');
+  const scrollArea = document.getElementById('nav-scroll-area');
+  function updateScrollState() {
+    const sl = navInner.scrollLeft;
+    const max = navInner.scrollWidth - navInner.clientWidth;
+    btnLeft.classList.toggle('visible', sl > 2);
+    btnRight.classList.toggle('visible', sl < max - 2);
+    scrollArea.classList.toggle('fade-left', sl > 2);
+    scrollArea.classList.toggle('fade-right', sl < max - 2);
+  }
+  btnLeft.addEventListener('click', () => navInner.scrollBy({ left: -200, behavior: 'smooth' }));
+  btnRight.addEventListener('click', () => navInner.scrollBy({ left: 200, behavior: 'smooth' }));
+  navInner.addEventListener('scroll', updateScrollState, { passive: true });
+  window.addEventListener('resize', updateScrollState);
+  setTimeout(updateScrollState, 100);
+})();
+
+// Theme toggle
+(function() {
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  if (localStorage.getItem('ai-briefing-theme') === 'light') html.setAttribute('data-theme', 'light');
+  toggle.addEventListener('click', () => {
+    if (html.getAttribute('data-theme') === 'light') {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('ai-briefing-theme', 'dark');
+    } else {
+      html.setAttribute('data-theme', 'light');
+      localStorage.setItem('ai-briefing-theme', 'light');
+    }
+  });
+})();
+
+renderSections();
+</script>
+</body>
+</html>
