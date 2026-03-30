@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — March 23 – March 30, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555; --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c; --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def; --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0; --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9; --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c; --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+[data-theme="light"] {
+  --bg: #f4f6f9; --bg-card: #ffffff; --bg-card-hover: #f0f4f8; --bg-expanded: #ffffff;
+  --border: #d8dde6; --border-accent: #c0c8d4;
+  --text: #1a2332; --text-muted: #4a5568; --text-dim: #8896a8;
+  --accent: #135EAB; --accent-light: #1a74d0; --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030; --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F; --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB; --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1; --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488; --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621; --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4; --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06); --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06); --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05); --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08); --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;transition:background 0.4s ease;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65;min-height:100vh;}
+body,header,.nav-strip,.card,.modal,.exec-strip,.metric,.modal-csuite,.panel,.footer,.theme-toggle,.nav-btn{transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:var(--noise-opacity,1);}
+.hero{position:relative;padding:5rem 2rem 3rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--bg) 100%);}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 20%,var(--hero-glow-a) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,var(--hero-glow-b) 0%,transparent 50%);pointer-events:none;}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:12px;}
+.hero-label::before,.hero-label::after{content:'';width:24px;height:1px;background:var(--accent);opacity:0.5;}
+[data-theme="light"] .hero-label{color:#04955F;}
+[data-theme="light"] .hero-label::before,[data-theme="light"] .hero-label::after{background:linear-gradient(90deg,#135EAB,#04955F);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:0.8rem;color:var(--text);}
+.hero h1 span{color:var(--accent);}
+[data-theme="light"] .hero h1 span{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;color:var(--text-muted);margin-bottom:2.5rem;}
+.metrics-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:10px;max-width:900px;margin:0 auto;overflow:hidden;}
+[data-theme="light"] .metrics-bar{background:linear-gradient(135deg,#135EAB,#04955F);}
+.metric{background:var(--bg-card);padding:18px 20px;text-align:center;cursor:default;transition:background 0.2s;}
+.metric:hover{background:var(--bg-card-hover);}
+[data-theme="light"] .metric{background:rgba(255,255,255,0.95);}
+[data-theme="light"] .metric:hover{background:rgba(255,255,255,1);}
+.metric-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--accent);display:block;margin-bottom:4px;}
+[data-theme="light"] .metric-value{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;}
+.nav-strip{position:sticky;top:0;z-index:100;background:var(--nav-bg);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-wrapper{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:0;height:52px;}
+.nav-scroll-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+.nav-scroll-btn.visible{opacity:1;pointer-events:auto;}
+.nav-scroll-area{flex:1;position:relative;overflow:hidden;min-width:0;}
+.nav-scroll-area::before,.nav-scroll-area::after{content:'';position:absolute;top:0;bottom:0;width:28px;z-index:1;pointer-events:none;opacity:0;transition:opacity 0.2s;}
+.nav-scroll-area::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
+.nav-scroll-area::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
+.nav-scroll-area.fade-left::before,.nav-scroll-area.fade-right::after{opacity:1;}
+[data-theme="light"] .nav-scroll-area::before{background:linear-gradient(90deg,rgba(244,246,249,0.95),transparent);}
+[data-theme="light"] .nav-scroll-area::after{background:linear-gradient(-90deg,rgba(244,246,249,0.95),transparent);}
+.nav-inner{display:flex;gap:4px;overflow-x:auto;padding:8px 4px;scrollbar-width:none;-ms-overflow-style:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+.nav-btn:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border);}
+.nav-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(201,164,76,0.2);}
+[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,rgba(19,94,171,0.10),rgba(4,149,95,0.08));color:#135EAB;border-color:rgba(19,94,171,0.15);}
+.theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;margin-left:8px;flex-shrink:0;position:relative;overflow:hidden;}
+.theme-toggle .icon-sun,.theme-toggle .icon-moon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:15px;transition:opacity 0.3s,transform 0.3s;}
+.theme-toggle .icon-sun{opacity:0;transform:translate(-50%,-50%) rotate(-90deg) scale(0.5);}
+.theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-sun{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-moon{opacity:0;transform:translate(-50%,-50%) rotate(90deg) scale(0.5);}
+.main{max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+.exec-strip{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);border-radius:12px;padding:1.5rem 2rem;margin-bottom:2.5rem;}
+[data-theme="light"] .exec-strip{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));border-color:rgba(19,94,171,0.12);}
+.exec-strip-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+.exec-strip-body{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;}
+.exec-strip-body strong{color:var(--text);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.section{animation:fadeUp 0.5s ease both;margin-bottom:3rem;}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.icon-gold{background:var(--accent-dim);color:var(--accent);}
+.icon-green{background:var(--green-dim);color:var(--green);}
+.icon-blue{background:var(--blue-dim);color:var(--blue);}
+.icon-purple{background:var(--purple-dim);color:var(--purple);}
+.icon-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.icon-orange{background:var(--orange-dim);color:var(--orange);}
+.icon-red{background:var(--red-dim);color:var(--red);}
+[data-theme="light"] .icon-gold{background:rgba(19,94,171,0.10);}
+[data-theme="light"] .icon-green{background:rgba(4,149,95,0.10);}
+[data-theme="light"] .icon-blue{background:rgba(100,203,192,0.12);}
+[data-theme="light"] .icon-red{background:rgba(255,156,163,0.15);}
+[data-theme="light"] .icon-purple{background:rgba(107,70,193,0.10);}
+[data-theme="light"] .icon-cyan{background:rgba(100,203,192,0.12);}
+[data-theme="light"] .icon-orange{background:rgba(244,244,49,0.15);}
+.section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);}
+.section-count{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);background:var(--bg-card);border:1px solid var(--border);padding:3px 8px;border-radius:4px;margin-left:auto;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.25rem 1rem;cursor:pointer;position:relative;overflow:hidden;transition:all 0.25s ease;}
+.card:hover{background:var(--bg-card-hover);transform:translateY(-2px);box-shadow:0 8px 32px var(--shadow-card);}
+[data-theme="light"] .card{box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(19,94,171,0.10);}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;opacity:0;transition:opacity 0.25s;}
+.card:hover::before{opacity:1;}
+.bar-gold::before{background:var(--accent);}
+.bar-green::before{background:var(--green);}
+.bar-blue::before{background:var(--blue);}
+.bar-red::before{background:var(--red);}
+.bar-purple::before{background:var(--purple);}
+.bar-cyan::before{background:var(--cyan);}
+.bar-orange::before{background:var(--orange);}
+[data-theme="light"] .bar-gold::before{background:linear-gradient(180deg,#135EAB,#04955F);}
+[data-theme="light"] .bar-blue::before{background:#135EAB;}
+[data-theme="light"] .bar-green::before{background:#04955F;}
+[data-theme="light"] .bar-red::before{background:#FF9CA3;}
+[data-theme="light"] .bar-purple::before{background:#6b46c1;}
+[data-theme="light"] .bar-cyan::before{background:#64CBC0;}
+[data-theme="light"] .bar-orange::before{background:#F4F431;}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem;}
+.card-headline{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:0.6rem;}
+.card-summary{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:0.75rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0.75rem;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;font-weight:500;}
+.bg-gold{background:var(--accent-dim);color:var(--accent);}
+.bg-red{background:var(--red-dim);color:var(--red);}
+.bg-green{background:var(--green-dim);color:var(--green);}
+.bg-blue{background:var(--blue-dim);color:var(--blue);}
+.bg-purple{background:var(--purple-dim);color:var(--purple);}
+.bg-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.bg-orange{background:var(--orange-dim);color:var(--orange);}
+[data-theme="light"] .bg-gold{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .bg-red{background:rgba(255,156,163,0.20);color:#b83240;}
+[data-theme="light"] .bg-green{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .bg-blue{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .bg-purple{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .bg-cyan{background:rgba(100,203,192,0.15);color:#0d9488;}
+[data-theme="light"] .bg-orange{background:rgba(244,244,49,0.15);color:#8a6d00;}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;}
+.card-risk-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:4px;}
+.card-expand-hint{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-dim);}
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--overlay-bg);z-index:1000;display:none;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px);}
+.modal-overlay.active{display:flex;animation:fadeIn 0.2s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.modal{background:var(--bg-expanded);border:1px solid var(--border-accent);border-radius:16px;width:100%;max-width:800px;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+[data-theme="light"] .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);border-color:var(--border);}
+.modal-top-bar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg-expanded);z-index:1;}
+.modal-category{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+.c-gold{color:var(--accent);}.c-green{color:var(--green);}.c-blue{color:var(--blue);}.c-red{color:var(--red);}.c-purple{color:var(--purple);}.c-cyan{color:var(--cyan);}.c-orange{color:var(--orange);}
+.modal-close{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;color:var(--text-muted);cursor:pointer;font-size:14px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.modal-close:hover{background:var(--bg-card-hover);color:var(--text);}
+.modal-body{padding:1.5rem 1.5rem 2rem;}
+.modal-headline{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);line-height:1.25;margin-bottom:0.5rem;}
+.modal-date{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1.25rem;}
+.modal-content{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;margin-bottom:1.5rem;}
+.modal-content p{margin-bottom:1rem;}.modal-content p:last-child{margin-bottom:0;}.modal-content strong{color:var(--text);}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem;}
+@media(max-width:640px){.panel-grid{grid-template-columns:1fr;}}
+.panel{border-radius:10px;padding:1rem 1.1rem;}
+.panel-action{background:var(--panel-action-bg);border:1px solid var(--panel-action-border);}
+.panel-risk{background:var(--panel-risk-bg);border:1px solid var(--panel-risk-border);}
+.panel-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.75rem;display:flex;align-items:center;gap:6px;}
+.panel-label-icon{font-size:12px;}
+.panel-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.panel-list li{font-family:'Source Serif 4',serif;font-size:13.5px;color:var(--text-muted);line-height:1.55;padding:8px 0;border-bottom:1px solid var(--panel-li-border);}
+.panel-list li:last-child{border-bottom:none;}
+.owner{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-right:6px;display:inline-block;vertical-align:middle;}
+.owner-ceo{background:var(--accent-dim);color:var(--accent);}
+.owner-cfo{background:var(--green-dim);color:var(--green);}
+.owner-cio{background:var(--blue-dim);color:var(--blue);}
+.owner-gc{background:var(--purple-dim);color:var(--purple);}
+.owner-ciso{background:var(--red-dim);color:var(--red);}
+.owner-chro{background:var(--orange-dim);color:var(--orange);}
+[data-theme="light"] .owner-ceo{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .owner-cfo{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .owner-cio{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .owner-gc{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .owner-ciso{background:rgba(255,156,163,0.15);color:#b83240;}
+[data-theme="light"] .owner-chro{background:rgba(244,244,49,0.15);color:#8a6d00;}
+.panel-risk .panel-list li::before{content:'▸';color:var(--red);margin-right:6px;font-size:10px;}
+.modal-csuite{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem;}
+[data-theme="light"] .modal-csuite{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));}
+.modal-csuite-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+#modal-csuite-text{font-family:'Source Serif 4',serif;font-size:14px;color:var(--text-muted);line-height:1.65;}
+.modal-links{margin-bottom:1.25rem;}
+.modal-links-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.6rem;}
+.modal-link-list{display:flex;flex-direction:column;gap:6px;}
+.modal-link{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:var(--bg-card);border:1px solid var(--border);text-decoration:none;color:var(--text-muted);font-size:13px;transition:all 0.2s;}
+.modal-link:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border-accent);}
+.modal-link-source{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);flex-shrink:0;min-width:80px;}
+.modal-link-arrow{margin-left:auto;color:var(--text-dim);font-size:12px;}
+.modal-related{margin-top:0.5rem;}
+.modal-related-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.6rem;}
+.related-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.related-chip{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-muted);background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:5px 12px;cursor:pointer;transition:all 0.2s;}
+.related-chip:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border-accent);}
+[data-theme="light"] .related-chip:hover{background:rgba(19,94,171,0.08);border-color:#135EAB;color:#135EAB;}
+.footer{text-align:center;padding:2rem 1.5rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);}
+@media(max-width:768px){.hero{padding:3rem 1.25rem 2rem;}.metrics-bar{grid-template-columns:repeat(2,1fr);}.metrics-bar .metric:last-child{grid-column:1/-1;}.cards-grid{grid-template-columns:1fr;}.main{padding:1.5rem 1rem 3rem;}.modal-body{padding:1rem 1rem 1.5rem;}.modal-headline{font-size:20px;}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-label">AI Intelligence Briefing · Week 13, 2026</div>
+  <h1>AI Intelligence <span>Briefing</span></h1>
+  <p class="hero-sub">March 23 – March 30, 2026 · C-Suite Edition</p>
+  <div class="metrics-bar">
+    <div class="metric"><span class="metric-value">$120B</span><span class="metric-label">OpenAI Total Round</span></div>
+    <div class="metric"><span class="metric-value">$11B</span><span class="metric-label">Harvey Legal AI Value</span></div>
+    <div class="metric"><span class="metric-value">22</span><span class="metric-label">Oracle Agent Apps</span></div>
+    <div class="metric"><span class="metric-value">9.8</span><span class="metric-label">Langflow CVSS Score</span></div>
+    <div class="metric"><span class="metric-value">100GW</span><span class="metric-label">NVIDIA Grid Capacity</span></div>
+  </div>
+</header>
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="nav-scroll-left">&#8249;</button>
+    <div class="nav-scroll-area" id="nav-scroll-area">
+      <div class="nav-inner" id="nav-inner">
+        <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="platforms">🏛 Platform News</button>
+        <button class="nav-btn" data-section="agents">🤖 Agentic AI</button>
+        <button class="nav-btn" data-section="funding">💰 Funding &amp; Deals</button>
+        <button class="nav-btn" data-section="infrastructure">⚙️ Infrastructure</button>
+        <button class="nav-btn" data-section="security">🛡 Security &amp; Policy</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="nav-scroll-right">&#8250;</button>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button>
+  </div>
+</nav>
+<main class="main">
+  <div class="exec-strip">
+    <div class="exec-strip-label">⚡ 30-Second Executive Summary</div>
+    <div class="exec-strip-body"><strong>Anthropic led the week on two fronts:</strong> the March 23 launch of <strong>Claude Computer Use</strong> — giving Claude autonomous desktop control for Pro/Max subscribers — and an accidental March 26 data leak confirming a forthcoming model, <strong>Claude Mythos</strong>, which Anthropic describes as "a step change" and "by far the most capable we've ever built." Meanwhile, <strong>OpenAI extended its record funding round to $120 billion</strong> (March 24) through a new $10B tranche from MGX, Andreessen Horowitz, and others, and legal AI startup <strong>Harvey raised $200M at an $11B valuation</strong> (March 25). On the enterprise side, <strong>Oracle launched 22 Fusion Agentic Applications</strong> on March 24 across finance, HR, and supply chain — the most comprehensive agentic enterprise suite yet. Security teams must act: <strong>Langflow's CVSS 9.8 CVE-2026-33017</strong> was added to CISA's Known Exploited Vulnerabilities catalog on March 25 with a federal remediation deadline of April 8.</div>
+  </div>
+  <div id="content-area"></div>
+</main>
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-top-bar">
+      <div class="modal-category" id="modal-category"></div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-headline" id="modal-headline"></h2>
+      <div class="modal-date" id="modal-date"></div>
+      <div class="modal-content" id="modal-content"></div>
+      <div class="panel-grid" id="panel-grid"></div>
+      <div class="modal-csuite" id="modal-csuite">
+        <div class="modal-csuite-label">⚡ Bottom Line</div>
+        <p id="modal-csuite-text"></p>
+      </div>
+      <div class="modal-links">
+        <div class="modal-links-label">Sources &amp; Further Reading</div>
+        <div class="modal-link-list" id="modal-link-list"></div>
+      </div>
+      <div class="modal-related">
+        <div class="modal-related-label">Related Topics</div>
+        <div class="related-chips" id="related-chips"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">AI Intelligence Briefing — March 23 – March 30, 2026 · Prepared by Claude for C-Suite Decision Makers · Sources verified as of March 30, 2026</footer>
+<script>
+const sections=[
+  {
+    id:"platforms",
+    title:"Enterprise AI Platforms",
+    icon:"🏛",
+    iconClass:"icon-gold",
+    count:3,
+    cards:[
+      {
+        id:"claude-computer-use",
+        date:"Mar 23–24, 2026",
+        headline:"Anthropic launches Claude Computer Use in research preview — Claude can now click, scroll and operate your Mac",
+        summary:"Anthropic gave Claude autonomous desktop control on March 23. Available to Pro/Max subscribers via Claude Cowork and Claude Code on macOS. Claude requests permission before touching each app and can be stopped at any time.",
+        tags:[["CEO","bg-gold"],["CIO","bg-blue"],["CISO","bg-red"]],
+        barClass:"bar-gold",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-gold",
+        content:`<p>On <strong>March 23, 2026</strong>, Anthropic launched <strong>Claude Computer Use</strong> in research preview, giving Claude the ability to see, navigate, and control a user's desktop — clicking buttons, opening applications, filling spreadsheets, and completing multi-step workflows without continuous human intervention. On <strong>March 24</strong>, CNBC confirmed availability to <strong>Pro and Max subscribers</strong> through Claude Cowork and Claude Code.</p><p>The capability is currently <strong>Mac-only</strong> (Windows and Linux to follow). Claude first checks whether it has pre-built integrations (Google Calendar, Slack, etc.), and falls back to computer vision-based control if no connector exists. Anthropic acknowledged the feature "remains a work in progress compared to Claude's ability to code or interact with text."</p><p>The system uses a <strong>permission-first approach</strong>: Claude requests access before touching a new application and users can halt it at any point. Anthropic head of product <strong>Mike Krieger</strong> said: "We want users to feel like they handed off a task to a trusted colleague — not a black box."</p><p>This is Anthropic's direct competitive counter to OpenAI's Operator and Microsoft's Copilot Cowork. It positions Claude as an autonomous work agent, not just a chat assistant — a fundamental shift in what enterprise subscribers are buying.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Run a controlled pilot with 10–20 power users over 30 days. Define permitted apps, network-accessible resources, and data classification levels before any desktop agents are allowed in your environment."},
+          {owner:"CISO",ownerClass:"owner-ciso",text:"Audit which Claude subscription tiers are active in your org. Any Pro/Max user can now enable computer use. Establish a policy: does your acceptable-use framework cover AI agents operating autonomously on corporate endpoints?"},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Benchmark one high-volume repetitive workflow (e.g. procurement approvals, report compilation) for Computer Use ROI. Anthropic's research preview pricing is bundled into existing Pro/Max — the marginal cost to pilot is near zero."}
+        ],
+        risks:[
+          {text:"Credential exposure: An AI agent with desktop access can interact with logged-in sessions, potentially accessing credentials stored in browsers or password managers. Require agents to operate in sandboxed user accounts with limited privileges."},
+          {text:"Data leakage via screen vision: Claude processes screenshots to navigate. If the desktop contains sensitive data (PII, financial records), that data passes through Anthropic's API. Review your data residency requirements before enabling."},
+          {text:"Shadow AI proliferation: With no IT-enforced gateway, any subscriber can activate this today. Without a policy, you will not know which employees are delegating corporate workflows to an AI agent."}
+        ],
+        csuite:"Claude Computer Use represents the first mainstream AI feature that crosses from assistance to autonomous action on corporate systems. The near-zero marginal cost makes it worth piloting now — but only inside a defined governance perimeter. Set policy before your employees do.",
+        links:[
+          {source:"SiliconANGLE",title:"Anthropic's Claude gets computer use capabilities in preview",url:"https://siliconangle.com/2026/03/23/anthropics-claude-gets-computer-use-capabilities-preview/"},
+          {source:"CNBC",title:"Anthropic Claude AI agent: use computer to finish tasks",url:"https://www.cnbc.com/2026/03/24/anthropic-claude-ai-agent-use-computer-finish-tasks.html"},
+          {source:"Dataconomy",title:"Anthropic Adds Computer Use to Claude on MacOS",url:"https://dataconomy.com/2026/03/24/anthropic-adds-computer-use-to-claude-on-macos/"}
+        ],
+        related:["claude-mythos-leak","oracle-fusion-agents","langflow-cve"]
+      },
+      {
+        id:"claude-mythos-leak",
+        date:"Mar 26–28, 2026",
+        headline:"Anthropic data leak reveals 'Claude Mythos' — a new model tier above Opus described as a 'step change' with unprecedented cybersecurity risk",
+        summary:"Fortune discovered Anthropic's draft blog post in an unsecured public data store on March 26, revealing Claude Mythos (codename Capybara) — a model above the Opus tier, now in early-access trials, with dramatically higher coding and cybersecurity scores.",
+        tags:[["CEO","bg-gold"],["CISO","bg-red"],["CIO","bg-blue"]],
+        barClass:"bar-purple",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-purple",
+        content:`<p>On <strong>March 26, 2026</strong>, Fortune reporter Bea Nolan discovered a draft Anthropic blog post stored in a publicly accessible, unsecured data cache. The document detailed a new model called <strong>Claude Mythos</strong> (internal codename: <strong>Capybara</strong>) — a new tier <em>above</em> Claude Opus that Anthropic describes as "by far the most powerful AI model we've ever developed."</p><p>The draft states: "Capybara is a new name for a new tier of model: larger and more intelligent than our Opus models — which were, until now, our most powerful." Compared to Claude Opus 4.6, Mythos achieves dramatically higher scores on <strong>software coding benchmarks, academic reasoning tests, and cybersecurity evaluations</strong>. The document explicitly states Anthropic believes the model "poses unprecedented cybersecurity risks."</p><p>An Anthropic spokesperson confirmed the model's existence on <strong>March 26</strong>, saying it represents "a step change in AI performance" and is "currently being trialed by early access customers." The company declined to provide a public release date. <strong>Dario Amodei</strong>, Anthropic CEO, has previously said Mythos-tier models require additional safety evaluation before broad deployment.</p><p>The leak also caused stock volatility across AI-adjacent sectors as markets processed the implication of a capability jump above current frontier models.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Request early access briefing from your Anthropic account team. If you are an Enterprise customer, ask specifically about Mythos trial eligibility and expected GA timeline. First-mover advantage in capability testing matters."},
+          {owner:"CISO",ownerClass:"owner-ciso",text:"The 'unprecedented cybersecurity risk' designation in Anthropic's own draft is a signal — not marketing. Request a security briefing from Anthropic on what specific threat categories they identified during Mythos safety evals before any enterprise deployment."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Update your AI model evaluation roadmap to include a Mythos assessment slot. If Mythos delivers the benchmark improvements indicated, it may invalidate current model selection decisions made in Q1 2026."}
+        ],
+        risks:[
+          {text:"Cybersecurity uplift: Anthropic's own documentation flags that Mythos scores dramatically higher on cybersecurity benchmarks, meaning it is more capable of both offensive and defensive security tasks. This creates new attack surface if deployed without appropriate controls."},
+          {text:"Competitive intelligence gap: If early-access customers (likely large enterprise partners) are already testing Mythos, your competitors may gain capability advantages in the weeks before GA release. Monitor for unusual AI-powered output quality from competitors."},
+          {text:"Anthropic operational security: A draft blog post in a public unsecured store raises questions about Anthropic's internal data handling. Before expanding API usage, request their SOC 2 Type II attestation and review any updates post-incident."}
+        ],
+        csuite:"Claude Mythos is real, in testing, and above current frontier capability. The cybersecurity risk designation warrants CISO attention before deployment. For CEOs: this is a capability event — not just a product update. Brief your board that the AI landscape is about to shift again.",
+        links:[
+          {source:"Fortune",title:"Anthropic 'Mythos' AI model representing 'step change' in power revealed in data leak",url:"https://fortune.com/2026/03/26/anthropic-says-testing-mythos-powerful-new-ai-model-after-data-leak-reveals-its-existence-step-change-in-capabilities/"},
+          {source:"Fortune",title:"Anthropic accidentally leaked details of a new AI model that poses unprecedented cybersecurity risks",url:"https://fortune.com/2026/03/27/anthropic-leaked-ai-mythos-cybersecurity-risk/"},
+          {source:"SiliconANGLE",title:"Anthropic to launch new Claude Mythos model with advanced reasoning features",url:"https://siliconangle.com/2026/03/27/anthropic-launch-new-claude-mythos-model-advanced-reasoning-features/"}
+        ],
+        related:["claude-computer-use","langflow-cve","openai-120b-round"]
+      },
+      {
+        id:"apple-siri-ai-rivals",
+        date:"Mar 26, 2026",
+        headline:"Apple opens Siri to rival AI assistants — Gemini and Claude coming to iOS 27 via new Extensions framework",
+        summary:"Bloomberg (March 26) reports Apple will allow third-party AI services including Google Gemini and Anthropic Claude to integrate with Siri in iOS 27, iPadOS 27, and macOS 27 via new 'Extensions' options in Settings — a strategy reversal from its OpenAI-only stance.",
+        tags:[["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass:"bar-cyan",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-cyan",
+        content:`<p>On <strong>March 26, 2026</strong>, Bloomberg reporter Mark Gurman reported that Apple plans to overhaul Siri in <strong>iOS 27</strong> by allowing competing AI services to integrate alongside the existing <strong>ChatGPT</strong> partnership. The new framework, called <strong>Extensions</strong>, will appear in the Apple Intelligence and Siri section of the Settings app.</p><p>Named services confirmed in reporting include <strong>Google Gemini</strong> and <strong>Anthropic Claude</strong>. Users will be able to select which AI service they want to use inside Siri for different request types. CNBC confirmed the report on <strong>March 26</strong>.</p><p>The change is described as "part of an attempt to turn around Apple's fortunes in artificial intelligence, where it has lagged behind Silicon Valley peers." Apple's current exclusive arrangement with <strong>OpenAI</strong> (integrated since iOS 18.2) will remain as one option, but will no longer be the only third-party AI available. iOS 27 is expected to be unveiled at <strong>WWDC 2026</strong>, scheduled for <strong>June 8–12, 2026</strong>.</p><p>For enterprise IT, this changes the mobile AI stack: employees will be able to select their preferred AI provider natively in the OS — creating new data governance questions for organizations running managed Apple device fleets.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Anticipate iOS 27 MDM implications. With multiple AI providers accessible natively through Siri, your mobile device management policies need explicit rules on which AI extensions are permitted on corporate devices. Draft these policies before WWDC June 8."},
+          {owner:"CISO",ownerClass:"owner-ciso",text:"Each AI Extension will have its own data processing terms. When iOS 27 releases, compare data handling terms for Gemini, Claude, and ChatGPT Extensions before selecting an approved provider list for managed devices."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"If your org standardizes on a specific AI provider for strategic or data reasons (e.g. Microsoft/OpenAI for M365 integration), proactively set mobile AI policy now rather than reacting to employees choosing personal AI preferences on corporate iPhones."}
+        ],
+        risks:[
+          {text:"Data residency fragmentation: Each AI Extension in iOS 27 will send Siri query data to a different provider. Without MDM policy, employees on corporate iPhones may route sensitive queries to non-approved AI services."},
+          {text:"Vendor relationship complexity: If Apple grants Gemini and Claude equivalent access to OpenAI, Microsoft's Copilot ecosystem advantage on Apple devices narrows. Organizations building on M365 Copilot should monitor for preference shifts among employees."}
+        ],
+        csuite:"Apple's AI extension framework will make the choice of AI assistant a user-level setting, not an IT-controlled default. Enterprise mobile policies must be updated before iOS 27 ships. The positive: if your strategy favors Claude or Gemini, your employees will soon be able to use those natively on their iPhones.",
+        links:[
+          {source:"Bloomberg",title:"Apple Plans to Open Up Siri to Rival AI Assistants Beyond ChatGPT in iOS 27",url:"https://www.bloomberg.com/news/articles/2026-03-26/apple-plans-to-open-up-siri-to-rival-ai-assistants-beyond-chatgpt-in-ios-27"},
+          {source:"MacRumors",title:"Apple Plans to Let Rival AI Chatbots Integrate With Siri in iOS 27",url:"https://www.macrumors.com/2026/03/26/apple-ios-27-siri-chatbot-integration/"},
+          {source:"CNBC",title:"Apple plans to open up Siri to rival AI assistants in iOS 27 update",url:"https://www.cnbc.com/video/2026/03/26/apple-plans-to-open-up-siri-to-rival-ai-assistants-in-ios-27-update.html"}
+        ],
+        related:["claude-computer-use","claude-mythos-leak","openai-120b-round"]
+      }
+    ]
+  },
+  {
+    id:"agents",
+    title:"Agentic Enterprise AI",
+    icon:"🤖",
+    iconClass:"icon-blue",
+    count:2,
+    cards:[
+      {
+        id:"oracle-fusion-agents",
+        date:"Mar 24, 2026",
+        headline:"Oracle launches 22 Fusion Agentic Applications — AI agents now handle supply chain, payroll, cash collection and more natively in Fusion Cloud",
+        summary:"Oracle announced 22 production-ready agentic applications embedded in Oracle Fusion Cloud on March 24, covering finance, HR, supply chain, and CX. Unlike copilot add-ons, these agents execute transactions, enforce approval hierarchies and re-evaluate decisions as conditions change.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass:"bar-blue",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"AGENTIC AI",
+        catColor:"c-blue",
+        content:`<p>On <strong>March 24, 2026</strong>, Oracle announced <strong>Fusion Agentic Applications</strong> — <strong>22 production-ready AI agents</strong> natively embedded in Oracle Fusion Cloud Applications, covering <strong>finance, HR, supply chain, and customer experience</strong>.</p><p>Unlike AI copilots or chat assistants, Fusion Agentic Applications have direct access to Fusion Cloud's transactional systems — meaning they can <strong>execute decisions</strong>, not just recommend them. Use cases announced include: automated <strong>workforce scheduling and payroll optimization</strong>, <strong>supplier sourcing and cost reduction</strong>, <strong>cross-sell revenue expansion</strong>, and <strong>automated cash collection</strong> to improve working capital. The agents reason continuously, evaluate tradeoffs, take action, and re-evaluate as business conditions change.</p><p>Oracle simultaneously expanded its <strong>AI Agent Studio for Fusion Applications</strong> with a new Agentic Applications Builder, workflow orchestration, contextual memory, and ROI measurement dashboards. Oracle VP of AI <strong>Sachin Agarwal</strong> stated: "These aren't AI features bolted onto existing software — they are outcome-driven agents engineered for enterprise execution with full governance built in."</p><p>The announcement is significant for organizations running Oracle Fusion: the agentic capabilities are delivered through standard Fusion Cloud updates, meaning existing customers can activate them without additional infrastructure investment.</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Identify the top 3 Oracle Fusion workflows consuming the most human hours in your finance operations (e.g. AR collections, supplier invoice matching, reconciliation). Request Oracle to model projected agent automation rates for your transaction volumes — the ROI measurement dashboard makes this quantifiable."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Schedule an Oracle technical briefing on the Agent Studio governance controls before any agentic apps are activated. Key questions: what approval thresholds require human override, how are audit trails maintained, and what happens when an agent takes an action that conflicts with a policy update?"},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Oracle's 22 agentic apps represent the most comprehensive enterprise AI rollout of Q1 2026. If your ERP is Fusion Cloud, this is already available — assign an owner to build a business case for the top 5 use cases within 60 days."}
+        ],
+        risks:[
+          {text:"Autonomous transaction risk: Agents that execute payroll, procurement, and cash collection decisions without human review on every transaction require robust exception-handling rules. Define dollar thresholds and approval escalation paths before activation."},
+          {text:"Audit trail requirements: Autonomous agent decisions in financial workflows must be auditable under SOX, IFRS, and local statutory requirements. Confirm with Oracle that Fusion Agentic App logs satisfy your external audit evidence standards."},
+          {text:"Change management lag: Finance and HR teams accustomed to reviewing AI recommendations before acting will need re-training when agents begin executing autonomously. Budget for process redesign, not just technology activation."}
+        ],
+        csuite:"Oracle's 22 Fusion Agentic Applications are the most concrete enterprise AI deployment announcement of Q1 2026 — real agents, real transactions, existing platform. If you run Oracle Fusion, the competitive question is not whether to adopt but how fast. Organizations that activate these capabilities in H1 will have 6–12 months of operational advantage over those waiting for H2.",
+        links:[
+          {source:"Oracle",title:"Oracle Introduces Fusion Agentic Applications",url:"https://www.oracle.com/news/announcement/oracle-introduces-fusion-agentic-applications-2026-03-24/"},
+          {source:"SiliconANGLE",title:"Oracle Fusion agentic applications signal shift toward autonomous enterprise software",url:"https://siliconangle.com/2026/03/24/oracle-fusion-agentic-applications-signal-shift-toward-autonomous-enterprise-software/"},
+          {source:"HPCwire/BigDATAwire",title:"Oracle Introduces Fusion Agentic Applications",url:"https://www.hpcwire.com/bigdatawire/this-just-in/oracle-introduces-fusion-agentic-applications/"}
+        ],
+        related:["claude-computer-use","aws-nova-forge","claude-mythos-leak"]
+      },
+      {
+        id:"aws-nova-forge",
+        date:"Mar 23, 2026",
+        headline:"AWS launches Nova Forge SDK — enterprises can now build custom frontier AI models on Amazon Nova without ML expertise",
+        summary:"AWS announced the Nova Forge SDK on March 23, enabling enterprises to fine-tune and customize Amazon Nova frontier models using proprietary data, deploy them directly in Amazon Bedrock, and skip ML engineering overhead. Available in US East (N. Virginia).",
+        tags:[["CIO","bg-blue"],["CFO","bg-green"]],
+        barClass:"bar-green",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"AGENTIC AI",
+        catColor:"c-green",
+        content:`<p>On <strong>March 23, 2026</strong>, AWS announced the <strong>Amazon Nova Forge SDK</strong>, a streamlined toolkit enabling enterprises to <strong>fine-tune and customize Amazon Nova frontier models</strong> using their own proprietary data — without requiring ML engineering expertise. Customized models deploy directly within <strong>Amazon Bedrock</strong>, eliminating the need for separate infrastructure management.</p><p>Nova Forge provides access to multiple <strong>Nova model checkpoints</strong>, pre-built training recipes that can mix enterprise-proprietary data with <strong>Amazon Nova-curated training data</strong>, and integration with <strong>Amazon SageMaker AI</strong>. The SDK handles the training pipeline overhead, letting teams focus on domain-specific data curation rather than infrastructure configuration.</p><p>Separately, the same AWS Weekly Roundup confirmed availability of <strong>NVIDIA Nemotron 3 Super on Amazon Bedrock</strong> — NVIDIA's latest open reasoning model now accessible directly through Bedrock without additional GPU provisioning. AWS also launched the <strong>AWS Certified Generative AI Developer – Professional</strong> exam and new microcredentials including <strong>AWS Agentic AI Demonstrated</strong>.</p><p>The Nova Forge SDK is currently available in the <strong>US East (N. Virginia)</strong> AWS Region.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Identify 1–2 proprietary datasets where a domain-specialized model would outperform a general frontier model (e.g. internal policy documents, customer interaction logs, technical manuals). Nova Forge's no-ML-expertise approach lowers the bar significantly — assign a data engineer, not a data scientist, to the pilot."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Compare Nova Forge TCO against API-only frontier model usage for high-volume inference workloads. Fine-tuned smaller models typically cost 60–80% less per token at production scale. Run the break-even calculation at your current monthly token volumes."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"The AWS Certified Generative AI Developer – Professional exam is a useful benchmark for evaluating vendor/contractor AI competence. Consider adding it to your approved certification list for AI-focused engineering hires and partner evaluations."}
+        ],
+        risks:[
+          {text:"Data governance in training: Feeding proprietary data into Nova Forge training recipes means Anthropic's (Bedrock) data handling terms apply to your training data, not just inference data. Review the AWS Data Processing Addendum before uploading sensitive datasets."},
+          {text:"Model drift and maintenance: Fine-tuned models require monitoring and periodic retraining as your underlying data distribution changes. Unlike API-only usage, custom model ownership creates an ongoing maintenance obligation — budget for it."}
+        ],
+        csuite:"Nova Forge SDK democratizes custom AI model development for enterprises already on AWS. If your organization has high-value proprietary datasets and high-volume inference workloads, this is worth a 90-day pilot. The combination with Bedrock's governance and NVIDIA Nemotron 3 access makes the AWS AI platform more competitive with Azure AI Studio.",
+        links:[
+          {source:"AWS Blog",title:"AWS Weekly Roundup: NVIDIA Nemotron 3 Super on Amazon Bedrock, Nova Forge SDK, and more (March 23, 2026)",url:"https://aws.amazon.com/blogs/aws/aws-weekly-roundup-nvidia-nemotron-3-super-on-amazon-bedrock-nova-forge-sdk-amazon-corretto-26-and-more-march-23-2026/"},
+          {source:"AWS Blog",title:"Introducing Amazon Nova Forge: Build your own frontier models using Nova",url:"https://aws.amazon.com/blogs/aws/introducing-amazon-nova-forge-build-your-own-frontier-models-using-nova/"},
+          {source:"TechBooky",title:"AWS Teases Nemotron 3, Nova Forge SDK and Corretto 26",url:"https://www.techbooky.com/aws-teases-nemotron-3-nova-forge-sdk-and-corretto-26/"}
+        ],
+        related:["oracle-fusion-agents","claude-computer-use","nvidia-emerald-grid"]
+      }
+    ]
+  },
+  {
+    id:"funding",
+    title:"Funding & Market Moves",
+    icon:"💰",
+    iconClass:"icon-green",
+    count:2,
+    cards:[
+      {
+        id:"openai-120b-round",
+        date:"Mar 24, 2026",
+        headline:"OpenAI CFO confirms $10B additional tranche — record funding round reaches $120B+ at $840B valuation",
+        summary:"OpenAI CFO Sarah Friar told CNBC on March 24 that the company raised an additional $10B from MGX, Andreessen Horowitz, D.E. Shaw, TPG, and T. Rowe Price, extending the February $110B round to more than $120B. Post-money valuation is $840–850B.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass:"bar-gold",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"FUNDING & DEALS",
+        catColor:"c-gold",
+        content:`<p>On <strong>March 24, 2026</strong>, OpenAI CFO <strong>Sarah Friar</strong> confirmed on CNBC that OpenAI raised an additional <strong>$10 billion</strong>, extending the February 2026 round to <strong>more than $120 billion</strong> — the largest private fundraise in startup history. The new tranche was priced at the same <strong>$730 billion pre-money valuation</strong> as the original February round, placing OpenAI's post-money valuation at <strong>$840–850 billion</strong>.</p><p>Investors in the March tranche include <strong>MGX</strong> (Abu Dhabi's sovereign wealth-backed AI fund), <strong>Andreessen Horowitz, D.E. Shaw Ventures, TPG, T. Rowe Price</strong>, and <strong>Microsoft</strong> (existing strategic partner). The original $110B round included Amazon ($50B), SoftBank ($30B), and NVIDIA ($30B).</p><p>Bloomberg simultaneously reported OpenAI was in talks with <strong>Coatue, Thrive Capital, and Altimeter</strong> for additional participation, suggesting the round may grow further before closing. Friar described this as likely <strong>OpenAI's last private fundraise</strong> before a potential IPO.</p><p>The additional capital extends OpenAI's runway considerably and funds continued compute buildout — OpenAI is the single largest consumer of Microsoft Azure capacity, and the new funds are expected to accelerate the Stargate joint infrastructure program with Oracle and SoftBank.</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"At $120B+ raised and $840B+ valuation, OpenAI's implied cost of AI infrastructure (Stargate data centers, Azure compute) is now embedded in pricing. Model the impact on ChatGPT Enterprise and API pricing over 24 months — capital must be recouped through revenue growth."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"An OpenAI IPO would create a publicly traded AI benchmark. Brief your board that OpenAI's valuation is now 7× Anthropic's last round and comparable to Salesforce's market cap. This affects how your board evaluates AI investment levels."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Monitor Microsoft's OpenAI exposure in quarterly earnings. Microsoft's ongoing investment through this round and Stargate increases concentration risk for organizations standardized on the M365/Copilot stack — any OpenAI governance issue now has financial contagion to Microsoft."}
+        ],
+        risks:[
+          {text:"Valuation compression risk: At $840B pre-IPO, OpenAI must sustain extraordinary revenue growth to justify the price. If growth slows, IPO pricing could reset expectations — and with it, the perceived market value of AI investments broadly."},
+          {text:"Compute concentration: Stargate's reliance on Microsoft Azure and NVIDIA hardware means any supply chain disruption affects OpenAI's ability to serve its fastest-growing enterprise contracts. This is a counterparty risk for Microsoft-dependent AI deployments."}
+        ],
+        csuite:"OpenAI at $120B raised and $840B valuation is now a macro-level AI bellwether. For procurement teams: OpenAI's capital position removes near-term business continuity risk, but the eventual IPO will create pricing pressure to justify the valuation. Lock in multi-year enterprise contracts before the IPO re-prices the product.",
+        links:[
+          {source:"CNBC",title:"OpenAI raises additional money to bring record funding round to $120 billion, CFO tells Cramer",url:"https://www.cnbc.com/2026/03/24/openai-secures-an-extra-10-billion-in-record-funding-round-cfo-friar-says.html"},
+          {source:"Bloomberg",title:"OpenAI Set to Raise $10 Billion From MGX, Coatue, Thrive",url:"https://www.bloomberg.com/news/articles/2026-03-24/openai-set-to-raise-about-10-billion-from-mgx-coatue-thrive"},
+          {source:"TechCrunch",title:"OpenAI raises $110B in one of the largest private funding rounds in history",url:"https://techcrunch.com/2026/02/27/openai-raises-110b-in-one-of-the-largest-private-funding-rounds-in-history/"}
+        ],
+        related:["claude-mythos-leak","apple-siri-ai-rivals","harvey-200m"]
+      },
+      {
+        id:"harvey-200m",
+        date:"Mar 25, 2026",
+        headline:"Harvey raises $200M at $11B valuation — legal AI now serves 100K+ lawyers across 1,300 firms and is expanding into agentic workflows",
+        summary:"Legal AI startup Harvey closed a $200M round co-led by GIC and Sequoia on March 25, reaching an $11B valuation with total funding over $1B. Harvey's tools are used by 100,000+ lawyers at 1,300 organizations for contract analysis, due diligence, and litigation support.",
+        tags:[["GC","bg-purple"],["CFO","bg-green"],["CEO","bg-gold"]],
+        barClass:"bar-green",
+        riskLevel:"LOW",
+        riskClass:"bg-green",
+        category:"FUNDING & DEALS",
+        catColor:"c-green",
+        content:`<p>On <strong>March 25, 2026</strong>, <strong>Harvey</strong> — a four-year-old startup building AI tools for legal and professional services — closed a <strong>$200 million funding round</strong> co-led by <strong>GIC</strong> (Singapore's sovereign wealth fund) and <strong>Sequoia Capital</strong>, valuing the company at <strong>$11 billion</strong>. Existing investors Andreessen Horowitz, Coatue, Conviction Partners, Elad Gil, and Kleiner Perkins also participated. Total funding now exceeds <strong>$1 billion</strong>.</p><p>Harvey's tools are currently used by <strong>more than 100,000 lawyers</strong> across <strong>1,300 organizations</strong> — including several Am Law 100 firms — for contract analysis, compliance review, due diligence, and litigation research. The company will use the new capital to expand its <strong>AI agents</strong> and grow <strong>legal engineering teams</strong> that are embedded with customers on-site.</p><p>The move into embedded legal engineering is significant: Harvey is positioning itself not as software but as an <strong>AI-augmented legal service layer</strong>, with legal engineers who help law firms deploy and optimize Harvey agents within their practice workflows. CEO <strong>Winston Weinberg</strong> said: "We are building the infrastructure for the legal profession to work at the speed and scale that AI enables."</p><p>The $11B valuation represents a 4× increase from Harvey's last round and reflects the broader conviction that legal AI is a durable, enterprise-grade category — not a feature that incumbent legal tech vendors will absorb.</p>`,
+        actions:[
+          {owner:"GC",ownerClass:"owner-gc",text:"Issue an RFP to Harvey, Ironclad, and your current legal tech vendor for AI-assisted contract review. At $11B valuation, Harvey is enterprise-credible. Benchmark 50 sample contracts through their platform and measure time-to-review and error rate vs. your current process."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Model legal department AI ROI. Harvey customers report 40–70% reduction in routine contract review time. If your legal team processes more than 500 contracts/year, the NPV of automation at Harvey's pricing is likely positive within 18 months."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"If your organization uses external law firms that deploy Harvey, your matters are already being worked on with AI assistance — whether you know it or not. Establish a policy on AI use disclosure in external counsel engagements."}
+        ],
+        risks:[
+          {text:"Data security in legal AI: Contract and due diligence data processed by Harvey passes through their infrastructure. Review Harvey's data processing agreements, confidentiality obligations, and whether matter-specific data is used for model training before onboarding."},
+          {text:"Regulatory bar for legal AI: Bar associations in multiple jurisdictions have issued guidance requiring lawyers to supervise AI outputs. Deploying Harvey without clear human-review checkpoints creates professional liability exposure for in-house teams."}
+        ],
+        csuite:"Harvey at $11B and $1B+ in funding is no longer a startup risk — it is an enterprise legal AI category leader. General Counsel offices that have not evaluated Harvey in the past 12 months should do so now. The embedded legal engineering model is particularly compelling for organizations without large in-house AI capability.",
+        links:[
+          {source:"Bloomberg",title:"Harvey Raises $200 Million, Reaching $11 Billion Valuation in AI Legal Tech",url:"https://www.bloomberg.com/news/articles/2026-03-25/legal-ai-startup-harvey-raises-funds-at-11-billion-valuation"},
+          {source:"CNBC",title:"Legal AI startup Harvey raises $200 million at $11 billion valuation",url:"https://www.cnbc.com/2026/03/25/legal-ai-startup-harvey-raises-200-million-at-11-billion-valuation.html"},
+          {source:"PRNewswire",title:"Harvey Raises at $11 Billion Valuation to Scale Agents Across Law Firms and Enterprises",url:"https://www.prnewswire.com/news-releases/harvey-raises-at-11-billion-valuation-to-scale-agents-across-law-firms-and-enterprises-302724309.html"}
+        ],
+        related:["openai-120b-round","oracle-fusion-agents","langflow-cve"]
+      }
+    ]
+  },
+  {
+    id:"infrastructure",
+    title:"AI Infrastructure & Energy",
+    icon:"⚙️",
+    iconClass:"icon-orange",
+    count:2,
+    cards:[
+      {
+        id:"nvidia-emerald-grid",
+        date:"Mar 23, 2026",
+        headline:"NVIDIA and Emerald AI announce flexible AI factories as grid assets — 6 energy giants join to unlock 100 GW of AI compute capacity",
+        summary:"Announced at CERAWeek 2026 in Houston on March 23, NVIDIA and Emerald AI partnered with AES, Constellation, Invenergy, NextEra Energy, Nscale, and Vistra to build AI data centers that connect faster to the power grid, generate AI tokens, and operate as flexible grid-stability assets.",
+        tags:[["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass:"bar-orange",
+        riskLevel:"LOW",
+        riskClass:"bg-green",
+        category:"AI INFRASTRUCTURE",
+        catColor:"c-orange",
+        content:`<p>On <strong>March 23, 2026</strong>, at <strong>CERAWeek 2026</strong> in Houston, <strong>NVIDIA</strong> and <strong>Emerald AI</strong> announced a partnership with six major energy companies — <strong>AES, Constellation, Invenergy, NextEra Energy, Nscale Energy & Power,</strong> and <strong>Vistra</strong> — to build a new class of AI factories that function simultaneously as power-grid assets.</p><p>The initiative centers on NVIDIA's new <strong>Vera Rubin DSX AI Factory reference design</strong> and the <strong>DSX Flex software library</strong>, which connects AI factories to power-grid services. <strong>Emerald AI's Conductor platform</strong> orchestrates computational flexibility alongside onsite generation, batteries, and other behind-the-meter resources to deliver precise, grid-responsive power while protecting priority AI workloads.</p><p>The model allows AI data centers to <strong>modulate compute load</strong> in response to grid demand signals — scaling down during peak grid stress and scaling up during off-peak hours — in exchange for faster grid interconnection approvals and potentially lower electricity costs. The companies say this approach can unlock up to <strong>100 GW of flexible AI compute capacity</strong> and plan to deploy <strong>DSX Flex at scale</strong> at NVIDIA's Virginia research center later in 2026.</p><p>NVIDIA's VP of Energy <strong>David Hall</strong> stated: "The AI factory of the future isn't just a data center — it's a grid-interactive asset that generates tokens and stabilizes the power system at the same time."</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"If your organization is evaluating AI data center colocation contracts, ask providers whether they participate in grid-responsive compute programs. Flexible AI factories can offer lower baseline electricity rates in exchange for compute interruption tolerance on non-critical workloads."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Classify your AI workloads by interruption tolerance: inference APIs serving customers (zero tolerance), batch training jobs (high tolerance), nightly analytics (moderate tolerance). Grid-flexible data centers can offer tiered pricing if you can separate interruptible from non-interruptible AI compute."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"The 100 GW unlocked capacity figure is strategically significant — it means the power bottleneck for AI compute may be partially resolved through flexible grid integration rather than purely through new generation. Factor this into 3-year AI infrastructure cost projections."}
+        ],
+        risks:[
+          {text:"Compute interruption SLA: If your AI workloads run on grid-flexible facilities, understand the interruption frequency and duration contractually guaranteed. Batch training jobs on interrupted compute without checkpoint-restart capability can waste hours of GPU time."},
+          {text:"Geographic concentration: CERAWeek's announcements focus on US grid infrastructure. Organizations deploying AI in Asia-Pacific or EMEA should not assume equivalent grid-flexible capacity will be available — evaluate local infrastructure separately."}
+        ],
+        csuite:"NVIDIA and Emerald AI's energy grid partnership is the most material development in AI infrastructure economics since the Blackwell GPU launch. Grid-flexible AI factories can reduce long-term compute costs and accelerate data center permitting. Organizations planning major AI infrastructure investments in 2026–2027 should factor grid-flexibility options into their colocation RFPs.",
+        links:[
+          {source:"NVIDIA Newsroom",title:"NVIDIA and Emerald AI Join Leading Energy Companies to Pioneer Flexible AI Factories as Grid Assets",url:"https://nvidianews.nvidia.com/news/nvidia-and-emerald-ai-join-leading-energy-companies-to-pioneer-flexible-ai-factories-as-grid-assets"},
+          {source:"Axios",title:"Nvidia, Emerald AI team with energy companies on flexible data centers",url:"https://www.axios.com/2026/03/23/utilities-nvidia-emerald-ai-data-centers"},
+          {source:"GlobeNewswire",title:"NVIDIA and Emerald AI Join Leading Energy Companies to Pioneer Flexible AI Factories as Grid Assets",url:"https://www.globenewswire.com/news-release/2026/03/23/3260239/0/en/NVIDIA-and-Emerald-AI-Join-Leading-Energy-Companies-to-Pioneer-Flexible-AI-Factories-as-Grid-Assets.html"}
+        ],
+        related:["aws-nova-forge","openai-120b-round","oracle-fusion-agents"]
+      },
+      {
+        id:"openai-sora-safety",
+        date:"Mar 24, 2026",
+        headline:"OpenAI publishes Sora safety framework as AI video generation expands — adds Walmart shopping integration and GPT-5.4 mini to free tier",
+        summary:"OpenAI released its Sora safety framework on March 24 covering how it monitors video generation for harmful content, and expanded ChatGPT with Walmart in-app shopping and GPT-5.4 mini reasoning for Free/Go users via the Thinking feature.",
+        tags:[["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass:"bar-cyan",
+        riskLevel:"LOW",
+        riskClass:"bg-green",
+        category:"AI INFRASTRUCTURE",
+        catColor:"c-cyan",
+        content:`<p>On <strong>March 24, 2026</strong>, OpenAI published <strong>"Creating with Sora safely"</strong> — a detailed framework outlining how it monitors its video generation model for harmful content, deepfake risk, and copyright infringement. The document describes a multi-layer content moderation stack combining automated classifiers and human review for flagged outputs.</p><p>In the same week, OpenAI shipped several platform updates: <strong>Walmart in-ChatGPT shopping integration</strong> went live, allowing users to browse and purchase Walmart products directly within ChatGPT — part of OpenAI's broader push to monetize ChatGPT through commerce integrations. <strong>GPT-5.4 mini</strong> with reasoning capabilities via the "Thinking" mode rolled out to <strong>Free and Go plan users</strong>, extending advanced reasoning to OpenAI's 200M+ free tier users for the first time.</p><p>OpenAI also announced the <strong>ChatGPT Library</strong> — a new feature allowing users to save, organize, and reuse uploaded files and AI-generated artifacts across sessions — addressing a core workflow complaint from enterprise power users.</p><p>The Sora safety framework is particularly relevant for legal and compliance teams: it specifies OpenAI's content policies for AI video and establishes a precedent for how AI video vendors approach responsible deployment — a framework that regulators are likely to reference as AI video goes mainstream.</p>`,
+        actions:[
+          {owner:"GC",ownerClass:"owner-gc",text:"Review OpenAI's Sora safety framework now if your organization is evaluating AI video generation for marketing, training, or product content. The framework defines what content is permissible and what liability OpenAI accepts — compare against your own content policy."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"GPT-5.4 mini on the free tier means employees with personal ChatGPT accounts now have access to advanced reasoning — potentially without corporate monitoring. Reinforce your AI acceptable-use policy covering personal tool usage on corporate data."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The Walmart commerce integration signals OpenAI's monetization roadmap beyond subscriptions. As AI assistants become commerce channels, evaluate whether ChatGPT Enterprise pricing will change as OpenAI diversifies revenue — and whether in-app commerce represents a conflict of interest in enterprise contexts."}
+        ],
+        risks:[
+          {text:"AI video deepfake risk: The Sora framework acknowledges the deepfake risk but relies on watermarking and content moderation rather than technical prevention. Organizations whose executives or brand assets appear in AI-generated video have new impersonation exposure — brief your communications team."},
+          {text:"Free tier reasoning capability uplift: GPT-5.4 mini on the free tier raises the floor for AI-powered phishing and social engineering. Security awareness training should be updated to reflect that adversaries now have access to frontier-grade reasoning at no cost."}
+        ],
+        csuite:"OpenAI's safety framework publication, commerce integrations, and free-tier upgrades collectively signal a platform maturity move: OpenAI is building the infrastructure to be the default AI layer for consumers and enterprises alike. For legal teams, the Sora framework is the first detailed AI video safety policy from a major provider — it sets the compliance baseline.",
+        links:[
+          {source:"OpenAI",title:"Creating with Sora safely",url:"https://openai.com/news/"},
+          {source:"Releasebot",title:"OpenAI Release Notes — March 2026",url:"https://releasebot.io/updates/openai"},
+          {source:"Releasebot",title:"OpenAI Claude Release Notes — March 2026",url:"https://releasebot.io/updates/anthropic"}
+        ],
+        related:["openai-120b-round","apple-siri-ai-rivals","claude-mythos-leak"]
+      }
+    ]
+  },
+  {
+    id:"security",
+    title:"Security & Policy",
+    icon:"🛡",
+    iconClass:"icon-red",
+    count:2,
+    cards:[
+      {
+        id:"langflow-cve",
+        date:"Mar 23–25, 2026",
+        headline:"CISA adds Langflow CVE-2026-33017 (CVSS 9.8) to Known Exploited Vulnerabilities — federal agencies must patch by April 8",
+        summary:"CISA added critical Langflow flaw CVE-2026-33017 to its KEV catalog on March 25 with a federal remediation deadline of April 8. The unauthenticated RCE vulnerability was exploited within 20 hours of public disclosure — attackers are stealing API keys and credentials from connected databases.",
+        tags:[["CISO","bg-red"],["CIO","bg-blue"]],
+        barClass:"bar-red",
+        riskLevel:"CRITICAL",
+        riskClass:"bg-red",
+        category:"SECURITY",
+        catColor:"c-red",
+        content:`<p>On <strong>March 25, 2026</strong>, CISA added <strong>CVE-2026-33017</strong> to its <strong>Known Exploited Vulnerabilities (KEV) Catalog</strong>, issuing a federal agency remediation deadline of <strong>April 8, 2026</strong>. The vulnerability affects <strong>Langflow</strong> — a widely-used open-source AI application builder — and carries a <strong>CVSS score of 9.8</strong> (Critical).</p><p>The flaw stems from the <strong>POST "/api/v1/build_public_tmp/" endpoint</strong>, which allows unauthenticated users to supply attacker-controlled flow data containing arbitrary Python code. That code is passed directly to <strong>exec() with no sandboxing</strong>, yielding unauthenticated remote code execution. No public proof-of-concept was required — attackers rebuilt working exploits from the advisory alone within <strong>20 hours of disclosure</strong>.</p><p>Sysdig observed exploitation from <strong>six unique source IPs within 48 hours</strong>. Attack objectives include stealing <strong>API keys and database credentials</strong> stored in Langflow-connected environments, setting up for potential supply chain attacks. The vulnerability affects all Langflow versions prior to and including <strong>1.8.1</strong>. Version <strong>1.9.0</strong> patches the issue.</p><p>The Hacker News reported: "What makes CVE-2026-33017 particularly dangerous is that Langflow instances often have elevated permissions to connected enterprise systems including Slack, Google Workspace, and production databases."</p>`,
+        actions:[
+          {owner:"CISO",ownerClass:"owner-ciso",text:"Run an immediate inventory of all Langflow deployments across your organization — including developer laptops, internal tooling, and third-party AI platforms that use Langflow as a building block. Any version ≤1.8.1 must be patched or isolated by April 8. Do not wait for CISA's federal deadline — treat this as an immediate action."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Review which enterprise systems (databases, Slack, Google Workspace, CRM) are connected to any Langflow instance. If keys or credentials were stored in Langflow's environment, treat them as potentially compromised: rotate all API keys and service account credentials for connected systems immediately."},
+          {owner:"CISO",ownerClass:"owner-ciso",text:"Implement network segmentation: Langflow instances should never be directly internet-accessible. If any instance was publicly exposed (check via Shodan for your IP ranges), conduct a forensic review of server logs from March 17 onward for exploitation evidence."}
+        ],
+        risks:[
+          {text:"Zero-day-speed exploitation: The 20-hour exploitation window after advisory publication — without a public PoC — demonstrates that AI development tool vulnerabilities are now targeted by sophisticated actors with rapid reverse-engineering capability. Patch SLA for AI tooling must match infrastructure SLA."},
+          {text:"Supply chain exposure: Langflow is embedded in many commercial AI platforms as a visual pipeline builder. Even if your team does not use Langflow directly, a vendor or SaaS platform you use may have a Langflow backend. Contact key AI platform vendors to confirm their Langflow version and patch status."},
+          {text:"Credential theft cascade: Stolen API keys from Langflow can be used to run unauthorized inference (cost exposure), exfiltrate data through AI APIs, or impersonate your organization's AI workflows. Implement API key rotation policies triggered by any security incident involving AI tooling."}
+        ],
+        csuite:"CVE-2026-33017 is the most operationally urgent vulnerability of Q1 2026 for any organization using AI development tools. The combination of a 9.8 CVSS score, unauthenticated RCE, and 20-hour exploitation window makes this a board-level security event. CISO should brief executive leadership on remediation status this week.",
+        links:[
+          {source:"The Hacker News",title:"Critical Langflow Flaw CVE-2026-33017 Triggers Attacks within 20 Hours of Disclosure",url:"https://thehackernews.com/2026/03/critical-langflow-flaw-cve-2026-33017.html"},
+          {source:"SecurityWeek",title:"Critical Langflow Vulnerability Exploited Hours After Public Disclosure",url:"https://www.securityweek.com/critical-langflow-vulnerability-exploited-hours-after-public-disclosure/"},
+          {source:"CISA",title:"U.S. CISA adds Langflow flaw to Known Exploited Vulnerabilities catalog",url:"https://securityaffairs.com/190018/security/u-s-cisa-adds-a-langflow-flaw-to-its-known-exploited-vulnerabilities-catalog.html"}
+        ],
+        related:["claude-computer-use","claude-mythos-leak","state-ai-laws"]
+      },
+      {
+        id:"state-ai-laws",
+        date:"Mar 23, 2026",
+        headline:"States press forward on AI regulation despite White House preemption push — Minnesota targets workplace monitoring, Tennessee bans AI mental health ads",
+        summary:"As of March 23, two states moved forward with AI laws: Minnesota introduced bills regulating AI-powered employee monitoring tools, and Tennessee passed a bill prohibiting AI systems from advertising as qualified mental health professionals. At least 38 states now have active AI legislation.",
+        tags:[["GC","bg-purple"],["CHRO","bg-cyan"],["CEO","bg-gold"]],
+        barClass:"bar-purple",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"REGULATION",
+        catColor:"c-purple",
+        content:`<p>As of <strong>March 23, 2026</strong>, state-level AI regulation continued to advance despite the White House's March 20 National AI Policy Framework, which proposed federal preemption of all state AI laws. Two notable state actions occurred this week:</p><p><strong>Minnesota</strong> introduced companion bills in both chambers that would regulate <strong>electronic monitoring tools used in employment contexts</strong>, including AI-powered systems that track employee productivity, communication patterns, keystrokes, and location. The bills require disclosure, limits on data retention, and employee right-to-access monitoring data.</p><p><strong>Tennessee</strong> passed a bill prohibiting AI systems from advertising or representing themselves as <strong>qualified mental health professionals</strong>. The law directly targets AI therapy chatbots and digital mental health platforms that imply clinical capability — a growing category following the rapid adoption of AI mental health tools post-pandemic.</p><p>Troutman Pepper's March 23 AI Law Update tracks that <strong>at least 38 states</strong> now have active AI legislation in varying stages. Congressional Democrats introduced the <strong>GUARDRAILS Act</strong> on March 20 to block the White House's proposed federal preemption of state AI laws, meaning the patchwork regulatory environment will persist for at minimum another legislative cycle.</p>`,
+        actions:[
+          {owner:"CHRO",ownerClass:"owner-chro",text:"Audit all AI-powered tools used in HR and workforce management for Minnesota compliance readiness. Any tool that monitors employee productivity, tracks location, analyzes communication patterns, or scores performance using AI must be disclosed to employees under proposed Minnesota law — begin disclosure drafting now, as similar laws are likely to pass in 5+ additional states in 2026."},
+          {owner:"GC",ownerClass:"owner-gc",text:"Conduct a 50-state AI regulatory audit with outside counsel. With 38 active state AI bills and no federal preemption yet, your compliance exposure is a patchwork risk. Prioritize states where you have significant employee headcount: California, Texas, New York, Illinois, and now Minnesota and Tennessee."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The GUARDRAILS Act signals that federal AI preemption — which would simplify compliance — is politically contested. Plan your AI governance program for continued state-by-state complexity through at least 2027. A compliance investment now is cheaper than retrofit after enforcement begins."}
+        ],
+        risks:[
+          {text:"Multi-state compliance cost: If all 38 active state AI bills become law in varying forms, compliance across states could require product differentiation, data localization, and disclosure regimes that vary by employee location — a significant operational overhead for HR tech and any employer using AI workforce tools."},
+          {text:"Tennessee mental health precedent: The prohibition on AI systems claiming mental health credentials may extend to adjacent categories — coaching, career counseling, wellness. If your employee benefits platform uses AI and makes any clinical-adjacent claims, review immediately."},
+          {text:"Monitoring litigation risk: Employee monitoring AI is increasingly subject to labor law claims. Minnesota's bills follow similar movements in New York City and Connecticut. Employers using AI performance tracking without disclosure face retroactive litigation exposure."}
+        ],
+        csuite:"State AI regulation is now a material compliance risk for any organization using AI in HR, workforce management, or consumer-facing health contexts. The White House preemption proposal will take at minimum 12–18 months to resolve legislatively, if it passes at all. Treat the 38-state patchwork as the operative compliance environment for 2026.",
+        links:[
+          {source:"Troutman Pepper",title:"Proposed State AI Law Update: March 23, 2026",url:"https://www.troutmanprivacy.com/2026/03/proposed-state-ai-law-update-march-23-2026/"},
+          {source:"Ropes & Gray",title:"White House National AI Policy Framework — Legislative Analysis",url:"https://www.ropesgray.com/en/insights/alerts/2026/03/the-white-house-legislative-recommendations-national-policy-framework-for-artificial-intelligence-an"},
+          {source:"SecurityAffairs",title:"CISA adds Langflow flaw to Known Exploited Vulnerabilities catalog",url:"https://securityaffairs.com/190018/security/u-s-cisa-adds-a-langflow-flaw-to-its-known-exploited-vulnerabilities-catalog.html"}
+        ],
+        related:["langflow-cve","claude-computer-use","claude-mythos-leak"]
+      }
+    ]
+  }
+];
+function findCard(id){for(const s of sections){const c=s.cards.find(x=>x.id===id);if(c)return{card:c,section:s};}return null;}
+function findCardTitle(id){const r=findCard(id);return r?r.card.headline:'';}
+function renderSections(filter='all'){const contentArea=document.getElementById('content-area');contentArea.innerHTML='';const filtered=filter==='all'?sections:sections.filter(s=>s.id===filter);filtered.forEach((section,si)=>{const el=document.createElement('div');el.className='section';el.id=`section-${section.id}`;el.style.animationDelay=`${si*0.08}s`;el.innerHTML=`<div class="section-header"><div class="section-icon ${section.iconClass}">${section.icon}</div><div class="section-title">${section.title}</div><div class="section-count">${section.count} ${section.count===1?'story':'stories'}</div></div><div class="cards-grid">${section.cards.map(c=>`<div class="card ${c.barClass}" onclick="openModal('${c.id}')"><div class="card-date">${c.date}</div><div class="card-headline">${c.headline}</div><div class="card-summary">${c.summary}</div><div class="card-tags">${c.tags.map(t=>`<span class="tag ${t[1]}">${t[0]}</span>`).join('')}</div><div class="card-bottom"><span class="card-risk-badge ${c.riskClass}">Risk: ${c.riskLevel}</span><span class="card-expand-hint">↗ Deep dive</span></div></div>`).join('')}</div>`;contentArea.appendChild(el);});}
+function openModal(cardId){const found=findCard(cardId);if(!found)return;const{card}=found;document.getElementById('modal-category').textContent=card.category;document.getElementById('modal-category').className=`modal-category ${card.catColor}`;document.getElementById('modal-headline').textContent=card.headline;document.getElementById('modal-date').textContent=card.date;document.getElementById('modal-content').innerHTML=card.content;document.getElementById('panel-grid').innerHTML=`<div class="panel panel-action"><div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div><ul class="panel-list">${card.actions.map(a=>`<li><span class="owner ${a.ownerClass}">${a.owner}</span> ${a.text}</li>`).join('')}</ul></div><div class="panel panel-risk"><div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div><ul class="panel-list">${card.risks.map(r=>`<li>${r.text}</li>`).join('')}</ul></div>`;document.getElementById('modal-csuite-text').textContent=card.csuite;document.getElementById('modal-link-list').innerHTML=card.links.map(l=>`<a class="modal-link" href="${l.url}" target="_blank" rel="noopener"><span class="modal-link-source">${l.source}</span><span>${l.title}</span><span class="modal-link-arrow">↗</span></a>`).join('');document.getElementById('related-chips').innerHTML=card.related.map(r=>`<div class="related-chip" onclick="event.stopPropagation();openModal('${r}')">${findCardTitle(r).substring(0,55)}${findCardTitle(r).length>55?'…':''}</div>`).join('');document.getElementById('modal-overlay').classList.add('active');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('active');document.body.style.overflow='';}
+document.getElementById('modal-close').addEventListener('click',closeModal);
+document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+document.querySelectorAll('.nav-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderSections(btn.dataset.section);});});
+(function(){const navInner=document.getElementById('nav-inner');const scrollArea=document.getElementById('nav-scroll-area');const btnLeft=document.getElementById('nav-scroll-left');const btnRight=document.getElementById('nav-scroll-right');const scrollStep=200;function updateScrollState(){const sl=navInner.scrollLeft;const maxScroll=navInner.scrollWidth-navInner.clientWidth;const canLeft=sl>2;const canRight=sl<maxScroll-2;btnLeft.classList.toggle('visible',canLeft);btnRight.classList.toggle('visible',canRight);scrollArea.classList.toggle('fade-left',canLeft);scrollArea.classList.toggle('fade-right',canRight);}btnLeft.addEventListener('click',()=>navInner.scrollBy({left:-scrollStep,behavior:'smooth'}));btnRight.addEventListener('click',()=>navInner.scrollBy({left:scrollStep,behavior:'smooth'}));navInner.addEventListener('scroll',updateScrollState,{passive:true});window.addEventListener('resize',updateScrollState);setTimeout(updateScrollState,100);updateScrollState();})();
+(function(){const toggle=document.getElementById('theme-toggle');const html=document.documentElement;const saved=localStorage.getItem('ai-briefing-theme');if(saved==='light')html.setAttribute('data-theme','light');toggle.addEventListener('click',()=>{const isLight=html.getAttribute('data-theme')==='light';if(isLight){html.removeAttribute('data-theme');localStorage.setItem('ai-briefing-theme','dark');}else{html.setAttribute('data-theme','light');localStorage.setItem('ai-briefing-theme','light');}});})();
+renderSections();
+</script>
+</body>
+</html>
