@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — April 6 – April 13, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555; --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c; --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def; --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0; --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9; --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c; --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+[data-theme="light"] {
+  --bg: #f4f6f9; --bg-card: #ffffff; --bg-card-hover: #f0f4f8; --bg-expanded: #ffffff;
+  --border: #d8dde6; --border-accent: #c0c8d4;
+  --text: #1a2332; --text-muted: #4a5568; --text-dim: #8896a8;
+  --accent: #135EAB; --accent-light: #1a74d0; --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030; --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F; --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB; --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1; --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488; --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621; --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4; --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06); --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06); --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05); --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08); --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;transition:background 0.4s ease;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65;min-height:100vh;}
+body,header,.nav-strip,.card,.modal,.exec-strip,.metric,.modal-csuite,.panel,.footer,.theme-toggle,.nav-btn{transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:var(--noise-opacity,1);}
+.hero{position:relative;padding:5rem 2rem 3rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--bg) 100%);}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 20%,var(--hero-glow-a) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,var(--hero-glow-b) 0%,transparent 50%);pointer-events:none;}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:12px;}
+.hero-label::before,.hero-label::after{content:'';width:24px;height:1px;background:var(--accent);opacity:0.5;}
+[data-theme="light"] .hero-label{color:#04955F;}
+[data-theme="light"] .hero-label::before,[data-theme="light"] .hero-label::after{background:linear-gradient(90deg,#135EAB,#04955F);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:0.8rem;color:var(--text);}
+.hero h1 span{color:var(--accent);}
+[data-theme="light"] .hero h1 span{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;color:var(--text-muted);margin-bottom:2.5rem;}
+.metrics-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:10px;max-width:900px;margin:0 auto;overflow:hidden;}
+[data-theme="light"] .metrics-bar{background:linear-gradient(135deg,#135EAB,#04955F);}
+.metric{background:var(--bg-card);padding:18px 20px;text-align:center;cursor:default;transition:background 0.2s;}
+.metric:hover{background:var(--bg-card-hover);}
+[data-theme="light"] .metric{background:rgba(255,255,255,0.95);}
+[data-theme="light"] .metric:hover{background:rgba(255,255,255,1);}
+.metric-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--accent);display:block;margin-bottom:4px;}
+[data-theme="light"] .metric-value{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;}
+.nav-strip{position:sticky;top:0;z-index:100;background:var(--nav-bg);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-wrapper{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:0;height:52px;}
+.nav-scroll-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+.nav-scroll-btn.visible{opacity:1;pointer-events:auto;}
+.nav-scroll-area{flex:1;position:relative;overflow:hidden;min-width:0;}
+.nav-scroll-area::before,.nav-scroll-area::after{content:'';position:absolute;top:0;bottom:0;width:28px;z-index:1;pointer-events:none;opacity:0;transition:opacity 0.2s;}
+.nav-scroll-area::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
+.nav-scroll-area::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
+.nav-scroll-area.fade-left::before,.nav-scroll-area.fade-right::after{opacity:1;}
+[data-theme="light"] .nav-scroll-area::before{background:linear-gradient(90deg,rgba(244,246,249,0.95),transparent);}
+[data-theme="light"] .nav-scroll-area::after{background:linear-gradient(-90deg,rgba(244,246,249,0.95),transparent);}
+.nav-inner{display:flex;gap:4px;overflow-x:auto;padding:8px 4px;scrollbar-width:none;-ms-overflow-style:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+.nav-btn:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border);}
+.nav-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(201,164,76,0.2);}
+[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,rgba(19,94,171,0.10),rgba(4,149,95,0.08));color:#135EAB;border-color:rgba(19,94,171,0.15);}
+.theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;margin-left:8px;flex-shrink:0;position:relative;overflow:hidden;}
+.theme-toggle .icon-sun,.theme-toggle .icon-moon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:15px;transition:opacity 0.3s,transform 0.3s;}
+.theme-toggle .icon-sun{opacity:0;transform:translate(-50%,-50%) rotate(-90deg) scale(0.5);}
+.theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-sun{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-moon{opacity:0;transform:translate(-50%,-50%) rotate(90deg) scale(0.5);}
+.main{max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+.exec-strip{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);border-radius:12px;padding:1.5rem 2rem;margin-bottom:2.5rem;}
+[data-theme="light"] .exec-strip{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));border-color:rgba(19,94,171,0.12);}
+.exec-strip-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+.exec-strip-body{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;}
+.exec-strip-body strong{color:var(--text);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.section{animation:fadeUp 0.5s ease both;margin-bottom:3rem;}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.icon-gold{background:var(--accent-dim);color:var(--accent);}
+.icon-green{background:var(--green-dim);color:var(--green);}
+.icon-blue{background:var(--blue-dim);color:var(--blue);}
+.icon-purple{background:var(--purple-dim);color:var(--purple);}
+.icon-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.icon-orange{background:var(--orange-dim);color:var(--orange);}
+.icon-red{background:var(--red-dim);color:var(--red);}
+[data-theme="light"] .icon-gold{background:rgba(19,94,171,0.10);}
+[data-theme="light"] .icon-green{background:rgba(4,149,95,0.10);}
+[data-theme="light"] .icon-blue{background:rgba(100,203,192,0.12);}
+[data-theme="light"] .icon-red{background:rgba(255,156,163,0.15);}
+[data-theme="light"] .icon-purple{background:rgba(107,70,193,0.10);}
+[data-theme="light"] .icon-cyan{background:rgba(100,203,192,0.12);}
+[data-theme="light"] .icon-orange{background:rgba(244,244,49,0.15);}
+.section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);}
+.section-count{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);background:var(--bg-card);border:1px solid var(--border);padding:3px 8px;border-radius:4px;margin-left:auto;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.25rem 1rem;cursor:pointer;position:relative;overflow:hidden;transition:all 0.25s ease;}
+.card:hover{background:var(--bg-card-hover);transform:translateY(-2px);box-shadow:0 8px 32px var(--shadow-card);}
+[data-theme="light"] .card{box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(19,94,171,0.10);}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;opacity:0;transition:opacity 0.25s;}
+.card:hover::before{opacity:1;}
+.bar-gold::before{background:var(--accent);}
+.bar-green::before{background:var(--green);}
+.bar-blue::before{background:var(--blue);}
+.bar-red::before{background:var(--red);}
+.bar-purple::before{background:var(--purple);}
+.bar-cyan::before{background:var(--cyan);}
+.bar-orange::before{background:var(--orange);}
+[data-theme="light"] .bar-gold::before{background:linear-gradient(180deg,#135EAB,#04955F);}
+[data-theme="light"] .bar-blue::before{background:#135EAB;}
+[data-theme="light"] .bar-green::before{background:#04955F;}
+[data-theme="light"] .bar-red::before{background:#FF9CA3;}
+[data-theme="light"] .bar-purple::before{background:#6b46c1;}
+[data-theme="light"] .bar-cyan::before{background:#64CBC0;}
+[data-theme="light"] .bar-orange::before{background:#F4F431;}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem;}
+.card-headline{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:0.6rem;}
+.card-summary{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:0.75rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0.75rem;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;font-weight:500;}
+.bg-gold{background:var(--accent-dim);color:var(--accent);}
+.bg-red{background:var(--red-dim);color:var(--red);}
+.bg-green{background:var(--green-dim);color:var(--green);}
+.bg-blue{background:var(--blue-dim);color:var(--blue);}
+.bg-purple{background:var(--purple-dim);color:var(--purple);}
+.bg-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.bg-orange{background:var(--orange-dim);color:var(--orange);}
+[data-theme="light"] .bg-gold{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .bg-red{background:rgba(255,156,163,0.20);color:#b83240;}
+[data-theme="light"] .bg-green{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .bg-blue{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .bg-purple{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .bg-cyan{background:rgba(100,203,192,0.15);color:#0d9488;}
+[data-theme="light"] .bg-orange{background:rgba(244,244,49,0.15);color:#8a6d00;}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;}
+.card-risk-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:4px;}
+.card-expand-hint{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-dim);}
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--overlay-bg);z-index:1000;display:none;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px);}
+.modal-overlay.active{display:flex;animation:fadeIn 0.2s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.modal{background:var(--bg-expanded);border:1px solid var(--border-accent);border-radius:16px;width:100%;max-width:800px;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+[data-theme="light"] .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);border-color:var(--border);}
+.modal-top-bar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg-expanded);z-index:1;}
+.modal-category{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+.c-gold{color:var(--accent);}.c-green{color:var(--green);}.c-blue{color:var(--blue);}.c-red{color:var(--red);}.c-purple{color:var(--purple);}.c-cyan{color:var(--cyan);}.c-orange{color:var(--orange);}
+.modal-close{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;color:var(--text-muted);cursor:pointer;font-size:14px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.modal-close:hover{background:var(--bg-card-hover);color:var(--text);}
+.modal-body{padding:1.5rem 1.5rem 2rem;}
+.modal-headline{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);line-height:1.25;margin-bottom:0.5rem;}
+.modal-date{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1.25rem;}
+.modal-content{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;margin-bottom:1.5rem;}
+.modal-content p{margin-bottom:1rem;}.modal-content p:last-child{margin-bottom:0;}.modal-content strong{color:var(--text);}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem;}
+@media(max-width:640px){.panel-grid{grid-template-columns:1fr;}}
+.panel{border-radius:10px;padding:1rem 1.1rem;}
+.panel-action{background:var(--panel-action-bg);border:1px solid var(--panel-action-border);}
+.panel-risk{background:var(--panel-risk-bg);border:1px solid var(--panel-risk-border);}
+.panel-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.75rem;display:flex;align-items:center;gap:6px;}
+.panel-label-icon{font-size:12px;}
+.panel-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.panel-list li{font-family:'Source Serif 4',serif;font-size:13.5px;color:var(--text-muted);line-height:1.55;padding:8px 0;border-bottom:1px solid var(--panel-li-border);}
+.panel-list li:last-child{border-bottom:none;}
+.owner{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-right:6px;display:inline-block;vertical-align:middle;}
+.owner-ceo{background:var(--accent-dim);color:var(--accent);}
+.owner-cfo{background:var(--green-dim);color:var(--green);}
+.owner-cio{background:var(--blue-dim);color:var(--blue);}
+.owner-gc{background:var(--purple-dim);color:var(--purple);}
+.owner-ciso{background:var(--red-dim);color:var(--red);}
+.owner-chro{background:var(--orange-dim);color:var(--orange);}
+[data-theme="light"] .owner-ceo{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .owner-cfo{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .owner-cio{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .owner-gc{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .owner-ciso{background:rgba(255,156,163,0.15);color:#b83240;}
+[data-theme="light"] .owner-chro{background:rgba(244,244,49,0.15);color:#8a6d00;}
+.panel-risk .panel-list li::before{content:'▸';color:var(--red);margin-right:6px;font-size:10px;}
+.modal-csuite{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem;}
+[data-theme="light"] .modal-csuite{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));}
+.modal-csuite-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+#modal-csuite-text{font-family:'Source Serif 4',serif;font-size:14px;color:var(--text-muted);line-height:1.65;}
+.modal-links{margin-bottom:1.25rem;}
+.modal-links-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.6rem;}
+.modal-link-list{display:flex;flex-direction:column;gap:6px;}
+.modal-link{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:var(--bg-card);border:1px solid var(--border);text-decoration:none;color:var(--text-muted);font-size:13px;transition:all 0.2s;}
+.modal-link:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border-accent);}
+.modal-link-source{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);flex-shrink:0;min-width:80px;}
+.modal-link-arrow{margin-left:auto;color:var(--text-dim);font-size:12px;}
+.modal-related{margin-top:0.5rem;}
+.modal-related-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.6rem;}
+.related-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.related-chip{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-muted);background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:5px 12px;cursor:pointer;transition:all 0.2s;}
+.related-chip:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border-accent);}
+[data-theme="light"] .related-chip:hover{background:rgba(19,94,171,0.08);border-color:#135EAB;color:#135EAB;}
+.footer{text-align:center;padding:2rem 1.5rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);}
+@media(max-width:768px){.hero{padding:3rem 1.25rem 2rem;}.metrics-bar{grid-template-columns:repeat(2,1fr);}.metrics-bar .metric:last-child{grid-column:1/-1;}.cards-grid{grid-template-columns:1fr;}.main{padding:1.5rem 1rem 3rem;}.modal-body{padding:1rem 1rem 1.5rem;}.modal-headline{font-size:20px;}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-label">AI Intelligence Briefing · Week 15, 2026</div>
+  <h1>AI Intelligence <span>Briefing</span></h1>
+  <p class="hero-sub">April 6 – April 13, 2026 · C-Suite Edition</p>
+  <div class="metrics-bar">
+    <div class="metric"><span class="metric-value">$30B</span><span class="metric-label">Anthropic Run Rate</span></div>
+    <div class="metric"><span class="metric-value">$21B</span><span class="metric-label">Meta/CoreWeave Deal</span></div>
+    <div class="metric"><span class="metric-value">3.5 GW</span><span class="metric-label">Anthropic Compute</span></div>
+    <div class="metric"><span class="metric-value">$200B</span><span class="metric-label">Amazon CapEx 2026</span></div>
+    <div class="metric"><span class="metric-value">80K</span><span class="metric-label">Q1 Tech Layoffs</span></div>
+  </div>
+</header>
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="nav-scroll-left">&#8249;</button>
+    <div class="nav-scroll-area" id="nav-scroll-area">
+      <div class="nav-inner" id="nav-inner">
+        <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="platforms">🏛 Platform News</button>
+        <button class="nav-btn" data-section="models">🧠 New Models</button>
+        <button class="nav-btn" data-section="infrastructure">⚙️ Infrastructure</button>
+        <button class="nav-btn" data-section="agents">🤖 Agentic AI</button>
+        <button class="nav-btn" data-section="workforce">👥 Workforce</button>
+        <button class="nav-btn" data-section="security">🛡 Security</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="nav-scroll-right">&#8250;</button>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button>
+  </div>
+</nav>
+<main class="main">
+  <div class="exec-strip">
+    <div class="exec-strip-label">⚡ 30-Second Executive Summary</div>
+    <div class="exec-strip-body"><strong>Anthropic dominated the week on infrastructure and products:</strong> on April 6, the company disclosed its annual revenue run rate has surpassed <strong>$30 billion</strong> while signing a deal with Google and Broadcom for <strong>3.5 gigawatts</strong> of TPU compute starting 2027; on April 8, it launched <strong>Claude Managed Agents</strong> at $0.08/session hour with Notion, Rakuten, and Asana among the first customers; and on April 10, it inked a separate multibillion-dollar cloud deal with <strong>CoreWeave</strong>. On April 9, <strong>Amazon CEO Andy Jassy</strong> published his annual shareholder letter disclosing — for the first time — that AWS AI services have reached a <strong>$15 billion annualized revenue run rate</strong> and defending <strong>$200 billion in 2026 capital expenditure</strong>. Also April 9: <strong>Meta and CoreWeave expanded their agreement to $21 billion</strong> through 2032. Meanwhile, <strong>Meta launched Muse Spark</strong> on April 8, the first model from its newly formed Superintelligence Labs, scoring 52 on the Artificial Analysis Intelligence Index.</div>
+  </div>
+  <div id="content-area"></div>
+</main>
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-top-bar">
+      <div class="modal-category" id="modal-category"></div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-headline" id="modal-headline"></h2>
+      <div class="modal-date" id="modal-date"></div>
+      <div class="modal-content" id="modal-content"></div>
+      <div class="panel-grid" id="panel-grid"></div>
+      <div class="modal-csuite" id="modal-csuite">
+        <div class="modal-csuite-label">⚡ Bottom Line</div>
+        <p id="modal-csuite-text"></p>
+      </div>
+      <div class="modal-links">
+        <div class="modal-links-label">Sources &amp; Further Reading</div>
+        <div class="modal-link-list" id="modal-link-list"></div>
+      </div>
+      <div class="modal-related">
+        <div class="modal-related-label">Related Topics</div>
+        <div class="related-chips" id="related-chips"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">AI Intelligence Briefing — April 6 – April 13, 2026 · Prepared by Claude for C-Suite Decision Makers · Sources verified as of April 13, 2026</footer>
+<script>
+const sections=[
+  {
+    id:"platforms",
+    title:"Enterprise AI Platforms",
+    icon:"🏛",
+    iconClass:"icon-gold",
+    count:2,
+    cards:[
+      {
+        id:"anthropic-google-broadcom-tpu",
+        date:"Apr 6, 2026",
+        headline:"Anthropic's annual run rate hits $30B as it locks in 3.5 GW of Google/Broadcom TPU capacity through 2031",
+        summary:"Anthropic revealed revenue has tripled from ~$9B (end-2025) to $30B as it signs its largest-ever compute deal: 3.5 GW of next-gen TPU capacity with Google and Broadcom starting 2027, on top of 1 GW already in-flight for 2026.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass:"bar-gold",
+        riskLevel:"OPPORTUNITY",
+        riskClass:"bg-green",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-gold",
+        content:`<p>On <strong>April 6, 2026</strong>, Anthropic announced a new long-term agreement with <strong>Google</strong> and <strong>Broadcom</strong> for multiple gigawatts of next-generation TPU capacity expected to come online starting in 2027. The company simultaneously disclosed that its annual revenue run rate has surpassed <strong>$30 billion</strong> — up approximately 3.3× from roughly $9 billion at the end of 2025 — driven by exponential growth in enterprise Claude subscriptions.</p><p>The deal adds <strong>3.5 GW of compute</strong> predominantly housed in the United States, layering on top of the 1 GW already committed under the Google Cloud agreement announced in October 2025 and set to come online this year. The agreements lock in Broadcom as the primary architect of Anthropic's custom Tensor Processing Units and high-speed networking components <strong>through 2031</strong>. Separately, the company disclosed that over <strong>1,000 enterprise customers</strong> are now each spending $1M+ annually — a figure that doubled in less than two months.</p><p><strong>Krishna Rao</strong>, CFO of Anthropic, stated: "This groundbreaking partnership with Google and Broadcom is a continuation of our disciplined approach to scaling infrastructure: we are building the capacity necessary to serve the exponential growth we have seen in our customer base while also enabling Claude to define the frontier of AI development. We are making our most significant compute commitment to date to keep pace with our unprecedented growth."</p><p>The deal signals a new era of supply-chain verticalization for AI labs. Anthropic's bet is that securing gigawatt-scale TPU capacity at favorable economics now — before sovereign AI buildouts intensify competition for compute — will protect its ability to serve the next wave of enterprise demand.</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Benchmark Claude's enterprise pricing against your current AI spend. With 1,000+ enterprises at $1M+ ARR, Anthropic now has market-pricing leverage. If your organization is not yet at $1M, request a multi-year commitment discount before pricing rises with demand."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Anthropic's $30B run rate — up 3× in under 6 months — confirms enterprise AI adoption is no longer gradual. Revisit your AI investment roadmap: are you capturing productivity gains at the same velocity as your peers who are already at scale?"},
+          {owner:"CIO",ownerClass:"owner-cio",text:"The 3.5 GW compute commitment starting 2027 means Anthropic will have significantly more model capacity by H2 2027. Begin planning for what new workloads you would run if model availability and throughput doubled — capacity constraints will ease."}
+        ],
+        risks:[
+          {text:"Concentration risk: Anthropic's infrastructure is deeply tied to Google TPUs through 2031. Any disruption in the Google/Broadcom supply chain could affect Claude API availability. Maintain a tested fallback to at least one alternative frontier model provider."},
+          {text:"Price trajectory: As Anthropic's enterprise base grows and compute costs are locked in, pricing pressure flows to customers. New tier structures are likely in 2026–2027 as the company monetizes premium capacity."},
+          {text:"Competitive response: OpenAI and Google Cloud will respond to Anthropic's growth. Watch for counter-pricing moves, bundling, and exclusive enterprise deals from both competitors in Q2–Q3 2026."}
+        ],
+        csuite:"Anthropic is no longer a startup — at $30B run rate it is a tier-1 enterprise software vendor. The compute deal locks in supply-side advantages through 2031. For enterprises: negotiate multi-year contracts now before premium capacity tiers are introduced. For CISOs: the 1,000+ enterprise deployments make Anthropic's security posture a systemic concern — request their latest SOC 2 Type II report.",
+        links:[
+          {source:"Anthropic",title:"Anthropic expands partnership with Google and Broadcom for multiple gigawatts of next-generation compute",url:"https://www.anthropic.com/news/google-broadcom-partnership-compute"},
+          {source:"TechCrunch",title:"Anthropic ups compute deal with Google and Broadcom amid skyrocketing demand",url:"https://techcrunch.com/2026/04/07/anthropic-compute-deal-google-broadcom-tpus/"},
+          {source:"TNW",title:"Anthropic signs biggest compute deal yet with Google and Broadcom as run rate hits $30bn",url:"https://thenextweb.com/news/anthropic-google-broadcom-compute-deal"},
+          {source:"CNBC",title:"Broadcom agrees to expanded chip deals with Google, Anthropic",url:"https://www.cnbc.com/2026/04/06/broadcom-agrees-to-expanded-chip-deals-with-google-anthropic.html"}
+        ],
+        related:["anthropic-coreweave","claude-managed-agents","amazon-jassy-letter"]
+      },
+      {
+        id:"claude-managed-agents",
+        date:"Apr 8, 2026",
+        headline:"Anthropic launches Claude Managed Agents in public beta — enterprises get fully hosted AI agent infrastructure at $0.08/session hour",
+        summary:"Anthropic's new composable API suite lets enterprises build and deploy production-scale AI agents without managing infrastructure. Early customers include Notion, Rakuten, and Asana. Features include sandboxed code execution, persistent long-running sessions, and multi-agent Agent Teams.",
+        tags:[["CIO","bg-blue"],["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass:"bar-cyan",
+        riskLevel:"HIGH IMPACT",
+        riskClass:"bg-blue",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-cyan",
+        content:`<p>On <strong>April 8, 2026</strong>, Anthropic launched <strong>Claude Managed Agents</strong> in public beta — a fully managed cloud service for building and deploying enterprise AI agents at scale. The service eliminates the infrastructure burden of running autonomous agents, providing the execution environment, orchestration, and security guardrails as a managed layer on top of Claude's API.</p><p>The suite is priced at <strong>$0.08 per session hour</strong> on top of standard API token pricing and is available to all Anthropic API accounts by default. Access requires the <strong>managed-agents-2026-04-01 header</strong> in API requests (added automatically by the Claude SDK).</p><p>Key capabilities include <strong>secure sandboxed code execution</strong>, authentication and authorization management, <strong>checkpointing</strong> for long-running workflows, scoped permissions, and persistent sessions. The <strong>Agent Teams</strong> feature allows coordination of multiple Claude instances with independent contexts, direct inter-agent communication, and a shared task list — enabling complex multi-step workflows without custom orchestration code.</p><p>Early enterprise customers disclosed include <strong>Notion Inc.</strong>, <strong>Rakuten Group Inc.</strong>, and <strong>Asana Inc.</strong> Anthropic also disclosed that combining Opus 4.6 as an advisor to Sonnet/Haiku models via the Advisor Strategy API scores <strong>2.7 percentage points higher on SWE-bench Multilingual</strong> than Sonnet alone, while costing <strong>11.9% less per task</strong>.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Evaluate Claude Managed Agents for your top-3 high-volume workflow candidates (e.g. document processing, code review, data pipeline monitoring). The $0.08/session hour pricing makes economics easy to model — run a 30-day proof-of-concept before committing to custom infrastructure."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"The Advisor Strategy cost finding is directly actionable: if your current Claude deployments use Opus 4.6 exclusively, switching to Sonnet with an Opus advisor cuts costs 11.9% with a benchmark improvement. Model this against your current token spend immediately."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Notion, Rakuten, and Asana deploying managed agents signals this is crossing from experiment to operations at large enterprises. Ask your CIO to present a managed agent deployment roadmap in Q2."}
+        ],
+        risks:[
+          {text:"Vendor lock-in: Managed Agents sessions, checkpoints, and Agent Team configs are Anthropic-proprietary. Migrating agent workflows to another provider later will require significant re-architecture. Design workloads with portability in mind."},
+          {text:"Data handling: Long-running persistent sessions accumulate interaction history on Anthropic's infrastructure. Ensure your data classification policies cover what can flow through managed agent sessions before deploying in regulated business contexts."},
+          {text:"Session cost management: The $0.08/hour plus token costs can compound rapidly for long-running or parallel agent workflows. Set hard session time limits and budget alerts before production deployment."}
+        ],
+        csuite:"Claude Managed Agents removes the last major friction point for enterprise AI agent deployment — infrastructure management. At $0.08/hour, even conservative use cases become economically compelling. The Advisor Strategy cost saving is a quick win available today on existing API accounts: model it against your current spend before your next billing cycle.",
+        links:[
+          {source:"SiliconANGLE",title:"Anthropic launches Claude Managed Agents to speed up AI agent development",url:"https://siliconangle.com/2026/04/08/anthropic-launches-claude-managed-agents-speed-ai-agent-development/"},
+          {source:"The New Stack",title:"With Claude Managed Agents, Anthropic wants to run your AI agents for you",url:"https://thenewstack.io/with-claude-managed-agents-anthropic-wants-to-run-your-ai-agents-for-you/"},
+          {source:"Winbuzzer",title:"Anthropic Launches Claude Managed Agents for Enterprise AI",url:"https://winbuzzer.com/2026/04/10/anthropic-launches-claude-managed-agents-enterprise-ai-xcxwbn/"},
+          {source:"9to5Mac",title:"Anthropic scales up with enterprise features for Claude Cowork and Managed Agents",url:"https://9to5mac.com/2026/04/09/anthropic-scales-up-with-enterprise-features-for-claude-cowork-and-managed-agents/"}
+        ],
+        related:["anthropic-google-broadcom-tpu","anthropic-coreweave","visa-ai-payments"]
+      }
+    ]
+  },
+  {
+    id:"models",
+    title:"New AI Models",
+    icon:"🧠",
+    iconClass:"icon-purple",
+    count:2,
+    cards:[
+      {
+        id:"meta-muse-spark",
+        date:"Apr 8, 2026",
+        headline:"Meta launches Muse Spark — first model from Superintelligence Labs scores 52 on Intelligence Index, leads all rivals on HealthBench Hard",
+        summary:"Meta's first proprietary frontier model arrives from its newly formed Superintelligence Labs. Muse Spark scores 52 on the Artificial Analysis Intelligence Index (GPT-5.4: 57, Opus 4.6: 53) and tops all rivals on HealthBench Hard at 42.8%, while a new 'Contemplating' reasoning mode begins gradual rollout.",
+        tags:[["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass:"bar-purple",
+        riskLevel:"MONITOR",
+        riskClass:"bg-gold",
+        category:"NEW AI MODELS",
+        catColor:"c-purple",
+        content:`<p>On <strong>April 8, 2026</strong>, Meta introduced <strong>Muse Spark</strong> — the first model from <strong>Meta Superintelligence Labs</strong>, the company's revamped AI research division. Muse Spark is a natively multimodal reasoning model with support for tool-use, visual chain of thought, and multi-agent orchestration, and represents a strategic departure from Meta's prior open-source Llama series toward a proprietary frontier model.</p><p>On the <strong>Artificial Analysis Intelligence Index</strong>, Muse Spark scores <strong>52</strong> — competitive but not yet leading, trailing <strong>Gemini 3.1 Pro</strong> and <strong>GPT-5.4</strong> (both 57) and just below <strong>Claude Opus 4.6</strong> (53). However, Muse Spark achieves the best result of any model on <strong>HealthBench Hard</strong> at <strong>42.8%</strong> — significantly outperforming all rivals — and scores <strong>80.5%</strong> on MMMU-Pro vision benchmarks, second only to Gemini 3.1 Pro Preview (82.4%).</p><p>The model includes a new <strong>Contemplating mode</strong> — Meta's equivalent of extended-thinking — which begins gradual rollout. Meta acknowledged performance gaps in "long-horizon agentic systems and coding workflows" and stated it "continues to invest in these areas." Zuckerberg positioned the launch as the beginning of a new era, with <strong>LlamaCon</strong> — Meta's first-ever AI developer conference — scheduled for <strong>April 29</strong> to share the broader roadmap.</p><p>The model is available publicly today via Meta AI on web, iOS, and Android.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Run a head-to-head evaluation of Muse Spark against your current model stack for healthcare, clinical, or insurance use cases — the HealthBench Hard result (42.8%, best-in-class) is directly relevant. Request a 2-week API evaluation from Meta AI."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Meta's entry into proprietary frontier models creates a 5-way competitive dynamic (OpenAI, Anthropic, Google, Meta, xAI). Broader competition structurally drives prices down. Brief your AI procurement team to anticipate rate renegotiation windows in Q3 2026 as models compete for enterprise contracts."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Monitor LlamaCon (April 29) for Muse Spark API access details, enterprise pricing, and the open-source roadmap. Meta's licensing approach will determine whether Muse Spark is viable for on-premise or private-cloud deployment scenarios."}
+        ],
+        risks:[
+          {text:"Lagging agent/coding benchmarks: Muse Spark underperforms on long-horizon agentic tasks by Meta's own admission. Do not replace incumbent models in coding agents or complex workflow automation until performance gaps are closed."},
+          {text:"Data and privacy terms: Meta's AI products carry consumer data terms shaped by Meta's advertising business. Before enterprise deployment, review Muse Spark's API data retention and usage policies against your data governance requirements."},
+          {text:"Model strategy uncertainty: The launch of a proprietary model alongside continued Llama open-source development creates strategic ambiguity. Watch for licensing changes that could affect how Llama-based internal tools are used commercially."}
+        ],
+        csuite:"Muse Spark is competitive but not yet the frontier leader. Its standout HealthBench Hard score makes it worth evaluating specifically for healthcare/insurance AI workloads. For other use cases, treat this as a benchmark-and-watch situation until LlamaCon (April 29) reveals enterprise pricing and API roadmap.",
+        links:[
+          {source:"Fortune",title:"Meta unveils Muse Spark, its first new model since its botched Llama 4 debut",url:"https://fortune.com/2026/04/08/meta-unveils-muse-spark-mark-zuckerberg-ai-push/"},
+          {source:"Meta AI",title:"Introducing Muse Spark: Scaling Towards Personal Superintelligence",url:"https://ai.meta.com/blog/introducing-muse-spark-msl/"},
+          {source:"Artificial Analysis",title:"Muse Spark: Meta is back in the AI race",url:"https://artificialanalysis.ai/articles/muse-spark-everything-you-need-to-know"},
+          {source:"OfficeChai",title:"Meta Releases Muse Spark, Beats Top Frontier Labs On Some Benchmarks",url:"https://officechai.com/ai/meta-muse-spark-benchmarks/"}
+        ],
+        related:["claude-managed-agents","anthropic-google-broadcom-tpu","visa-ai-payments"]
+      },
+      {
+        id:"apple-foundation-models",
+        date:"Apr 7, 2026",
+        headline:"Apple opens Foundation Models framework to all developers — free on-device AI inference in 3 lines of code, no internet required",
+        summary:"Apple announced its Foundation Models developer framework on April 7, giving third-party app developers direct access to the Apple Intelligence model with offline processing, zero per-query cost, and privacy-preserving on-device execution — accessible in as few as three lines of Swift code.",
+        tags:[["CIO","bg-blue"],["CISO","bg-red"],["CEO","bg-gold"]],
+        barClass:"bar-cyan",
+        riskLevel:"OPPORTUNITY",
+        riskClass:"bg-green",
+        category:"NEW AI MODELS",
+        catColor:"c-cyan",
+        content:`<p>On <strong>April 7, 2026</strong>, Apple announced the <strong>Foundation Models framework</strong>, giving third-party app developers programmatic access to the Apple Intelligence on-device model across iPhone, iPad, Mac, and Apple Watch. The capability is available with as few as <strong>three lines of Swift code</strong> and requires no API key, no cloud dependency, and no per-query cost.</p><p>Processing occurs entirely on-device using Apple's Neural Engine, meaning <strong>no user data leaves the device</strong>. The framework covers text generation, summarization, classification, and structured output tasks. Apple Intelligence capabilities — including Writing Tools, Smart Reply, and notification summaries — are available for developers to integrate directly into third-party apps.</p><p>The announcement signals Apple's intent to make on-device AI a competitive differentiator against cloud-dependent models. Apple noted that <strong>Google's Gemini</strong> models have been agreed upon to power an upgraded Siri through a multi-year deal reportedly costing approximately <strong>$1 billion per year</strong> — positioning the Foundation Models framework as the private, local complement to Gemini's cloud intelligence layer.</p><p>The framework is available for developer testing starting April 7, with production availability expected to ship with the next iOS/macOS release cycle.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Assess your enterprise iOS app portfolio for Foundation Models integration opportunities — specifically summarization of internal documents, smart form completion, and offline classification tasks. Zero per-query cost changes the economics for high-frequency in-app AI features."},
+          {owner:"CISO",ownerClass:"owner-ciso",text:"The on-device, no-data-egress architecture directly addresses data residency concerns that have blocked cloud AI deployment in regulated industries. Identify 2–3 regulated-data use cases where Foundation Models could unlock AI capabilities that were previously prohibited by policy."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Apple's $1B/year Gemini deal and its Foundation Models framework together signal the mobile AI platform is maturing rapidly. If your workforce is heavily iOS-based, include Apple Intelligence in your 2026–2027 AI roadmap — the absence of incremental cost makes adoption economics favorable."}
+        ],
+        risks:[
+          {text:"Model capability ceiling: On-device models are smaller and less capable than cloud frontier models. Foundation Models are appropriate for classification, summarization, and simple generation — but not for complex reasoning, long-context analysis, or agentic tasks that require frontier-scale models."},
+          {text:"Platform dependency: Building workflows deeply integrated with Apple Foundation Models creates Apple ecosystem lock-in. Cross-platform enterprise applications that need to run on Windows, Android, or web cannot use this framework."},
+          {text:"Roadmap opacity: Apple has not disclosed model versions, benchmark scores, or update cadences for Foundation Models. Enterprise developers have limited visibility into capability changes across iOS/macOS releases."}
+        ],
+        csuite:"Foundation Models removes cost as a barrier to AI integration in iOS apps — a meaningful enabler for enterprise mobile applications handling sensitive data that cannot go to the cloud. Identify regulated-data use cases immediately and task a developer to prototype before the next iOS release ships.",
+        links:[
+          {source:"Apple",title:"Apple Intelligence gets even more powerful with new capabilities across Apple devices",url:"https://www.apple.com/newsroom/2025/06/apple-intelligence-gets-even-more-powerful-with-new-capabilities-across-apple-devices/"},
+          {source:"PYMNTS",title:"Apple Set to Announce AI-Native Hardware to Unlock New Services Revenue",url:"https://www.pymnts.com/apple/2026/apple-plans-week-of-product-announcements/"},
+          {source:"Information Age",title:"Apple reveals the AI behind Siri's big 2026 upgrade",url:"https://ia.acs.org.au/article/2026/apple-reveals-the-ai-behind-siri-s-big-2026-upgrade.html"}
+        ],
+        related:["meta-muse-spark","claude-managed-agents","anthropic-google-broadcom-tpu"]
+      }
+    ]
+  },
+  {
+    id:"infrastructure",
+    title:"AI Infrastructure & Investment",
+    icon:"⚙️",
+    iconClass:"icon-blue",
+    count:3,
+    cards:[
+      {
+        id:"coreweave-meta-deal",
+        date:"Apr 9, 2026",
+        headline:"Meta and CoreWeave sign $21B AI cloud deal through 2032, bringing total Meta commitment to $35B",
+        summary:"CoreWeave announced an expanded long-term agreement with Meta for $21 billion of AI cloud capacity through December 2032, running on NVIDIA Rubin chips. Combined with September's $14.2B deal, Meta has now committed $35B to CoreWeave — the cloud provider's largest customer by far.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass:"bar-blue",
+        riskLevel:"MARKET SIGNAL",
+        riskClass:"bg-blue",
+        category:"AI INFRASTRUCTURE",
+        catColor:"c-blue",
+        content:`<p>On <strong>April 9, 2026</strong>, CoreWeave announced an expanded long-term AI cloud agreement with <strong>Meta Platforms</strong> valued at approximately <strong>$21 billion</strong>, covering capacity delivery from 2027 through December 2032. The deal is built on <strong>NVIDIA Rubin</strong> chips deployed across multiple U.S. data centers, and follows a prior $14.2 billion agreement disclosed in September 2025 that runs through 2031.</p><p>The combined value of Meta's commitments to CoreWeave now totals <strong>$35 billion</strong>, making Meta by far CoreWeave's largest customer. CoreWeave simultaneously announced it would raise <strong>$3 billion in fresh debt</strong> to fund infrastructure buildout to fulfill these contracts. The deal also comes as nine of CoreWeave's top ten AI model provider customers have now joined its platform.</p><p>The scale of the commitment — $21 billion for compute alone — underscores the staggering infrastructure appetite Meta is building for its AI strategy, which includes training Muse Spark and future superintelligence lab models, as well as powering Meta AI across its 3+ billion monthly active users across Facebook, Instagram, and WhatsApp.</p><p>The announcement sent CoreWeave's stock up <strong>3.5%</strong> on the day. The following day (April 10), Anthropic signed its own separate multibillion-dollar deal with CoreWeave — effectively making CoreWeave the infrastructure backbone for two of the three largest AI labs.</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"CoreWeave now holds $35B+ in AI lab contracts. If you are evaluating cloud infrastructure for AI workloads, CoreWeave's balance sheet and infrastructure scale now make it a credible enterprise alternative to hyperscalers. Issue a formal RFP comparison by Q3 2026."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The Meta $21B commitment represents a strategic view that proprietary AI infrastructure is a competitive moat. Evaluate whether your AI workloads benefit from dedicated GPU cloud vs. hyperscaler shared infrastructure — at scale, dedicated often has better TCO and latency."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"NVIDIA Rubin deployments are now confirmed in CoreWeave's Meta infrastructure for 2027 forward. As Rubin offers 10× inference cost reduction vs. Blackwell, API pricing from labs running on Rubin infrastructure should drop materially in late 2027. Factor this into multi-year AI cost models."}
+        ],
+        risks:[
+          {text:"Compute concentration: Both Meta and Anthropic relying heavily on CoreWeave creates systemic infrastructure risk for the AI ecosystem. A significant CoreWeave outage or financial disruption would simultaneously affect two major AI providers."},
+          {text:"NVIDIA dependency: The Rubin-centric buildout deepens the sector's dependence on a single chip vendor. NVIDIA supply chain disruptions (export controls, fab capacity, geopolitical risk) could delay AI infrastructure expansion plans across the industry."},
+          {text:"Debt financing risk: CoreWeave raising $3B in fresh debt to fund buildout adds leverage to a company whose revenue is highly concentrated in AI lab customers. Monitor CoreWeave's credit quality if you plan long-term contracts with them."}
+        ],
+        csuite:"The Meta-CoreWeave $35B total commitment is a clear signal that purpose-built AI cloud infrastructure is winning against hyperscaler general-purpose compute. For CIOs evaluating AI infrastructure strategy: compare CoreWeave and dedicated GPU cloud economics against AWS/Azure/GCP for pure AI workloads before your next infrastructure refresh cycle.",
+        links:[
+          {source:"CoreWeave",title:"CoreWeave and Meta Announce $21 Billion Expanded AI Infrastructure Agreement",url:"https://investors.coreweave.com/news/news-details/2026/CoreWeave-and-Meta-Announce-21-Billion-Expanded-AI-Infrastructure-Agreement/default.aspx"},
+          {source:"Bloomberg",title:"CoreWeave, Meta Strike Another $21 Billion Deal for AI Computing",url:"https://www.bloomberg.com/news/articles/2026-04-09/coreweave-expands-meta-deal-for-ai-computing-to-21-billion"},
+          {source:"CNBC",title:"Meta commits to spending additional $21 billion with CoreWeave as AI costs keep rising",url:"https://www.cnbc.com/2026/04/09/meta-commits-to-spending-additional-21-billion-with-coreweave-.html"}
+        ],
+        related:["anthropic-coreweave","amazon-jassy-letter","eclipse-1-3b-fund"]
+      },
+      {
+        id:"anthropic-coreweave",
+        date:"Apr 10, 2026",
+        headline:"Anthropic signs multibillion-dollar CoreWeave deal the day after Meta's $21B agreement — CoreWeave stock +10%",
+        summary:"In back-to-back blockbuster contracts, Anthropic agreed to a multibillion-dollar, multi-year cloud deal with CoreWeave on April 10, deploying NVIDIA GPU chips in U.S. data centers at production scale. CoreWeave's stock rose 10% on the announcement, the day after its $21B Meta deal.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass:"bar-green",
+        riskLevel:"MARKET SIGNAL",
+        riskClass:"bg-blue",
+        category:"AI INFRASTRUCTURE",
+        catColor:"c-green",
+        content:`<p>On <strong>April 10, 2026</strong>, Anthropic and CoreWeave entered a new multibillion-dollar, multi-year cloud services agreement. CoreWeave CEO <strong>Michael Intrator</strong> stated that Anthropic will use "a variety" of NVIDIA GPU chips deployed in U.S. data centers, with initial capacity coming online later this year. The deal is structured as a phased rollout with options to expand.</p><p>The announcement came the day after CoreWeave announced its $21 billion Meta deal, resulting in CoreWeave's stock closing <strong>10% higher</strong> on April 10. With nine of CoreWeave's top ten AI model provider customers now on its platform, the company is emerging as the infrastructure backbone of the AI industry — independent of the hyperscalers.</p><p>For Anthropic, the CoreWeave deal complements — rather than replaces — the Google TPU deal announced on April 6. CEO <strong>Dario Amodei</strong> has consistently emphasized a multi-vendor infrastructure strategy: Google TPUs for custom training workloads, NVIDIA GPUs for flexible inference, and now CoreWeave as a burst-capacity and inference-scale provider. The company's $30B run rate requires diversified compute to avoid single-vendor supply constraints.</p><p>CoreWeave operates <strong>43+ data centers</strong> with approximately 850 megawatts of capacity as of early 2026, with expansion underway funded by the $3 billion debt raise announced alongside the Meta deal.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Anthropic now has a diversified compute stack: Google TPUs (training, long-horizon), CoreWeave NVIDIA GPUs (inference, burst). This reduces your Claude API availability risk from a single-datacenter event. Review your AI workload SLA requirements and assess whether they are now better met by Anthropic's expanded infrastructure."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Two blockbuster infrastructure deals in 48 hours signal Anthropic is building capacity well ahead of current demand — this is supply-side staging for H2 2026 and 2027 demand. If you are planning AI budget for FY2027, expect more Anthropic enterprise tier offerings as they fill this capacity."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"CoreWeave's 10% stock surge on back-to-back AI lab deals confirms the market views GPU cloud infrastructure as a direct proxy for AI adoption. If your company's AI strategy is still in 'evaluation' mode, note that AI infrastructure investment at this scale moves faster than traditional enterprise technology cycles."}
+        ],
+        risks:[
+          {text:"Inference cost pass-through: CoreWeave operates on NVIDIA GPU hardware which carries higher per-FLOP costs than custom TPUs. If Anthropic routes more inference workloads to CoreWeave, there is some risk that API pricing does not decline as rapidly as if all workloads ran on lower-cost custom silicon."},
+          {text:"US-only concentration: Both the Google TPU and CoreWeave agreements are described as predominantly U.S.-based infrastructure. If your organization requires AI compute in specific non-U.S. regions, confirm data residency with Anthropic before finalizing contracts."}
+        ],
+        csuite:"Back-to-back CoreWeave deals in 48 hours — Meta ($21B) then Anthropic (multibillion) — establishes CoreWeave as the second critical node in the AI infrastructure stack after hyperscalers. For enterprise buyers, Anthropic's multi-vendor strategy reduces your dependency risk. The near-term takeaway: Claude API capacity is expanding significantly; negotiate volume commitments now.",
+        links:[
+          {source:"SiliconANGLE",title:"CoreWeave inks multiyear cloud deal with Anthropic",url:"https://siliconangle.com/2026/04/10/coreweave-inks-multiyear-cloud-deal-anthropic/"},
+          {source:"Bloomberg",title:"Anthropic Will Use CoreWeave's AI Capacity to Power Claude",url:"https://www.bloomberg.com/news/articles/2026-04-10/anthropic-agrees-to-rent-coreweave-ai-capacity-to-power-claude"},
+          {source:"24/7 Wall St.",title:"CoreWeave Rockets 12% on Anthropic Deal: Two Landmark Contracts in Two Days",url:"https://247wallst.com/investing/2026/04/10/coreweave-rockets-12-on-anthropic-deal-two-landmark-contracts-in-two-days-for-the-ai-cloud-king/"},
+          {source:"Seeking Alpha",title:"CoreWeave gains on multi-year data center deal with Anthropic to support Claude AI models",url:"https://seekingalpha.com/news/4573958-coreweave-secures-multi-year-data-center-deal-with-anthropic-shares-rise"}
+        ],
+        related:["coreweave-meta-deal","anthropic-google-broadcom-tpu","eclipse-1-3b-fund"]
+      },
+      {
+        id:"eclipse-1-3b-fund",
+        date:"Apr 7, 2026",
+        headline:"Eclipse Ventures closes $1.3B fund for physical AI — largest raise to date targets robotics, autonomous vehicles, and AI infrastructure",
+        summary:"Eclipse Ventures, backer of Cerebras and Wayve, raised $1.3B across two funds ($720M early-stage, $591M later-stage) targeting 'physical AI': the convergence of machine intelligence with hardware in robotics, energy, transportation, and defense. AUM now exceeds $10B.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass:"bar-orange",
+        riskLevel:"MONITOR",
+        riskClass:"bg-gold",
+        category:"AI INFRASTRUCTURE",
+        catColor:"c-orange",
+        content:`<p>On <strong>April 7, 2026</strong>, <strong>Eclipse Ventures</strong> announced it had raised <strong>$1.3 billion</strong> across two new funds — <strong>$720 million</strong> for early-stage investments and <strong>$591 million</strong> for later-stage deals. The raise is Eclipse's largest to date, bringing total assets under management to approximately <strong>$10 billion</strong>.</p><p>Eclipse focuses on what it calls <strong>"physical AI"</strong> — the convergence of artificial intelligence with robotics, autonomous systems, energy infrastructure, defense, and industrial hardware. The firm plans not only to invest in existing companies but also to incubate startups internally, an unusual "venture builder" model for a fund of this scale.</p><p>The portfolio includes <strong>Wayve</strong> (UK autonomous vehicle software), <strong>Cerebras Systems</strong> (wafer-scale AI chips), <strong>Bedrock Robotics</strong> (autonomous construction vehicles), <strong>Mind Robotics</strong> (industrial robotics), <strong>Arc</strong> (electric commercial and defense boats), and <strong>Redwood Materials</strong> (battery recycling). Eclipse General Partner <strong>Pierre Lamond</strong> stated: "This is the best time to build in physical industries in our lifetimes."</p><p>The raise coincides with broad acceleration of physical AI investment: NVIDIA's Vera Rubin platform targets robotics workloads, and the U.S. government has committed to AI manufacturing as a strategic industrial priority in its national AI policy framework released in March 2026.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Physical AI — AI operating in the physical world via robots, autonomous vehicles, and industrial systems — will reshape supply chains, logistics, and manufacturing within 3–5 years. If your company relies on manual physical processes at scale, model the productivity impact and competitive threat from early adopters using Eclipse-backed companies."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Eclipse's $1.3B raise is one of several large physical AI fund closes in early 2026. Watch for competitive RFP activity from Eclipse portfolio companies in manufacturing, logistics, and energy. Begin tracking physical AI vendors in your category before they approach your procurement team."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Cerebras in Eclipse's portfolio remains the most credible challenger to NVIDIA for training-optimized AI hardware. If your AI infrastructure budget review is in H2 2026, include a Cerebras CS-3 evaluation to benchmark against NVIDIA A100/H100 clusters for your specific workloads."}
+        ],
+        risks:[
+          {text:"Long deployment cycles: Physical AI — unlike software — has 3–7 year development and regulatory timelines for robots and autonomous vehicles. Near-term financial returns on physical AI investments are limited; competitive impacts will be felt in the 2028–2032 window rather than 2026."},
+          {text:"Safety and liability: Physical AI systems operating in the real world introduce product liability exposure that software-only AI does not. If evaluating physical AI vendors, require comprehensive liability and insurance coverage documentation."}
+        ],
+        csuite:"Eclipse's $1.3B physical AI fund is a leading indicator of where institutional capital believes the next 10-year AI value creation will occur: not in language models, but in machines that act in the physical world. CEOs in manufacturing, logistics, healthcare, and energy should begin physical AI competitive intelligence programs now rather than in 2028.",
+        links:[
+          {source:"TechCrunch",title:"VC Eclipse has a new $1.3B fund to back — and build — 'physical AI' startups",url:"https://techcrunch.com/2026/04/07/vc-eclipse-has-a-new-1-3b-to-back-and-build-physical-ai-startups/"},
+          {source:"Bloomberg",title:"Cerebras Backer Eclipse Raises $1.3 Billion for Robotics, AI Infrastructure",url:"https://www.bloomberg.com/news/articles/2026-04-07/cerebras-backer-eclipse-raises-1-3-billion-for-robotics-ai-infrastructure"},
+          {source:"Benzinga",title:"VC Firm Eclipse Raises $1.3 Billion To Chase Hard-Tech Boom",url:"https://www.benzinga.com/markets/hedge-funds/26/04/51696841/eclipse-raises-1-3-billion-ai-manufacturing-defense-hard-tech-investing"},
+          {source:"TechFunding News",title:"Wayve, Cerebras backer Eclipse Ventures secures $1.3B across two funds to back physical AI startups",url:"https://techfundingnews.com/eclipse-ventures-raises-1-3b-physical-world/"}
+        ],
+        related:["coreweave-meta-deal","anthropic-coreweave","amazon-jassy-letter"]
+      }
+    ]
+  },
+  {
+    id:"agents",
+    title:"Agentic AI",
+    icon:"🤖",
+    iconClass:"icon-green",
+    count:2,
+    cards:[
+      {
+        id:"visa-ai-payments",
+        date:"Apr 9, 2026",
+        headline:"Visa and Nevermined enable AI agents to make autonomous card payments — framework-agnostic, per-purchase guardrails included",
+        summary:"Nevermined launched AI agent card payments on April 9, integrating Visa Intelligent Commerce, Coinbase's x402 protocol, and VGS vault infrastructure. AI agents can now autonomously purchase digital goods within cardholder-defined policies including total budget caps, per-purchase limits, merchant restrictions, and time windows.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CISO","bg-red"]],
+        barClass:"bar-green",
+        riskLevel:"HIGH IMPACT",
+        riskClass:"bg-blue",
+        category:"AGENTIC AI",
+        catColor:"c-green",
+        content:`<p>On <strong>April 9, 2026</strong>, <strong>Nevermined</strong> launched AI Agent Card Payments, integrating three payment infrastructure layers: <strong>Visa Intelligent Commerce</strong> (payment credential issuance), <strong>Coinbase's x402 protocol</strong> (inline payment handling), and <strong>VGS</strong> (payment data vault and routing). The result: AI agents can autonomously purchase digital goods and services on behalf of users and businesses, without form-based checkout flows designed for humans.</p><p>Users and businesses register Visa cards with Visa Intelligent Commerce and authorize AI agents to spend within defined parameters. The guardrail framework includes <strong>total budget limits</strong>, <strong>per-purchase caps</strong>, <strong>merchant category restrictions</strong>, and <strong>time-based validity windows</strong>. The system is designed to be <strong>framework-agnostic</strong> — agents built with any AI framework (LangChain, AutoGPT, Anthropic's Managed Agents, etc.) can integrate without requiring proprietary infrastructure.</p><p>The announcement directly addresses what the company calls the "content monetization paradox": digital publishers and merchants have had no practical way to charge AI agents for content consumption. An agent reading a paywalled research report previously either hit a paywall, scraped, or went without. Nevermined/Visa/x402 makes legitimate per-use payment by agents commercially viable for the first time at scale.</p><p>Users can delegate cards and set policies at <strong>pay.nevermined.app</strong>.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"AI agent payments represent a new commerce model — agents procuring SaaS tools, research reports, API calls, and digital services autonomously on company credit. Define your policy now: which agent types are authorized to spend, up to what amounts, and on what merchant categories. Set this before your employees' agents start billing on corporate cards."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"AI agent spend is about to appear in corporate expense reports. Coordinate with your card issuer (Visa, Amex, etc.) to understand when Intelligent Commerce guardrails will be available on your corporate card program, and define AI agent spend category codes for expense classification and audit trail."},
+          {owner:"CISO",ownerClass:"owner-ciso",text:"AI agents with payment authorization create a new attack surface: a compromised agent or prompt injection could exhaust an authorized payment budget. Require multi-factor approval for any agent granted payment permissions above $500/transaction, and implement real-time spend monitoring for all AI agent activity."}
+        ],
+        risks:[
+          {text:"Prompt injection to payment abuse: A malicious actor could craft content that, when processed by an AI agent, triggers unauthorized purchases. Any AI agent with payment credentials must be isolated from untrusted content sources, and all payment actions should be logged with full context for audit."},
+          {text:"Audit trail gaps: Autonomous agent purchases may not map cleanly to traditional expense management workflows. Before deploying payment-enabled agents, confirm your ERP and expense systems can ingest AI agent payment metadata for compliance and tax purposes."},
+          {text:"Regulatory uncertainty: Autonomous agent payments blur the line between 'authorized user' and 'unauthorized third party' in card network terms. Monitor Visa's evolving Intelligent Commerce terms and coordinate with your legal team before scaling agent spend above $10K/month."}
+        ],
+        csuite:"AI agent payments are now technically viable and commercially available. The question for enterprises is not 'if' but 'when' — and whether you set policy before or after your agents start spending. This week's action item: brief your CFO and General Counsel on AI agent payment authorization and define spending policies before the first agent transaction appears on a corporate card.",
+        links:[
+          {source:"Morningstar/AccessWire",title:"Nevermined Launches AI Agent Card Payments with x402, Opening a New Market",url:"https://www.morningstar.com/news/accesswire/1154916msn/nevermined-launches-ai-agent-card-payments-with-x402-opening-a-new-market"},
+          {source:"TechBriefly",title:"New Visa platform enables AI agents to pay for goods autonomously",url:"https://techbriefly.com/2026/04/09/new-visa-platform-enables-ai-agents-to-pay-for-goods-autonomously/"},
+          {source:"Crypto Briefing",title:"Visa and Coinbase team with Nevermined on AI agent commerce",url:"https://cryptobriefing.com/ai-payment-integration-visa-nevermined/"}
+        ],
+        related:["claude-managed-agents","aws-s3-files","anthropic-google-broadcom-tpu"]
+      },
+      {
+        id:"aws-s3-files",
+        date:"Apr 7, 2026",
+        headline:"AWS launches Amazon S3 Files — AI agents finally get native file-system access to S3 buckets with 1ms latency across 34 regions",
+        summary:"Amazon S3 Files, now generally available, gives AI agents native POSIX file-system semantics over any S3 bucket — eliminating the copy-first workflow that has blocked multi-agent state sharing for 20 years. Built on Amazon EFS: 1ms active-data latency, 25,000 simultaneous connections per bucket, 34 AWS regions.",
+        tags:[["CIO","bg-blue"],["CEO","bg-gold"]],
+        barClass:"bar-blue",
+        riskLevel:"HIGH IMPACT",
+        riskClass:"bg-blue",
+        category:"AGENTIC AI",
+        catColor:"c-blue",
+        content:`<p>On <strong>April 7, 2026</strong>, AWS launched <strong>Amazon S3 Files</strong> — now generally available across <strong>34 AWS regions</strong> — giving developers direct POSIX file-system access to S3 buckets without the traditional "copy-to-EFS-first" workaround that has been a core friction point in AI agent architectures since S3's launch in 2006.</p><p>Built on Amazon's <strong>Elastic File System (EFS)</strong> technology, S3 Files delivers approximately <strong>1-millisecond latency</strong> for active data and supports up to <strong>25,000 simultaneous compute connections per bucket</strong>. Any AWS compute resource — EC2, ECS, Lambda, SageMaker, Bedrock agents — can mount an S3 bucket as a local file system with a single command. S3's native capabilities (versioning, replication, lifecycle policies, event notifications) are preserved.</p><p>For AI workloads, the impact is significant: <strong>AI agents can now persist memory and share state across pipelines</strong> by writing to and reading from a mounted S3 bucket as if it were a local disk. Multi-agent workflows where Agent A reads the output of Agent B no longer require copying data through an intermediary file system. ML training pipelines that previously needed to stage terabytes of data before training can run directly against S3.</p><p>AWS has focused marketing on agentic AI workflows where multiple parallel agents need a shared, consistent file view — a problem that was previously solved with custom orchestration layers, now eliminated by the native EFS-S3 bridge.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Audit your current multi-agent AWS architectures for EFS or FSx volumes used solely as S3 staging areas. S3 Files eliminates these intermediate layers — the storage cost saving and architectural simplification likely justifies a migration sprint. Target: identify and remediate at least 3 pipelines by end of Q2."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"S3 Files removes a significant infrastructure bottleneck for multi-agent AI systems running on AWS. If your team has cited agent state sharing as a blocker for more complex AI workflow deployment, this week's GA announcement removes that technical barrier. Revisit blocked initiatives."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"The 25,000 simultaneous connection limit per bucket is the key capacity constraint for large parallel agent deployments. If you anticipate more than 10,000 concurrent agents reading/writing shared state, design a bucket-sharding strategy now — do not wait until production load exposes the limit."}
+        ],
+        risks:[
+          {text:"Shared state consistency: POSIX file semantics across 25,000 concurrent connections means concurrent write conflicts are possible in multi-agent scenarios. Implement explicit locking or append-only patterns for agent state files to avoid race conditions in production pipelines."},
+          {text:"Cost visibility: S3 Files adds EFS request charges on top of S3 storage costs. Run cost modeling for your highest-volume pipelines before migration — for some read-heavy workloads the EFS overlay adds meaningful per-request cost."}
+        ],
+        csuite:"S3 Files solves a real architectural problem that every AWS-based AI engineering team has encountered. The immediate ROI is architectural simplification (remove EFS/FSx staging layers) and agent state sharing without custom infrastructure. CIOs: prioritize a Q2 architecture review of existing agent pipelines for S3 Files eligibility.",
+        links:[
+          {source:"AWS News Blog",title:"Launching S3 Files, making S3 buckets accessible as file systems",url:"https://aws.amazon.com/blogs/aws/launching-s3-files-making-s3-buckets-accessible-as-file-systems/"},
+          {source:"HPCwire",title:"AWS Launches Amazon S3 Files, Making S3 Buckets Accessible as File Systems",url:"https://www.hpcwire.com/bigdatawire/this-just-in/aws-launches-amazon-s3-files-making-s3-buckets-accessible-as-file-systems/"},
+          {source:"Data World Bank",title:"Amazon S3 Files gives AI agents a native file system workspace",url:"https://www.dataworldbank.net/2026/04/07/amazon-s3-files-gives-ai-agents-a-native-file-system-workspace-ending-the-object-file-split-that-breaks-multi-agent-pipelines/"},
+          {source:"AlternativeTo",title:"Amazon introduces S3 Files to bridge AWS compute and S3 with native file system access",url:"https://alternativeto.net/news/2026/4/amazon-introduces-s3-files-to-bridge-aws-compute-and-s3-with-native-file-system-access/"}
+        ],
+        related:["claude-managed-agents","visa-ai-payments","amazon-jassy-letter"]
+      }
+    ]
+  },
+  {
+    id:"workforce",
+    title:"Workforce & Economics",
+    icon:"👥",
+    iconClass:"icon-orange",
+    count:2,
+    cards:[
+      {
+        id:"amazon-jassy-letter",
+        date:"Apr 9, 2026",
+        headline:"Amazon CEO Jassy discloses $15B AWS AI run rate and $200B capex in landmark shareholder letter — 'We're not going to be conservative'",
+        summary:"Amazon's annual shareholder letter, released April 9, reveals AWS AI services have crossed a $15B annualized revenue run rate — first disclosed publicly. CEO Jassy defends $200B in 2026 capital expenditures citing customer demand, an OpenAI commitment 'over $100B', and an internal chips business generating $20B+ per year.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CIO","bg-blue"]],
+        barClass:"bar-gold",
+        riskLevel:"HIGH IMPACT",
+        riskClass:"bg-blue",
+        category:"WORKFORCE & ECONOMICS",
+        catColor:"c-gold",
+        content:`<p>On <strong>April 9, 2026</strong>, Amazon CEO <strong>Andy Jassy</strong> released his annual shareholder letter — widely described as the most impactful of his tenure — disclosing several AI financial metrics for the first time.</p><p>Key disclosures: AWS AI services have crossed a <strong>$15 billion annualized revenue run rate</strong>, representing approximately 10% of AWS's $142 billion overall run rate. The figure triples analyst estimates from six months prior. Amazon's internal chips business — producing <strong>Graviton</strong> (for general compute) and <strong>Trainium/Inferentia</strong> (for AI workloads) — is generating over <strong>$20 billion per year</strong>, with two large customers requesting all available Graviton capacity for 2026.</p><p>On capital expenditure: Jassy defended Amazon's plan to spend approximately <strong>$200 billion on capex in 2026</strong>, the vast majority directed at AI data centers, networking, and chips. "We're not going to be conservative," he wrote. He disclosed a customer commitment from <strong>OpenAI worth over $100 billion</strong> and stated Amazon has received commitments for "a substantial portion" of the total capex spend, with monetization expected in 2027 and 2028. "We're investing to be the meaningful leader," he wrote, "and our future business, operating income, and free cash flow will be much larger because of it."</p><p>Amazon stock turned positive for 2026 following the letter's release, with analysts calling it the definitive defense of hyperscaler AI infrastructure spending at a time when markets had begun questioning the ROI of the AI buildout.</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"AWS AI services at $15B run rate means Amazon has crossed the threshold from 'AI experiment' to 'core cloud revenue.' If your organization runs significant workloads on AWS, AI-optimized compute (SageMaker, Bedrock, Trainium instances) is now a first-class product line with pricing leverage. Negotiate AI compute separately from general cloud spend in your next ELA renewal."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Jassy's disclosure of an OpenAI commitment 'over $100 billion' confirms that the largest AI buyers are making hyperscaler bets at scales previously reserved for national infrastructure. If your AI strategy relies on commodity cloud economics, factor in that hyperscalers are now committing capacity years ahead to mega-customers — availability and pricing for smaller buyers may be affected."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"The internal Graviton/Trainium chip disclosures signal AWS is accelerating its custom silicon roadmap. For CIOs running AI training on AWS, Trainium 2 instances are now competitive with NVIDIA H100 for specific workloads at lower cost. Benchmark your top training jobs against Trainium 2 before committing to the next cluster reservation."}
+        ],
+        risks:[
+          {text:"AI capex ROI timeline: Jassy projects that Amazon's $200B capex will be monetized primarily in 2027 and 2028, not 2026. This means the full competitive impact of Amazon's AI infrastructure buildout will not be visible in pricing or capability for 12–18 months. Don't wait for 2027 pricing signals to begin your AI roadmap."},
+          {text:"Capacity allocation risk: With OpenAI alone committing $100B+ to AWS, the largest AI buyers are absorbing significant reserved capacity. If your organization has not established reserved-instance agreements for Bedrock or SageMaker, spot pricing and availability volatility may increase in H2 2026."}
+        ],
+        csuite:"The Jassy letter is the most important AI financial disclosure of 2026 to date. The $15B AWS AI run rate, $20B+ chips revenue, and $200B capex plan quantify the industrial scale of the AI buildout in concrete numbers. For CFOs: use these figures to recalibrate your own AI investment benchmarks — if Amazon is spending $200B to compete, what is your industry's equivalent for staying relevant?",
+        links:[
+          {source:"CNBC",title:"Amazon CEO Jassy defends $200 billion AI spend: 'We're not going to be conservative'",url:"https://www.cnbc.com/2026/04/09/amazon-ceo-andy-jassy-ai-spending.html"},
+          {source:"TechCrunch",title:"Amazon CEO takes aim at Nvidia, Intel, Starlink, more in annual shareholder letter",url:"https://techcrunch.com/2026/04/09/amazon-ceo-takes-aim-at-nvidia-intel-starlink-more-in-annual-shareholder-letter/"},
+          {source:"GeekWire",title:"'Not on a hunch': Andy Jassy defends Amazon's $200B spending spree",url:"https://www.geekwire.com/2026/not-on-a-hunch-andy-jassy-defends-amazons-200b-spending-spree/"},
+          {source:"Quartz",title:"Amazon CEO Andy Jassy defends AI spending spree in shareholder letter",url:"https://qz.com/amazon-jassy-ai-capex-shareholder-letter-040926"}
+        ],
+        related:["coreweave-meta-deal","anthropic-coreweave","tech-layoffs-q1"]
+      },
+      {
+        id:"tech-layoffs-q1",
+        date:"Apr 7–9, 2026",
+        headline:"Tech sector shed 80,000 jobs in Q1 2026, with nearly half explicitly attributed to AI — highest AI-attributed layoff share in history",
+        summary:"Q1 2026 tech layoff trackers confirmed approximately 78,557 tech workers were cut, with 37,638 jobs (47.9%) directly attributed by employers to AI automation and reduced headcount need. The U.S. accounted for 76.7% of all cuts. Reports published by TomHardware, TechRadar, and others in the first week of April.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CHRO","bg-orange"]],
+        barClass:"bar-orange",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"WORKFORCE & ECONOMICS",
+        catColor:"c-orange",
+        content:`<p>Q1 2026 layoff data published in the first week of April reveals the tech industry shed approximately <strong>78,557 workers</strong> in the first three months of the year, with nearly half — <strong>37,638 jobs (47.9%)</strong> — attributed by companies to AI automation and reduced need for human labor. This is the highest AI-attributed layoff share in the history of tracked tech workforce data.</p><p>The United States accounted for <strong>76.7%</strong> of all Q1 cuts (approximately 60,000 jobs). Companies citing AI in layoff communications included Meta, Google, Amazon, Block, Atlassian, Pinterest, and Salesforce. Firms specifically cited productivity gains from AI coding tools, AI customer service agents, and AI-assisted content creation as reducing the need for equivalent headcount.</p><p>However, industry analysts note the AI attribution is not always straightforward. Cognizant Chief AI Officer <strong>Babak Hodjat</strong> stated: "AI becomes the scapegoat from a financial perspective, like when a company hired too many, or they want to resize." Many companies over-hired during the 2020–2022 pandemic growth period and are now normalizing headcount — using AI as a "cleaner" narrative for shareholders than admitting over-hiring. Independent research suggests it may take <strong>up to a year</strong> before companies see measurable productivity gains from AI, suggesting some layoffs are premature optimizations.</p><p>Regardless of attribution accuracy, the direction is clear: AI is changing the equilibrium headcount for technology-intensive roles, and labor market signals point to continued disruption through 2026.</p>`,
+        actions:[
+          {owner:"CHRO",ownerClass:"owner-chro",text:"Commission an AI impact assessment for your top-25 highest-headcount roles. Identify which tasks within each role are most susceptible to AI augmentation vs. replacement, and build an 18-month reskilling roadmap for the top 3 most-at-risk categories. Don't wait for external forces to drive reactive layoffs."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The 47.9% AI-attributed figure will influence wage negotiations, talent acquisition, and employee sentiment broadly — not just in tech. If your industry relies on knowledge workers, expect AI anxiety to surface in employee surveys and retention data in Q2. Proactive communication about your organization's human+AI strategy is now a retention imperative."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Model the headcount-to-AI substitution economics for your own operational functions. Customer service, code review, data analysis, and content production are the four highest-AI-impact categories in Q1 2026 layoffs. Calculate the productivity cost of current headcount vs. AI-augmented reduced headcount before your next hiring approval cycle."}
+        ],
+        risks:[
+          {text:"Capability gap after headcount reduction: Companies cutting headcount based on expected AI productivity gains before fully deploying the AI tools risk operational disruption. If AI adoption lags in your organization, reducing headcount 'in anticipation' creates real service and quality risks."},
+          {text:"Talent availability tightening: As tech layoffs slow natural attrition, AI-fluent talent (engineers who can build and operate AI systems) is being aggressively absorbed by AI-native companies. Paradoxically, the same AI wave that cuts back-office jobs is creating a shortage of AI deployment specialists."},
+          {text:"Regulatory and legal exposure: Using AI as justification for mass layoffs is attracting scrutiny from labor regulators in the EU, UK, and several U.S. states. Ensure your legal team reviews any communications that attribute workforce reductions to AI, and comply with applicable WARN Act and GDPR-equivalent notices."}
+        ],
+        csuite:"The 47.9% AI attribution rate is the most important workforce signal of the year. Whether or not the attribution is fully accurate, it defines the external narrative and sets employee expectations about AI's role in workforce decisions. CHROs must have a clear, communicated stance on AI and human work within your organization — silence on this issue is not neutral.",
+        links:[
+          {source:"Tom's Hardware",title:"Tech industry lays off nearly 80,000 employees in Q1 2026 — almost 50% of affected positions cut due to AI",url:"https://www.tomshardware.com/tech-industry/tech-industry-lays-off-nearly-80-000-employees-in-the-first-quarter-of-2026-almost-50-percent-of-affected-positions-cut-due-to-ai"},
+          {source:"TechRadar",title:"Nearly 80,000 tech workers have already lost their jobs in 2026 — and AI impact means more could be to come",url:"https://www.techradar.com/pro/nearly-80-000-tech-workers-have-already-lost-their-jobs-in-2026-and-ai-impact-means-more-could-be-to-come"},
+          {source:"TweakTown",title:"Tech industry cuts 80,000 jobs in Q1 2026, with half of the layoffs attributed to AI",url:"https://www.tweaktown.com/news/110940/tech-industry-cuts-80000-jobs-in-q1-2026-with-half-of-the-layoffs-attributed-to-ai/index.html"}
+        ],
+        related:["amazon-jassy-letter","anthropic-google-broadcom-tpu","eclipse-1-3b-fund"]
+      }
+    ]
+  },
+  {
+    id:"security",
+    title:"Security & Policy",
+    icon:"🛡",
+    iconClass:"icon-red",
+    count:2,
+    cards:[
+      {
+        id:"ms-ai-phishing-campaign",
+        date:"Apr 6, 2026",
+        headline:"Microsoft Security discloses AI-enabled device code phishing campaign — automated OAuth attacks bypass 15-minute expiry with AI-driven dynamic code generation",
+        summary:"Microsoft's Security Blog published findings on April 6 detailing a sophisticated AI-enabled phishing campaign targeting enterprise OAuth flows. The attack uses AI to dynamically regenerate device codes every ~14 minutes, circumventing the standard 15-minute device code expiration window and dramatically increasing success rates over traditional static-code phishing.",
+        tags:[["CISO","bg-red"],["CIO","bg-blue"],["GC","bg-purple"]],
+        barClass:"bar-red",
+        riskLevel:"CRITICAL",
+        riskClass:"bg-red",
+        category:"SECURITY & POLICY",
+        catColor:"c-red",
+        content:`<p>On <strong>April 6, 2026</strong>, Microsoft's Security Blog published findings on a new class of AI-enabled phishing attacks targeting enterprise accounts at scale via the <strong>OAuth device code authentication flow</strong>. Unlike traditional device code phishing — which requires manual code regeneration — this campaign uses an <strong>AI-driven infrastructure</strong> to automate code generation, victim targeting, and dynamic code refreshes every ~14 minutes, staying just inside the 15-minute expiration window.</p><p>The attack exploits the device code flow (RFC 8628), which legitimate services use to authenticate users on limited-input devices (smart TVs, IoT devices). Attackers phish employees with "authentication required" messages, presenting a device code. The victim enters the code at a legitimate Microsoft login page — inadvertently authorizing the attacker's registered application. Because the authentication occurs on Microsoft's real infrastructure, MFA and phishing-resistant policies often do not block it.</p><p>Microsoft's analysis shows the campaign moves from <strong>manual, static-script scripts toward an AI-driven infrastructure and multiple automations end-to-end</strong>. The result: attack success rates have increased materially (specific rates not disclosed), and the campaign is running at organizational-scale — compromising multiple accounts simultaneously across enterprise tenants. The blog post notes the attacker group began targeting organizations primarily in the <strong>financial services, healthcare, and government</strong> sectors.</p><p>Microsoft recommended organizations disable device code flow for non-essential applications in Conditional Access policies and enable authentication context policies that require device compliance for all token issuance.</p>`,
+        actions:[
+          {owner:"CISO",ownerClass:"owner-ciso",text:"Audit your Conditional Access policies today: identify all applications where the device code authentication flow is enabled. Block or restrict device code flow to explicitly allowlisted devices (managed endpoints only). This is a same-week action — the campaign is live and targeting enterprise tenants now."},
+          {owner:"CISO",ownerClass:"owner-ciso",text:"Review your Security Operations Center detection rules for device code flow authentication events. Unusual device code grant activity — especially from new IP ranges or user-agents — should trigger immediate investigation. Update your SIEM correlation rules before next Monday."},
+          {owner:"GC",ownerClass:"owner-gc",text:"This AI-enabled attack class will accelerate regulatory scrutiny of enterprise authentication practices. Review your cyber insurance policy for MFA and phishing-resistant authentication requirements — many 2026 policies now have device code flow exclusions. Confirm coverage before the next renewal."}
+        ],
+        risks:[
+          {text:"MFA bypass: Device code flow attacks can succeed even when MFA is enabled, because the authentication occurs on Microsoft's real portal. Standard MFA awareness training does not protect against this attack — employees who complete MFA are still potentially compromised. Phishing-resistant MFA (FIDO2/hardware keys) on device code flows is the only reliable control."},
+          {text:"Detection difficulty: Because the victim authenticates at a real Microsoft URL, no phishing domain is involved and many URL-filtering security tools will not flag the attack. Detection requires monitoring OAuth grant events in Entra ID audit logs, not traditional URL-based phishing detection."},
+          {text:"Lateral movement speed: Once a device code grant is obtained, attackers typically have 60–90 minutes before security tooling flags the new token. The AI automation of this attack means lateral movement is now automated and rapid — a single compromised tenant account can result in full tenant access within hours."}
+        ],
+        csuite:"This is an active, AI-accelerated campaign targeting enterprises in financial services, healthcare, and government — today. CISOs: the device code Conditional Access policy fix is a 30-minute change with high defensive value. Do not wait for the quarterly patch cycle. This week's action: disable device code flow for all non-essential applications in Conditional Access and enable FIDO2 on privileged accounts.",
+        links:[
+          {source:"Microsoft Security",title:"Inside an AI-enabled device code phishing campaign",url:"https://www.microsoft.com/en-us/security/blog/2026/04/06/ai-enabled-device-code-phishing-campaign-april-2026/"},
+          {source:"Adversa AI",title:"Top Agentic AI security resources — April 2026",url:"https://adversa.ai/blog/top-agentic-ai-security-resources-april-2026/"}
+        ],
+        related:["anthropic-google-broadcom-tpu","claude-managed-agents","visa-ai-payments"]
+      },
+      {
+        id:"us-ai-regulation-q1-2026",
+        date:"Apr 6, 2026",
+        headline:"U.S. AI regulation landscape: White House preemption push vs. surging state laws as Q1 2026 legislative review published",
+        summary:"The U.S. Tech Legislative & Regulatory Update for Q1 2026, published April 6, documents a widening federal-state conflict: the Trump Administration's National AI Policy Framework (released March 2026) promotes a 'light touch' federal approach and federal preemption, while Indiana, Utah, Washington, Tennessee, and Delaware enacted new AI-specific laws effective in 2026.",
+        tags:[["GC","bg-purple"],["CEO","bg-gold"],["CISO","bg-red"]],
+        barClass:"bar-purple",
+        riskLevel:"WATCH",
+        riskClass:"bg-gold",
+        category:"SECURITY & POLICY",
+        catColor:"c-purple",
+        content:`<p>On <strong>April 6, 2026</strong>, Inside Global Tech and Global Policy Watch published the <strong>U.S. Tech Legislative & Regulatory Update — First Quarter 2026</strong>, documenting the first major collision between federal and state AI governance frameworks.</p><p>At the federal level, the Trump Administration released its <strong>National Policy Framework for AI</strong> in March 2026, recommending Congress adopt "light touch" AI regulation, protect innovation, and — critically — preempt state AI laws that create patchwork compliance burdens. The <strong>Department of Justice AI Litigation Task Force</strong> (established January 2026) was specifically authorized to challenge state AI laws that "unconstitutionally regulate interstate commerce" or are "otherwise unlawful in the Attorney General's judgment."</p><p>At the state level, activity has accelerated: <strong>Indiana (HB 1271)</strong>, <strong>Utah (SB 319)</strong>, and <strong>Washington (SB 5395)</strong> enacted laws prohibiting health insurers from using AI as the <em>sole basis</em> for denying or modifying claims. <strong>Tennessee (SB 1580)</strong> and <strong>Delaware (HB 191)</strong> passed legislation prohibiting AI from being marketed as qualified mental health professionals. <strong>Utah (HB 276)</strong> and <strong>Washington (HB 1170)</strong> require AI "latent disclosures" and provenance detection tools for generative AI systems.</p><p>The practical result: enterprises operating in multiple U.S. states face genuine compliance conflicts — a patchwork of state requirements that the federal government is threatening to preempt but has not yet superseded. Legal teams should treat the current landscape as stable state laws with uncertain federal override timelines.</p>`,
+        actions:[
+          {owner:"GC",ownerClass:"owner-gc",text:"Map your AI use cases against the new state laws effective in 2026. Health insurance claim decisions using AI (Indiana, Utah, Washington), mental health AI products (Tennessee, Delaware), and any generative AI products (Utah, Washington disclosure rules) require immediate compliance review. Do not wait for federal preemption — it is not guaranteed or timed."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The federal-state AI regulatory tension creates a 12–24 month period of genuine legal uncertainty. Brief your board that AI deployment decisions made today may require rework if either federal preemption succeeds OR state laws proliferate further. Factor regulatory risk into your AI investment business cases accordingly."},
+          {owner:"CISO",ownerClass:"owner-ciso",text:"Washington State's provenance detection and latent disclosure requirements for generative AI apply to 'covered providers' — review whether your AI products or internal AI tools deployed to Washington State employees or customers trigger these requirements. Disclosure non-compliance is a regulatory enforcement risk in 2026."}
+        ],
+        risks:[
+          {text:"Compliance patchwork: With no federal preemption yet, enterprises using AI in health insurance, mental health services, or deploying generative AI to end users may need to maintain state-by-state compliance programs. This is operationally expensive and creates legal exposure in states with enforcement authority."},
+          {text:"DOJ challenge uncertainty: The DOJ AI Litigation Task Force has authority to challenge state laws, but doing so triggers lengthy litigation. Relying on a future successful federal preemption challenge to avoid current state compliance obligations is a high-risk legal strategy."},
+          {text:"Rapid state proliferation: Q1 saw 5+ new AI laws enacted; Q2 and Q3 state legislative sessions are underway. The pace of state-level AI legislation may accelerate before federal preemption resolves the patchwork. Legal AI budgets may need revision upward."}
+        ],
+        csuite:"The U.S. AI regulatory environment in 2026 requires legal teams to operate as if state laws are fully enforceable — because they are — while monitoring for federal preemption developments that may reduce the long-term compliance burden. Immediate priority: map AI use cases in healthcare/insurance/mental-health against Indiana, Utah, Washington, Tennessee, and Delaware laws. These are in force today.",
+        links:[
+          {source:"Inside Global Tech",title:"U.S. Tech Legislative & Regulatory Update – First Quarter 2026",url:"https://www.insideglobaltech.com/2026/04/06/u-s-tech-legislative-regulatory-update-first-quarter-2026/"},
+          {source:"Global Policy Watch",title:"U.S. Tech Legislative & Regulatory Update – First Quarter 2026",url:"https://www.globalpolicywatch.com/2026/04/u-s-tech-legislative-regulatory-update-first-quarter-2026/"},
+          {source:"Ropes & Gray",title:"The White House Legislative Recommendations: National Policy Framework for AI and Federal Preemption of State AI Laws",url:"https://www.ropesgray.com/en/insights/alerts/2026/03/the-white-house-legislative-recommendations-national-policy-framework-for-artificial-intelligence-an"}
+        ],
+        related:["ms-ai-phishing-campaign","anthropic-google-broadcom-tpu","tech-layoffs-q1"]
+      }
+    ]
+  }
+];
+
+// Build all card IDs for cross-reference
+const allCards={};
+sections.forEach(s=>s.cards.forEach(c=>{allCards[c.id]=c;}));
+
+function renderSection(s){
+  const div=document.createElement('div');
+  div.className='section';
+  div.dataset.section=s.id;
+  div.innerHTML=`<div class="section-header"><div class="section-icon ${s.iconClass}">${s.icon}</div><h2 class="section-title">${s.title}</h2><span class="section-count">${s.count} stories</span></div><div class="cards-grid">${s.cards.map(renderCard).join('')}</div>`;
+  return div;
+}
+
+function renderCard(c){
+  const tags=c.tags.map(([t,cls])=>`<span class="tag ${cls}">${t}</span>`).join('');
+  return `<div class="card ${c.barClass}" onclick="openModal('${c.id}')">
+    <div class="card-date">${c.date}</div>
+    <div class="card-headline">${c.headline}</div>
+    <div class="card-summary">${c.summary}</div>
+    <div class="card-tags">${tags}</div>
+    <div class="card-bottom"><span class="card-risk-badge ${c.riskClass}">${c.riskLevel}</span><span class="card-expand-hint">↗ Read deep dive</span></div>
+  </div>`;
+}
+
+function openModal(id){
+  const c=allCards[id];
+  if(!c)return;
+  document.getElementById('modal-category').className='modal-category '+c.catColor;
+  document.getElementById('modal-category').textContent=c.category;
+  document.getElementById('modal-headline').textContent=c.headline;
+  document.getElementById('modal-date').textContent=c.date;
+  document.getElementById('modal-content').innerHTML=c.content;
+  // Actions panel
+  const actions=c.actions.map(a=>`<li><span class="owner ${a.ownerClass}">${a.owner}</span>${a.text}</li>`).join('');
+  // Risks panel
+  const risks=c.risks.map(r=>`<li>${r.text}</li>`).join('');
+  document.getElementById('panel-grid').innerHTML=`
+    <div class="panel panel-action"><div class="panel-label"><span class="panel-label-icon">✅</span>Executive Actions</div><ul class="panel-list">${actions}</ul></div>
+    <div class="panel panel-risk"><div class="panel-label"><span class="panel-label-icon">⚠️</span>Risks &amp; Watchouts</div><ul class="panel-list">${risks}</ul></div>`;
+  document.getElementById('modal-csuite-text').textContent=c.csuite;
+  // Links
+  const links=c.links.map(l=>`<a class="modal-link" href="${l.url}" target="_blank" rel="noopener"><span class="modal-link-source">${l.source}</span>${l.title}<span class="modal-link-arrow">↗</span></a>`).join('');
+  document.getElementById('modal-link-list').innerHTML=links;
+  // Related
+  const related=(c.related||[]).map(rid=>{
+    const rc=allCards[rid];
+    return rc?`<span class="related-chip" onclick="openModal('${rid}')">${rc.headline.split('—')[0].trim()}</span>`:''
+  }).join('');
+  document.getElementById('related-chips').innerHTML=related;
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+document.getElementById('modal-close').onclick=closeModal;
+document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+function closeModal(){document.getElementById('modal-overlay').classList.remove('active');document.body.style.overflow='';}
+
+// Theme toggle
+const root=document.documentElement;
+const themeToggle=document.getElementById('theme-toggle');
+let currentTheme=localStorage.getItem('ainews-theme')||'dark';
+if(currentTheme==='light')root.setAttribute('data-theme','light');
+themeToggle.addEventListener('click',()=>{
+  currentTheme=currentTheme==='dark'?'light':'dark';
+  currentTheme==='light'?root.setAttribute('data-theme','light'):root.removeAttribute('data-theme');
+  localStorage.setItem('ainews-theme',currentTheme);
+});
+
+// Nav filter
+const navBtns=document.querySelectorAll('.nav-btn');
+const contentArea=document.getElementById('content-area');
+
+function renderAll(filter='all'){
+  contentArea.innerHTML='';
+  sections.forEach(s=>{
+    if(filter==='all'||filter===s.id){
+      contentArea.appendChild(renderSection(s));
+    }
+  });
+}
+renderAll();
+
+navBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    navBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderAll(btn.dataset.section);
+  });
+});
+
+// Nav scroll logic
+const navInner=document.getElementById('nav-inner');
+const navScrollArea=document.getElementById('nav-scroll-area');
+const navScrollLeft=document.getElementById('nav-scroll-left');
+const navScrollRight=document.getElementById('nav-scroll-right');
+function updateNavFade(){
+  const sl=navInner.scrollLeft,sw=navInner.scrollWidth,cw=navInner.clientWidth;
+  navScrollArea.classList.toggle('fade-left',sl>8);
+  navScrollArea.classList.toggle('fade-right',sl<sw-cw-8);
+  navScrollLeft.classList.toggle('visible',sl>8);
+  navScrollRight.classList.toggle('visible',sl<sw-cw-8);
+}
+navInner.addEventListener('scroll',updateNavFade);
+navScrollLeft.addEventListener('click',()=>{navInner.scrollBy({left:-160,behavior:'smooth'});});
+navScrollRight.addEventListener('click',()=>{navInner.scrollBy({left:160,behavior:'smooth'});});
+setTimeout(updateNavFade,100);
+</script>
+</body>
+</html>
