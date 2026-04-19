@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — April 13 – April 20, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555; --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c; --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def; --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0; --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9; --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c; --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+[data-theme="light"] {
+  --bg: #f4f6f9; --bg-card: #ffffff; --bg-card-hover: #f0f4f8; --bg-expanded: #ffffff;
+  --border: #d8dde6; --border-accent: #c0c8d4;
+  --text: #1a2332; --text-muted: #4a5568; --text-dim: #8896a8;
+  --accent: #135EAB; --accent-light: #1a74d0; --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030; --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F; --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB; --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1; --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488; --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621; --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4; --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06); --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06); --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05); --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08); --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;transition:background 0.4s ease;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65;min-height:100vh;}
+body,header,.nav-strip,.card,.modal,.exec-strip,.metric,.modal-csuite,.panel,.footer,.theme-toggle,.nav-btn{transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:var(--noise-opacity,1);}
+.hero{position:relative;padding:5rem 2rem 3rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--bg) 100%);}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 20%,var(--hero-glow-a) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,var(--hero-glow-b) 0%,transparent 50%);pointer-events:none;}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:12px;}
+.hero-label::before,.hero-label::after{content:'';width:24px;height:1px;background:var(--accent);opacity:0.5;}
+[data-theme="light"] .hero-label{color:#04955F;}
+[data-theme="light"] .hero-label::before,[data-theme="light"] .hero-label::after{background:linear-gradient(90deg,#135EAB,#04955F);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:0.8rem;color:var(--text);}
+.hero h1 span{color:var(--accent);}
+[data-theme="light"] .hero h1 span{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;color:var(--text-muted);margin-bottom:2.5rem;}
+.metrics-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:10px;max-width:900px;margin:0 auto;overflow:hidden;}
+[data-theme="light"] .metrics-bar{background:linear-gradient(135deg,#135EAB,#04955F);}
+.metric{background:var(--bg-card);padding:18px 20px;text-align:center;cursor:default;transition:background 0.2s;}
+.metric:hover{background:var(--bg-card-hover);}
+[data-theme="light"] .metric{background:rgba(255,255,255,0.95);}
+[data-theme="light"] .metric:hover{background:rgba(255,255,255,1);}
+.metric-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--accent);display:block;margin-bottom:4px;}
+[data-theme="light"] .metric-value{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;}
+.nav-strip{position:sticky;top:0;z-index:100;background:var(--nav-bg);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-wrapper{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:0;height:52px;}
+.nav-scroll-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+.nav-scroll-btn.visible{opacity:1;pointer-events:auto;}
+.nav-scroll-area{flex:1;position:relative;overflow:hidden;min-width:0;}
+.nav-scroll-area::before,.nav-scroll-area::after{content:'';position:absolute;top:0;bottom:0;width:28px;z-index:1;pointer-events:none;opacity:0;transition:opacity 0.2s;}
+.nav-scroll-area::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
+.nav-scroll-area::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
+.nav-scroll-area.fade-left::before,.nav-scroll-area.fade-right::after{opacity:1;}
+[data-theme="light"] .nav-scroll-area::before{background:linear-gradient(90deg,rgba(244,246,249,0.95),transparent);}
+[data-theme="light"] .nav-scroll-area::after{background:linear-gradient(-90deg,rgba(244,246,249,0.95),transparent);}
+.nav-inner{display:flex;gap:4px;overflow-x:auto;padding:8px 4px;scrollbar-width:none;-ms-overflow-style:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+.nav-btn:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border);}
+.nav-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(201,164,76,0.2);}
+[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,rgba(19,94,171,0.10),rgba(4,149,95,0.08));color:#135EAB;border-color:rgba(19,94,171,0.15);}
+.theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;margin-left:8px;flex-shrink:0;position:relative;overflow:hidden;}
+.theme-toggle .icon-sun,.theme-toggle .icon-moon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:15px;transition:opacity 0.3s,transform 0.3s;}
+.theme-toggle .icon-sun{opacity:0;transform:translate(-50%,-50%) rotate(-90deg) scale(0.5);}
+.theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-sun{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-moon{opacity:0;transform:translate(-50%,-50%) rotate(90deg) scale(0.5);}
+.main{max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+.exec-strip{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);border-radius:12px;padding:1.5rem 2rem;margin-bottom:2.5rem;}
+[data-theme="light"] .exec-strip{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));border-color:rgba(19,94,171,0.12);}
+.exec-strip-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+.exec-strip-body{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;}
+.exec-strip-body strong{color:var(--text);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.section{animation:fadeUp 0.5s ease both;margin-bottom:3rem;}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.icon-gold{background:var(--accent-dim);color:var(--accent);}
+.icon-green{background:var(--green-dim);color:var(--green);}
+.icon-blue{background:var(--blue-dim);color:var(--blue);}
+.icon-purple{background:var(--purple-dim);color:var(--purple);}
+.icon-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.icon-orange{background:var(--orange-dim);color:var(--orange);}
+.icon-red{background:var(--red-dim);color:var(--red);}
+[data-theme="light"] .icon-gold{background:rgba(19,94,171,0.10);}
+[data-theme="light"] .icon-green{background:rgba(4,149,95,0.10);}
+[data-theme="light"] .icon-blue{background:rgba(100,203,192,0.12);}
+[data-theme="light"] .icon-red{background:rgba(255,156,163,0.15);}
+[data-theme="light"] .icon-purple{background:rgba(107,70,193,0.10);}
+[data-theme="light"] .icon-cyan{background:rgba(100,203,192,0.12);}
+[data-theme="light"] .icon-orange{background:rgba(244,244,49,0.15);}
+.section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);}
+.section-count{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);background:var(--bg-card);border:1px solid var(--border);padding:3px 8px;border-radius:4px;margin-left:auto;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.25rem 1rem;cursor:pointer;position:relative;overflow:hidden;transition:all 0.25s ease;}
+.card:hover{background:var(--bg-card-hover);transform:translateY(-2px);box-shadow:0 8px 32px var(--shadow-card);}
+[data-theme="light"] .card{box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(19,94,171,0.10);}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;opacity:0;transition:opacity 0.25s;}
+.card:hover::before{opacity:1;}
+.bar-gold::before{background:var(--accent);}
+.bar-green::before{background:var(--green);}
+.bar-blue::before{background:var(--blue);}
+.bar-red::before{background:var(--red);}
+.bar-purple::before{background:var(--purple);}
+.bar-cyan::before{background:var(--cyan);}
+.bar-orange::before{background:var(--orange);}
+[data-theme="light"] .bar-gold::before{background:linear-gradient(180deg,#135EAB,#04955F);}
+[data-theme="light"] .bar-blue::before{background:#135EAB;}
+[data-theme="light"] .bar-green::before{background:#04955F;}
+[data-theme="light"] .bar-red::before{background:#FF9CA3;}
+[data-theme="light"] .bar-purple::before{background:#6b46c1;}
+[data-theme="light"] .bar-cyan::before{background:#64CBC0;}
+[data-theme="light"] .bar-orange::before{background:#F4F431;}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem;}
+.card-headline{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:0.6rem;}
+.card-summary{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:0.75rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0.75rem;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;font-weight:500;}
+.bg-gold{background:var(--accent-dim);color:var(--accent);}
+.bg-red{background:var(--red-dim);color:var(--red);}
+.bg-green{background:var(--green-dim);color:var(--green);}
+.bg-blue{background:var(--blue-dim);color:var(--blue);}
+.bg-purple{background:var(--purple-dim);color:var(--purple);}
+.bg-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.bg-orange{background:var(--orange-dim);color:var(--orange);}
+[data-theme="light"] .bg-gold{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .bg-red{background:rgba(255,156,163,0.20);color:#b83240;}
+[data-theme="light"] .bg-green{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .bg-blue{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .bg-purple{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .bg-cyan{background:rgba(100,203,192,0.15);color:#0d9488;}
+[data-theme="light"] .bg-orange{background:rgba(244,244,49,0.15);color:#8a6d00;}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;}
+.card-risk-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:4px;}
+.card-expand-hint{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-dim);}
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--overlay-bg);z-index:1000;display:none;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px);}
+.modal-overlay.active{display:flex;animation:fadeIn 0.2s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.modal{background:var(--bg-expanded);border:1px solid var(--border-accent);border-radius:16px;width:100%;max-width:800px;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+[data-theme="light"] .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);border-color:var(--border);}
+.modal-top-bar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg-expanded);z-index:1;}
+.modal-category{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+.c-gold{color:var(--accent);}.c-green{color:var(--green);}.c-blue{color:var(--blue);}.c-red{color:var(--red);}.c-purple{color:var(--purple);}.c-cyan{color:var(--cyan);}.c-orange{color:var(--orange);}
+.modal-close{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;color:var(--text-muted);cursor:pointer;font-size:14px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.modal-close:hover{background:var(--bg-card-hover);color:var(--text);}
+.modal-body{padding:1.5rem 1.5rem 2rem;}
+.modal-headline{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);line-height:1.25;margin-bottom:0.5rem;}
+.modal-date{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1.25rem;}
+.modal-content{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;margin-bottom:1.5rem;}
+.modal-content p{margin-bottom:1rem;}.modal-content p:last-child{margin-bottom:0;}.modal-content strong{color:var(--text);}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem;}
+@media(max-width:640px){.panel-grid{grid-template-columns:1fr;}}
+.panel{border-radius:10px;padding:1rem 1.1rem;}
+.panel-action{background:var(--panel-action-bg);border:1px solid var(--panel-action-border);}
+.panel-risk{background:var(--panel-risk-bg);border:1px solid var(--panel-risk-border);}
+.panel-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.75rem;display:flex;align-items:center;gap:6px;}
+.panel-label-icon{font-size:12px;}
+.panel-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.panel-list li{font-family:'Source Serif 4',serif;font-size:13.5px;color:var(--text-muted);line-height:1.55;padding:8px 0;border-bottom:1px solid var(--panel-li-border);}
+.panel-list li:last-child{border-bottom:none;}
+.owner{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-right:6px;display:inline-block;vertical-align:middle;}
+.owner-ceo{background:var(--accent-dim);color:var(--accent);}
+.owner-cfo{background:var(--green-dim);color:var(--green);}
+.owner-cio{background:var(--blue-dim);color:var(--blue);}
+.owner-gc{background:var(--purple-dim);color:var(--purple);}
+.owner-ciso{background:var(--red-dim);color:var(--red);}
+.owner-chro{background:var(--orange-dim);color:var(--orange);}
+[data-theme="light"] .owner-ceo{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .owner-cfo{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .owner-cio{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .owner-gc{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .owner-ciso{background:rgba(255,156,163,0.15);color:#b83240;}
+[data-theme="light"] .owner-chro{background:rgba(244,244,49,0.15);color:#8a6d00;}
+.panel-risk .panel-list li::before{content:'▸';color:var(--red);margin-right:6px;font-size:10px;}
+.modal-csuite{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem;}
+[data-theme="light"] .modal-csuite{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));}
+.modal-csuite-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+#modal-csuite-text{font-family:'Source Serif 4',serif;font-size:14px;color:var(--text-muted);line-height:1.65;}
+.modal-links{margin-bottom:1.25rem;}
+.modal-links-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.6rem;}
+.modal-link-list{display:flex;flex-direction:column;gap:6px;}
+.modal-link{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:var(--bg-card);border:1px solid var(--border);text-decoration:none;color:var(--text-muted);font-size:13px;transition:all 0.2s;}
+.modal-link:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border-accent);}
+.modal-link-source{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);flex-shrink:0;min-width:80px;}
+.modal-link-arrow{margin-left:auto;color:var(--text-dim);font-size:12px;}
+.modal-related{margin-top:0.5rem;}
+.modal-related-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.6rem;}
+.related-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.related-chip{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-muted);background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:5px 12px;cursor:pointer;transition:all 0.2s;}
+.related-chip:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border-accent);}
+[data-theme="light"] .related-chip:hover{background:rgba(19,94,171,0.08);border-color:#135EAB;color:#135EAB;}
+.footer{text-align:center;padding:2rem 1.5rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);}
+@media(max-width:768px){.hero{padding:3rem 1.25rem 2rem;}.metrics-bar{grid-template-columns:repeat(2,1fr);}.metrics-bar .metric:last-child{grid-column:1/-1;}.cards-grid{grid-template-columns:1fr;}.main{padding:1.5rem 1rem 3rem;}.modal-body{padding:1rem 1rem 1.5rem;}.modal-headline{font-size:20px;}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-label">AI Intelligence Briefing · Week 16, 2026</div>
+  <h1>AI Intelligence <span>Briefing</span></h1>
+  <p class="hero-sub">April 13 – April 20, 2026 · C-Suite Edition</p>
+  <div class="metrics-bar">
+    <div class="metric"><span class="metric-value">87.6%</span><span class="metric-label">Opus 4.7 SWE-Bench</span></div>
+    <div class="metric"><span class="metric-value">1,000</span><span class="metric-label">Snap AI Layoffs</span></div>
+    <div class="metric"><span class="metric-value">$500M</span><span class="metric-label">Snap Cost Savings</span></div>
+    <div class="metric"><span class="metric-value">29M</span><span class="metric-label">Dev Secrets Leaked</span></div>
+    <div class="metric"><span class="metric-value">2.5x</span><span class="metric-label">NVIDIA Ising Speed</span></div>
+  </div>
+</header>
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="nav-scroll-left">&#8249;</button>
+    <div class="nav-scroll-area" id="nav-scroll-area">
+      <div class="nav-inner" id="nav-inner">
+        <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="models">🧠 New AI Models</button>
+        <button class="nav-btn" data-section="platforms">🏛 Enterprise Platforms</button>
+        <button class="nav-btn" data-section="infrastructure">⚙️ Infrastructure</button>
+        <button class="nav-btn" data-section="workforce">👥 Workforce</button>
+        <button class="nav-btn" data-section="security">🛡 Security</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="nav-scroll-right">&#8250;</button>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button>
+  </div>
+</nav>
+<main class="main">
+  <div class="exec-strip">
+    <div class="exec-strip-label">⚡ 30-Second Executive Summary</div>
+    <div class="exec-strip-body">Week 16 delivered the industry's most competitive model sprint yet. <strong>Anthropic</strong> launched <strong>Claude Opus 4.7</strong> on April 16, achieving <strong>87.6% on SWE-bench Verified</strong> (up from 80.8%) at pricing unchanged at $5/$25 per million tokens; the same day, <strong>OpenAI</strong> debuted <strong>GPT-Rosalind</strong>, a life-sciences reasoning model in restricted access with <strong>Amgen, Moderna, Allen Institute, and Thermo Fisher Scientific</strong>. <strong>Google DeepMind</strong> launched <strong>Gemini 3</strong> in preview on April 15 and simultaneously released <strong>Gemini Robotics-ER 1.6</strong> co-developed with <strong>Boston Dynamics</strong>. On the workforce front, <strong>Snap</strong> cut <strong>1,000 jobs</strong> (16% of staff) on April 15, explicitly citing AI handling <strong>65% of its new code</strong> — with projected annual savings exceeding <strong>$500 million</strong> and shares rising 7% on the news. Security concerns intensified: <strong>IBM</strong> launched <strong>Autonomous Security</strong> on April 15 to counter agentic attacks, while <strong>GitGuardian</strong> flagged <strong>29 million developer credentials</strong> exposed in public GitHub in 2025 — including <strong>24,008 secrets in MCP config files</strong>.</div>
+  </div>
+  <div id="content-area"></div>
+</main>
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-top-bar">
+      <div class="modal-category" id="modal-category"></div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-headline" id="modal-headline"></h2>
+      <div class="modal-date" id="modal-date"></div>
+      <div class="modal-content" id="modal-content"></div>
+      <div class="panel-grid" id="panel-grid"></div>
+      <div class="modal-csuite" id="modal-csuite">
+        <div class="modal-csuite-label">⚡ Bottom Line</div>
+        <p id="modal-csuite-text"></p>
+      </div>
+      <div class="modal-links">
+        <div class="modal-links-label">Sources &amp; Further Reading</div>
+        <div class="modal-link-list" id="modal-link-list"></div>
+      </div>
+      <div class="modal-related">
+        <div class="modal-related-label">Related Topics</div>
+        <div class="related-chips" id="related-chips"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">AI Intelligence Briefing — April 13 – April 20, 2026 · Prepared by Claude for C-Suite Decision Makers · Sources verified as of April 20, 2026</footer>
+<script>
+const sections=[
+  {
+    id:"models",
+    title:"New AI Models",
+    icon:"🧠",
+    iconClass:"icon-purple",
+    count:3,
+    cards:[
+      {
+        id:"claude-opus-47",
+        date:"Apr 16, 2026",
+        headline:"Anthropic Claude Opus 4.7 leads SWE-bench at 87.6% — 7-point coding jump, higher-resolution vision, pricing unchanged",
+        summary:"Anthropic's new flagship model scores 87.6% on SWE-bench Verified (up from 80.8%) and 64.3% on SWE-bench Pro, leads all rivals on MCP-Atlas agentic benchmarks at 77.3%, and adds full-resolution image support up to 3.75 megapixels — all at the same $5/$25 per million token pricing.",
+        tags:[["CIO","bg-blue"],["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass:"bar-purple",
+        riskLevel:"HIGH IMPACT",
+        riskClass:"bg-blue",
+        category:"NEW AI MODELS",
+        catColor:"c-purple",
+        content:`<p>On <strong>April 16, 2026</strong>, Anthropic released <strong>Claude Opus 4.7</strong>, its new flagship large language model. The launch represents Anthropic's most capable generally available model and arrives with meaningful gains on every major benchmark compared to its predecessor Claude Opus 4.6.</p><p>On <strong>SWE-bench Verified</strong> — the standard industry benchmark for real-world software engineering tasks — Opus 4.7 scores <strong>87.6%</strong>, up from 80.8% for Opus 4.6, a gain of <strong>6.8 percentage points</strong>. On the more demanding <strong>SWE-bench Pro</strong>, it reaches <strong>64.3%</strong> (up from 53.4%). On <strong>CursorBench</strong>, it scores <strong>70%</strong> (up from 58%). In agentic multi-tool workflows, <strong>MCP-Atlas</strong> ranks Opus 4.7 first at <strong>77.3%</strong>, ahead of GPT-5.4 (68.1%) and Gemini 3.1 Pro (73.9%).</p><p><strong>Vision capabilities</strong> expanded substantially: Opus 4.7 accepts images up to <strong>2,576 pixels on the long edge</strong> (roughly 3.75 megapixels), more than tripling its predecessor's visual acuity from 54.5% to <strong>98.5%</strong> on standard visual navigation tasks without tools. A new <strong>xhigh effort level</strong> and task budgets (in beta) allow operators to dial reasoning depth for cost-critical applications.</p><p>A notable migration risk: Opus 4.7 follows instructions <strong>more literally</strong> than prior Claude models. Anthropic explicitly warns that prompts relying on loose wording may produce different results — teams should audit high-stakes system prompts before upgrading. Pricing is <strong>unchanged at $5 input / $25 output per million tokens</strong>.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Audit your top-10 highest-volume Claude prompts for loose or ambiguous wording before migrating to Opus 4.7 — the model's stricter instruction-following is a migration risk. Run parallel evaluations for 2 weeks before cutover in any regulated or customer-facing workflow."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Pricing is unchanged at $5/$25 MTok. If your team moved to GPT-5.4 at $2.50/$15 for cost, run a task-completion comparison: Opus 4.7's higher one-shot success rate on complex tasks may reduce total token spend by 10–20% vs. cheaper models that require multiple attempts."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Opus 4.7 now leads on coding and agentic benchmarks simultaneously — a first for any single model. If your engineering teams are evaluating AI coding tools (GitHub Copilot, Cursor), ensure Opus 4.7 is part of the bakeoff before Q3 procurement decisions."}
+        ],
+        risks:[
+          {text:"Prompt migration risk: Opus 4.7's literal instruction-following can break prompts tuned for earlier Claude models. Any enterprise with hundreds of automated system prompts faces a non-trivial migration review burden before safe production cutover."},
+          {text:"Benchmark saturation: With 87.6% on SWE-bench Verified, diminishing returns on this metric are approaching. Anthropic will need new benchmark axes — enterprise reliability, latency, and long-context stability — to differentiate the next generation."},
+          {text:"Competitive pressure: GPT-5.4 costs roughly half as much per token. For cost-sensitive, high-volume workloads, Anthropic's pricing premium must be justified by measurable quality differentials. Evaluate before renewing enterprise contracts."}
+        ],
+        csuite:"Claude Opus 4.7 is the most capable coding and agentic model available today at no price increase — a meaningful value improvement for enterprises already on Anthropic. The key risk is the stricter instruction-following behavior: before migrating production workflows, mandate a prompt audit. For new deployments, Opus 4.7 should be the default evaluation benchmark for any AI coding or agent use case initiated in Q2.",
+        links:[
+          {source:"CNBC",title:"Anthropic rolls out Claude Opus 4.7, an AI model that is less risky than Mythos",url:"https://www.cnbc.com/2026/04/16/anthropic-claude-opus-4-7-model-mythos.html"},
+          {source:"TNW",title:"Claude Opus 4.7 leads on SWE-bench and agentic reasoning, beating GPT-5.4 and Gemini 3.1 Pro",url:"https://thenextweb.com/news/anthropic-claude-opus-4-7-coding-agentic-benchmarks-release"},
+          {source:"NxCode",title:"Claude Opus 4.7: Complete Guide to Features, Benchmarks & Pricing (2026)",url:"https://www.nxcode.io/resources/news/claude-opus-4-7-complete-guide-features-benchmarks-pricing-2026"},
+          {source:"Vellum AI",title:"Claude Opus 4.7 Benchmarks Explained",url:"https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"}
+        ],
+        related:["gpt-rosalind","gemini-3","codex-update"]
+      },
+      {
+        id:"gpt-rosalind",
+        date:"Apr 16–17, 2026",
+        headline:"OpenAI debuts GPT-Rosalind — first life-sciences AI model in restricted access with Amgen, Moderna, Allen Institute, Thermo Fisher",
+        summary:"Named after Rosalind Franklin, OpenAI's new frontier reasoning model synthesizes genomics, protein engineering, and chemistry evidence to accelerate drug discovery and research planning. Access is restricted to qualified enterprise customers via a trusted-access program; early partners include Amgen, Moderna, the Allen Institute, and Thermo Fisher Scientific.",
+        tags:[["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass:"bar-gold",
+        riskLevel:"OPPORTUNITY",
+        riskClass:"bg-green",
+        category:"NEW AI MODELS",
+        catColor:"c-gold",
+        content:`<p>On <strong>April 16–17, 2026</strong>, OpenAI announced <strong>GPT-Rosalind</strong>, its first domain-specific frontier reasoning model purpose-built for life sciences research. Named after pioneering chemist <strong>Rosalind Franklin</strong> — whose X-ray crystallography work was foundational to the discovery of DNA's double helix — the model is fine-tuned for deep understanding across <strong>genomics, protein engineering, and medicinal chemistry</strong>.</p><p>GPT-Rosalind is designed to synthesize evidence from multiple scientific databases, generate biological hypotheses, and plan experiments — tasks that previously required years of expert human synthesis. Unlike general-purpose models, it can be directed to pull from the appropriate scientific sources for a given question, run analysis, and return structured results in biological context.</p><p>Access is <strong>not publicly available</strong>. GPT-Rosalind operates through a <strong>trusted access program</strong> limited to qualified enterprise customers in the United States. Confirmed early partners include <strong>Amgen</strong>, <strong>Moderna</strong>, the <strong>Allen Institute</strong>, and <strong>Thermo Fisher Scientific</strong>. OpenAI and its partners are applying the model across workflows that accelerate research, reduce hypothesis generation time, and surface cross-database patterns not visible to human researchers working within a single discipline.</p><p>OpenAI acknowledged the safety sensitivity of a model trained deeply on biological sequences capable of high-level protein and RNA reasoning. The trusted-access restriction reflects precautionary measures against potential dual-use risks — over 100 scientists earlier called for tighter controls on biological AI data.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"If your organization operates in pharma, biotech, diagnostics, or agriscience, apply immediately to OpenAI's GPT-Rosalind trusted-access program at openai.com. Early access determines which firms define the R&D productivity benchmark for the next 2–3 years."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Evaluate the data governance requirements for GPT-Rosalind before access is granted. The model processes sensitive biological sequences; confirm your data classification and third-party data-sharing policies can accommodate FDA-regulated research data and proprietary compound libraries."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The partner list — Amgen, Moderna, Allen Institute, Thermo Fisher — signals OpenAI is building a proprietary life-sciences network effect. Each partner's data integration accelerates the model for all others. If your firm is not at the table in the next 6 months, the competitive gap in AI-assisted R&D will be very difficult to close."}
+        ],
+        risks:[
+          {text:"Restricted access creates competitive asymmetry: the four disclosed partners gain months of proprietary workflow integration before any competitor gets access. Life-sciences firms not yet in dialogue with OpenAI face a structural disadvantage in AI-assisted drug discovery timelines."},
+          {text:"Biosecurity and dual-use risk: OpenAI's own disclosure acknowledges GPT-Rosalind could theoretically assist in designing dangerous pathogens. Regulatory scrutiny of life-sciences AI is likely to intensify in H2 2026 — including potential export control implications for cross-border research collaborations."},
+          {text:"Data sovereignty concerns: Submitting proprietary compound libraries or unpublished clinical data to a US-based cloud AI service creates intellectual property and regulatory exposure. Legal review of the trusted-access terms is mandatory before deployment in any cross-jurisdictional research context."}
+        ],
+        csuite:"GPT-Rosalind is the most consequential specialized AI launch of the quarter for life-sciences organizations. The restricted access model means early movers gain compounding advantage. If you have any research operations in pharma, diagnostics, or agri-biotech, initiate the access request this week and brief your Chief Scientific Officer on the competitive implications. The Allen Institute's participation signals this is already being used for foundational research, not just applied product development.",
+        links:[
+          {source:"Axios",title:"OpenAI launches AI model GPT-Rosalind for life sciences research",url:"https://www.axios.com/2026/04/16/openai-models-life-sciences-drugs"},
+          {source:"VentureBeat",title:"OpenAI debuts GPT-Rosalind, a new limited access model for life sciences",url:"https://venturebeat.com/technology/openai-debuts-gpt-rosalind-a-new-limited-access-model-for-life-sciences-and-broader-codex-plugin-on-github"},
+          {source:"Euronews",title:"What to know about OpenAI's new model for life sciences research GPT-Rosalind",url:"https://www.euronews.com/health/2026/04/17/what-to-know-about-openais-new-model-for-life-sciences-research-gpt-rosalind"},
+          {source:"MarkTechPost",title:"OpenAI Launches GPT-Rosalind: Its First Life Sciences AI Model Built to Accelerate Drug Discovery",url:"https://www.marktechpost.com/2026/04/16/openai-launches-gpt-rosalind-life-sciences-ai/"}
+        ],
+        related:["claude-opus-47","gemini-3"]
+      },
+      {
+        id:"gemini-3",
+        date:"Apr 15, 2026",
+        headline:"Google launches Gemini 3 Pro in preview — leads multimodal and agentic benchmarks, rolls out across all Google products immediately",
+        summary:"Google DeepMind released Gemini 3 Pro in preview on April 15, calling it the world's best multimodal model and most powerful agentic and vibe coding model. It tops LMArena at 1,501 Elo and scores 91.9% on GPQA Diamond. The model is available immediately across Gemini app, AI Studio, and Vertex AI.",
+        tags:[["CIO","bg-blue"],["CEO","bg-gold"]],
+        barClass:"bar-blue",
+        riskLevel:"HIGH IMPACT",
+        riskClass:"bg-blue",
+        category:"NEW AI MODELS",
+        catColor:"c-blue",
+        content:`<p>On <strong>April 15, 2026</strong>, Google DeepMind released <strong>Gemini 3 Pro</strong> in preview, describing it as the company's biggest step toward AGI yet and its most capable model family to date. The launch covers <strong>multimodal reasoning, agentic task execution, and vibe coding</strong> — the emerging paradigm of intent-driven software development — with a native 2M-token context window across all tiers.</p><p>On performance benchmarks, Gemini 3 Pro leads the <strong>LMArena Leaderboard</strong> at a <strong>1,501 Elo score</strong> and the <strong>WebDev Arena</strong> at 1,487 Elo — the highest scores recorded on both leaderboards. On <strong>GPQA Diamond</strong> (advanced scientific reasoning), it achieves <strong>91.9%</strong>, with the extended <strong>Deep Think mode</strong> pushing that to 93.8%. On <strong>MMMU-Pro</strong> (multimodal understanding), it scores <strong>81.0%</strong>, creating a 5-point gap over rivals on complex visual-language tasks.</p><p>Google made Gemini 3 Pro available <strong>immediately and broadly</strong> — rolling it out across the <strong>Gemini app, Google AI Studio, and Vertex AI</strong> on day one. This distribution approach differs markedly from OpenAI's staged rollouts and gives Google a first-mover advantage in enterprise adoption through existing GCP and Google Workspace channels.</p><p>Also launched the same day: <strong>Gemini 3.1 Flash TTS</strong>, a text-to-speech model in public preview supporting <strong>70+ languages</strong> and <strong>30 distinct voices</strong>, with expressive audio tags for controlling tone, pacing, and emphasis.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"If your organization uses Google Cloud or Workspace, Gemini 3 Pro is available today on Vertex AI with zero procurement friction — it runs on your existing GCP contract. Prioritize a 30-day benchmark against your current OpenAI or Anthropic setup for multimodal document processing and code-generation use cases before your next contract renewal."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The 1,501 Elo score on LMArena — a crowdsourced blind evaluation by millions of users — is the most reliable real-world quality signal in AI. Gemini 3 Pro is now the user-preferred model. Ask your product team whether customer-facing AI features should be re-evaluated against it."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Gemini 3.1 Flash TTS in 70+ languages with 30 voices is production-ready today for multilingual IVR, audio content, and accessibility features. Evaluate against current text-to-speech vendor contracts — Google's pricing through GCP is likely below most third-party TTS providers at scale."}
+        ],
+        risks:[
+          {text:"Preview status means API stability is not guaranteed. Production workloads migrated to Gemini 3 Pro before GA risk breaking changes in prompt formats, API behavior, or pricing. Use a preview contract addendum with Google Cloud that guarantees migration support to the GA version."},
+          {text:"Google's broad simultaneous rollout accelerates enterprise competition. Rivals will respond in days to weeks. Enterprises that commit to multi-year Vertex AI contracts now may be locked in before a better model — or a better deal — emerges from OpenAI or Anthropic."},
+          {text:"GPQA Diamond at 91.9% is impressive but still leaves 8% failure on graduate-level scientific questions. For regulated industries where AI is used in safety-critical decision support, independent validation of Gemini 3 on domain-specific test sets is required before deployment."}
+        ],
+        csuite:"Gemini 3 Pro is the first model from Google that genuinely competes for the top spot across all benchmark categories simultaneously. For GCP customers, it is immediately available at no new procurement cost — this is a free upgrade path worth evaluating this week. The TTS launch is an underrated operational opportunity: 70 languages at enterprise scale addresses global accessibility and IVR modernization in a single product.",
+        links:[
+          {source:"Google DeepMind",title:"Gemini 3: Introducing the latest Gemini AI model from Google",url:"https://blog.google/products/gemini/gemini-3/"},
+          {source:"Vellum AI",title:"Google Gemini 3 Benchmarks (Explained)",url:"https://www.vellum.ai/blog/google-gemini-3-benchmarks"},
+          {source:"Seeking Alpha",title:"Google's DeepMind launches more advanced Gemini robotics",url:"https://seekingalpha.com/news/4574852-googles-deepmind-launches-more-advanced-gemini-robotics"},
+          {source:"BenchLM",title:"Gemini 3.1 Pro Benchmarks 2026: Scores, Rankings & Performance",url:"https://benchlm.ai/models/gemini-3-1-pro"}
+        ],
+        related:["gemini-robotics","claude-opus-47","gpt-rosalind"]
+      }
+    ]
+  },
+  {
+    id:"platforms",
+    title:"Enterprise Platforms & Developer Tools",
+    icon:"🏛",
+    iconClass:"icon-gold",
+    count:3,
+    cards:[
+      {
+        id:"codex-update",
+        date:"Apr 16, 2026",
+        headline:"OpenAI Codex gains computer use, 90+ plugins, and memory — desktop AI agent now controls Mac apps and schedules its own future work",
+        summary:"OpenAI's April 16 Codex update transforms the coding assistant into a full desktop agent: it can now control Mac applications with its own cursor, generate images via gpt-image-1.5, remember user workflows across sessions, connect to 90+ new plugins including Atlassian Rovo and GitLab Issues, and schedule tasks to run autonomously across days.",
+        tags:[["CIO","bg-blue"],["CEO","bg-gold"]],
+        barClass:"bar-cyan",
+        riskLevel:"HIGH IMPACT",
+        riskClass:"bg-blue",
+        category:"DEVELOPER TOOLS",
+        catColor:"c-cyan",
+        content:`<p>On <strong>April 16, 2026</strong>, OpenAI published a sweeping update to <strong>Codex</strong>, its desktop AI coding agent, branded "Codex for (almost) everything." The update broadens Codex from a coding tool into a general-purpose desktop automation platform capable of controlling other applications, managing its own schedule, and integrating with enterprise software ecosystems.</p><p>The headline capability is <strong>computer use</strong>: Codex now operates desktop Mac applications with its own cursor — seeing what is on screen, clicking, and typing. It can run <strong>multiple agents in parallel</strong> without interfering with the user's own cursor, and OpenAI positions this for testing app interfaces, iterating on frontend changes, and reviewing rendered web output. Computer use is not yet available in the EU or UK.</p><p><strong>Memory and scheduling</strong> are new: Codex remembers user preferences, recurring workflows, and tech stacks across sessions. It can <strong>schedule future work for itself</strong> and resume tasks from prior conversation threads — enabling workflows that span days or weeks without continuous user supervision.</p><p>The plugin ecosystem expanded to more than <strong>90 new integrations</strong>, including <strong>Atlassian Rovo, CircleCI, CodeRabbit, GitLab Issues, Microsoft Suite, and Render</strong>. Also added: an in-app browser for reviewing local and public pages with direct annotation capability, multiple terminal tabs, and SSH devbox connectivity in alpha.</p><p>OpenAI is also expanding the <strong>GitHub pull request workflow</strong> into Codex — users can inspect PRs in the sidebar, review diff comments, and ask Codex to implement review feedback in a single loop.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Evaluate Codex computer-use for your QA and front-end testing workflows immediately — the parallel multi-agent capability means it can run regression tests against your UI without blocking developer machines. Pilot with a single team before broader rollout; document any data sent to OpenAI servers during computer-use sessions for compliance review."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"The 90+ plugin integrations — particularly Atlassian Rovo and GitLab Issues — make Codex a potential replacement for manual ticket triage and sprint planning support. Map the plugins against your current developer toolchain and identify 2–3 automation candidates to prototype in Q2."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Codex is now a multi-day autonomous worker: it can schedule its own tasks and work across sessions without supervision. This changes the productivity calculus for software teams — ask your CTO for an updated estimate of what this means for engineering headcount planning in 2027."}
+        ],
+        risks:[
+          {text:"Computer-use agents running on developer machines have broad access to local file systems, authentication tokens, and browser sessions. Before enabling Codex computer use in any production or regulated environment, mandate a security review of what the agent can access, log, or transmit."},
+          {text:"The multi-day scheduling and autonomous continuation capabilities introduce a new governance challenge: AI agents that are not actively supervised may take actions based on stale context or outdated instructions. Require human-in-the-loop checkpoints for any Codex task that can modify production systems."},
+          {text:"Plugin access to enterprise tools like Atlassian and GitLab means third-party AI context about your internal roadmaps, bug lists, and sprint priorities flows through OpenAI's infrastructure. Review plugin data-handling policies and confirm they meet your data residency requirements."}
+        ],
+        csuite:"Codex has crossed from coding assistant to desktop agent. The computer-use and scheduling capabilities make it the most operationally autonomous AI developer tool available today. The immediate opportunity is QA automation and PR review acceleration. The governance requirement is equally immediate: any organization deploying Codex with computer use needs a written AI agent access policy before production rollout.",
+        links:[
+          {source:"OpenAI",title:"Codex for (almost) everything",url:"https://openai.com/index/codex-for-almost-everything/"},
+          {source:"MacRumors",title:"OpenAI Codex Update Adds Computer Use, Image Generation, and Memory on Mac",url:"https://www.macrumors.com/2026/04/16/openai-codex-mac-update/"},
+          {source:"SmartScope",title:"OpenAI Codex Desktop App Major Update (April 2026): Computer Use, Browser, 90+ Plugins",url:"https://smartscope.blog/en/generative-ai/chatgpt/codex-desktop-major-update-april-2026/"},
+          {source:"VentureBeat",title:"OpenAI drastically updates Codex desktop app to use all other apps on your computer",url:"https://venturebeat.com/technology/openai-drastically-updates-codex-desktop-app-to-use-all-other-apps-on-your-computer-generate-images-preview-webpages"}
+        ],
+        related:["claude-opus-47","databricks-agent-bricks"]
+      },
+      {
+        id:"claude-design",
+        date:"Apr 17, 2026",
+        headline:"Anthropic launches Claude Design — visual collaboration product for designs, prototypes, slides, and one-pagers",
+        summary:"Anthropic's new Labs product lets users collaborate with Claude to create visual outputs — including web and app designs, interactive prototypes, presentation decks, and one-pagers — directly within Claude without export or third-party tools. It launched April 17, 2026 as a standalone Anthropic Labs product.",
+        tags:[["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass:"bar-purple",
+        riskLevel:"MONITOR",
+        riskClass:"bg-gold",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-purple",
+        content:`<p>On <strong>April 17, 2026</strong>, Anthropic launched <strong>Claude Design</strong>, a new <strong>Anthropic Labs</strong> product that enables users to collaborate with Claude on visual outputs without leaving the Claude interface. The product targets the gap between text-based AI assistance and the visual deliverables — designs, prototypes, slides, and marketing one-pagers — that knowledge workers produce daily.</p><p>Claude Design lets users describe a visual concept in natural language and iterates collaboratively with Claude to refine it. Outputs include <strong>web and app UI mockups, interactive prototypes, presentation decks, and one-pager documents</strong>. The model renders visualizations directly in the conversation, allows inline editing, and produces shareable assets without requiring export to Figma, PowerPoint, or other tools.</p><p>The launch includes integration with the <strong>Claude mobile app</strong>, which can now connect to fully interactive apps — users can pull up live charts, sketch diagrams, and build shareable assets rendered visually right in conversations. This capability works alongside the previously announced visualization features that allow Claude to create custom charts and diagrams in-line.</p><p>Claude Design is positioned as a Labs product — Anthropic's experimental product tier — meaning it is available for exploration but not covered by enterprise SLAs. However, the feature's release in the same week as Opus 4.7 signals that visual collaboration is moving from Labs experiment to core product roadmap at Anthropic.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Brief your CMO and design leads on Claude Design this week. The product directly competes with the 'AI assistant + Figma' workflow that many teams have assembled manually. A structured 30-day pilot can quantify time savings on proposal decks, internal briefs, and client one-pagers."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Claude Design is a Labs product — no enterprise SLA. Before deploying for any client-facing or regulated use (e.g., investor materials, regulatory filings), confirm with Anthropic what data is retained from visual generation sessions and what your data handling rights are under the Labs terms of service."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The trend across all frontier labs this week — OpenAI expanding Codex to computer use, Google launching Gemini 3 with visual reasoning, Anthropic shipping Claude Design — confirms that the AI product battlefield has shifted from pure language to multimodal action. Update your AI strategy framework to include visual and agentic capabilities as primary evaluation criteria."}
+        ],
+        risks:[
+          {text:"Labs product status means Claude Design is subject to rapid changes, deprecation, or migration to paid tiers with no advance notice. Any team that builds internal workflows around it should document those workflows and plan for a transition to a GA product or alternative."},
+          {text:"Visual output IP ownership is ambiguous for AI-generated designs. Before using Claude Design outputs in client deliverables, product interfaces, or published materials, obtain legal review on AI-generated content ownership in your applicable jurisdictions."},
+          {text:"Competitive disruption: Claude Design directly threatens specialized design AI tools (Figma AI, Canva AI, Microsoft Designer). If your organization has enterprise contracts with these vendors, evaluate the impact before renewals — Claude Design's integration with Claude's broader capabilities may make a bundled approach more efficient."}
+        ],
+        csuite:"Claude Design is Anthropic's opening move into visual AI productivity — and the week-16 pattern of every major lab shipping visual-agentic capabilities confirms this is the new frontier of enterprise AI tooling. The immediate use case is internal productivity: proposal decks, internal briefs, and client one-pagers. The strategic implication is that visual design competence is now a core expectation for enterprise AI assistants, not a specialty add-on.",
+        links:[
+          {source:"TechCrunch",title:"Anthropic launches Claude Design, a new product for creating quick visuals",url:"https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/"},
+          {source:"Progressive Robot",title:"Anthropic Launches Claude Design: 7 Facts About Its New Visual Work Tool",url:"https://www.progressiverobot.com/2026/04/17/anthropic-launches-claude-design/"},
+          {source:"Anthropic Labs",title:"Claude Platform Release Notes",url:"https://platform.claude.com/docs/en/release-notes/overview"},
+          {source:"Releasebot",title:"Anthropic Release Notes — April 2026 Latest Updates",url:"https://releasebot.io/updates/anthropic"}
+        ],
+        related:["claude-opus-47","codex-update"]
+      },
+      {
+        id:"databricks-agent-bricks",
+        date:"Apr 14, 2026",
+        headline:"Databricks Agent Bricks reaches GA — governed enterprise agent platform with Workday, Virgin Atlantic, AstraZeneca among production customers",
+        summary:"Databricks launched Agent Bricks in general availability on April 14, moving Document Intelligence and Custom Agents to production with full Unity Catalog governance. The platform unifies model access, Lakehouse context, identity-enforced data permissions, and AI Gateway — with Workday, Virgin Atlantic, Zapier, and AstraZeneca already running agents at scale.",
+        tags:[["CIO","bg-blue"],["CFO","bg-green"]],
+        barClass:"bar-gold",
+        riskLevel:"HIGH IMPACT",
+        riskClass:"bg-blue",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-gold",
+        content:`<p>On <strong>April 14, 2026</strong>, Databricks announced the general availability of <strong>Agent Bricks</strong>, its end-to-end enterprise agent platform. Agent Bricks integrates model access, enterprise data context from the Databricks Lakehouse, Unity Catalog governance, and a production execution environment into a single managed platform — eliminating the need for organizations to assemble separate orchestration, security, and monitoring stacks.</p><p>The GA launch includes <strong>Document Intelligence</strong> — agents that extract, classify, and act on structured and unstructured documents — and <strong>Custom Agents</strong> on Apps, which allows teams to build and deploy agent applications using any model or framework with lifecycle support and serverless compute. A new <strong>Supervisor Agent</strong> capability enables orchestration of multiple agents and tools into complex multi-step workflows without custom code.</p><p>Governance is a central differentiator: Agent Bricks enforces identity through <strong>Unity Catalog</strong> and manages access to data, models, and external MCP integrations in a single control plane. <strong>AI Gateway</strong> provides unified observability, rate limiting, and policy enforcement across all model calls — addressing the audit trail and compliance requirements that make most agent platforms unacceptable for regulated industries.</p><p>Production customers disclosed include <strong>Workday, Virgin Atlantic, Zapier, EchoStar</strong>, and <strong>AstraZeneca</strong> — spanning financial services, aviation, SaaS, and pharmaceutical verticals. Databricks CEO Ali Ghodsi stated: "The enterprise doesn't need more agent experiments — they need agents in production that are governed, observable, and grounded in their actual data."</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"If your organization uses Databricks, Agent Bricks is available on your existing contract — Unity Catalog governance is already in place. Identify your top-3 document processing or data-extraction workflows and initiate a 45-day Agent Bricks pilot before Q2 budget close. AstraZeneca's pharmaceutical deployment is a reference architecture worth requesting from your Databricks account team."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Agent Bricks' serverless compute model means agent costs are metered by execution, not pre-provisioned. Model the TCO against a custom-built agent stack: a typical enterprise pays 2–3 FTE in ongoing engineering support for a bespoke orchestration layer. Agent Bricks eliminates that cost at the expense of platform lock-in — evaluate the trade-off against your 3-year data platform roadmap."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Unity Catalog's identity enforcement across agents, models, and external MCPs is the first enterprise-grade governance layer for multi-agent systems. If your CISO has been blocking AI agent deployment pending a governance answer, Agent Bricks' audit trail and access controls are designed exactly for that conversation — schedule a joint review with your security team."}
+        ],
+        risks:[
+          {text:"Platform lock-in: Agent Bricks' deep integration with Unity Catalog, Databricks Lakehouse, and AI Gateway means agents are tightly coupled to the Databricks ecosystem. Migrating agent workflows to another platform later requires rearchitecting data access, governance policies, and model integrations simultaneously."},
+          {text:"Supervisor Agent complexity: Multi-agent orchestration with Supervisor Agent introduces new failure modes — cascading errors across dependent agents, context loss between steps, and non-deterministic behavior in long-running workflows. Require staged rollout with human-review checkpoints for any Supervisor Agent workflow touching financial or clinical data."},
+          {text:"Pricing opacity: Serverless compute pricing for agent workloads can compound rapidly in production at scale. Obtain committed-use pricing tiers from Databricks before any production deployment, and set hard spend alerts at 80% of monthly budget."}
+        ],
+        csuite:"Agent Bricks is the most governance-complete enterprise agent platform available today — and AstraZeneca running it in pharmaceutical production validates it for regulated-industry deployment. For Databricks customers, this is effectively a free upgrade to governed AI agent capability. The Supervisor Agent for multi-workflow orchestration is the key differentiator: it replaces weeks of custom engineering with a managed layer. The lock-in risk is real but manageable if you treat Databricks as your primary data-AI platform already.",
+        links:[
+          {source:"Databricks",title:"Agent Bricks: The Governed Enterprise Agent Platform",url:"https://www.databricks.com/blog/agent-bricks-governed-enterprise-agent-platform"},
+          {source:"Databricks",title:"Databricks Launches Agent Bricks: A New Approach to Building AI Agents",url:"https://www.databricks.com/company/newsroom/press-releases/databricks-launches-agent-bricks-new-approach-building-ai-agents"},
+          {source:"Let's Data Science",title:"Databricks Launches Agent Bricks Enterprise Agent Platform",url:"https://letsdatascience.com/news/databricks-launches-agent-bricks-enterprise-agent-platform-6d7b19ad"},
+          {source:"StartupHub.ai",title:"Databricks Launches Agent Bricks Platform",url:"https://www.startuphub.ai/ai-news/technology/2026/databricks-launches-agent-bricks-platform"}
+        ],
+        related:["codex-update","claude-opus-47"]
+      }
+    ]
+  },
+  {
+    id:"infrastructure",
+    title:"Infrastructure & Hardware",
+    icon:"⚙️",
+    iconClass:"icon-cyan",
+    count:2,
+    cards:[
+      {
+        id:"nvidia-ising",
+        date:"Apr 14, 2026",
+        headline:"NVIDIA launches Ising — world's first open AI models for quantum computing, 2.5x faster error correction, adopted by Harvard, IonQ, Sandia",
+        summary:"NVIDIA's Ising model family — a 35-billion-parameter vision-language model for quantum processor calibration plus a 3D CNN for real-time error correction — reduces quantum processor setup from days to hours and delivers error-correction decoding 2.5x faster and 3x more accurate than prior methods. Adopted by Harvard, IonQ, Fermilab, Sandia, and 15 others.",
+        tags:[["CIO","bg-blue"],["CEO","bg-gold"]],
+        barClass:"bar-cyan",
+        riskLevel:"MONITOR",
+        riskClass:"bg-gold",
+        category:"INFRASTRUCTURE",
+        catColor:"c-cyan",
+        content:`<p>On <strong>April 14, 2026</strong>, NVIDIA launched <strong>Ising</strong> — the world's first family of open-source AI models specifically designed to accelerate quantum computing development. Named after physicist Ernst Ising, the family contains two distinct models that together address the two biggest bottlenecks in scaling practical quantum processors.</p><p><strong>Ising Calibration</strong> is a <strong>35-billion-parameter vision-language model</strong> that reads measurements from quantum processors and automatically adjusts their configuration. Quantum processor calibration has historically required days of expert engineering work; Ising Calibration compresses this into <strong>hours</strong>. The model outperforms Gemini 3.1 Pro by 3.27%, Claude Opus 4.6 by 9.68%, and GPT-5.4 by 14.5% on quantum-specific calibration tasks — benchmarks where general-purpose frontier models are not competitive.</p><p><strong>Ising Decoding</strong> is a 3D CNN-based framework for real-time quantum error correction — the fundamental challenge that limits quantum computers to small-scale computations today. The model delivers QEC decoding that is <strong>2.5x faster and 3x more accurate</strong> than traditional algorithmic approaches, and is customizable for various code distances and error rates. Both models are open-source and available through NVIDIA's developer ecosystem.</p><p>Adopters of Ising Calibration include <strong>Atom Computing, Academia Sinica, EeroQ, Conductor Quantum, Fermi National Accelerator Laboratory, Harvard John A. Paulson School of Engineering, Infleqtion, IonQ, IQM Quantum Computers, Lawrence Berkeley National Laboratory</strong>, Q-CTRL, and the <strong>UK National Physical Laboratory</strong>. Ising Decoding is being deployed by <strong>Cornell University, Sandia National Laboratories, UC San Diego, UC Santa Barbara, University of Chicago</strong>, and others.</p>`,
+        actions:[
+          {owner:"CIO",ownerClass:"owner-cio",text:"Brief your technology strategy team on Ising's implications. Ising Calibration's ability to compress quantum processor setup from days to hours accelerates the quantum timeline by 12–18 months for early adopters. If your organization has a quantum computing initiative, request a briefing from NVIDIA's quantum team on integration with your current hardware vendor (IonQ, IBM Q, or others)."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The 15+ research institutions already deploying Ising — including Harvard, Fermilab, and Sandia — signal this is being treated as production infrastructure, not experimental. Quantum advantage is moving from theoretical to engineering. Commission a 90-day strategic review of what quantum capability means for your industry's competitive dynamics by end of Q3."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Ising is open-source — NVIDIA's bet is that accelerating the quantum ecosystem grows its GPU and accelerator sales. For AI/ML teams with quantum adjacent research: Ising Calibration's vision-language architecture is reusable for other scientific instrument reading tasks (spectroscopy, microscopy, sensor arrays). Evaluate for internal R&D applications beyond quantum."}
+        ],
+        risks:[
+          {text:"Quantum computing timelines remain uncertain. Ising accelerates calibration and error correction but does not solve the fundamental qubit coherence and gate fidelity challenges. Organizations making large quantum infrastructure investments should stress-test their timelines against the assumption that fault-tolerant quantum computing arrives in 2028, not 2026."},
+          {text:"Open-source model means broad access, including adversarial use. Ising Calibration's ability to automatically reconfigure quantum processors could be exploited to destabilize shared quantum computing infrastructure. Quantum facility operators should evaluate access controls before deploying Ising in multi-tenant environments."},
+          {text:"Academic adoption is not commercial validation. The 15+ adopters are primarily research institutions, not enterprises with production quantum workloads. Commercial quantum advantage for business processes remains a 3–5 year horizon for most industries — do not let the NVIDIA brand signal accelerate capital commitments to quantum hardware prematurely."}
+        ],
+        csuite:"Ising is the most consequential quantum AI announcement since IBM's 2023 error correction milestones. Its practical impact — compressing calibration from days to hours — makes near-term quantum experimentation economically viable for the first time. For technology strategists: update your quantum readiness roadmap with Ising as a catalyst. For most enterprise CIOs: this is a 6-month watch-and-assess item, not a procurement decision.",
+        links:[
+          {source:"NVIDIA Newsroom",title:"NVIDIA Launches Ising, the World's First Open AI Models to Accelerate the Path to Useful Quantum Computers",url:"https://nvidianews.nvidia.com/news/nvidia-launches-ising-the-worlds-first-open-ai-models-to-accelerate-the-path-to-useful-quantum-computers"},
+          {source:"Tom's Hardware",title:"Nvidia releases open AI models for quantum computing — Ising said to be 2.5x faster and 3x more accurate",url:"https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidia-releases-ising-open-ai-models"},
+          {source:"The Quantum Insider",title:"NVIDIA Launches Ising, the World's First Open AI Models to Accelerate Useful Quantum Computing",url:"https://thequantuminsider.com/2026/04/14/nvidia-launches-ising-the-worlds-first-open-ai-models-to-accelerate-the-path-to-useful-quantum-computers/"},
+          {source:"NVIDIA Blog",title:"NVIDIA Ising Introduces AI-Powered Workflows to Build Fault-Tolerant Quantum Systems",url:"https://developer.nvidia.com/blog/nvidia-ising-introduces-ai-powered-workflows-to-build-fault-tolerant-quantum-systems/"}
+        ],
+        related:["gemini-robotics"]
+      },
+      {
+        id:"gemini-robotics",
+        date:"Apr 15, 2026",
+        headline:"Google DeepMind releases Gemini Robotics-ER 1.6 with Boston Dynamics — robots can now read industrial gauges and identify safety hazards autonomously",
+        summary:"Gemini Robotics-ER 1.6 adds multi-view spatial reasoning, instrument reading for analog gauges and sight glasses, and improved safety-constraint adherence — co-developed with Boston Dynamics. Available via Gemini API and Google AI Studio on launch day, enabling robots to operate in industrial facilities with real instrument data.",
+        tags:[["CEO","bg-gold"],["CIO","bg-blue"]],
+        barClass:"bar-green",
+        riskLevel:"OPPORTUNITY",
+        riskClass:"bg-green",
+        category:"INFRASTRUCTURE",
+        catColor:"c-green",
+        content:`<p>On <strong>April 15, 2026</strong>, Google DeepMind released <strong>Gemini Robotics-ER 1.6</strong>, the latest version of its embodied reasoning model for physical AI systems. The release marks the first time a frontier AI model has been co-developed with an operational robotics company — <strong>Boston Dynamics</strong> — and includes capabilities directly tested in Boston Dynamics' industrial robot fleet.</p><p>The most significant new capability is <strong>instrument reading</strong>: Gemini Robotics-ER 1.6 can interpret <strong>analog instruments including pressure gauges, flow meters, and sight glasses</strong> in industrial settings. This fills a critical gap in industrial automation — analog gauges are ubiquitous in manufacturing, energy, and chemical facilities and have historically required human operators to read and act on. The model can identify the gauge type, read the current value, compare it against normal ranges, and flag anomalies as part of an automated inspection workflow.</p><p>Additional improvements include <strong>multi-view spatial perception</strong> — the ability to synthesize information from multiple camera angles to understand scenes and plan manipulation tasks — and significantly improved <strong>safety-constraint adherence</strong>. The latter includes better identification of potential physical hazards and more consistent decision-making about which objects can be safely grasped or manipulated, addressing a core reliability concern for industrial deployment.</p><p>The model is available immediately via the <strong>Gemini API and Google AI Studio</strong>, with developer tools and example workflows provided for integration into robotics systems. Boston Dynamics' involvement means the model has been validated against real-world industrial sensor data rather than simulated environments only.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"If your organization operates industrial facilities with analog instrumentation — manufacturing, energy, chemicals, food and beverage — evaluate Gemini Robotics-ER 1.6 for automated inspection pilots. Boston Dynamics' field validation means this is production-grade for pressure gauge monitoring today. A 90-day pilot on a single production line has an ROI case in reduced inspection labor and earlier anomaly detection."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"The Gemini API and AI Studio integration path is available today with no specialized robotics hardware requirement on the AI side. If your organization has existing robotic systems (from any vendor) with camera feeds, evaluate whether Gemini Robotics-ER 1.6 can augment those systems' perception capabilities through the API — this does not require a Boston Dynamics deployment."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The safety-constraint adherence improvements address the #1 barrier to physical AI adoption in regulated industrial environments. Combine this with the instrument-reading capability: a robot that can safely navigate a facility, read gauges, and escalate anomalies covers a meaningful portion of routine operator inspection rounds. Commission a business case analysis for Q3."}
+        ],
+        risks:[
+          {text:"Industrial safety liability: A robot acting on AI-interpreted gauge readings in a safety-critical facility creates new liability exposure if the model misreads an instrument. Require independent validation of Gemini Robotics-ER 1.6 on your specific instrument types before any live deployment. Boston Dynamics field testing covers a subset of gauge types — not all."},
+          {text:"Hardware integration complexity: The Gemini API provides the AI layer but not the robotics hardware integration. Connecting existing robotic systems to the Gemini Robotics API requires custom robotics engineering — budget 3–6 months of integration work for any real deployment, not just the AI API subscription."},
+          {text:"Boston Dynamics partnership concentrates the physical AI ecosystem around Google. Organizations that deploy Gemini Robotics-ER deeply in their operations may find themselves locked into a Google/Boston Dynamics stack at the exact moment competitors (Amazon/Agility, NVIDIA/Apptronik) are building rival ecosystems."}
+        ],
+        csuite:"Gemini Robotics-ER 1.6 is the first physically-validated AI model capable of autonomous industrial gauge reading — a capability worth billions in inspection automation across energy, manufacturing, and chemicals. The Boston Dynamics co-development signal is important: this is tested against real industrial sensor variability, not just lab benchmarks. For asset-intensive industries: commission a pilot evaluation this quarter before competitors establish a head start in your vertical.",
+        links:[
+          {source:"Google DeepMind",title:"Google DeepMind Releases Gemini Robotics-ER 1.6",url:"https://www.marktechpost.com/2026/04/15/google-deepmind-releases-gemini-robotics-er-1-6-bringing-enhanced-embodied-reasoning-and-instrument-reading-to-physical-ai/"},
+          {source:"The AI Insider",title:"Google DeepMind Releases Newest Gemini Robotics Reasoning Model",url:"https://theaiinsider.tech/2026/04/15/google-deepmind-releases-newest-gemini-robotics-reasoning-model-designed-to-improve-how-robots-interpret-and-act-in-real-world/"},
+          {source:"SiliconANGLE",title:"DeepMind launches Gemini Robotics-ER 1.6 to meet precise physical AI demands",url:"https://siliconangle.com/2026/04/15/deepmind-launches-gemini-robotics-er-1-6-meet-precise-physical-ai-demands/"},
+          {source:"Seeking Alpha",title:"Google's DeepMind launches more advanced Gemini robotics",url:"https://seekingalpha.com/news/4574852-googles-deepmind-launches-more-advanced-gemini-robotics"}
+        ],
+        related:["nvidia-ising","gemini-3"]
+      }
+    ]
+  },
+  {
+    id:"workforce",
+    title:"Workforce & Organizational Impact",
+    icon:"👥",
+    iconClass:"icon-orange",
+    count:1,
+    cards:[
+      {
+        id:"snap-layoffs",
+        date:"Apr 15, 2026",
+        headline:"Snap cuts 1,000 jobs (16% of workforce) citing AI handling 65% of code — $500M+ in annual savings, shares jump 7%",
+        summary:"Snap announced it is eliminating 1,000 full-time roles — 16% of its global workforce — with affected positions concentrated in software engineering, ML engineering, data science, and product management. CEO Evan Spiegel cited AI generating over 65% of new code at Snap as enabling the restructuring, which will reduce the annualized cost base by more than $500 million.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CHRO","bg-orange"]],
+        barClass:"bar-orange",
+        riskLevel:"STRATEGIC SIGNAL",
+        riskClass:"bg-orange",
+        category:"WORKFORCE",
+        catColor:"c-orange",
+        content:`<p>On <strong>April 15, 2026</strong>, Snap Inc. announced it is laying off approximately <strong>1,000 full-time employees</strong>, representing <strong>16% of its global workforce</strong>. The cuts are concentrated in technical roles: software engineers, machine learning engineers, data scientists, product managers, and recruiting staff. Additionally, approximately <strong>300 open positions</strong> are being closed.</p><p>CEO <strong>Evan Spiegel</strong> cited AI-driven productivity as the explicit enabler of the restructuring: "<strong>AI is generating over 65% of new code</strong> at Snap, and rapid advancements in artificial intelligence enable teams to reduce repetitive work and increase velocity." The company's framing positions this not as a cost-cutting exercise but as a structural realignment to an AI-native operating model where fewer engineers can maintain and extend the same codebase.</p><p>The financial impact is significant. Snap expects the restructuring to <strong>reduce its annualized cost base by more than $500 million</strong> by the second half of 2026. One-time restructuring costs are estimated at <strong>$95 million to $130 million</strong> in Q2. Markets reacted positively: <strong>Snap shares rose approximately 7%</strong> on the announcement, indicating that investors view the AI-driven restructuring as value-accretive.</p><p>Snap is the most prominent tech company yet to explicitly attribute large-scale layoffs to AI handling the majority of coding work — establishing a new benchmark that other companies will face pressure to match. Earlier this year, Salesforce CEO Marc Benioff noted a similar dynamic; Snap's disclosure puts concrete numbers on it for the first time.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Request a formal AI productivity audit from your engineering leadership before your next board meeting. If AI is not yet generating 30%+ of your code, you are behind the efficiency frontier that Snap is now publicly disclosing. The audit should quantify both productivity gains and the headcount rebalancing opportunity they imply — with a clear recommendation on timeline."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Model the Snap scenario against your own engineering cost base. At 65% AI-generated code, Snap achieved $500M+ in annual savings from a 16% headcount reduction. Scale that ratio to your engineering spend: what is the CFO case for a phased AI-productivity-driven workforce rebalancing over 24 months? Present it to the board as a scenario, not a commitment."},
+          {owner:"CHRO",ownerClass:"owner-chro",text:"Begin scenario planning for AI-driven workforce transitions now, before executive pressure creates a reactive environment. Develop a retraining and redeployment framework for technical roles most exposed to AI substitution (data entry, routine QA, report generation, standard software testing). Proactive workforce planning with 12-month runway is far less disruptive — and legally defensible — than reactive cuts."}
+        ],
+        risks:[
+          {text:"Talent signaling risk: Snap's disclosure that AI handles 65% of code may trigger retention concerns among remaining engineers who worry about their long-term role. Similarly, your own engineers will see this news. Without a proactive internal narrative about how AI augments rather than replaces your teams, top performers may preemptively leave."},
+          {text:"Institutional knowledge loss: The 1,000 roles Snap is eliminating contain years of codebase, product, and customer context that AI-generated code cannot replicate. Organizations that cut too aggressively on the basis of AI productivity metrics risk removing the human expertise needed to direct and validate AI outputs effectively."},
+          {text:"Regulatory and reputational scrutiny: AI-attributed layoffs at scale are entering a new phase of regulatory interest, particularly in the EU (where AI Act provisions on high-risk AI systems and worker impact assessments are in force) and several US states. Document the decision rationale, the AI productivity evidence, and the severance terms carefully."}
+        ],
+        csuite:"Snap's 65%/16%/$500M disclosure is the most specific public data point yet on what AI-native software engineering looks like at scale — and it will become a reference case in board conversations at every technology company in 2026. The question is not whether your organization will face this dynamic, but how proactively you manage the transition. The right response is not to immediately replicate Snap's cuts but to commission a credible internal productivity analysis and workforce scenario plan within the next 60 days.",
+        links:[
+          {source:"CNBC",title:"Snap's stock jumps on plans to axe 16% of its workforce citing AI efficiencies",url:"https://www.cnbc.com/2026/04/15/snap-stock-layoffs-16-percent-workforce.html"},
+          {source:"TechCrunch",title:"Snap is cutting 1,000 jobs, 16% of its workforce",url:"https://techcrunch.com/2026/04/15/snap-is-cutting-1000-jobs-16-of-its-workforce/"},
+          {source:"Tech Startups",title:"Snap lays off 1,000 employees as AI takes over 65% of coding work",url:"https://techstartups.com/2026/04/15/snap-lays-off-1000-employees-or-16-of-workforce-as-ai-takes-over-65-of-coding-work/"},
+          {source:"Deadline",title:"Snap Cutting 16% Of Full-Time Workforce; CEO Evan Spiegel Says AI Offers 'New Way Of Working'",url:"https://deadline.com/2026/04/snap-layoffs-ceo-evan-spiegel-ai-1236861335/"}
+        ],
+        related:["codex-update","claude-opus-47"]
+      }
+    ]
+  },
+  {
+    id:"security",
+    title:"Security & Risk",
+    icon:"🛡",
+    iconClass:"icon-red",
+    count:2,
+    cards:[
+      {
+        id:"ibm-autonomous-security",
+        date:"Apr 15, 2026",
+        headline:"IBM launches Autonomous Security — multi-agent service to defend against AI-enabled attacks with machine-speed threat response",
+        summary:"IBM's new Autonomous Security service uses coordinated AI agents to analyze software exposures, map exploit paths, enforce security policies, detect anomalies, and contain threats at machine speed — with minimal human intervention. It launched with a companion enterprise readiness assessment for agentic threat preparedness.",
+        tags:[["CISO","bg-red"],["CIO","bg-blue"],["CEO","bg-gold"]],
+        barClass:"bar-red",
+        riskLevel:"URGENT",
+        riskClass:"bg-red",
+        category:"SECURITY",
+        catColor:"c-red",
+        content:`<p>On <strong>April 15, 2026</strong>, IBM announced <strong>IBM Autonomous Security</strong> — a multi-agent AI-powered managed service designed to defend enterprise infrastructure against a new generation of AI-enabled cyber threats. The service responds to a documented shift in the threat landscape: attackers are now using frontier AI models to accelerate every phase of the attack lifecycle, dramatically reducing the time and expertise required to execute sophisticated attacks.</p><p>IBM Autonomous Security uses coordinated AI agents that operate in parallel to: analyze software exposures and runtime environments; understand and map exploit paths through complex enterprise IT estates; improve security hygiene and enforce policies across applicable security tools; detect anomalies in real time; and <strong>contain threats with minimal human intervention</strong> — at machine speed rather than the hours-to-days typical of human-led incident response.</p><p>IBM stated the core challenge explicitly: "Enterprises operate sprawling, complex IT estates that are hard to codify, creating ideal conditions for frontier models to identify weaknesses and rapidly turn them into attack paths." The Autonomous Security service is designed to meet AI-accelerated attack speed with AI-accelerated defense.</p><p>Alongside the managed service, IBM Consulting is offering a new <strong>cybersecurity readiness assessment</strong> delivered with technology partners that provides deep visibility into security gaps, policy weaknesses, <strong>AI-specific exposures</strong>, and potential exploit paths. The assessment delivers prioritized mitigation guidance, including interim safeguards where no immediate software fix exists — targeting organizations that do not yet have a formal agentic threat posture.</p>`,
+        actions:[
+          {owner:"CISO",ownerClass:"owner-ciso",text:"Commission an agentic threat readiness assessment in Q2 — IBM's offering is one option, but any structured evaluation of your exposure to AI-accelerated attack vectors is appropriate. The key questions: Do you have detection capabilities tuned to AI-generated attack patterns? Can your SOC respond at the speed that AI-assisted attacks now operate? What is your mean time to contain for an autonomous attack agent?"},
+          {owner:"CIO",ownerClass:"owner-cio",text:"AI-accelerated attacks exploit the same complexity and surface area that makes enterprise IT hard to manage — sprawling estates, inconsistent policy enforcement, and slow patch cadences. Use the IBM assessment framing to pressure-test your security hygiene backlog: prioritize any exposure that a frontier AI model could systematically identify and exploit from outside your perimeter."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"The phrase 'minimal human intervention' in IBM's announcement is both the value proposition and the governance challenge. Ask your CISO: under what conditions does IBM Autonomous Security take an automated action that could disrupt business operations (e.g., isolating a server, blocking a user account)? The answer must be documented in your risk framework before deployment."}
+        ],
+        risks:[
+          {text:"Autonomous containment risk: AI agents that contain threats with minimal human intervention can generate false positives that shut down legitimate business processes. Require graduated response levels — alert, isolate, and only auto-contain at the highest confidence thresholds — with an immediate human escalation path for any auto-containment action."},
+          {text:"Vendor data access: IBM Autonomous Security requires deep visibility into your environment — logs, configuration data, network flows, and security tool outputs — to function. Scope the data access agreement carefully and confirm it does not include proprietary data beyond security telemetry before signing."},
+          {text:"The AI arms race is accelerating: IBM's announcement confirms that AI-enabled attacks are now a production reality, not a theoretical concern. Organizations that do not have a formal AI-threat posture by Q4 2026 face meaningful and growing exposure. The cost of a reactive posture — post-incident — is structurally higher than proactive investment."}
+        ],
+        csuite:"IBM's Autonomous Security launch is a landmark: a tier-1 enterprise vendor has productized AI vs. AI security, confirming the threat is real and the market for defense is here. For CISOs, the most actionable step this week is commissioning the readiness assessment — regardless of vendor — to establish a baseline for your agentic threat exposure before your board asks for it. For CEOs: put agentic threat posture on the Q2 board agenda.",
+        links:[
+          {source:"IBM Newsroom",title:"IBM Announces New Cybersecurity Measures to Help Enterprises Confront Agentic Attacks",url:"https://newsroom.ibm.com/2026-04-15-ibm-announces-new-cybersecurity-measures-to-help-enterprises-confront-agentic-attacks"},
+          {source:"MSSP Alert",title:"IBM Targets Agentic Threats With Autonomous Security Push",url:"https://www.msspalert.com/brief/ibm-targets-agentic-threats-with-autonomous-security-push"},
+          {source:"Network World",title:"IBM unveils security services for thwarting agentic attacks, automating threat assessment",url:"https://www.networkworld.com/article/4159247/ibm-unveils-security-services-for-thwarting-agentic-attacks-automating-threat-assessment.html"},
+          {source:"AI Business",title:"Amid AI Infosec Woes, IBM Intros Autonomous Security Service",url:"https://aibusiness.com/agentic-ai/ai-infosec-woes-heighten-ibm-autonomous-security-service"}
+        ],
+        related:["gitguardian-secrets","codex-update"]
+      },
+      {
+        id:"gitguardian-secrets",
+        date:"Apr 14, 2026",
+        headline:"GitGuardian: 29 million developer credentials exposed in 2025 — AI coding tools double the leak rate, 24,008 secrets in MCP config files",
+        summary:"GitGuardian's State of Secrets Sprawl 2026 report found 28.6 million new secrets exposed in public GitHub commits in 2025 — a 34% YoY increase and largest annual jump on record. AI coding tools co-authored commits leak secrets at double the baseline rate. Critically, 24,008 secrets were found in MCP configuration files — a new attack vector emerging from AI agent adoption.",
+        tags:[["CISO","bg-red"],["CIO","bg-blue"],["GC","bg-purple"]],
+        barClass:"bar-red",
+        riskLevel:"URGENT",
+        riskClass:"bg-red",
+        category:"SECURITY",
+        catColor:"c-red",
+        content:`<p>On <strong>April 14, 2026</strong>, Help Net Security published an analysis of <strong>GitGuardian's State of Secrets Sprawl 2026</strong> report, surfacing data with direct enterprise implications. GitGuardian found <strong>28,649,024 new secrets</strong> (API keys, passwords, certificates, tokens) exposed in public GitHub commits during 2025 — a <strong>34% year-over-year increase</strong> and the largest annual jump since the report began tracking.</p><p>The most alarming finding is the AI coding tool correlation: commits <strong>co-authored by AI coding assistants</strong> leaked secrets at <strong>roughly double the baseline rate</strong> — approximately <strong>3.2% of AI-co-authored commits</strong> exposed a secret, versus 1.6% for human-only commits. GitGuardian found the effect is consistent across major AI coding tools and is driven by AI models generating code snippets that include credential placeholders that developers forget to replace before committing.</p><p>A new attack surface emerged from <strong>MCP (Model Context Protocol) configuration files</strong>: GitGuardian detected <strong>24,008 unique secrets</strong> exposed in MCP config files in public repositories — a category that did not exist in the previous report. As enterprises adopt MCP-connected agents, developers are committing connection strings, API tokens, and credentials inside MCP server configurations.</p><p>Further compounding the risk: <strong>64% of valid secrets exposed in 2022 remain unrevoked in 2026</strong> — most because security teams lack the governance tooling to achieve a repeatable, systematic remediation path. Credentials for AI services specifically surged <strong>81% year-over-year</strong>, with <strong>1.27 million AI service credentials</strong> exposed in 2025 alone.</p>`,
+        actions:[
+          {owner:"CISO",ownerClass:"owner-ciso",text:"Run GitGuardian or equivalent secret scanning on your full GitHub organization today — not just new commits, but the complete commit history including MCP configuration directories. The 24,008 MCP config secrets finding means any repository containing .mcp, .claude, or similar config files is a priority target for this audit. Budget for an emergency scan before Q2 closes."},
+          {owner:"CIO",ownerClass:"owner-cio",text:"Mandate pre-commit secret scanning hooks in all developer environments before the end of Q2. The 3.2% leak rate on AI-co-authored commits is not a developer behavior problem — it is a tooling gap. GitGuardian, Gitleaks, and GitHub's native secret scanning are all viable. The cost of implementation is orders of magnitude lower than a single credential compromise incident."},
+          {owner:"GC",ownerClass:"owner-gc",text:"The 64% statistic — nearly two-thirds of secrets exposed in 2022 still not revoked in 2026 — is a legal and regulatory exposure that your legal team needs to quantify. In GDPR, CCPA, and HIPAA contexts, a known unrevoked credential that subsequently enables unauthorized data access could constitute a reportable breach. Commission a legal review of your credential revocation posture and its regulatory implications."}
+        ],
+        risks:[
+          {text:"MCP adoption is accelerating faster than security tooling: the 24,008 exposed MCP secrets represent a new and growing attack surface that most security teams have no tooling for yet. Every new MCP integration deployed — AI email agents, calendar agents, CRM integrations — adds new credentials to the risk surface. Require security review of all MCP configurations before production deployment."},
+          {text:"AI service credentials are the highest-value target: OpenAI, Anthropic, and Google Cloud credentials exposed in public repos give attackers access to model APIs at the victim's cost — and, more critically, to any data the AI service has access to through connected integrations. Rotate all AI service API keys immediately and implement key vaulting for all AI service credentials."},
+          {text:"Long-tail credential exposure: 64% of 2022 secrets still unrevoked means your historical GitHub repositories are a long-tail liability. A systematic breach involving a 4-year-old credential is difficult to defend reputationally even if technically outside certain regulatory reporting windows. Initiate a historical credential audit as a board-level risk disclosure item."}
+        ],
+        csuite:"29 million exposed credentials in a single year — and AI coding tools doubling the leak rate — is the clearest evidence yet that AI-assisted development requires new security controls, not just new developer training. The MCP finding is particularly urgent: it is a new attack vector that emerged from AI agent adoption in the past 12 months and has no established security tooling in most enterprises. This week's action item is simple: scan your repositories for MCP config files and rotate any credentials found there.",
+        links:[
+          {source:"Help Net Security",title:"29 million leaked secrets in 2025: Why AI agents credentials are out of control",url:"https://www.helpnetsecurity.com/2026/04/14/gitguardian-ai-agents-credentials-leak/"},
+          {source:"GitGuardian",title:"The State of Secrets Sprawl 2026 Annual Report",url:"https://www.gitguardian.com/state-of-secrets-sprawl-report-2026"},
+          {source:"GitGuardian Blog",title:"AI Is Fueling Secrets Sprawl — 81% Surge of AI-Service Leaks as 29M Secrets Hit Public GitHub",url:"https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026-pr/"},
+          {source:"Security Boulevard",title:"GitGuardian study shows AI coding tools double leak rates as 29M credentials hit GitHub",url:"https://securityboulevard.com/2026/03/news-alert-gitguardian-study-shows-ai-coding-tools-double-leak-rates-as-29m-credentials-hit-github/"}
+        ],
+        related:["ibm-autonomous-security","codex-update"]
+      }
+    ]
+  }
+];
+
+// Build lookup map
+const allCards={};
+sections.forEach(s=>s.cards.forEach(c=>{allCards[c.id]=c;}));
+
+function renderSection(s){
+  const div=document.createElement('div');
+  div.className='section';
+  div.setAttribute('data-section',s.id);
+  div.innerHTML=`<div class="section-header"><div class="section-icon ${s.iconClass}">${s.icon}</div><h2 class="section-title">${s.title}</h2><span class="section-count">${s.count} stories</span></div><div class="cards-grid">${s.cards.map(c=>renderCard(c)).join('')}</div>`;
+  return div;
+}
+
+function renderCard(c){
+  const tags=c.tags.map(([t,cls])=>`<span class="tag ${cls}">${t}</span>`).join('');
+  return `<div class="card ${c.barClass}" onclick="openModal('${c.id}')">
+    <div class="card-date">${c.date}</div>
+    <div class="card-headline">${c.headline}</div>
+    <div class="card-summary">${c.summary}</div>
+    <div class="card-tags">${tags}</div>
+    <div class="card-bottom"><span class="card-risk-badge ${c.riskClass}">${c.riskLevel}</span><span class="card-expand-hint">↗ Read deep dive</span></div>
+  </div>`;
+}
+
+function openModal(id){
+  const c=allCards[id];
+  if(!c)return;
+  document.getElementById('modal-category').className='modal-category '+c.catColor;
+  document.getElementById('modal-category').textContent=c.category;
+  document.getElementById('modal-headline').textContent=c.headline;
+  document.getElementById('modal-date').textContent=c.date;
+  document.getElementById('modal-content').innerHTML=c.content;
+  const actions=c.actions.map(a=>`<li><span class="owner ${a.ownerClass}">${a.owner}</span>${a.text}</li>`).join('');
+  const risks=c.risks.map(r=>`<li>${r.text}</li>`).join('');
+  document.getElementById('panel-grid').innerHTML=`
+    <div class="panel panel-action"><div class="panel-label"><span class="panel-label-icon">✅</span>Executive Actions</div><ul class="panel-list">${actions}</ul></div>
+    <div class="panel panel-risk"><div class="panel-label"><span class="panel-label-icon">⚠️</span>Risks &amp; Watchouts</div><ul class="panel-list">${risks}</ul></div>`;
+  document.getElementById('modal-csuite-text').textContent=c.csuite;
+  const links=c.links.map(l=>`<a class="modal-link" href="${l.url}" target="_blank" rel="noopener"><span class="modal-link-source">${l.source}</span>${l.title}<span class="modal-link-arrow">↗</span></a>`).join('');
+  document.getElementById('modal-link-list').innerHTML=links;
+  const related=(c.related||[]).map(rid=>{
+    const rc=allCards[rid];
+    return rc?`<span class="related-chip" onclick="openModal('${rid}')">${rc.headline.split('—')[0].trim()}</span>`:''
+  }).join('');
+  document.getElementById('related-chips').innerHTML=related;
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+document.getElementById('modal-close').onclick=closeModal;
+document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+function closeModal(){document.getElementById('modal-overlay').classList.remove('active');document.body.style.overflow='';}
+
+// Theme toggle
+const root=document.documentElement;
+const themeToggle=document.getElementById('theme-toggle');
+let currentTheme=localStorage.getItem('ainews-theme')||'dark';
+if(currentTheme==='light')root.setAttribute('data-theme','light');
+themeToggle.addEventListener('click',()=>{
+  currentTheme=currentTheme==='dark'?'light':'dark';
+  currentTheme==='light'?root.setAttribute('data-theme','light'):root.removeAttribute('data-theme');
+  localStorage.setItem('ainews-theme',currentTheme);
+});
+
+// Nav filter
+const navBtns=document.querySelectorAll('.nav-btn');
+const contentArea=document.getElementById('content-area');
+
+function renderAll(filter='all'){
+  contentArea.innerHTML='';
+  sections.forEach(s=>{
+    if(filter==='all'||filter===s.id){
+      contentArea.appendChild(renderSection(s));
+    }
+  });
+}
+renderAll();
+
+navBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    navBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderAll(btn.dataset.section);
+  });
+});
+
+// Nav scroll logic
+const navInner=document.getElementById('nav-inner');
+const navScrollArea=document.getElementById('nav-scroll-area');
+const navScrollLeft=document.getElementById('nav-scroll-left');
+const navScrollRight=document.getElementById('nav-scroll-right');
+function updateNavFade(){
+  const sl=navInner.scrollLeft,sw=navInner.scrollWidth,cw=navInner.clientWidth;
+  navScrollArea.classList.toggle('fade-left',sl>8);
+  navScrollArea.classList.toggle('fade-right',sl<sw-cw-8);
+  navScrollLeft.classList.toggle('visible',sl>8);
+  navScrollRight.classList.toggle('visible',sl<sw-cw-8);
+}
+navInner.addEventListener('scroll',updateNavFade);
+navScrollLeft.addEventListener('click',()=>{navInner.scrollBy({left:-160,behavior:'smooth'});});
+navScrollRight.addEventListener('click',()=>{navInner.scrollBy({left:160,behavior:'smooth'});});
+setTimeout(updateNavFade,100);
+</script>
+</body>
+</html>
