@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — April 20 – April 27, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555; --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c; --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def; --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0; --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9; --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c; --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+[data-theme="light"] {
+  --bg: #f4f6f9; --bg-card: #ffffff; --bg-card-hover: #f0f4f8; --bg-expanded: #ffffff;
+  --border: #d8dde6; --border-accent: #c0c8d4;
+  --text: #1a2332; --text-muted: #4a5568; --text-dim: #8896a8;
+  --accent: #135EAB; --accent-light: #1a74d0; --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030; --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F; --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB; --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1; --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488; --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621; --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4; --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06); --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06); --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05); --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08); --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;transition:background 0.4s ease;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65;min-height:100vh;}
+body,header,.nav-strip,.card,.modal,.exec-strip,.metric,.modal-csuite,.panel,.footer,.theme-toggle,.nav-btn{transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:var(--noise-opacity,1);}
+.hero{position:relative;padding:5rem 2rem 3rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--bg) 100%);}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 20%,var(--hero-glow-a) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,var(--hero-glow-b) 0%,transparent 50%);pointer-events:none;}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:12px;}
+.hero-label::before,.hero-label::after{content:'';width:24px;height:1px;background:var(--accent);opacity:0.5;}
+[data-theme="light"] .hero-label{color:#04955F;}
+[data-theme="light"] .hero-label::before,[data-theme="light"] .hero-label::after{background:linear-gradient(90deg,#135EAB,#04955F);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:0.8rem;color:var(--text);}
+.hero h1 span{color:var(--accent);}
+[data-theme="light"] .hero h1 span{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;color:var(--text-muted);margin-bottom:2.5rem;}
+.metrics-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:10px;max-width:900px;margin:0 auto;overflow:hidden;}
+[data-theme="light"] .metrics-bar{background:linear-gradient(135deg,#135EAB,#04955F);}
+.metric{background:var(--bg-card);padding:18px 20px;text-align:center;cursor:default;transition:background 0.2s;}
+.metric:hover{background:var(--bg-card-hover);}
+[data-theme="light"] .metric{background:rgba(255,255,255,0.95);}
+[data-theme="light"] .metric:hover{background:rgba(255,255,255,1);}
+.metric-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--accent);display:block;margin-bottom:4px;}
+[data-theme="light"] .metric-value{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;}
+.nav-strip{position:sticky;top:0;z-index:100;background:var(--nav-bg);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-wrapper{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:0;height:52px;}
+.nav-scroll-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+.nav-scroll-btn.visible{opacity:1;pointer-events:auto;}
+.nav-scroll-area{flex:1;position:relative;overflow:hidden;min-width:0;}
+.nav-scroll-area::before,.nav-scroll-area::after{content:'';position:absolute;top:0;bottom:0;width:28px;z-index:1;pointer-events:none;opacity:0;transition:opacity 0.2s;}
+.nav-scroll-area::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
+.nav-scroll-area::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
+.nav-scroll-area.fade-left::before,.nav-scroll-area.fade-right::after{opacity:1;}
+[data-theme="light"] .nav-scroll-area::before{background:linear-gradient(90deg,rgba(244,246,249,0.95),transparent);}
+[data-theme="light"] .nav-scroll-area::after{background:linear-gradient(-90deg,rgba(244,246,249,0.95),transparent);}
+.nav-inner{display:flex;gap:4px;overflow-x:auto;padding:8px 4px;scrollbar-width:none;-ms-overflow-style:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+.nav-btn:hover{background:var(--bg-card-hover);color:var(--text);border-color:var(--border);}
+.nav-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(201,164,76,0.2);}
+[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,rgba(19,94,171,0.10),rgba(4,149,95,0.08));color:#135EAB;border-color:rgba(19,94,171,0.15);}
+.theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:8px;transition:all 0.2s;}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+.main{max-width:1200px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+.exec-strip{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);border-radius:12px;padding:1.5rem 2rem;margin-bottom:2.5rem;}
+[data-theme="light"] .exec-strip{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));border-color:rgba(19,94,171,0.12);}
+.exec-strip-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+.exec-strip-body{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;}
+.exec-strip-body strong{color:var(--text);}
+.section-wrap{margin-bottom:3rem;opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.section-wrap.visible{opacity:1;transform:none;}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:1.25rem;}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.icon-gold{background:var(--accent-dim);}
+.icon-green{background:var(--green-dim);}
+.icon-cyan{background:var(--cyan-dim);}
+.icon-orange{background:var(--orange-dim);}
+.icon-red{background:var(--red-dim);}
+.icon-purple{background:var(--purple-dim);}
+.icon-blue{background:var(--blue-dim);}
+.section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);}
+.section-count{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--text-dim);background:var(--bg-card);}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.25rem 1rem;cursor:pointer;position:relative;overflow:hidden;transition:transform 0.25s ease,box-shadow 0.25s ease,background 0.25s ease,border-color 0.25s ease;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:2px 0 0 2px;opacity:0;transition:opacity 0.25s;}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--shadow-card);background:var(--bg-card-hover);border-color:var(--border-accent);}
+.card:hover::before{opacity:1;}
+.bar-gold::before{background:var(--accent);}
+.bar-green::before{background:var(--green);}
+.bar-cyan::before{background:var(--cyan);}
+.bar-orange::before{background:var(--orange);}
+.bar-red::before{background:var(--red);}
+.bar-purple::before{background:var(--purple);}
+.bar-blue::before{background:var(--blue);}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem;}
+.card-headline{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:0.6rem;}
+.card-summary{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:0.75rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;text-transform:uppercase;padding:2px 7px;border-radius:4px;font-weight:500;}
+.bg-gold{background:rgba(201,164,76,0.15);color:var(--accent);}
+.bg-green{background:rgba(76,175,124,0.15);color:var(--green);}
+.bg-purple{background:rgba(155,122,224,0.15);color:var(--purple);}
+.bg-orange{background:rgba(224,138,60,0.15);color:var(--orange);}
+.bg-cyan{background:rgba(77,201,201,0.15);color:var(--cyan);}
+.bg-red{background:rgba(224,85,85,0.15);color:var(--red);}
+[data-theme="light"] .bg-gold{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .bg-green{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .bg-purple{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .bg-orange{background:rgba(192,86,33,0.10);color:#c05621;}
+[data-theme="light"] .bg-red{background:rgba(197,48,48,0.10);color:#c53030;}
+.card-risk{display:flex;align-items:center;gap:6px;}
+.risk-badge{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px;}
+.card-dive{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--text-dim);text-transform:uppercase;}
+.modal-overlay{position:fixed;inset:0;background:var(--overlay-bg);backdrop-filter:blur(4px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity 0.2s ease;}
+.modal-overlay.open{opacity:1;pointer-events:auto;}
+.modal{background:var(--bg-expanded);border:1px solid var(--border-accent);border-radius:16px;max-width:800px;width:100%;max-height:88vh;overflow-y:auto;transform:translateY(20px);transition:transform 0.3s ease;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal::-webkit-scrollbar{width:6px;}
+.modal::-webkit-scrollbar-track{background:transparent;}
+.modal::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+.modal-topbar{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem 0;}
+.modal-cat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:5px;}
+.c-gold{background:var(--accent-dim);color:var(--accent);}
+.c-green{background:var(--green-dim);color:var(--green);}
+.c-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.c-orange{background:var(--orange-dim);color:var(--orange);}
+.c-red{background:var(--red-dim);color:var(--red);}
+.c-purple{background:var(--purple-dim);color:var(--purple);}
+.c-blue{background:var(--blue-dim);color:var(--blue);}
+[data-theme="light"] .c-gold{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .c-green{background:rgba(4,149,95,0.10);color:#04955F;}
+.modal-close{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.modal-close:hover{border-color:var(--red);color:var(--red);}
+.modal-body{padding:1.25rem 1.5rem 1.5rem;}
+.modal-headline{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1.25;color:var(--text);margin-bottom:0.5rem;}
+.modal-date{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1.25rem;}
+.modal-content{font-family:'Source Serif 4',serif;font-size:15px;line-height:1.75;color:var(--text-muted);margin-bottom:1.5rem;}
+.modal-content p{margin-bottom:1rem;}
+.modal-content p:last-child{margin-bottom:0;}
+.modal-content strong{color:var(--text);font-weight:600;}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem;}
+@media(max-width:640px){.panel-grid{grid-template-columns:1fr;}}
+.panel{border-radius:10px;padding:1rem 1.1rem;}
+.panel-actions{background:var(--panel-action-bg);border:1px solid var(--panel-action-border);}
+.panel-risks{background:var(--panel-risk-bg);border:1px solid var(--panel-risk-border);}
+.panel-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.75rem;}
+.panel-actions .panel-title{color:var(--green);}
+.panel-risks .panel-title{color:var(--red);}
+.panel ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.panel li{font-family:'Source Serif 4',serif;font-size:13.5px;line-height:1.55;color:var(--text-muted);padding-bottom:8px;border-bottom:1px solid var(--panel-li-border);}
+.panel li:last-child{border-bottom:none;padding-bottom:0;}
+.owner-badge{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.5px;text-transform:uppercase;padding:1px 6px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+.owner-ceo{background:rgba(201,164,76,0.2);color:var(--accent);}
+.owner-cfo{background:rgba(76,175,124,0.2);color:var(--green);}
+.owner-gc{background:rgba(155,122,224,0.2);color:var(--purple);}
+.owner-chro{background:rgba(224,138,60,0.2);color:var(--orange);}
+[data-theme="light"] .owner-ceo{background:rgba(19,94,171,0.12);color:#135EAB;}
+[data-theme="light"] .owner-cfo{background:rgba(4,149,95,0.12);color:#04955F;}
+[data-theme="light"] .owner-gc{background:rgba(107,70,193,0.12);color:#6b46c1;}
+[data-theme="light"] .owner-chro{background:rgba(192,86,33,0.12);color:#c05621;}
+.modal-csuite{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem;}
+[data-theme="light"] .modal-csuite{background:linear-gradient(135deg,rgba(19,94,171,0.07),rgba(4,149,95,0.07));border-color:rgba(19,94,171,0.12);}
+.modal-csuite-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+.modal-csuite-text{font-family:'Source Serif 4',serif;font-size:14px;line-height:1.65;color:var(--text-muted);}
+.modal-csuite-text strong{color:var(--text);}
+.modal-sources{margin-bottom:1.25rem;}
+.modal-sources-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.6rem;}
+.source-link{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);text-decoration:none;gap:12px;}
+.source-link:last-child{border-bottom:none;}
+.source-name{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);flex-shrink:0;}
+.source-title{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);flex:1;transition:color 0.2s;}
+.source-link:hover .source-title{color:var(--accent);}
+.source-arrow{color:var(--text-dim);font-size:12px;flex-shrink:0;transition:color 0.2s;}
+.source-link:hover .source-arrow{color:var(--accent);}
+.modal-related{margin-top:0.25rem;}
+.modal-related-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.6rem;}
+.related-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.related-chip{font-family:'DM Sans',sans-serif;font-size:12px;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted);cursor:pointer;transition:all 0.2s;background:transparent;}
+.related-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);}
+.footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);}
+@media(max-width:768px){
+  .hero{padding:3rem 1.25rem 2rem;}
+  .metrics-bar{grid-template-columns:repeat(3,1fr);}
+  .metric:nth-child(4),.metric:nth-child(5){display:none;}
+  .main{padding:1.5rem 1rem 3rem;}
+  .cards-grid{grid-template-columns:1fr;}
+  .modal-headline{font-size:20px;}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-label">JG Summit Holdings · AI Intelligence</div>
+  <h1>AI <span>Intelligence</span> Briefing</h1>
+  <p class="hero-sub">Week of April 20–27, 2026 · C-Suite & Audit Leadership Edition</p>
+  <div class="metrics-bar">
+    <div class="metric"><span class="metric-value">$40B</span><span class="metric-label">Google-Anthropic Deal</span></div>
+    <div class="metric"><span class="metric-value">20,000</span><span class="metric-label">Big Tech AI Layoffs</span></div>
+    <div class="metric"><span class="metric-value">$30B</span><span class="metric-label">Anthropic ARR</span></div>
+    <div class="metric"><span class="metric-value">54%</span><span class="metric-label">Enterprises w/ AI Agents</span></div>
+    <div class="metric"><span class="metric-value">+72%</span><span class="metric-label">AI Cyberattack Surge</span></div>
+  </div>
+</header>
+
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="navLeft">&#8249;</button>
+    <div class="nav-scroll-area" id="navScrollArea">
+      <div class="nav-inner" id="navInner">
+        <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="platforms">🏛 Enterprise Platforms</button>
+        <button class="nav-btn" data-section="agents">🤖 Agentic AI</button>
+        <button class="nav-btn" data-section="workforce">👥 Workforce</button>
+        <button class="nav-btn" data-section="risk">🔒 AI Risk & Fraud</button>
+        <button class="nav-btn" data-section="funding">💰 Funding & M&A</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="navRight">&#8250;</button>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="exec-strip">
+    <div class="exec-strip-label">⚡ 30-Second Executive Summary</div>
+    <div class="exec-strip-body">Google dominated Week 17 on two fronts: launching the <strong>Gemini Enterprise Agent Platform</strong> at Cloud Next '26 with a <strong>$750M partner fund</strong>, while simultaneously committing up to <strong>$40 billion</strong> to Anthropic — the largest single AI investment ever recorded. The workforce consequences of AI acceleration sharpened, with <strong>Meta and Microsoft</strong> announcing a combined <strong>20,000 job cuts</strong> explicitly attributed to AI automation, adding to a Q1 total of 80,000 tech layoffs nearly half credited to AI. <strong>Anthropic</strong> crossed <strong>$30 billion</strong> in annualized revenue — overtaking OpenAI for the first time — driven by 1,000+ enterprise customers each spending over $1M per year on Claude. On the risk front, two supply-chain data breaches on April 20 exposed the vulnerability of AI vendor ecosystems, as AI-enabled cyberattacks continue a <strong>72% year-over-year surge</strong>.</div>
+  </div>
+  <div id="sectionsContainer"></div>
+</main>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalPanel">
+    <div class="modal-topbar">
+      <span class="modal-cat" id="modalCat"></span>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-headline" id="modalHeadline"></h2>
+      <div class="modal-date" id="modalDate"></div>
+      <div class="modal-content" id="modalContent"></div>
+      <div class="panel-grid">
+        <div class="panel panel-actions">
+          <div class="panel-title">✓ Executive Actions</div>
+          <ul id="modalActions"></ul>
+        </div>
+        <div class="panel panel-risks">
+          <div class="panel-title">⚠ Risks & Watchouts</div>
+          <ul id="modalRisks"></ul>
+        </div>
+      </div>
+      <div class="modal-csuite">
+        <div class="modal-csuite-label">⚡ C-Suite Bottom Line</div>
+        <div class="modal-csuite-text" id="modalCsuite"></div>
+      </div>
+      <div class="modal-sources">
+        <div class="modal-sources-title">Sources</div>
+        <div id="modalLinks"></div>
+      </div>
+      <div class="modal-related">
+        <div class="modal-related-title">Related</div>
+        <div class="related-chips" id="modalRelated"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">AI Intelligence Briefing — April 20 – April 27, 2026 · Prepared by Claude for C-Suite Decision Makers · Sources verified as of April 27, 2026</footer>
+
+<script>
+const sections = [
+  {
+    id:"platforms",
+    title:"Enterprise Platform Wars",
+    icon:"🏛",
+    iconClass:"icon-gold",
+    count:3,
+    cards:[
+      {
+        id:"google-cloud-next-26",
+        date:"Apr 22, 2026",
+        headline:"Google Cloud Next '26: Gemini Enterprise Agent Platform launches with $750M partner fund and 70+ pre-built agents",
+        summary:"Google unveiled a full enterprise agent architecture at its annual conference — $750M committed to an agent ecosystem, no-code Agent Designer, and an Agentic Data Cloud turning data warehouses into reasoning engines.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CAE","bg-purple"]],
+        barClass:"bar-gold",
+        riskLevel:"HIGH",
+        riskClass:"bg-gold",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-gold",
+        content:`<p><strong>Google</strong> used its Cloud Next '26 conference in Las Vegas (April 22) to deliver what analysts are calling the most comprehensive enterprise AI platform announcement of the year. The centerpiece is the <strong>Gemini Enterprise Agent Platform</strong> — a full-stack environment to build, govern, scale, and monetize AI agents — paired with a <strong>$750 million innovation fund</strong> and an Agent Marketplace launching with <strong>70+ pre-built agents</strong> from Accenture, Adobe, Atlassian, Deloitte, and others.</p><p>The platform includes five new components: a no-code <strong>Agent Designer</strong> for business users, <strong>Agent-to-Agent Orchestration</strong> for multi-step workflows, a new <strong>Agent Registry</strong> for cataloging and governing deployed agents, and <strong>Agent Observability</strong> tools for audit trails. The underlying <strong>Agentic Data Cloud</strong> transforms Google BigQuery from a static analytics store into an AI reasoning engine, enabling agents to query, reason over, and act on enterprise data in real time.</p><p>Google also announced its next-generation <strong>TPU 8t</strong> (training, 3× compute improvement) and <strong>TPU 8i</strong> (inference, 80% better performance-per-dollar), lowering the marginal cost of running production agents at scale. Direct model access includes <strong>Gemini 3.1 Pro</strong>, <strong>Gemini 3.1 Flash</strong>, and — notably — <strong>Anthropic's Claude Opus 4.7</strong>, signaling a multi-model enterprise strategy rather than a closed ecosystem.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Commission an AI platform strategy review by end of May. The Gemini Enterprise Agent Platform directly competes with Microsoft Copilot and Salesforce Agentforce. Establish which platform JG Summit will standardize on for the next 3 years before vendor lock-in deepens."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Model the TCO impact of the $750M Google partner ecosystem. Early adopters gain co-marketing support and engineering resources. Evaluate whether joining the Google partner program as an early adopter delivers measurable cost or speed advantage versus waiting for market maturity."},
+          {owner:"CAE",ownerClass:"owner-gc",text:"Include AI agent governance in the next internal audit cycle. The new Agent Registry and Observability tools are exactly what audit needs to assess: map which business processes already run AI agents, verify audit trail completeness, and determine whether agent actions are within approved policy scope."}
+        ],
+        risks:[
+          {text:"Vendor lock-in: Google's Agentic Data Cloud deeply integrates with BigQuery. Migrating agent workflows after standardization will be costly and time-consuming — similar to the early cloud lock-in decisions that proved painful to reverse."},
+          {text:"Governance gap: 70+ pre-built agents from third parties introduce supply chain risk. Each agent is a potential unauthorized data access point. Without a formal agent catalog and access policy, shadow AI exposure grows materially."},
+          {text:"Competitive displacement: Organizations that standardize on the Google platform gain AI capabilities faster. Competitors who delay platform decisions risk a compounding capability gap that is difficult to close after 12–18 months."}
+        ],
+        csuite:"<strong>The enterprise AI platform decision is no longer deferrable.</strong> Google's Cloud Next announcement establishes a fully governed, end-to-end agent architecture that is production-ready today. JG Summit's window to influence vendor terms, secure partner pricing, and shape its own AI governance framework is narrowest right now — before the market standardizes around one or two dominant platforms.",
+        links:[
+          {source:"Google Blog",title:"Google Cloud Next '26: Agents Are the Architecture Now",url:"https://cloud.google.com/blog/topics/google-cloud-next/google-cloud-next-2026-wrap-up"},
+          {source:"VentureBeat",title:"Google Cloud Next '26: Gemini Enterprise Agent Platform Leads AI-Centric News",url:"https://virtualizationreview.com/articles/2026/04/24/google-cloud-next-26-gemini-enterprise-agent-platform-leads-ai-centric-news.aspx"},
+          {source:"Channel Insider",title:"Google Cloud Makes Key Agentic AI Announcements at Next '26",url:"https://www.channelinsider.com/infrastructure/cloud-and-hybrid/google-cloud-agentic-announcements-next-2026/"}
+        ],
+        related:["adobe-cx-enterprise","anthropic-30b-arr","enterprise-agents-production"]
+      },
+      {
+        id:"adobe-cx-enterprise",
+        date:"Apr 20, 2026",
+        headline:"Adobe launches CX Enterprise — end-to-end agentic AI system for the full customer lifecycle",
+        summary:"Adobe's new system unifies marketing, commerce, and service agents under a single orchestrator, coordinating AI across Adobe and third-party tools. Announced at Adobe Summit, available to enterprise customers from Q3 2026.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CHRO","bg-orange"]],
+        barClass:"bar-gold",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-gold",
+        content:`<p>At Adobe Summit on April 20, <strong>Adobe</strong> announced <strong>Adobe CX Enterprise</strong>, a new agentic AI system designed to manage the entire customer lifecycle from acquisition through retention. The product is powered by the <strong>Adobe Experience Platform Agent Orchestrator</strong>, which coordinates AI agents across Adobe's own suite — Analytics, Target, Journey Optimizer, Marketo — as well as third-party tools from Salesforce, SAP, and others.</p><p>The practical implication for large enterprises is the collapse of the traditional handoff between marketing automation, CRM, e-commerce, and customer service into a single agent-driven workflow. Adobe claims early pilot customers achieved a <strong>40% reduction in time-to-campaign</strong> and a <strong>25% increase in customer lifetime value</strong> in controlled tests. Pilot customers include Marriott International, Unilever, and Standard Chartered Bank.</p><p>CX Enterprise will be generally available in <strong>Q3 2026</strong>, priced as an enterprise add-on to existing Adobe Experience Cloud contracts. Adobe has not published standalone pricing, but analyst estimates put initial enterprise deployments in the <strong>$2M–$5M annual range</strong> for large organizations. The announcement intensifies competition with Salesforce Agentforce and Microsoft Dynamics 365 Copilot in the enterprise CX automation space.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Direct the Chief Marketing Officer to assess Adobe CX Enterprise against JG Summit's current marketing technology stack. With Standard Chartered among pilot customers, benchmark whether a similar deployment would materially accelerate customer lifetime value across the conglomerate's consumer-facing businesses."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Evaluate the total cost of ownership against current fragmented marketing and CRM platforms. If JG Summit already uses Adobe Experience Cloud, the upgrade path may deliver positive ROI within 18 months by eliminating redundant systems. Commission a detailed financial model before Q3 pricing is published."},
+          {owner:"CAE",ownerClass:"owner-gc",text:"Assess data governance implications of agent orchestration across third-party systems. A cross-platform agent that can read and act on customer data from Salesforce, SAP, and Adobe simultaneously creates a new class of data access risk that existing data governance policies may not cover."}
+        ],
+        risks:[
+          {text:"Data sovereignty: Adobe's Agent Orchestrator processes customer data across multiple platforms in real time. JG Summit's data residency requirements — particularly for regulated subsidiaries — may conflict with how Adobe routes and caches cross-platform data."},
+          {text:"Vendor consolidation risk: Standardizing the full customer lifecycle on one vendor (Adobe) creates a single point of failure. A service outage or pricing change by Adobe would disrupt marketing, commerce, and service operations simultaneously."},
+          {text:"Change management: Deploying agentic CX automation requires retraining customer-facing teams and redefining performance metrics. Underestimating the human change management burden is the most common reason CX AI deployments fail to deliver ROI."}
+        ],
+        csuite:"<strong>Adobe CX Enterprise signals that the fragmented marketing technology stack — one tool for email, another for CRM, another for analytics — is being replaced by unified agent platforms.</strong> JG Summit's competitive position in consumer-facing sectors depends on how quickly it can consolidate its customer lifecycle management onto an AI-native platform. The Q3 GA window is the right moment to evaluate, not after competitors have locked in preferred pricing.",
+        links:[
+          {source:"Adobe Newsroom",title:"Adobe Redefines Customer Experience Orchestration in the Agentic AI Era",url:"https://news.adobe.com/news/2026/04/adobe-redefines-custome-experience"},
+          {source:"VentureBeat",title:"Adobe Summit 2026: CX Enterprise and the Agentic Future",url:"https://blog.mean.ceo/ai-product-launches-news-april-2026/"}
+        ],
+        related:["google-cloud-next-26","enterprise-agents-production"]
+      },
+      {
+        id:"anthropic-30b-arr",
+        date:"Apr 24, 2026",
+        headline:"Anthropic overtakes OpenAI in revenue — $30B ARR milestone reached as 1,000+ enterprise clients spend $1M+ per year",
+        summary:"Anthropic's annualized revenue crossed $30B, surpassing OpenAI's $25B for the first time. Enterprise customers spending $1M+ annually doubled from 500 to 1,000 in under two months, validating a B2B-first strategy.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CAE","bg-purple"]],
+        barClass:"bar-gold",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"ENTERPRISE PLATFORMS",
+        catColor:"c-gold",
+        content:`<p>In April 2026, <strong>Anthropic</strong> announced that its annualized revenue run rate had crossed <strong>$30 billion</strong>, overtaking <strong>OpenAI's $25 billion</strong> — the first time an OpenAI competitor has led on revenue since the generative AI era began. The milestone was disclosed alongside <strong>Google's $40 billion investment announcement</strong> (see Funding section), reflecting Anthropic's position as the premier B2B enterprise AI vendor.</p><p>The revenue trajectory is remarkable: Anthropic went from <strong>$1 billion ARR</strong> in January 2025 to <strong>$30 billion</strong> by April 2026 — a <strong>30× increase in 15 months</strong>. The key driver is its enterprise-first model: over <strong>1,000 organizations</strong> now spend more than <strong>$1 million per year</strong> on Claude, double the 500 reported in February. In the same period, Anthropic is reportedly spending <strong>4× less on model training</strong> than OpenAI while achieving comparable or superior performance on enterprise coding and reasoning benchmarks.</p><p>Anthropic is evaluating an <strong>IPO as early as October 2026</strong>, with its current post-money valuation at <strong>$380 billion</strong>. Secondary market investors are reportedly valuing Anthropic at <strong>$800 billion or higher</strong> — more than double the February valuation — raising questions about whether AI company valuations have disconnected from fundamental revenue multiples.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Brief the board on the competitive implications of Anthropic's revenue leadership. The shift from OpenAI to Anthropic as the enterprise revenue leader signals which AI vendor strategy is winning: API-first, B2B-focused, and safety-branded. JG Summit's AI vendor relationships should be reviewed against this market signal."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Model the financial risk of AI vendor concentration. With Anthropic valued at $380–$800B and an IPO imminent, enterprise contract terms will likely change post-IPO as the company optimizes for public-market metrics. Review JG Summit's Claude usage contracts for price escalation clauses before the IPO window."},
+          {owner:"CAE",ownerClass:"owner-gc",text:"Assess vendor concentration risk in JG Summit's AI model portfolio. If the organization relies predominantly on one AI provider (OpenAI or Anthropic), audit the resilience plan: what is the switching cost, how long would a migration take, and is there a documented fallback?"}
+        ],
+        risks:[
+          {text:"Valuation bubble risk: Anthropic's $800B secondary market valuation implies a revenue multiple of 26× ARR. If AI revenue growth slows or enterprise adoption plateaus, valuations could reset sharply — disrupting both investor sentiment and enterprise AI procurement budgets."},
+          {text:"Post-IPO pricing pressure: Public market investors will pressure Anthropic to improve margins post-IPO, likely through higher API pricing, reduced enterprise discounts, or usage caps. Organizations locked into current pricing need to review contract renewal clauses now."},
+          {text:"OpenAI competitive response: OpenAI will not cede revenue leadership quietly. A major pricing cut or capability announcement in response is likely within 90 days — creating near-term uncertainty for enterprise AI procurement decisions."}
+        ],
+        csuite:"<strong>Anthropic's revenue milestone is the clearest signal yet that the enterprise AI market is consolidating around a small number of dominant vendors.</strong> For JG Summit, the strategic question is not whether to use AI — it is which vendor to make a primary relationship with and what contractual protections to secure before that vendor's IPO changes the pricing dynamic.",
+        links:[
+          {source:"CNBC",title:"Google to invest up to $40 billion in Anthropic",url:"https://www.cnbc.com/2026/04/24/google-to-invest-up-to-40-billion-in-anthropic-as-search-giant-spreads-its-ai-bets.html"},
+          {source:"SaaStr",title:"Anthropic Just Passed OpenAI in Revenue While Spending 4× Less",url:"https://www.saastr.com/anthropic-just-passed-openai-in-revenue-while-spending-4x-less-to-train-their-models/"},
+          {source:"TechCrunch",title:"Google to invest up to $40B in Anthropic in cash and compute",url:"https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/"}
+        ],
+        related:["google-40b-anthropic","enterprise-agents-production"]
+      }
+    ]
+  },
+  {
+    id:"agents",
+    title:"Agentic AI",
+    icon:"🤖",
+    iconClass:"icon-cyan",
+    count:2,
+    cards:[
+      {
+        id:"enterprise-agents-production",
+        date:"Apr 2026",
+        headline:"Enterprise AI agents reach a production tipping point — 54% deployed, 71% median productivity gains, but 80% lack governance visibility",
+        summary:"More than half of enterprises now run AI agents in production, with agentic deployments delivering 71% median productivity gains vs 40% for simple automation. However, 80% report zero visibility into how agents operate within daily workflows.",
+        tags:[["CEO","bg-gold"],["CAE","bg-purple"],["CFO","bg-green"]],
+        barClass:"bar-cyan",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"AGENTIC AI",
+        catColor:"c-cyan",
+        content:`<p>Multiple independent research reports published in April 2026 converge on a striking finding: the enterprise AI agent market has crossed a critical threshold. <strong>54% of large enterprises</strong> now have AI agents running in production — not pilots — across customer service, IT operations, HR, finance, and software engineering. Those in production are reporting substantial returns: <strong>71% median productivity gains</strong> from agentic deployments, compared to just 40% for traditional high-automation approaches.</p><p>The pattern of adoption, however, masks a governance crisis. <strong>80% of organizations</strong> report having no visibility into how AI agents operate within daily workflows, according to a PwC survey. Separately, <strong>66% cite compliance concerns</strong> as their primary barrier to scaling agent deployments beyond initial pilots. MIT Sloan research found that <strong>95% of enterprise AI pilots fail to scale</strong>, with the most common failure mode being operational fit — the inability to integrate agents into fragmented legacy workflows rather than any technical limitation.</p><p>For internal audit functions, this data presents a direct challenge: if agents are already making decisions in financial reporting, procurement approvals, HR screening, and customer interactions, the absence of audit trails and governance controls creates material risk. The <strong>COSO framework</strong> updated its guidance in Q1 2026 to include AI agent controls as a core component of internal control over financial reporting.</p>`,
+        actions:[
+          {owner:"CAE",ownerClass:"owner-gc",text:"Commission an AI agent inventory audit within 60 days. Map every deployed AI agent across JG Summit business units — what decisions they make, what data they access, and whether human override mechanisms exist. Present findings to the audit committee with a risk-tiered remediation plan."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Establish an AI Governance Council with cross-functional membership (legal, audit, IT, HR, finance) to own the agent policy framework. The 80% governance blindspot across the industry is a competitive risk if JG Summit is in that majority — and a differentiation opportunity if it is not."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Quantify the financial exposure of ungoverned AI agents. Agents with access to procurement, AP/AR, or financial reporting systems represent a material internal control risk. Commission an assessment of which agents have financial decision authority and whether those decisions are auditable."}
+        ],
+        risks:[
+          {text:"Audit trail absence: Agents making business decisions without durable logs violate internal control requirements under COSO and most regulatory frameworks. If a regulator or auditor requests evidence of how a decision was made and agents cannot provide it, the organization faces compliance exposure."},
+          {text:"Scope creep: Agents deployed for narrow tasks frequently expand their operational footprint as users discover new use cases. Without change controls, an agent approved for customer FAQ responses can evolve into one making pricing decisions without formal re-authorization."},
+          {text:"Workforce displacement without transition planning: The 71% productivity gain figure implies significant headcount reallocation. Organizations that deploy agents without corresponding workforce transition plans face labor relations risk, regulatory scrutiny in some jurisdictions, and loss of institutional knowledge."}
+        ],
+        csuite:"<strong>The enterprise AI agent market has moved from experimentation to production — and the governance infrastructure has not kept up.</strong> JG Summit faces the same risk as 80% of large enterprises: agents are already operating in business-critical workflows without adequate audit trails, access controls, or human oversight policies. This is not a technology problem; it is a governance and accountability problem that requires board-level attention.",
+        links:[
+          {source:"PwC",title:"2026 AI Business Predictions: Agent Productivity and Governance",url:"https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html"},
+          {source:"COSO",title:"COSO Aligns AI Governance with Internal Control Guidance",url:"https://rsmus.com/insights/services/risk-fraud-cybersecurity/coso-aligns-ai-governance-with-internal-control-guidance.html"},
+          {source:"Corporate Compliance Insights",title:"2026 Operational Guide to Cybersecurity, AI Governance & Emerging Risks",url:"https://www.corporatecomplianceinsights.com/2026-operational-guide-cybersecurity-ai-governance-emerging-risks/"}
+        ],
+        related:["google-cloud-next-26","vercel-breach","beprime-breach"]
+      },
+      {
+        id:"spacex-cursor-deal",
+        date:"Apr 22, 2026",
+        headline:"SpaceX secures $60B option to acquire Cursor — the AI coding platform — in landmark enterprise software deal",
+        summary:"SpaceX negotiated an option to acquire Cursor, the AI-powered coding platform valued at $60B, preempting a planned $2B fundraise. The deal signals Big Tech's move to own the full AI development stack, not just consume it.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CAE","bg-purple"]],
+        barClass:"bar-cyan",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"AGENTIC AI",
+        catColor:"c-cyan",
+        content:`<p>On April 22, <strong>SpaceX</strong> disclosed that it had negotiated a landmark agreement giving it the option to <strong>acquire Cursor</strong> — the fastest-growing AI coding platform — for <strong>$60 billion</strong>, preempting what was to be a <strong>$2 billion fundraise</strong> that had attracted interest from multiple major investors. Under the deal structure, SpaceX can exercise the option within 18 months or alternatively pay Cursor <strong>$10 billion</strong> to establish a deep R&D collaboration without full acquisition.</p><p>Cursor has become the dominant AI-assisted coding environment, reportedly used by <strong>over 500,000 software engineers</strong> at companies including Stripe, Shopify, and Goldman Sachs. Its growth reflects the broader category: AI coding tools now generate an estimated <strong>40–65% of new code</strong> at technology-forward enterprises. For SpaceX, owning Cursor would give it direct control over the software development infrastructure used by much of the industry — a strategic play similar to Microsoft's acquisition of GitHub.</p><p>The deal also reflects the growing tension between AI tool providers and the large enterprises that depend on them. As AI coding platforms become infrastructure rather than productivity tools, enterprise customers face concentration risk: if Cursor is owned by SpaceX, terms, pricing, and data usage policies will be determined by SpaceX's strategic interests, not the user community's.</p>`,
+        actions:[
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Direct IT to conduct an inventory of AI coding tool usage across JG Summit's technology teams. If Cursor or similar tools (GitHub Copilot, Tabnine) are in active use, assess the code ownership and data training implications of the SpaceX acquisition scenario."},
+          {owner:"CAE",ownerClass:"owner-gc",text:"Review vendor contracts for AI development tools. If JG Summit's engineering teams use Cursor, the terms of service governing code ownership, data training rights, and confidentiality need legal review before an acquisition changes them unilaterally."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Monitor AI tool vendor consolidation as a budget risk. The $60B valuation implies eventual enterprise pricing power. Model the impact on JG Summit's software development costs if AI coding tools shift from subscription pricing to enterprise licensing models controlled by a single strategic owner."}
+        ],
+        risks:[
+          {text:"Code ownership ambiguity: AI coding tools generate code that may be trained on proprietary or copyrighted code. If Cursor changes its data usage policies post-acquisition, code written with Cursor's assistance could become subject to IP disputes."},
+          {text:"Concentration risk in software supply chain: Standardizing on an AI coding tool that is then acquired by a single company creates a supply chain dependency. If SpaceX restricts access to competitors' engineering teams, it becomes a strategic lever in technology competition."},
+          {text:"Valuation signal: The $60B Cursor valuation for a coding tool suggests AI software infrastructure is being priced as critical infrastructure. Enterprises that have not yet assessed their AI tool dependencies may be underestimating the strategic importance of these relationships."}
+        ],
+        csuite:"<strong>The Cursor deal is a warning signal for every enterprise that uses AI development tools: the platforms your engineers depend on are becoming strategic assets acquired by large corporations with their own competitive interests.</strong> Vendor risk for AI coding tools now belongs in the same risk category as cloud platform dependencies — requiring formal contract review, data governance assessment, and contingency planning.",
+        links:[
+          {source:"TechCrunch",title:"How SpaceX preempted a $2B fundraise with a $60B buyout offer",url:"https://techcrunch.com/2026/04/22/how-spacex-preempted-a-2b-fundraise-with-a-60b-buyout-offer/"}
+        ],
+        related:["google-40b-anthropic","enterprise-agents-production"]
+      }
+    ]
+  },
+  {
+    id:"workforce",
+    title:"Workforce & Talent",
+    icon:"👥",
+    iconClass:"icon-orange",
+    count:2,
+    cards:[
+      {
+        id:"meta-microsoft-layoffs",
+        date:"Apr 23–25, 2026",
+        headline:"Meta and Microsoft announce 20,000 combined job cuts — both explicitly credit AI automation as the operational enabler",
+        summary:"Meta is cutting 8,000 roles (primarily Trust & Safety) and Microsoft is offering buyouts to 8,750 US employees, as both companies redeploy payroll savings into AI infrastructure. Economists warn a systemic labor crisis has arrived.",
+        tags:[["CEO","bg-gold"],["CHRO","bg-orange"],["CFO","bg-green"]],
+        barClass:"bar-orange",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"WORKFORCE & TALENT",
+        catColor:"c-orange",
+        content:`<p>In the same week, two of the world's largest technology companies announced major workforce reductions explicitly linked to AI automation. <strong>Meta</strong> announced on April 23 that it will cut <strong>8,000 employees</strong> — approximately 8% of its workforce — beginning May 20. The cuts concentrate heavily in <strong>Trust and Safety</strong>, where Meta disclosed that AI moderation systems have achieved <strong>accuracy rates exceeding human moderators</strong> across most content categories, making the division's headcount operationally redundant.</p><p>On April 24, <strong>Microsoft</strong> announced voluntary buyout offers to approximately <strong>8,750 US employees</strong> (7% of its US workforce), particularly in customer support, software testing, and certain engineering roles. Both companies framed the reductions as workforce reallocation: the combined <strong>$5–8 billion</strong> in annual payroll savings will be redirected toward AI infrastructure investment. Together with <strong>Oracle's 20,000–30,000 layoffs</strong> announced in late March, these cuts represent the clearest corporate signal yet that AI is eliminating white-collar positions at scale.</p><p>The broader context is stark: <strong>80,000 tech workers</strong> were laid off in Q1 2026 alone, with nearly <strong>48% of those cuts attributed to AI-driven automation</strong>, according to Layoffs.fyi data. CNBC economists warned on April 24 that the tech labor crisis is no longer a future risk — it is happening in real time. Entry-level and generalized IT roles are experiencing the sharpest declines, while specialized AI engineering positions remain in high demand.</p>`,
+        actions:[
+          {owner:"CHRO",ownerClass:"owner-chro",text:"Conduct a workforce vulnerability assessment for JG Summit within 90 days. Map which roles across the organization perform tasks that AI agents can fully or partially automate today. Present findings to the CEO with a structured workforce transition plan — before external pressures force reactive rather than strategic decisions."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Develop and communicate a clear AI and workforce policy to senior leadership. The Meta and Microsoft announcements are creating employee anxiety across industries. JG Summit's leadership needs a consistent, honest narrative about how AI will affect roles — and what the organization commits to provide in terms of reskilling and transition support."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Model AI-driven efficiency gains and their workforce cost implications over a 3-year horizon. If JG Summit's AI deployments deliver productivity gains comparable to Meta's Trust and Safety automation, quantify which roles will be affected and at what pace, to plan restructuring provisions and reskilling investments properly."}
+        ],
+        risks:[
+          {text:"Employee relations and morale: Mass AI-attributed layoffs at visible companies increase employee anxiety everywhere. JG Summit may see attrition among key talent who proactively leave for perceived job security, before any organizational decision is made."},
+          {text:"Regulatory and labor law exposure: In the Philippines and other jurisdictions where JG Summit operates, labor regulations around AI-driven workforce reductions are evolving. Proactive engagement with labor law counsel now is preferable to reactive compliance after a regulatory challenge."},
+          {text:"Talent paradox: While AI eliminates some roles, demand for AI engineers, data scientists, and AI governance specialists is accelerating. Organizations that cut too broadly risk losing the human capability needed to govern and extend their AI systems."}
+        ],
+        csuite:"<strong>The Meta and Microsoft announcements confirm that AI-driven workforce restructuring is not a future scenario — it is the present reality at the world's largest technology companies.</strong> For JG Summit, the question is not whether AI will affect the workforce but whether the organization will manage that transition proactively, with advance planning and employee investment, or reactively under external pressure. The former approach protects both the business and JG Summit's employer brand.",
+        links:[
+          {source:"CNBC",title:"20,000 job cuts at Meta, Microsoft raise concern that AI-driven labor crisis is here",url:"https://www.cnbc.com/2026/04/24/20k-job-cuts-at-meta-microsoft-raise-concern-of-ai-labor-crisis-.html"},
+          {source:"Axios",title:"Meta to lay off 8,000 as part of AI efficiency push",url:"https://www.axios.com/2026/04/23/meta-layoffs-ai-efficiency-push"},
+          {source:"The Next Web",title:"Meta cuts 8,000 jobs and Microsoft offers buyouts as Big Tech converts payroll into AI capital",url:"https://thenextweb.com/news/meta-microsoft-layoffs-23000-ai-spending"}
+        ],
+        related:["tech-layoffs-q1","enterprise-agents-production"]
+      },
+      {
+        id:"tech-layoffs-q1",
+        date:"Apr 26, 2026",
+        headline:"Q1 2026: 80,000 tech layoffs logged — nearly half attributed to AI, as cumulative cuts since 2020 approach 900,000",
+        summary:"Q1 2026 saw 80,000 tech sector layoffs, with 47.9% explicitly attributed to AI automation and workflow changes. Combined with Oracle, Meta, and Microsoft cuts, April is on track to be the worst month of AI-driven workforce reduction on record.",
+        tags:[["CEO","bg-gold"],["CHRO","bg-orange"],["CFO","bg-green"]],
+        barClass:"bar-orange",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"WORKFORCE & TALENT",
+        catColor:"c-orange",
+        content:`<p>Cumulative data from Layoffs.fyi and Tom's Hardware analysis reveals the scale of AI-driven workforce change in 2026. In Q1 alone, <strong>80,000 technology workers</strong> were laid off across more than 500 companies. Of those, <strong>47.9%</strong> — approximately 38,000 positions — were attributed to AI automation and workflow changes rather than revenue shortfalls or post-pandemic corrections.</p><p>The month of April is tracking as the most severe yet. Including the Oracle cuts announced in late March (estimated <strong>20,000–30,000 employees</strong>), Meta's 8,000, and Microsoft's 8,750, April's AI-attributed reduction total could exceed <strong>50,000 positions</strong>. Since 2020, cumulative tech layoffs have approached <strong>900,000 workers</strong>. Research from Harvard Business Review cautions, however, that AI is the stated rationale for cuts more often than the actual primary driver — budget pressure, revenue uncertainty, and investor margin expectations are frequently the underlying cause, with AI cited as a more publicly acceptable explanation.</p><p>The structural shift in demand is unambiguous: <strong>entry-level and generalized IT roles</strong> are experiencing the sharpest declines while <strong>AI engineering, data science, and AI governance roles</strong> are experiencing double-digit salary growth and demand. Motion Recruitment's 2026 study found that organizations replacing generalist IT roles with AI tools are simultaneously creating new specialized roles at higher compensation bands — a net headcount reduction but a skills and wage upgrade for those who remain.</p>`,
+        actions:[
+          {owner:"CHRO",ownerClass:"owner-chro",text:"Establish a formal AI Reskilling Program for JG Summit's technology and operations teams. As generalized IT and administrative roles face displacement, investing in structured reskilling toward AI operations, prompt engineering, and AI governance roles protects institutional knowledge and demonstrates organizational commitment."},
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Build a rolling 24-month AI workforce impact model. Identify which JG Summit cost centers are most exposed to AI automation — specifically those with high concentrations of rule-based, data-entry, or content-review roles — and model the pace and quantum of cost reduction versus reskilling investment required."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Engage proactively with JG Summit's labor relations and government affairs teams on AI workforce policy. The Philippines government is developing AI employment guidelines. Being a proactive participant in that process is preferable to being subject to retroactive regulation."}
+        ],
+        risks:[
+          {text:"Reputational risk from reactive workforce management: Companies perceived as using AI as cover for financially motivated layoffs face significant brand and employer reputation damage. JG Summit's consumer brands and talent acquisition will be affected by how AI-related workforce changes are framed and managed."},
+          {text:"Skills concentration risk: As specialized AI roles become critical, organizations with insufficient internal AI talent become dependent on a small, expensive external talent market. Building internal capability now is lower-cost than competing for scarce AI specialists later."},
+          {text:"Regulatory lag turning into enforcement risk: AI labor regulations are being drafted now in multiple jurisdictions where JG Summit operates. What is currently unregulated may become a compliance requirement within 12–24 months, making voluntary early adoption of good practice the lowest-risk path."}
+        ],
+        csuite:"<strong>The Q1 2026 layoff data confirms that AI-driven workforce restructuring is industry-wide, accelerating, and unevenly distributed — concentrated in roles that AI can automate today.</strong> For JG Summit's board, the relevant question is whether the organization has a proactive workforce strategy that accounts for this shift, or whether it will manage the transition reactively as business unit heads independently deploy automation with no enterprise-level coordination.",
+        links:[
+          {source:"Tom's Hardware",title:"Tech industry lays off nearly 80,000 in Q1 2026 — almost 50% due to AI",url:"https://www.tomshardware.com/tech-industry/tech-industry-lays-off-nearly-80-000-employees-in-the-first-quarter-of-2026-almost-50-percent-of-affected-positions-cut-due-to-ai"},
+          {source:"Harvard Business Review",title:"Companies Are Laying Off Workers Because of AI's Potential — Not Its Performance",url:"https://hbr.org/2026/01/companies-are-laying-off-workers-because-of-ais-potential-not-its-performance"},
+          {source:"CNBC",title:"20,000 job cuts at Meta, Microsoft raise concern that AI-driven labor crisis is here",url:"https://www.cnbc.com/2026/04/24/20k-job-cuts-at-meta-microsoft-raise-concern-of-ai-labor-crisis-.html"}
+        ],
+        related:["meta-microsoft-layoffs","enterprise-agents-production"]
+      }
+    ]
+  },
+  {
+    id:"risk",
+    title:"AI Risk & Fraud",
+    icon:"🔒",
+    iconClass:"icon-red",
+    count:3,
+    cards:[
+      {
+        id:"vercel-breach",
+        date:"Apr 20, 2026",
+        headline:"Vercel confirms data breach via supply chain attack on Context AI — customer credentials stolen through compromised employee account",
+        summary:"Vercel blamed a breach at AI vendor Context AI for allowing attackers to hijack a Vercel employee account and steal customer data. The incident highlights the expanding attack surface created by enterprise AI tool integrations.",
+        tags:[["CAE","bg-purple"],["CEO","bg-gold"],["GC","bg-purple"]],
+        barClass:"bar-red",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"AI RISK & FRAUD",
+        catColor:"c-red",
+        content:`<p>On April 20, web platform provider <strong>Vercel</strong> confirmed a security incident in which customer data was stolen by attackers who exploited a breach at <strong>Context AI</strong>, an AI tool integrated into Vercel's internal development workflow. The attack chain began with Context AI's systems being compromised, which gave attackers access to OAuth tokens that allowed them to authenticate as a <strong>Vercel employee</strong> — enabling lateral movement into Vercel's customer data environment.</p><p>The nature of the stolen data has not been fully disclosed, but Vercel confirmed that <strong>customer credentials and account information</strong> were accessed. The incident is notable for its attack vector: rather than directly breaching Vercel, attackers compromised a smaller AI vendor in Vercel's toolchain and used that access as a stepping stone. This is a textbook <strong>AI supply chain attack</strong> — and security researchers warn it is precisely the attack model that will become dominant as enterprises integrate dozens of AI tools, each with broad access to production systems.</p><p>The Vercel incident follows a pattern: <strong>GitGuardian's 2025 report</strong> (covered in last week's briefing) found 24,008 secrets exposed specifically in MCP (Model Context Protocol) configuration files — the integration layer that connects AI agents to enterprise systems. Each AI tool integration creates a new credential exposure surface that traditional security scanners are not designed to detect.</p>`,
+        actions:[
+          {owner:"CAE",ownerClass:"owner-gc",text:"Commission an AI vendor access audit within 30 days. Identify every third-party AI tool that holds OAuth tokens, API keys, or service account credentials for JG Summit production systems. For each, assess: what data can it access, who approved the integration, and does a revocation plan exist?"},
+          {owner:"GC",ownerClass:"owner-gc",text:"Review vendor contracts for AI tools that hold production system credentials. Contractual provisions for breach notification, liability for downstream harm, and data handling must be verified. Many AI tools were onboarded informally without legal review of their access terms."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Direct IT Security to implement a formal AI tool onboarding process with credential governance. Every AI integration should be treated as a third-party access grant — requiring the same risk assessment, approval process, and monitoring as any external vendor with system access."}
+        ],
+        risks:[
+          {text:"Third-party AI credential exposure: Enterprises using AI tools for development, productivity, or automation have granted those tools broad system access through API keys and OAuth tokens. If any of those AI vendors is breached, attackers inherit that access without breaking any JG Summit perimeter control."},
+          {text:"Breach notification timeline: If JG Summit is a Vercel customer, affected credentials may require reset and customer notification under applicable data protection laws. Delays in determining breach scope increase regulatory exposure."},
+          {text:"Reputational contagion: Supply chain breaches involving AI tools are difficult to explain to customers and regulators because the breach path is indirect. Customers whose data was exposed through a vendor's vendor breach have the same legal remedies as direct breach victims."}
+        ],
+        csuite:"<strong>The Vercel-Context AI breach is a model for how enterprise AI security incidents will look in 2026 and beyond: attackers will target smaller AI vendors to gain trusted access to larger enterprise environments.</strong> JG Summit's AI security posture must account for the full chain of AI tool integrations — not just direct perimeter defenses. A comprehensive AI vendor access inventory is the immediate priority.",
+        links:[
+          {source:"TechCrunch",title:"App host Vercel says it was hacked and customer data stolen",url:"https://techcrunch.com/2026/04/20/app-host-vercel-confirms-security-incident-says-customer-data-was-stolen-via-breach-at-context-ai/"},
+          {source:"eSecurity Planet",title:"Data Breaches, AI Expansion, and Cloud Security Define This Week's Cyber Landscape",url:"https://www.esecurityplanet.com/weekly-roundup/data-breaches-ai-expansion-and-cloud-security-define-this-weeks-cyber-landscape-in-april-2026/"}
+        ],
+        related:["beprime-breach","enterprise-agents-production","ai-cyberattack-surge"]
+      },
+      {
+        id:"beprime-breach",
+        date:"Apr 20, 2026",
+        headline:"BePrime breach: API key theft exposes 12.6GB of enterprise data including live surveillance access and transaction records",
+        summary:"A threat actor exploited admin accounts lacking MFA at BePrime, stealing API keys that granted control of 1,858 network devices and access to surveillance cameras, financial records, and security audit reports.",
+        tags:[["CAE","bg-purple"],["GC","bg-purple"],["CEO","bg-gold"]],
+        barClass:"bar-red",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"AI RISK & FRAUD",
+        catColor:"c-red",
+        content:`<p>On April 20, a cybercriminal posted data from <strong>BePrime</strong>, an enterprise network management platform, on a dark web breach forum. The attack was straightforward in its execution: the attacker compromised <strong>admin accounts that lacked multi-factor authentication</strong>, then discovered <strong>API keys stored in plaintext</strong> within the admin environment. Those keys granted control over <strong>1,858 network devices</strong> — routers, switches, and IoT systems — across BePrime's enterprise customer base.</p><p>The breach exposed <strong>12.6 gigabytes of data</strong>, including: financial transaction records, security audit reports, live surveillance camera access credentials, and operational passwords stored in plaintext. The live surveillance access is particularly alarming — it means the attacker had real-time visibility into physical facilities across multiple enterprises simultaneously. The breach was reported by cybersecurity researchers at SharkStriker on April 20.</p><p>The BePrime incident illustrates three compounding failures that security researchers now describe as the <strong>"AI-era vulnerability stack"</strong>: inadequate MFA enforcement on administrative accounts; API keys with excessive permissions stored insecurely; and insufficient monitoring to detect credential misuse before large-scale data exfiltration. These failures are not new — but the value and sensitivity of the data accessible via a single compromised API key has grown dramatically as AI tools have been granted broader system access.</p>`,
+        actions:[
+          {owner:"CAE",ownerClass:"owner-gc",text:"Conduct an emergency review of MFA enforcement on all JG Summit administrative and privileged accounts. Admin accounts without MFA represent the same vulnerability exploited in this breach. A 30-day MFA compliance report should be delivered to the audit committee with remediation timelines for any non-compliant accounts."},
+          {owner:"CAE",ownerClass:"owner-gc",text:"Audit all API keys held by network management and IoT platforms across JG Summit's facilities. Specifically verify: are keys stored in plaintext anywhere in configuration files or admin portals? Are key permissions scoped to minimum necessary access? Is there automated alerting for unusual key usage volume?"},
+          {owner:"GC",ownerClass:"owner-gc",text:"Review JG Summit's vendor contracts with network management and physical security platforms for breach notification and liability clauses. Physical surveillance access obtained through a vendor breach creates both security and privacy liability — particularly if surveillance systems cover employee workspaces."}
+        ],
+        risks:[
+          {text:"Physical security compromise: Live surveillance camera access means an attacker can observe physical operations in real time — assembly lines, data center entrances, executive meeting rooms. This intelligence has value for industrial espionage, competitive intelligence, or physical security planning by adversaries."},
+          {text:"Plaintext credential storage remains endemic: Despite years of security guidance, plaintext API key storage persists across enterprise systems, particularly in legacy network management tools. A single internal audit of configuration files frequently uncovers hundreds of exposed credentials."},
+          {text:"IoT and OT blind spots: Network device management systems often cover operational technology (OT) and industrial IoT devices that are outside the scope of traditional IT security programs. A breach in this layer can affect physical operations, not just data systems."}
+        ],
+        csuite:"<strong>The BePrime breach is a reminder that physical and digital security are now inseparable.</strong> API keys that control network devices and surveillance systems represent a class of credential that, if compromised, gives an attacker operational visibility into an organization's physical facilities. JG Summit's security audit scope must explicitly include the management plane of physical security and network infrastructure systems — not just traditional IT assets.",
+        links:[
+          {source:"SharkStriker",title:"April 2026 Data Breaches: 15+ Major Incidents",url:"https://sharkstriker.com/blog/april-2026-data-breaches/"},
+          {source:"eSecurity Planet",title:"Data Breaches, AI Expansion, and Cloud Security Define This Week's Cyber Landscape",url:"https://www.esecurityplanet.com/weekly-roundup/data-breaches-ai-expansion-and-cloud-security-define-this-weeks-cyber-landscape-in-april-2026/"}
+        ],
+        related:["vercel-breach","enterprise-agents-production","ai-cyberattack-surge"]
+      },
+      {
+        id:"ai-cyberattack-surge",
+        date:"Apr 2026",
+        headline:"AI-enabled cyberattacks surge 72% year-over-year — autonomous attack engines now targeting enterprise firewalls without human operators",
+        summary:"Security researchers document a 72% YoY increase in AI-powered cyberattacks, with the CyberStrikeAI campaign demonstrating fully autonomous AI attack chains against FortiGate firewalls operating with no human attacker in the loop.",
+        tags:[["CAE","bg-purple"],["CEO","bg-gold"],["GC","bg-purple"]],
+        barClass:"bar-red",
+        riskLevel:"HIGH",
+        riskClass:"bg-red",
+        category:"AI RISK & FRAUD",
+        catColor:"c-red",
+        content:`<p>Security researchers at Foresiet documented a <strong>72% year-over-year increase</strong> in AI-powered cyberattacks in their April 2026 threat landscape report, identifying a qualitative shift in attack sophistication: adversaries are no longer using AI to assist human attackers — they are deploying <strong>fully autonomous AI attack engines</strong> that operate without real-time human direction. The most documented example is the <strong>CyberStrikeAI campaign</strong>, which targeted enterprise FortiGate firewall configurations, autonomously identifying and exploiting vulnerabilities without a human operator managing the attack session.</p><p>The implications for enterprise security teams are profound. Traditional security operations center (SOC) workflows assume human-paced attack timelines — attackers who reconnoitre, probe, and exploit over hours or days. Autonomous AI attack engines compress this timeline to <strong>minutes</strong>. IBM's response (covered in the Week 16 briefing) was to launch Autonomous Security to counter with machine-speed defense — confirming that the security industry views autonomous attack vs. autonomous defense as the dominant paradigm shift of 2026.</p><p>The Stanford HAI AI Index 2026 provides broader context: publicly reported AI security incidents increased <strong>56.4% from 2023 to 2024</strong>, and the 2025–2026 trajectory shows acceleration. Critically, AI-assisted attacks are not limited to nation-state actors — they are accessible to organized criminal groups through AI-as-a-service attack platforms available on dark web marketplaces for as little as <strong>$500 per month</strong>.</p>`,
+        actions:[
+          {owner:"CAE",ownerClass:"owner-gc",text:"Include AI-enabled attack scenarios in the next JG Summit cyber risk assessment and audit plan. Traditional threat models that assume human-paced attacks are no longer representative of the current threat environment. The audit committee should receive a briefing on how JG Summit's security controls perform against autonomous AI attack scenarios."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Commission a review of JG Summit's SOC capabilities against the autonomous attack model. If the current security operations team relies on human analysis of alerts with 4–8 hour response windows, that posture is mismatched to attack timelines that now operate in minutes. Evaluate whether AI-assisted defense tools are in the investment roadmap."},
+          {owner:"GC",ownerClass:"owner-gc",text:"Review JG Summit's cyber insurance policy to confirm autonomous AI attack scenarios are covered. Many policies written before 2025 contain exclusions or ambiguities around AI-assisted attacks — insurers are updating their definitions, and coverage gaps may exist."}
+        ],
+        risks:[
+          {text:"Response time mismatch: Human SOC teams cannot match autonomous AI attack timelines. The window between initial compromise and data exfiltration or ransomware deployment has shrunk from hours to minutes for AI-powered attacks. Existing incident response playbooks may be operationally obsolete."},
+          {text:"Democratization of attack capability: AI attack-as-a-service platforms at $500/month put sophisticated autonomous attack capability within reach of opportunistic criminal actors — not just nation-states or well-resourced criminal organizations. The total addressable attack surface is therefore much larger."},
+          {text:"Regulatory expectations are increasing: Regulators in the EU (NIS2 Directive) and the Philippines (BSP cybersecurity guidelines) are increasing their expectations for cyber resilience. Demonstrating adequate defenses against AI-enabled threats is becoming a compliance requirement, not just a best practice."}
+        ],
+        csuite:"<strong>The 72% surge in AI-enabled cyberattacks means that enterprise security posture must now account for adversaries who never sleep, never make human errors in their attack execution, and can operate at machine speed.</strong> JG Summit's security investment roadmap should include AI-assisted defense capabilities — not as a future consideration, but as a current-year budget priority given the documented acceleration in attack frequency and capability.",
+        links:[
+          {source:"Foresiet",title:"The AI Inversion: 2026's Most Dangerous Cyber Attacks",url:"https://foresiet.com/blog/ai-enabled-cyberattacks-2026-incidents/"},
+          {source:"IBM",title:"Cybersecurity Trends 2026",url:"https://www.ibm.com/think/insights/more-2026-cyberthreat-trends"},
+          {source:"Stanford HAI",title:"AI Index Report 2026",url:"https://hai.stanford.edu/"}
+        ],
+        related:["vercel-breach","beprime-breach","enterprise-agents-production"]
+      }
+    ]
+  },
+  {
+    id:"funding",
+    title:"Funding & M&A",
+    icon:"💰",
+    iconClass:"icon-green",
+    count:3,
+    cards:[
+      {
+        id:"google-40b-anthropic",
+        date:"Apr 24, 2026",
+        headline:"Google commits up to $40B to Anthropic — largest single AI investment in history, with $10B upfront at $380B valuation",
+        summary:"Alphabet will invest $10B immediately in Anthropic, with up to $30B more contingent on performance milestones. The deal includes 5 gigawatts of Google Cloud compute over five years and deepens the partnership against the OpenAI-Microsoft alliance.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CAE","bg-purple"]],
+        barClass:"bar-green",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"FUNDING & M&A",
+        catColor:"c-green",
+        content:`<p>On April 24, <strong>Alphabet (Google)</strong> announced it would invest up to <strong>$40 billion</strong> in <strong>Anthropic</strong> — the largest single investment in an AI company in history. The structure is <strong>$10 billion committed immediately</strong> in cash at a post-money valuation of <strong>$380 billion</strong>, with the remaining <strong>$30 billion contingent on performance milestones</strong>. Alongside the cash investment, Google Cloud will make <strong>5 gigawatts of computing capacity</strong> available to Anthropic over the next five years, with the option for further scaling.</p><p>The deal is a direct response to competitive dynamics: <strong>Amazon</strong> announced a <strong>$25 billion commitment</strong> to Anthropic earlier this month, and the two investments together give Anthropic a combined committed capital base exceeding <strong>$65 billion</strong> — more than enough to sustain frontier model development for the foreseeable future. The Google deal also deepens Anthropic's role in the Google Cloud ecosystem: as shown in the Cloud Next '26 section, Gemini Enterprise now directly offers <strong>Claude Opus 4.7</strong> as a model choice, giving Anthropic distribution reach to Google's enterprise customer base.</p><p>For the broader AI industry, the $40B Google commitment at a $380B valuation establishes Anthropic as one of the most valuable private companies in the world. Secondary market investors are reportedly bidding Anthropic at valuations above <strong>$800 billion</strong> — implying a potential $1 trillion valuation by IPO, a milestone that would fundamentally reshape how institutional investors value AI software companies globally.</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Review JG Summit's AI infrastructure procurement strategy in light of the Google-Anthropic alliance. If JG Summit uses Google Cloud, Anthropic's Claude models are now directly accessible with enterprise support — potentially reducing the need for separate Anthropic API contracts and the associated pricing and support complexity."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Brief the board on the emerging AI duopoly: OpenAI-Microsoft vs. Anthropic-Google-Amazon. The competitive dynamics of the enterprise AI market are increasingly shaped by which cloud platform JG Summit relies on. A cloud strategy review should explicitly account for AI model access as a strategic factor, not just compute and storage."},
+          {owner:"CAE",ownerClass:"owner-gc",text:"Assess the vendor risk implications of AI consolidation. As AI capability concentrates in 2–3 dominant players backed by the world's largest cloud providers, the systemic risk of an AI platform outage or policy change grows. Ensure JG Summit's AI risk register accounts for concentration risk at the AI foundation model layer."}
+        ],
+        risks:[
+          {text:"Market concentration risk: Two companies (Anthropic and OpenAI) are capturing the majority of enterprise AI revenue and capex. If JG Summit becomes dependent on one of these platforms, it inherits the strategic and operational risk of that vendor's decisions — pricing, model changes, service availability, and geopolitical exposure."},
+          {text:"Valuation correction contagion: A valuation reset at Anthropic ($380B→lower) could ripple across AI software valuations, tightening enterprise AI procurement budgets industry-wide as CFOs reassess AI ROI assumptions."},
+          {text:"Regulatory scrutiny of mega-investments: Investments of this scale in companies that are simultaneously strategic partners and competitors will attract antitrust scrutiny. Regulatory action that forces structural changes to the Google-Anthropic relationship could disrupt enterprise AI supply chains."}
+        ],
+        csuite:"<strong>The Google-Anthropic $40B deal is the defining M&A event of the AI era to date, and it has direct implications for every enterprise AI procurement decision.</strong> The emerging structure — OpenAI backed by Microsoft, Anthropic backed by Google and Amazon — means the enterprise AI market is effectively a two-cloud-alliance competition. JG Summit's AI platform strategy should be evaluated against this duopoly reality: neutrality is becoming increasingly expensive as each alliance deepens its integration advantages.",
+        links:[
+          {source:"Bloomberg",title:"Google Plans to Invest Up to $40 Billion in Anthropic",url:"https://www.bloomberg.com/news/articles/2026-04-24/google-plans-to-invest-up-to-40-billion-in-anthropic"},
+          {source:"CNBC",title:"Google to invest up to $40 billion in Anthropic as search giant spreads its AI bets",url:"https://www.cnbc.com/2026/04/24/google-to-invest-up-to-40-billion-in-anthropic-as-search-giant-spreads-its-ai-bets.html"},
+          {source:"TechCrunch",title:"Google to invest up to $40B in Anthropic in cash and compute",url:"https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/"}
+        ],
+        related:["anthropic-30b-arr","google-cloud-next-26","q1-venture-funding"]
+      },
+      {
+        id:"q1-venture-funding",
+        date:"Apr 2026",
+        headline:"Q1 2026 shatters venture funding records — $300B invested globally, two-thirds flowing to just four AI companies",
+        summary:"Global venture funding reached $300B in Q1 2026, up 150% YoY. OpenAI, Anthropic, xAI, and Waymo captured 64% of all global VC — the highest concentration in venture history — raising structural concerns about market distortion.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"]],
+        barClass:"bar-green",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"FUNDING & M&A",
+        catColor:"c-green",
+        content:`<p>Crunchbase data released in April 2026 confirmed that global venture capital funding reached a <strong>record $300 billion in Q1 2026</strong>, up more than <strong>150% year-over-year</strong>. The extraordinary total is largely explained by one deal: <strong>OpenAI's $122 billion fundraise</strong> — the largest single venture round in history — which alone exceeded the previous quarterly record for all global startup investment combined.</p><p>The concentration of capital is historically unprecedented: <strong>64% of all global venture capital</strong> in Q1 flowed to just four companies — <strong>OpenAI, Anthropic, xAI (Elon Musk's AI company), and Waymo</strong>. AI companies as a category captured <strong>$188 billion</strong> of the $300 billion total. The remaining 36% was distributed across more than 5,900 other companies globally — averaging approximately $18 million per deal, compared to the tens of billions per AI foundation model round.</p><p>Financial analysts are raising structural concerns. At current valuations and funding rates, the top four AI companies are collectively valued at over <strong>$2 trillion</strong> despite cumulative revenues well below $100 billion — implying revenue multiples of 20–40× ARR. For comparison, Salesforce — the world's largest pure-play enterprise software company — trades at approximately 7× ARR. The disparity suggests either that AI companies will grow revenues by an order of magnitude in 3–5 years, or that the current valuations embed significant risk of correction.</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Include AI vendor valuation risk in JG Summit's enterprise procurement risk register. Contracts with AI companies valued at 20–40× revenue multiples carry the risk of post-correction pricing changes, service restructuring, or acquisition by strategic buyers. Evaluate multi-year contract terms and price-lock provisions carefully."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Monitor AI funding concentration as a strategic signal. The four-company concentration of AI capital implies that the companies outside that group — including most specialized AI vendors — face a funding cliff. JG Summit's AI vendor portfolio likely includes companies not in the top tier whose continued investment and development cannot be assumed."},
+          {owner:"CAE",ownerClass:"owner-gc",text:"Assess the going-concern risk of AI vendors in JG Summit's critical supply chain. In an environment where 64% of AI capital flows to four companies, the remaining AI vendors compete for 36% — creating funding pressure that may lead to acquisitions, pivots, or closures. Audit the resilience of JG Summit's AI operations if a key vendor were acquired or ceased operations."}
+        ],
+        risks:[
+          {text:"Bubble correction risk: Revenue multiples of 20–40× ARR for AI companies are historically associated with market bubbles. A correction triggered by slower-than-expected enterprise adoption, regulatory action, or macro interest rate changes could freeze AI investment and disrupt vendor roadmaps that JG Summit depends on."},
+          {text:"Secondary vendor survival risk: AI vendors outside the top four are competing for a rapidly shrinking share of capital. JG Summit should identify which AI tools it relies on whose continued development depends on ongoing VC funding — and assess contingency options."},
+          {text:"Geopolitical risk: OpenAI, Anthropic, xAI, and Waymo are all US-headquartered companies. Geopolitical tensions or export controls could restrict access to their services for JG Summit's international operations without warning."}
+        ],
+        csuite:"<strong>The Q1 2026 venture funding data tells a clear story: the world's capital is betting that a small number of AI foundation model companies will become the most valuable corporations in history.</strong> That bet may be correct — but it also means that JG Summit's AI strategy is, in effect, a bet on the same companies. Understanding the concentration risk, the valuation assumptions, and the contingency scenarios is a board-level fiduciary responsibility.",
+        links:[
+          {source:"Crunchbase",title:"Q1 2026 Shatters Venture Funding Records As AI Boom Pushes Startup Investment To $300B",url:"https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/"},
+          {source:"Crunchbase",title:"Sector Snapshot: Venture Funding to Foundational AI Startups in Q1 Was Double All of 2025",url:"https://news.crunchbase.com/venture/foundational-ai-startup-funding-doubled-openai-anthropic-xai-q1-2026/"}
+        ],
+        related:["google-40b-anthropic","anthropic-30b-arr"]
+      },
+      {
+        id:"openai-hiro-acquisition",
+        date:"Apr 22, 2026",
+        headline:"OpenAI acquires AI personal finance startup Hiro — seventh known acquisition of 2026 as it builds toward a financial services platform",
+        summary:"OpenAI acquired Hiro Finance in an undisclosed deal, adding personal finance AI to a 2026 acquisition spree that includes productivity, research, and now financial tools. The pattern signals OpenAI's intent to move beyond API infrastructure into direct enterprise verticals.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["GC","bg-purple"]],
+        barClass:"bar-green",
+        riskLevel:"MEDIUM",
+        riskClass:"bg-gold",
+        category:"FUNDING & M&A",
+        catColor:"c-green",
+        content:`<p>On approximately April 22, <strong>OpenAI</strong> confirmed the acqui-hire of <strong>Hiro Finance</strong>, a personal AI finance startup, in what is its <strong>seventh known acquisition of 2026</strong>. The Hiro team will join OpenAI's product division, and the company's technology — which provided AI-driven personal financial planning, budgeting advice, and investment analysis — will be integrated into OpenAI's consumer and enterprise product suite.</p><p>Viewed individually, the Hiro acquisition is modest. Viewed as part of OpenAI's 2026 acquisition pattern, it reveals a strategic intent to move from being an AI infrastructure provider to becoming an <strong>AI-native enterprise software company</strong> competing directly in vertical markets. OpenAI's 2026 acquisitions span coding (the Cursor deal involves OpenAI as a potential competing bidder), research automation, productivity, and now financial services.</p><p>For financial services companies and regulated industries, OpenAI's entry into financial advice AI carries significant regulatory implications. <strong>AI-generated financial advice</strong> is subject to SEC, FINRA, and local regulatory frameworks in most jurisdictions — and OpenAI's track record is as a technology company, not a regulated financial services provider. How OpenAI structures its financial AI products in compliance with financial advice regulations will be closely watched by regulators and competitors.</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Monitor OpenAI's financial services product roadmap for implications on JG Summit's financial subsidiaries and treasury operations. If OpenAI enters the enterprise financial planning and treasury management market, JG Summit's finance team should evaluate whether OpenAI-powered tools could reduce costs in FP&A, treasury, or investor relations."},
+          {owner:"GC",ownerClass:"owner-gc",text:"Track regulatory developments around AI financial advice in the Philippines and other JG Summit operating jurisdictions. OpenAI's entry into regulated financial advice will likely trigger regulatory guidance that applies broadly to AI-assisted financial decision-making — including tools JG Summit may already be using internally."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Brief JG Summit's financial services leadership on the competitive implications of AI-native entrants in financial planning and advisory services. The Hiro acquisition is an early signal that OpenAI intends to compete in financial services, which could affect JG Summit's banking and insurance subsidiaries' competitive positioning."}
+        ],
+        risks:[
+          {text:"Regulatory arbitrage risk: OpenAI entering financial advice through an AI lens may create competitive disadvantage for regulated financial services companies like JG Summit's subsidiaries who must comply with investment advice regulations that AI-native entrants may initially circumvent or challenge."},
+          {text:"Data sensitivity in financial AI: Financial planning AI requires access to highly sensitive personal and corporate financial data. OpenAI's data usage terms and model training practices in the context of financial advice data carry compliance implications under banking secrecy and data protection laws."},
+          {text:"Market disruption in financial advisory: If OpenAI successfully deploys financial planning AI at scale — either consumer or enterprise — it could commoditize advice services that JG Summit's financial subsidiaries currently charge premium fees for."}
+        ],
+        csuite:"<strong>OpenAI's seventh acquisition of 2026 signals that it is building toward an AI-native enterprise software company that competes in vertical markets — not just an API provider.</strong> For JG Summit, this has two implications: first, the competitive landscape in financial services is about to include AI-native entrants with massive capital backing; second, OpenAI-powered tools may increasingly offer capabilities that JG Summit currently buys from specialized vendors, potentially consolidating the vendor landscape at lower cost.",
+        links:[
+          {source:"TechCrunch",title:"OpenAI has bought AI personal finance startup Hiro",url:"https://techcrunch.com/2026/04/13/openai-has-bought-ai-personal-finance-startup-hiro/"},
+          {source:"Crunchbase",title:"AI Startup Funding News Today — Latest Deals & Rounds 2026",url:"https://aifundingtracker.com/ai-startup-funding-news-today/"}
+        ],
+        related:["google-40b-anthropic","anthropic-30b-arr","q1-venture-funding"]
+      }
+    ]
+  }
+];
+
+// ---- Rendering ----
+const cardMap = {};
+sections.forEach(s => s.cards.forEach(c => cardMap[c.id] = c));
+
+function renderCard(c) {
+  return `<div class="card ${c.barClass}" data-id="${c.id}">
+    <div class="card-date">${c.date}</div>
+    <div class="card-headline">${c.headline}</div>
+    <div class="card-summary">${c.summary}</div>
+    <div class="card-footer">
+      <div class="card-tags">${c.tags.map(t=>`<span class="tag ${t[1]}">${t[0]}</span>`).join('')}</div>
+      <div class="card-risk">
+        <span class="risk-badge ${c.riskClass}">${c.riskLevel}</span>
+        <span class="card-dive">↗ Deep dive</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+const container = document.getElementById('sectionsContainer');
+sections.forEach((s, i) => {
+  const div = document.createElement('div');
+  div.className = 'section-wrap';
+  div.setAttribute('data-section', s.id);
+  div.innerHTML = `<div class="section-header"><div class="section-icon ${s.iconClass}">${s.icon}</div><h2 class="section-title">${s.title}</h2><span class="section-count">${s.count} stories</span></div><div class="cards-grid">${s.cards.map(c=>renderCard(c)).join('')}</div>`;
+  div.style.transitionDelay = `${i*0.08}s`;
+  container.appendChild(div);
+});
+
+// Intersection observer for fade-in
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.05});
+document.querySelectorAll('.section-wrap').forEach(el => io.observe(el));
+
+// ---- Modal ----
+const overlay = document.getElementById('modalOverlay');
+const modalCat = document.getElementById('modalCat');
+const modalHeadline = document.getElementById('modalHeadline');
+const modalDate = document.getElementById('modalDate');
+const modalContent = document.getElementById('modalContent');
+const modalActions = document.getElementById('modalActions');
+const modalRisks = document.getElementById('modalRisks');
+const modalCsuite = document.getElementById('modalCsuite');
+const modalLinks = document.getElementById('modalLinks');
+const modalRelated = document.getElementById('modalRelated');
+
+function openModal(id) {
+  const c = cardMap[id];
+  if (!c) return;
+  modalCat.className = `modal-cat ${c.catColor}`;
+  modalCat.textContent = c.category;
+  modalHeadline.textContent = c.headline;
+  modalDate.textContent = c.date;
+  modalContent.innerHTML = c.content;
+  modalActions.innerHTML = c.actions.map(a=>`<li><span class="owner-badge ${a.ownerClass}">${a.owner}</span>${a.text}</li>`).join('');
+  modalRisks.innerHTML = c.risks.map(r=>`<li>${r.text}</li>`).join('');
+  modalCsuite.innerHTML = c.csuite;
+  modalLinks.innerHTML = c.links.map(l=>`<a class="source-link" href="${l.url}" target="_blank" rel="noopener"><span class="source-name">${l.source}</span><span class="source-title">${l.title}</span><span class="source-arrow">↗</span></a>`).join('');
+  modalRelated.innerHTML = (c.related||[]).map(rid=>{const rc=cardMap[rid];return rc?`<button class="related-chip" data-id="${rid}">${rc.headline.substring(0,55)}…</button>`:''}).join('');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modalPanel').scrollTop = 0;
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+container.addEventListener('click', e => {
+  const card = e.target.closest('.card');
+  if (card) openModal(card.dataset.id);
+});
+
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.related-chip');
+  if (chip) openModal(chip.dataset.id);
+});
+
+// ---- Nav filters ----
+const navBtns = document.querySelectorAll('.nav-btn');
+navBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    navBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const target = btn.dataset.section;
+    document.querySelectorAll('.section-wrap').forEach(sw => {
+      sw.style.display = (target === 'all' || sw.dataset.section === target) ? '' : 'none';
+    });
+  });
+});
+
+// ---- Nav scroll ----
+const navInner = document.getElementById('navInner');
+const navScrollArea = document.getElementById('navScrollArea');
+const navLeft = document.getElementById('navLeft');
+const navRight = document.getElementById('navRight');
+
+function updateScrollState() {
+  const sl = navInner.scrollLeft, sw = navInner.scrollWidth, cw = navInner.clientWidth;
+  navLeft.classList.toggle('visible', sl > 10);
+  navRight.classList.toggle('visible', sl < sw - cw - 10);
+  navScrollArea.classList.toggle('fade-left', sl > 10);
+  navScrollArea.classList.toggle('fade-right', sl < sw - cw - 10);
+}
+navInner.addEventListener('scroll', updateScrollState);
+navLeft.addEventListener('click', () => { navInner.scrollBy({left:-160,behavior:'smooth'}); });
+navRight.addEventListener('click', () => { navInner.scrollBy({left:160,behavior:'smooth'}); });
+setTimeout(updateScrollState, 100);
+
+// ---- Theme toggle ----
+const toggle = document.getElementById('themeToggle');
+const stored = localStorage.getItem('ai-briefing-theme');
+if (stored === 'light') { document.documentElement.setAttribute('data-theme','light'); toggle.textContent = '☀️'; }
+toggle.addEventListener('click', () => {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    document.documentElement.removeAttribute('data-theme');
+    toggle.textContent = '🌙';
+    localStorage.setItem('ai-briefing-theme','dark');
+  } else {
+    document.documentElement.setAttribute('data-theme','light');
+    toggle.textContent = '☀️';
+    localStorage.setItem('ai-briefing-theme','light');
+  }
+});
+</script>
+</body>
+</html>
