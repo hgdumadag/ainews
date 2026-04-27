@@ -233,12 +233,12 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
 <header class="hero">
   <div class="hero-label">JG Summit Holdings · AI Intelligence</div>
   <h1>AI <span>Intelligence</span> Briefing</h1>
-  <p class="hero-sub">Week of April 20–27, 2026 · C-Suite & Audit Leadership Edition</p>
+  <p class="hero-sub">Week of April 20–27, 2026 · C-Suite &amp; Audit Leadership Edition</p>
   <div class="metrics-bar">
     <div class="metric"><span class="metric-value">$40B</span><span class="metric-label">Google-Anthropic Deal</span></div>
     <div class="metric"><span class="metric-value">20,000</span><span class="metric-label">Big Tech AI Layoffs</span></div>
     <div class="metric"><span class="metric-value">$30B</span><span class="metric-label">Anthropic ARR</span></div>
-    <div class="metric"><span class="metric-value">54%</span><span class="metric-label">Enterprises w/ AI Agents</span></div>
+    <div class="metric"><span class="metric-value">GPT-5.5</span><span class="metric-label">OpenAI Model Released</span></div>
     <div class="metric"><span class="metric-value">+72%</span><span class="metric-label">AI Cyberattack Surge</span></div>
   </div>
 </header>
@@ -249,11 +249,12 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
     <div class="nav-scroll-area" id="navScrollArea">
       <div class="nav-inner" id="navInner">
         <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="models">🧠 New AI Models</button>
         <button class="nav-btn" data-section="platforms">🏛 Enterprise Platforms</button>
         <button class="nav-btn" data-section="agents">🤖 Agentic AI</button>
         <button class="nav-btn" data-section="workforce">👥 Workforce</button>
-        <button class="nav-btn" data-section="risk">🔒 AI Risk & Fraud</button>
-        <button class="nav-btn" data-section="funding">💰 Funding & M&A</button>
+        <button class="nav-btn" data-section="risk">🔒 AI Risk &amp; Fraud</button>
+        <button class="nav-btn" data-section="funding">💰 Funding &amp; M&amp;A</button>
       </div>
     </div>
     <button class="nav-scroll-btn" id="navRight">&#8250;</button>
@@ -264,7 +265,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
 <main class="main">
   <div class="exec-strip">
     <div class="exec-strip-label">⚡ 30-Second Executive Summary</div>
-    <div class="exec-strip-body">Google dominated Week 17 on two fronts: launching the <strong>Gemini Enterprise Agent Platform</strong> at Cloud Next '26 with a <strong>$750M partner fund</strong>, while simultaneously committing up to <strong>$40 billion</strong> to Anthropic — the largest single AI investment ever recorded. The workforce consequences of AI acceleration sharpened, with <strong>Meta and Microsoft</strong> announcing a combined <strong>20,000 job cuts</strong> explicitly attributed to AI automation, adding to a Q1 total of 80,000 tech layoffs nearly half credited to AI. <strong>Anthropic</strong> crossed <strong>$30 billion</strong> in annualized revenue — overtaking OpenAI for the first time — driven by 1,000+ enterprise customers each spending over $1M per year on Claude. On the risk front, two supply-chain data breaches on April 20 exposed the vulnerability of AI vendor ecosystems, as AI-enabled cyberattacks continue a <strong>72% year-over-year surge</strong>.</div>
+    <div class="exec-strip-body">Week 17 was defined by simultaneous moves on three fronts: <strong>OpenAI released GPT-5.5</strong> on April 23 — its strongest model yet for agentic coding and knowledge work — while Google launched the <strong>Gemini Enterprise Agent Platform</strong> at Cloud Next '26 with a <strong>$750M partner fund</strong> and committed up to <strong>$40 billion</strong> to Anthropic, the largest single AI investment ever recorded. The workforce consequences of AI acceleration sharpened, with <strong>Meta and Microsoft</strong> announcing a combined <strong>20,000 job cuts</strong> explicitly attributed to AI automation, adding to a Q1 total of 80,000 tech layoffs nearly half credited to AI. <strong>Anthropic</strong> crossed <strong>$30 billion</strong> in annualized revenue — overtaking OpenAI for the first time — driven by 1,000+ enterprise customers each spending over $1M per year on Claude. On the risk front, two supply-chain data breaches on April 20 exposed the vulnerability of AI vendor ecosystems, as AI-enabled cyberattacks continue a <strong>72% year-over-year surge</strong>.</div>
   </div>
   <div id="sectionsContainer"></div>
 </main>
@@ -285,7 +286,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
           <ul id="modalActions"></ul>
         </div>
         <div class="panel panel-risks">
-          <div class="panel-title">⚠ Risks & Watchouts</div>
+          <div class="panel-title">⚠ Risks &amp; Watchouts</div>
           <ul id="modalRisks"></ul>
         </div>
       </div>
@@ -309,6 +310,45 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
 
 <script>
 const sections = [
+  {
+    id:"models",
+    title:"New AI Models",
+    icon:"🧠",
+    iconClass:"icon-gold",
+    count:1,
+    cards:[
+      {
+        id:"gpt-55-release",
+        date:"Apr 23–24, 2026",
+        headline:"OpenAI releases GPT-5.5 — agentic reasoning leap at $5/$30 per million tokens, API live April 24",
+        summary:"GPT-5.5 delivers OpenAI's strongest gains yet in agentic coding, computer use, and knowledge work, matching GPT-5.4 latency at a higher intelligence level. Available to Plus, Pro, Business, and Enterprise users from April 23; API from April 24.",
+        tags:[["CEO","bg-gold"],["CFO","bg-green"],["CAE","bg-purple"]],
+        barClass:"bar-gold",
+        riskLevel:"HIGH",
+        riskClass:"bg-gold",
+        category:"NEW AI MODELS",
+        catColor:"c-gold",
+        content:`<p><strong>OpenAI</strong> released <strong>GPT-5.5</strong> on April 23, 2026 — its most capable generally available model — rolling it out immediately to <strong>Plus, Pro, Business, and Enterprise</strong> ChatGPT subscribers, with API access opening on <strong>April 24</strong>. The release came in the same week as OpenAI's acqui-hire of Hiro Finance, underscoring the company's accelerating push to become an AI-native enterprise software platform, not just a model provider.</p><p>OpenAI describes GPT-5.5 as its "smartest and most intuitive model yet," with the largest capability gains in <strong>agentic coding</strong>, <strong>computer use</strong>, <strong>knowledge work</strong>, and early scientific research — areas defined by multi-step reasoning and autonomous task execution. Crucially, it matches GPT-5.4's real-world latency while operating at a materially higher intelligence level, and uses <strong>significantly fewer tokens</strong> to complete the same Codex tasks — effectively reducing cost-per-task even at the same token pricing.</p><p>API pricing is set at <strong>$5.00 per million input tokens and $30.00 per million output tokens</strong> for GPT-5.5, with the GPT-5.5 Pro tier at $30/$180 per million — unchanged from GPT-5.4 Pro. Alongside GPT-5.5, OpenAI also released <strong>GPT-5.3 Instant Mini</strong> (April 22) as a lighter conversational fallback, and <strong>ChatGPT Images 2.0</strong> (April 22), its updated image generation model with improved instruction-following for visual asset creation. The pace of OpenAI releases — three distinct products in two days — is a deliberate strategy to establish enterprise interface standardization before this year's procurement cycles close.</p>`,
+        actions:[
+          {owner:"CFO",ownerClass:"owner-cfo",text:"Benchmark GPT-5.5 API pricing against your current OpenAI contract and usage volume. At $5/$30 per million tokens, model the cost impact of migrating high-volume workflows from GPT-5.4. The token efficiency gains (fewer tokens per Codex task) may deliver net cost reduction even before comparing per-token rates."},
+          {owner:"CEO",ownerClass:"owner-ceo",text:"Direct product and technology teams to evaluate GPT-5.5 for JG Summit's highest-value AI use cases — specifically those requiring multi-step reasoning, document analysis, and workflow automation. With Enterprise access already included in existing OpenAI agreements, there may be zero incremental cost to upgrade."},
+          {owner:"CAE",ownerClass:"owner-gc",text:"Review the governance implications of upgrading to GPT-5.5. Model upgrades change the behavior of AI systems already in production — outputs, refusals, and reasoning patterns shift. Ensure that any JG Summit workflows using GPT-5.4 via API are re-validated against GPT-5.5 before automatic migration, particularly those touching financial data, customer communications, or compliance reporting."}
+        ],
+        risks:[
+          {text:"Behavioral drift on model upgrade: GPT-5.5 refuses more cyber-related requests than earlier models and reasons differently across complex tasks. AI workflows validated on GPT-5.4 may produce different outputs on GPT-5.5 — requiring re-testing before production deployment, especially in regulated or customer-facing contexts."},
+          {text:"Vendor lock-in acceleration: OpenAI's strategy of releasing at high cadence to win enterprise standardization is explicit. Each model upgrade that JG Summit adopts deepens dependency on OpenAI's pricing and availability decisions. Maintaining a secondary model provider relationship is prudent risk management."},
+          {text:"Cost model complexity: With GPT-5.5, GPT-5.5 Pro, GPT-5.3 Instant Mini, and legacy models all simultaneously available via API, selecting the right model per use case becomes a cost optimization discipline. Without active model governance, teams default to the most capable (and most expensive) model regardless of task complexity."}
+        ],
+        csuite:"<strong>GPT-5.5 is the clearest evidence yet that the enterprise AI capability frontier is advancing faster than most organizations' governance frameworks.</strong> For JG Summit, the immediate question is not whether to use GPT-5.5 — Enterprise subscribers already have access — but whether the organization has the validation processes, cost controls, and behavioral guardrails in place to manage model upgrades responsibly. The organizations winning with AI in 2026 are not those with the newest models; they are those with the discipline to deploy new models safely and cost-effectively.",
+        links:[
+          {source:"OpenAI",title:"Introducing GPT-5.5",url:"https://openai.com/index/introducing-gpt-5-5/"},
+          {source:"CNBC",title:"OpenAI announces GPT-5.5, its latest artificial intelligence model",url:"https://www.cnbc.com/2026/04/23/openai-announces-latest-artificial-intelligence-model.html"},
+          {source:"TechCrunch",title:"OpenAI releases GPT-5.5, bringing company one step closer to an AI super app",url:"https://techcrunch.com/2026/04/23/openai-chatgpt-gpt-5-5-ai-model-superapp/"}
+        ],
+        related:["anthropic-30b-arr","google-cloud-next-26","enterprise-agents-production"]
+      }
+    ]
+  },
   {
     id:"platforms",
     title:"Enterprise Platform Wars",
