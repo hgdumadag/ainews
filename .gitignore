@@ -1,0 +1,13 @@
+# Secrets — never commit these
+CLAUDE.md
+_automation/config/github_pat
+_automation/config/github_ainews_key
+
+# Encrypted PAT is safe to commit (github_pat.enc is intentionally tracked)
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+*.swp
