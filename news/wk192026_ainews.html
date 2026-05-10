@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — Week 19, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555;      --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c;    --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def;     --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0;   --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9;     --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c;   --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+[data-theme="light"] {
+  --bg: #f4f6f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f4f8;
+  --bg-expanded: #ffffff;
+  --border: #d8dde6;
+  --border-accent: #c0c8d4;
+  --text: #1a2332;
+  --text-muted: #4a5568;
+  --text-dim: #8896a8;
+  --accent: #135EAB;
+  --accent-light: #1a74d0;
+  --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030;      --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F;    --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB;     --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1;   --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488;     --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621;   --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4;
+  --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06);
+  --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06);
+  --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05);
+  --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08);
+  --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{transition:background 0.4s ease}
+body{font-family:'DM Sans',sans-serif;line-height:1.65;background:var(--bg);color:var(--text);min-height:100vh}
+body,.hero,.nav-strip,.card,.modal,.exec-strip,.metric,.modal-csuite,.panel,.footer,.theme-toggle,.nav-btn{
+  transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;bottom:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:var(--noise-opacity,1)
+}
+a{color:inherit;text-decoration:none}
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--bg) 100%);
+  padding:60px 24px 48px;text-align:center
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:-20%;width:140%;height:200%;
+  background:radial-gradient(ellipse at 30% 20%,var(--hero-glow-a) 0%,transparent 50%),
+              radial-gradient(ellipse at 70% 80%,var(--hero-glow-b) 0%,transparent 50%);
+  pointer-events:none
+}
+.hero-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--accent);display:flex;align-items:center;
+  justify-content:center;gap:10px;margin-bottom:18px
+}
+.hero-label::before{content:'';width:24px;height:1px;background:var(--accent)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:12px}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;color:var(--text-muted);margin-bottom:36px}
+.metrics-bar{
+  display:flex;gap:1px;background:var(--border);border-radius:10px;
+  max-width:900px;margin:0 auto;overflow:hidden
+}
+.metric{
+  flex:1;background:var(--bg-card);padding:18px 20px;text-align:center;
+  cursor:default;transition:background 0.2s
+}
+.metric:hover{background:var(--bg-card-hover)}
+.metric-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--accent);display:block}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-top:4px}
+[data-theme="light"] .hero h1 span,[data-theme="light"] .metric-value{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+[data-theme="light"] .metrics-bar{background:linear-gradient(135deg,#135EAB,#04955F)}
+[data-theme="light"] .metric{background:rgba(255,255,255,0.95)}
+[data-theme="light"] .metric:hover{background:rgba(255,255,255,1)}
+.nav-strip{position:sticky;top:0;z-index:100;background:var(--nav-bg);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+.nav-wrapper{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:4px;height:52px}
+.nav-scroll-area{flex:1;position:relative;overflow:hidden}
+#nav-inner{display:flex;overflow-x:auto;gap:4px;padding:8px 4px;scrollbar-width:none}
+#nav-inner::-webkit-scrollbar{display:none}
+.nav-btn{
+  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
+  padding:5px 14px;border-radius:6px;border:1px solid transparent;
+  background:transparent;color:var(--text-muted);cursor:pointer;white-space:nowrap;
+  transition:all 0.2s
+}
+.nav-btn:hover{background:var(--bg-card);color:var(--text);border-color:var(--border)}
+.nav-btn.active{background:var(--accent-dim);color:var(--accent);border-color:var(--accent-dim)}
+[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,rgba(19,94,171,0.10),rgba(4,149,95,0.08));color:#135EAB}
+.theme-toggle{
+  width:34px;height:34px;border-radius:8px;border:1px solid var(--border);
+  background:var(--bg-card);cursor:pointer;margin-left:8px;
+  position:relative;flex-shrink:0;overflow:hidden
+}
+.theme-toggle .icon-sun,.theme-toggle .icon-moon{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:15px;transition:opacity 0.3s,transform 0.3s
+}
+.theme-toggle .icon-sun{opacity:0;transform:rotate(-90deg) scale(0.5)}
+.theme-toggle .icon-moon{opacity:1;transform:rotate(0) scale(1)}
+[data-theme="light"] .theme-toggle .icon-sun{opacity:1;transform:rotate(0) scale(1)}
+[data-theme="light"] .theme-toggle .icon-moon{opacity:0;transform:rotate(90deg) scale(0.5)}
+.main{max-width:1200px;margin:0 auto;padding:32px 24px 80px}
+.exec-strip{
+  background:var(--accent-dim);border:1px solid var(--border-accent);
+  border-radius:12px;padding:20px 24px;margin-bottom:40px
+}
+[data-theme="light"] .exec-strip{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06))}
+.exec-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.exec-text{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.7}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.section{animation:fadeUp 0.5s ease both;margin-bottom:48px}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;flex:1}
+.section-count{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-dim)}
+.icon-gold{background:var(--accent-dim);color:var(--accent)}
+.icon-green{background:var(--green-dim);color:var(--green)}
+.icon-blue{background:var(--blue-dim);color:var(--blue)}
+.icon-purple{background:var(--purple-dim);color:var(--purple)}
+.icon-cyan{background:var(--cyan-dim);color:var(--cyan)}
+.icon-orange{background:var(--orange-dim);color:var(--orange)}
+.icon-red{background:var(--red-dim);color:var(--red)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+  padding:20px;cursor:pointer;position:relative;overflow:hidden;
+  transition:all 0.25s ease
+}
+.card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;opacity:0;transition:opacity 0.25s
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--shadow-card);background:var(--bg-card-hover)}
+.card:hover::before{opacity:1}
+[data-theme="light"] .card{box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(19,94,171,0.10)}
+.bar-gold::before{background:var(--accent)}
+.bar-green::before{background:var(--green)}
+.bar-blue::before{background:var(--blue)}
+.bar-purple::before{background:var(--purple)}
+.bar-cyan::before{background:var(--cyan)}
+.bar-orange::before{background:var(--orange)}
+.bar-red::before{background:var(--red)}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.card-headline{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4}
+.card-summary{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px;font-weight:500}
+.bg-gold{background:var(--accent-dim);color:var(--accent)}
+.bg-green{background:var(--green-dim);color:var(--green)}
+.bg-blue{background:var(--blue-dim);color:var(--blue)}
+.bg-red{background:var(--red-dim);color:var(--red)}
+.bg-purple{background:var(--purple-dim);color:var(--purple)}
+.bg-cyan{background:var(--cyan-dim);color:var(--cyan)}
+.bg-orange{background:var(--orange-dim);color:var(--orange)}
+[data-theme="light"] .bg-gold{background:rgba(19,94,171,0.10);color:#135EAB}
+[data-theme="light"] .bg-red{background:rgba(255,156,163,0.20);color:#b83240}
+[data-theme="light"] .bg-green{background:rgba(4,149,95,0.10);color:#04955F}
+[data-theme="light"] .bg-blue{background:rgba(100,203,192,0.15);color:#0a7a6e}
+[data-theme="light"] .bg-purple{background:rgba(107,70,193,0.10);color:#6b46c1}
+[data-theme="light"] .bg-cyan{background:rgba(100,203,192,0.15);color:#0d9488}
+[data-theme="light"] .bg-orange{background:rgba(244,244,49,0.15);color:#8a6d00}
+.card-bottom{display:flex;align-items:center;justify-content:space-between}
+.card-risk-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+.card-expand-hint{font-size:11px;color:var(--text-dim)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal-overlay{
+  position:fixed;inset:0;background:var(--overlay-bg);z-index:1000;
+  display:none;align-items:center;justify-content:center;padding:20px;
+  backdrop-filter:blur(4px)
+}
+.modal-overlay.active{display:flex;animation:fadeIn 0.2s ease}
+.modal{
+  background:var(--bg-expanded);border:1px solid var(--border);border-radius:16px;
+  width:100%;max-width:800px;max-height:90vh;overflow-y:auto;
+  animation:slideUp 0.3s ease;scrollbar-width:thin;scrollbar-color:var(--border) transparent
+}
+[data-theme="light"] .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);border-color:var(--border)}
+.modal-top-bar{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg-expanded);z-index:1}
+.modal-category{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500}
+.modal-close{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px}
+.modal-body{padding:28px 28px 32px}
+.modal-headline{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1.25;margin-bottom:8px}
+.modal-date{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
+.modal-content{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;margin-bottom:24px}
+.modal-content p{margin-bottom:14px}
+.modal-content p:last-child{margin-bottom:0}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:640px){.panel-grid{grid-template-columns:1fr}}
+.panel{border-radius:10px;padding:16px 18px}
+.panel-action{background:var(--panel-action-bg);border:1px solid var(--panel-action-border)}
+.panel-risk{background:var(--panel-risk-bg);border:1px solid var(--panel-risk-border)}
+.panel-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.panel-action .panel-label{color:var(--green)}
+.panel-risk .panel-label{color:var(--red)}
+.panel-list{list-style:none;display:flex;flex-direction:column;gap:0}
+.panel-list li{font-family:'Source Serif 4',serif;font-size:13.5px;color:var(--text-muted);padding:8px 0;border-bottom:1px solid var(--panel-li-border);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.panel-list li:last-child{border-bottom:none}
+.panel-risk .panel-list li::before{content:'▸';color:var(--red);flex-shrink:0;margin-top:2px}
+.owner{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;flex-shrink:0;margin-top:2px;display:inline-block}
+.owner-ceo{background:var(--accent-dim);color:var(--accent)}
+.owner-cfo{background:var(--green-dim);color:var(--green)}
+.owner-gc{background:var(--purple-dim);color:var(--purple)}
+.owner-chro{background:var(--orange-dim);color:var(--orange)}
+[data-theme="light"] .owner-ceo{background:rgba(19,94,171,0.10);color:#135EAB}
+[data-theme="light"] .owner-cfo{background:rgba(4,149,95,0.10);color:#04955F}
+[data-theme="light"] .owner-gc{background:rgba(107,70,193,0.10);color:#6b46c1}
+[data-theme="light"] .owner-chro{background:rgba(244,244,49,0.15);color:#8a6d00}
+.modal-csuite{background:var(--accent-dim);border:1px solid var(--border-accent);border-radius:10px;padding:16px 20px;margin-bottom:20px}
+[data-theme="light"] .modal-csuite{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06))}
+.modal-csuite-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+#modal-csuite-text{font-family:'Source Serif 4',serif;font-size:14px;color:var(--text-muted);line-height:1.65}
+.modal-links{margin-bottom:20px}
+.modal-links-label,.modal-related-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
+.modal-link{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);color:var(--text-muted);transition:color 0.2s}
+.modal-link:hover{color:var(--text)}
+.modal-link:last-child{border-bottom:none}
+.modal-link-source{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);flex-shrink:0;min-width:80px}
+.modal-link-arrow{margin-left:auto;color:var(--text-dim);font-size:12px}
+.related-chips{display:flex;flex-wrap:wrap;gap:8px}
+.related-chip{font-family:'DM Sans',sans-serif;font-size:12px;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted);cursor:pointer;transition:all 0.2s}
+.related-chip:hover{background:var(--bg-card-hover);border-color:var(--accent);color:var(--accent)}
+.c-gold{color:var(--accent)} .c-green{color:var(--green)} .c-blue{color:var(--blue)}
+.c-purple{color:var(--purple)} .c-cyan{color:var(--cyan)} .c-orange{color:var(--orange)} .c-red{color:var(--red)}
+.watchlist-section{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:40px}
+.watchlist-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.watchlist-items{list-style:none;display:flex;flex-direction:column;gap:0}
+.watchlist-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.watchlist-item:last-child{border-bottom:none}
+.watchlist-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;flex-shrink:0;margin-top:2px}
+.watchlist-text{font-family:'Source Serif 4',serif;font-size:14px;color:var(--text-muted);line-height:1.6}
+.qfm-section{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:40px}
+.qfm-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.qfm-list{list-style:none;counter-reset:qfm;display:flex;flex-direction:column;gap:0}
+.qfm-item{counter-increment:qfm;display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.qfm-item:last-child{border-bottom:none}
+.qfm-item::before{content:counter(qfm);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);flex-shrink:0;width:20px;margin-top:2px}
+.qfm-text{font-family:'Source Serif 4',serif;font-size:14px;color:var(--text-muted);line-height:1.6}
+.footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim)}
+@media(max-width:768px){
+  .hero{padding:40px 16px 32px}
+  .hero h1{font-size:clamp(28px,7vw,40px)}
+  .metrics-bar{flex-wrap:wrap}
+  .metric{flex:calc(50% - 1px);min-width:0}
+  .main{padding:24px 16px 60px}
+  .cards-grid{grid-template-columns:1fr}
+  .modal-body{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-label">AI Intelligence Briefing</div>
+  <h1><span>AI Executive Briefing</span></h1>
+  <p class="hero-sub">May 4 – May 11, 2026 &nbsp;·&nbsp; JG Summit Holdings</p>
+  <div class="metrics-bar">
+    <div class="metric">
+      <span class="metric-value">12</span>
+      <span class="metric-label">Executive Signals</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">4</span>
+      <span class="metric-label">Risk &amp; Fraud Stories</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">3</span>
+      <span class="metric-label">Regulation / Legal</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">3</span>
+      <span class="metric-label">Opportunity Stories</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">8</span>
+      <span class="metric-label">Discuss / Act Items</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <div class="nav-scroll-area">
+      <div id="nav-inner">
+        <button class="nav-btn active" onclick="filterSection('all')">All Stories</button>
+        <button class="nav-btn" onclick="filterSection('platforms')">🏛 Platform Wars</button>
+        <button class="nav-btn" onclick="filterSection('regulation')">⚖️ Regulation</button>
+        <button class="nav-btn" onclick="filterSection('risk')">🔒 Risk &amp; Fraud</button>
+        <button class="nav-btn" onclick="filterSection('agents')">🤖 Agentic AI</button>
+        <button class="nav-btn" onclick="filterSection('impact')">📊 Business Impact</button>
+        <button class="nav-btn" onclick="filterSection('workforce')">👥 Workforce</button>
+        <button class="nav-btn" onclick="filterSection('funding')">💰 Funding &amp; M&amp;A</button>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
+  </div>
+</nav>
+
+<main class="main">
+
+  <div class="exec-strip">
+    <div class="exec-label">⚡ 30-Second Executive Summary</div>
+    <div class="exec-text">
+      This week's dominant signal is the simultaneous launch of rival enterprise AI ventures by OpenAI and Anthropic — both backed by Wall Street's largest private equity firms — marking AI deployment's transition from software licensing to a professional services arms race worth tens of billions. The biggest near-term opportunity for enterprises lies in sector-specific AI agents (finance, operations, compliance) that are now production-ready from multiple competing vendors, creating real negotiating leverage for organizations prepared to move beyond pilots. The most pressing risk is the accelerating sophistication of AI-enabled attacks: Google Mandiant documents attacker dwell times that have collapsed to just 22 seconds, while enterprise deepfake CEO fraud surpassed $1.1 billion in losses last year and is accelerating. Audit leadership should table for immediate discussion whether AI governance controls, agent inventories, and vendor contracts are adequate given the simultaneous surge in both capability and threat that defined this week.
+    </div>
+  </div>
+
+  <!-- SECTION 1: ENTERPRISE PLATFORM WARS -->
+  <section class="section" id="section-platforms">
+    <div class="section-header">
+      <div class="section-icon icon-gold">🏛</div>
+      <div class="section-title">Enterprise Platform Wars</div>
+      <div class="section-count">3 Stories</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card bar-gold" onclick="openModal('m1')">
+        <div class="card-date">May 4, 2026</div>
+        <div class="card-headline">OpenAI and Anthropic Launch Rival $10B and $1.5B Wall Street-Backed Enterprise AI Ventures</div>
+        <div class="card-summary">Both companies announced competing PE-backed enterprise AI services ventures within hours of each other, signaling a race to become the deployment layer for enterprise AI globally.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-green">CFO</span>
+          <span class="tag bg-purple">CAE</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-gold">Opportunity</span>
+          <span class="card-risk-badge bg-gold">Discuss</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+      <div class="card bar-gold" onclick="openModal('m2')">
+        <div class="card-date">May 5–6, 2026</div>
+        <div class="card-headline">Anthropic Targets Wall Street with 10 Finance AI Agents, M365 Integration, and Moody's Deal</div>
+        <div class="card-summary">Pre-built agents now automate KYC screening, pitchbook creation, GL reconciliation, and month-end close — embedded directly into Microsoft 365 with Moody's data for 600M companies.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-green">CFO</span>
+          <span class="tag bg-purple">CAE</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-gold">Opportunity</span>
+          <span class="card-risk-badge bg-gold">Discuss</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+      <div class="card bar-gold" onclick="openModal('m3')">
+        <div class="card-date">May 5, 2026</div>
+        <div class="card-headline">ServiceNow Unveils Autonomous AI Workforce and AI Control Tower to Govern All Enterprise Agents</div>
+        <div class="card-summary">At Knowledge 2026, ServiceNow expanded AI Control Tower with 30 integrations spanning AWS, Azure, SAP, Oracle, and Workday — governing every AI agent regardless of origin, built-in by default.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-green">CFO</span>
+          <span class="tag bg-purple">CAE</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-cyan">Governance</span>
+          <span class="card-risk-badge bg-gold">Discuss</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: AI REGULATION & GOVERNANCE -->
+  <section class="section" id="section-regulation">
+    <div class="section-header">
+      <div class="section-icon icon-purple">⚖️</div>
+      <div class="section-title">AI Regulation &amp; Governance</div>
+      <div class="section-count">3 Stories</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card bar-purple" onclick="openModal('m4')">
+        <div class="card-date">May 7, 2026</div>
+        <div class="card-headline">EU AI Act Omnibus Deal: High-Risk AI Compliance Delayed to December 2027, But August Deadlines Stand</div>
+        <div class="card-summary">EU Council and Parliament struck a provisional deal to postpone Annex III high-risk AI obligations to December 2027 — but GPAI transparency and AI literacy rules still take effect August 2026.</div>
+        <div class="card-tags">
+          <span class="tag bg-purple">GC</span>
+          <span class="tag bg-purple">CAE</span>
+          <span class="tag bg-gold">CEO</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-purple">Governance</span>
+          <span class="card-risk-badge bg-red">Act</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+      <div class="card bar-purple" onclick="openModal('m5')">
+        <div class="card-date">May 5, 2026</div>
+        <div class="card-headline">US Government Expands Pre-Deployment AI Testing — Google, Microsoft, and xAI Join CAISI Evaluation Program</div>
+        <div class="card-summary">The Commerce Department's CAISI announced pre-release evaluation agreements with Google DeepMind, Microsoft, and xAI for national security, cyber, bio, and chemical risk assessment before model launch.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-purple">GC</span>
+          <span class="tag bg-purple">CAE</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-purple">Governance</span>
+          <span class="card-risk-badge bg-blue">Monitor</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+      <div class="card bar-purple" onclick="openModal('m6')">
+        <div class="card-date">May 1, 2026</div>
+        <div class="card-headline">Pentagon Signs AI Deals with 8 Companies — Excludes Anthropic Over Safety Guardrails for Autonomous Weapons</div>
+        <div class="card-summary">DOD announced classified AI contracts with OpenAI, Google, Microsoft, SpaceX, Nvidia, and others. Anthropic was excluded after refusing to remove safety restrictions on autonomous weapons use.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-purple">GC</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-purple">Governance</span>
+          <span class="card-risk-badge bg-blue">Monitor</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: AI RISK & FRAUD -->
+  <section class="section" id="section-risk">
+    <div class="section-header">
+      <div class="section-icon icon-red">🔒</div>
+      <div class="section-title">AI Risk &amp; Fraud</div>
+      <div class="section-count">2 Stories</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card bar-red" onclick="openModal('m7')">
+        <div class="card-date">May 2026</div>
+        <div class="card-headline">Deepfake CEO Fraud Costs Enterprises $1.1B in 2025 — Voice Cloning Attacks Surge 680%</div>
+        <div class="card-summary">Enterprise losses from AI deepfake fraud tripled in one year; one fabricated video conference cost a firm $39M. AI can clone a voice in under 3 seconds — enough to fool trained finance staff.</div>
+        <div class="card-tags">
+          <span class="tag bg-green">CFO</span>
+          <span class="tag bg-purple">CAE</span>
+          <span class="tag bg-purple">GC</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-red">Risk</span>
+          <span class="card-risk-badge bg-red">Act</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+      <div class="card bar-red" onclick="openModal('m8')">
+        <div class="card-date">May 2026</div>
+        <div class="card-headline">AI-Enabled Cyberattacks Accelerate — Mandiant Documents Attacker Dwell Time Collapse to 22 Seconds</div>
+        <div class="card-summary">Google Mandiant's M-Trends 2026 report reveals initial access to lateral movement now takes 22 seconds, down from 8 hours. Itron and Medtronic suffered intrusions this week in AI-assisted supply chain attacks.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-green">CFO</span>
+          <span class="tag bg-purple">CAE</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-red">Risk</span>
+          <span class="card-risk-badge bg-red">Act</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4: AGENTIC AI -->
+  <section class="section" id="section-agents">
+    <div class="section-header">
+      <div class="section-icon icon-cyan">🤖</div>
+      <div class="section-title">Agentic AI</div>
+      <div class="section-count">2 Stories</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card bar-cyan" onclick="openModal('m9')">
+        <div class="card-date">Q1 2026</div>
+        <div class="card-headline">58% of Enterprise AI Agents Require Manual Override — Only 7% of Firms Have Mature Agent Governance</div>
+        <div class="card-summary">Forrester Q1 2026 finds that despite vendor claims of "lights-out" automation, most deployed agents still fail in production. 89% of compliance leaders demand mandatory audit trails before trusting autonomous agents.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-purple">CAE</span>
+          <span class="tag bg-purple">GC</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-red">Risk</span>
+          <span class="card-risk-badge bg-gold">Discuss</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+      <div class="card bar-cyan" onclick="openModal('m10')">
+        <div class="card-date">May 2026</div>
+        <div class="card-headline">EU AI Act Classifies Most Enterprise Multi-Agent Orchestration as "High-Risk" — Compliance Clock Running</div>
+        <div class="card-summary">The EU AI Act enforcement timeline for high-risk AI systems in finance, HR, and critical infrastructure is now confirmed at December 2027 after the Omnibus deal — but internal compliance work must begin now to meet the deadline.</div>
+        <div class="card-tags">
+          <span class="tag bg-purple">GC</span>
+          <span class="tag bg-purple">CAE</span>
+          <span class="tag bg-gold">CEO</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-purple">Governance</span>
+          <span class="card-risk-badge bg-red">Act</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 5: BUSINESS IMPACT -->
+  <section class="section" id="section-impact">
+    <div class="section-header">
+      <div class="section-icon icon-blue">📊</div>
+      <div class="section-title">Business Impact</div>
+      <div class="section-count">1 Story</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card bar-blue" onclick="openModal('m11')">
+        <div class="card-date">2026</div>
+        <div class="card-headline">79% of Enterprises Face AI Adoption Challenges Despite Surging Investment — Only 29% See Significant ROI</div>
+        <div class="card-summary">Despite 97% of executives reporting AI benefits and 86% increasing budgets, most organizations cannot translate AI spend into measurable returns. Leadership failures and weak data governance drive 84% of project failures.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-green">CFO</span>
+          <span class="tag bg-purple">CAE</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-red">Risk</span>
+          <span class="card-risk-badge bg-gold">Discuss</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 6: WORKFORCE & TALENT -->
+  <section class="section" id="section-workforce">
+    <div class="section-header">
+      <div class="section-icon icon-orange">👥</div>
+      <div class="section-title">Workforce &amp; Talent</div>
+      <div class="section-count">1 Story</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card bar-orange" onclick="openModal('m12')">
+        <div class="card-date">2026</div>
+        <div class="card-headline">AI Skills Premium Hits 56% — But Entry-Level Hiring Drops 25% and Reskilling Gap Widens to 120M Workers</div>
+        <div class="card-summary">Workers with advanced AI skills earn 56% more than peers, yet entry-level tech hiring at top firms fell 25% and 120 million workers face medium-term displacement without the reskilling they're unlikely to receive.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-orange">CHRO</span>
+          <span class="tag bg-green">CFO</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-orange">Workforce</span>
+          <span class="card-risk-badge bg-gold">Discuss</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 7: FUNDING & M&A -->
+  <section class="section" id="section-funding">
+    <div class="section-header">
+      <div class="section-icon icon-green">💰</div>
+      <div class="section-title">Funding &amp; M&amp;A</div>
+      <div class="section-count">1 Story</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card bar-green" onclick="openModal('m13')">
+        <div class="card-date">2025–2026</div>
+        <div class="card-headline">Cybersecurity M&amp;A Hits $96B Record — 270% Surge as AI Security Market Consolidates Around Identity and Governance</div>
+        <div class="card-summary">Momentum Cyber tallied $96 billion across 400 cybersecurity transactions in 2025, a 270% YoY increase. Palo Alto's $25B CyberArk acquisition closed in February 2026, with identity security emerging as the AI control plane.</div>
+        <div class="card-tags">
+          <span class="tag bg-gold">CEO</span>
+          <span class="tag bg-green">CFO</span>
+          <span class="tag bg-purple">CAE</span>
+        </div>
+        <div class="card-bottom">
+          <span class="card-risk-badge bg-green">Market Signal</span>
+          <span class="card-risk-badge bg-blue">Monitor</span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXECUTIVE WATCHLIST -->
+  <section class="section">
+    <div class="watchlist-section">
+      <div class="watchlist-title">🎯 Executive Watchlist</div>
+      <ul class="watchlist-items">
+        <li class="watchlist-item">
+          <span class="watchlist-badge bg-blue">Monitor</span>
+          <div class="watchlist-text">Track the EU AI Act Omnibus provisional deal through formal adoption before August 2026. The December 2027 extension for Annex III is not yet legally binding — compliance programs should continue as if August 2026 applies until the regulation is formally enacted.</div>
+        </li>
+        <li class="watchlist-item">
+          <span class="watchlist-badge bg-gold">Discuss</span>
+          <div class="watchlist-text">Table AI agent governance at the next board or audit committee meeting: how many autonomous or semi-autonomous AI agents are currently operating across the business, and do all have defined human-oversight controls, audit trails, and incident response plans?</div>
+        </li>
+        <li class="watchlist-item">
+          <span class="watchlist-badge bg-red">Act</span>
+          <div class="watchlist-text">Review and stress-test existing deepfake and voice-fraud detection controls in treasury, finance, and payments workflows. AI voice cloning now requires only 3 seconds of audio — current callback verification and verbal-authority protocols may be insufficient.</div>
+        </li>
+        <li class="watchlist-item">
+          <span class="watchlist-badge bg-purple">Assurance</span>
+          <div class="watchlist-text">Commission a rapid audit inventory of all AI tools currently in use across business units, including shadow AI and employee-adopted tools not formally approved. Sixty-seven percent of executives globally already believe their organization has experienced a data leak through unapproved AI tools.</div>
+        </li>
+        <li class="watchlist-item">
+          <span class="watchlist-badge bg-orange">Policy</span>
+          <div class="watchlist-text">Review the organization's AI acceptable use policy to confirm it explicitly prohibits inputting confidential, privileged, or customer data into non-enterprise AI models — and that enforcement mechanisms and employee training are in place.</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- QUESTIONS FOR MANAGEMENT -->
+  <section class="section">
+    <div class="qfm-section">
+      <div class="qfm-title">❓ Questions for Management</div>
+      <ul class="qfm-list">
+        <li class="qfm-item">
+          <div class="qfm-text">Which AI use cases — including AI agents and automated workflows — are currently operating in the business without a formal risk assessment, governance framework, or entry in our AI inventory?</div>
+        </li>
+        <li class="qfm-item">
+          <div class="qfm-text">Do our vendor contracts with AI providers address data confidentiality, model training restrictions, audit rights, liability for AI errors, and our regulatory obligations under the EU AI Act and applicable local law?</div>
+        </li>
+        <li class="qfm-item">
+          <div class="qfm-text">What controls exist today to detect and block deepfake voice or video fraud targeting our treasury, payments, and executive approval workflows — and when were these controls last tested?</div>
+        </li>
+        <li class="qfm-item">
+          <div class="qfm-text">Are we measuring AI productivity and cost savings against actual business outcomes and ROI — or against activity metrics? If we cannot demonstrate measurable value, what is the basis for continued investment?</div>
+        </li>
+        <li class="qfm-item">
+          <div class="qfm-text">Is our AI governance program — including model inventory, risk classification, and human oversight protocols — sufficiently mature to withstand regulatory examination and board-level scrutiny in the next 12 months?</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-top-bar">
+      <span class="modal-category" id="modal-category"></span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-headline" id="modal-headline"></div>
+      <div class="modal-date" id="modal-date"></div>
+      <div class="modal-content" id="modal-content"></div>
+      <div class="panel-grid" id="modal-panels"></div>
+      <div class="modal-csuite">
+        <div class="modal-csuite-label">C-Suite Bottom Line</div>
+        <div id="modal-csuite-text"></div>
+      </div>
+      <div class="modal-links" id="modal-links"></div>
+      <div id="modal-related-section">
+        <div class="modal-related-label">Related Stories</div>
+        <div class="related-chips" id="modal-related"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  AI Intelligence Briefing — May 4 – May 11, 2026 · Prepared by Claude for C-Suite Decision Makers · Sources verified as of May 11, 2026
+</footer>
+
+<script>
+const MODALS = {
+  m1: {
+    category: '🏛 Enterprise Platform Wars',
+    categoryClass: 'c-gold',
+    headline: 'OpenAI and Anthropic Launch Rival Wall Street-Backed Enterprise AI Ventures',
+    date: 'May 4, 2026',
+    content: `<p><strong>What happened:</strong> On May 4, 2026, OpenAI and Anthropic announced competing enterprise AI services ventures within hours of each other. OpenAI's "The Development Company" raised $4 billion from 19 investors at a $10 billion valuation. Anthropic's unnamed venture — backed by Blackstone, Hellman &amp; Friedman, Goldman Sachs, Apollo, General Atlantic, and Sequoia — was valued at $1.5 billion, with $300 million committed each from Anthropic, Blackstone, and Hellman &amp; Friedman.</p>
+    <p><strong>Why it matters to executives:</strong> Both ventures are structured not as software resellers but as professional services firms that embed engineers inside enterprises to redesign workflows and integrate AI into core operations. This marks a fundamental shift: the leading AI labs are now competing to be the implementation partner, not just the model provider. The consulting industry, large systems integrators, and traditional managed service providers face direct disruption from these ventures.</p>
+    <p><strong>Business opportunity:</strong> Enterprises now have multiple competing, well-capitalized AI deployment partners — creating genuine bargaining power. Organizations that have clear AI use cases and data-ready environments will be in a strong position to negotiate favorable terms, co-investment, or priority deployment access. JG Summit's conglomerate structure and scale across consumer, industrial, and financial sectors makes it an attractive partner target.</p>
+    <p><strong>Risk, control, and governance implication:</strong> Embedding external AI engineers inside enterprise workflows raises material data security, confidentiality, and vendor dependency risks. Contracts must address data handling, model training restrictions, exit provisions, and liability. Audit leadership should assess whether existing third-party risk management frameworks are adequate for this new model of deep AI vendor engagement.</p>`,
+    actions: ['Review whether existing vendor risk and third-party engagement frameworks are fit-for-purpose for embedded AI services partnerships', 'Direct the CFO and GC to assess contract structures before engaging either venture', 'Challenge the business units: are there workflows where a deployment-partner model could accelerate value versus internal build?', 'Brief the board on the industry shift from AI licensing to AI services as a strategic context item'],
+    risks: ['Vendor lock-in risk is significantly higher with embedded delivery models than with software licensing', 'Confidential data exposure if external engineers access sensitive internal systems without adequate controls', 'PE-backed venture incentives may prioritize expansion over client governance and data protection', 'Concentration risk if the organization becomes dependent on a single AI delivery partner at scale'],
+    auditQ: 'Do our third-party risk and vendor management frameworks explicitly address embedded AI delivery models, including data classification, access controls, and audit rights for AI services partners?',
+    csuite: 'The simultaneous launch of rival AI ventures by the two leading frontier AI labs is a watershed moment — AI is now a professional services industry, not just a software market. Organizations that engage early with structured governance will gain both capability and strategic positioning. Those that delay risk paying a premium to catch up or losing control over which vendor defines their AI operating model.',
+    links: [
+      { source: 'TechCrunch', url: 'https://techcrunch.com/2026/05/04/anthropic-and-openai-are-both-launching-joint-ventures-for-enterprise-ai-services/', label: 'Anthropic and OpenAI launch joint ventures for enterprise AI services' },
+      { source: 'CNBC', url: 'https://www.cnbc.com/2026/05/04/anthropic-goldman-blackstone-ai-venture.html', label: 'Anthropic teams with Goldman, Blackstone on $1.5B AI venture' },
+      { source: 'Bloomberg', url: 'https://www.bloomberg.com/news/articles/2026-05-04/openai-finalizes-10-billion-joint-venture-with-pe-firms-to-deploy-ai', label: 'OpenAI Finalizes $10 Billion Joint Venture' },
+      { source: 'Anthropic', url: 'https://www.anthropic.com/news/enterprise-ai-services-company', label: 'Building a new enterprise AI services company' }
+    ],
+    related: ['m2', 'm3', 'm11']
+  },
+  m2: {
+    category: '🏛 Enterprise Platform Wars',
+    categoryClass: 'c-gold',
+    headline: 'Anthropic Targets Wall Street with 10 Finance AI Agents, Full M365 Integration, and Moody\'s Deal',
+    date: 'May 5–6, 2026',
+    content: `<p><strong>What happened:</strong> At an invite-only New York financial services briefing on May 5, 2026, Anthropic launched ten pre-built AI agent templates targeting the most labor-intensive work in financial services: pitch builder, meeting preparer, earnings reviewer, model builder, market researcher, KYC screener, valuation reviewer, general ledger reconciler, month-end closer, and statement auditor. Simultaneously, Anthropic announced full Microsoft 365 integration — Claude functioning as a single agent across Excel, PowerPoint, Word, and Outlook — and a partnership embedding Moody's full platform (ratings and risk data for 600 million companies) natively into Claude.</p>
+    <p><strong>Why it matters to executives:</strong> Finance, treasury, and audit functions are now the explicit battleground for AI adoption. These are not prototype tools — they are production-ready agents targeting the highest-value, highest-risk workflows in an enterprise. The combination of pre-built agents, M365 integration, and Moody's credit data creates a compelling case for rapid deployment in finance teams without significant customization.</p>
+    <p><strong>Business opportunity:</strong> Early adopters in finance and internal audit can compress KYC processing time, month-end close cycles, and financial analysis workflows — directly impacting cost, speed, and accuracy. JG Summit's CFO, treasury, and internal audit functions should evaluate whether any of the ten agent templates map to existing high-volume workflows.</p>
+    <p><strong>Risk, control, and governance implication:</strong> Automated KYC screening and statement auditing carry model risk and regulatory exposure if outputs are used without adequate human review. GL reconciliation agents that access live financial data require strict access controls. GC and CAE should assess whether existing financial data handling policies and model risk frameworks apply to these agents.</p>`,
+    actions: ['Commission a rapid assessment of which of the ten finance agent templates are applicable to current JG Summit finance and audit workflows', 'Direct GC to review data handling terms in Anthropic M365 and Moody\'s integration contracts before deployment', 'Request assurance from CAE on model risk controls applicable to AI-generated financial outputs', 'Approve a structured pilot with defined success metrics before enterprise rollout'],
+    risks: ['Over-reliance on AI-generated outputs in KYC and reconciliation without sufficient human oversight creates regulatory and control risk', 'M365 integration gives Claude broad access to enterprise email and documents — data classification and access scoping is critical', 'Moody\'s data embedded in AI may create licensing complexity and audit implications for data use', 'Vendor lock-in risk if Anthropic agents become embedded in core financial workflows without exit provisions'],
+    auditQ: 'Are our model risk management and financial data governance policies updated to address AI agent outputs used in KYC, reconciliation, and financial reporting — and do we have adequate human review controls at key decision points?',
+    csuite: 'Anthropic\'s finance agent suite represents the clearest signal yet that enterprise AI has moved from experiment to production in the highest-stakes business functions. Finance and audit leadership should evaluate these tools on their own merits — but with clear governance requirements built into any pilot or deployment decision.',
+    links: [
+      { source: 'Fortune', url: 'https://fortune.com/2026/05/05/anthropic-wall-street-financial-services-agents-jamie-dimon/', label: 'Anthropic deepens push into Wall Street with new AI agents' },
+      { source: 'Anthropic', url: 'https://www.anthropic.com/news/finance-agents', label: 'Agents for financial services' },
+      { source: 'Winbuzzer', url: 'https://winbuzzer.com/2026/05/06/anthropic-ships-ten-ai-agents-for-finance-as-both-xcxwbn/', label: 'Anthropic Expands Claude With 10 Finance Workflow Agents' }
+    ],
+    related: ['m1', 'm9', 'm11']
+  },
+  m3: {
+    category: '🏛 Enterprise Platform Wars',
+    categoryClass: 'c-gold',
+    headline: 'ServiceNow Unveils Autonomous AI Workforce and AI Control Tower to Govern All Enterprise Agents',
+    date: 'May 5, 2026',
+    content: `<p><strong>What happened:</strong> At its Knowledge 2026 conference, ServiceNow announced a sweeping expansion of AI Control Tower — its enterprise AI governance platform — now covering every AI agent in the enterprise regardless of origin. Thirty new integrations span AWS, Google Cloud, Azure, SAP, Oracle, and Workday. AI Control Tower is now included by default across all ServiceNow packages at no additional cost, continuously discovering, risk-scoring, and governing AI agents. ServiceNow also launched "Autonomous Security &amp; Risk," a unified platform governing AI agent identities, permissions, and connected assets enterprise-wide.</p>
+    <p><strong>Why it matters to executives:</strong> The proliferation of AI agents from multiple vendors — OpenAI, Anthropic, Microsoft, Google, and dozens of SaaS providers — is creating a governance blind spot in most enterprises. ServiceNow is positioning itself as the control plane for this complexity. If your organization already uses ServiceNow for ITSM, HRSD, or GRC, this represents a meaningful governance capability that may already be available under existing licenses.</p>
+    <p><strong>Business opportunity:</strong> Organizations that establish centralized AI agent governance now will be better positioned for regulatory compliance, audit readiness, and incident response as AI agent deployment scales. ServiceNow's approach — discovery, risk scoring, least-privilege enforcement, and business impact measurement — closely mirrors emerging regulatory expectations in the EU and US.</p>
+    <p><strong>Risk, control, and governance implication:</strong> Most organizations currently have no systematic visibility into all AI agents operating across their enterprise. AI Control Tower addresses this, but requires organizational commitment to operationalize. CAE should assess current AI agent inventory practices and whether a control tower approach is adequate relative to the scale and risk of agents now being deployed.</p>`,
+    actions: ['Direct IT and procurement to assess whether existing ServiceNow licensing includes AI Control Tower capabilities — avoiding redundant spend on new AI governance tools', 'Commission CAE to evaluate whether ServiceNow AI Control Tower or equivalent meets audit requirements for AI agent oversight', 'Approve an AI agent discovery exercise to establish a baseline inventory before additional agents are deployed', 'Update the AI governance policy to require registration and risk classification of all new AI agents before deployment'],
+    risks: ['Without centralized agent governance, unauthorized or inadequately controlled AI agents may be operating across business units without executive awareness', 'Vendor dependency risk: relying on ServiceNow as the governance layer creates concentration exposure if ServiceNow\'s platform has gaps or incidents', 'AI agent identities and permissions are a new attack surface — compromised agents with broad enterprise access present serious security risk', 'Governance tooling alone does not substitute for cultural accountability — tool adoption without ownership models will not close the governance gap'],
+    auditQ: 'Does the organization have a current, comprehensive inventory of all AI agents operating across business units, and are their identities, permissions, access rights, and human oversight controls formally documented and periodically reviewed?',
+    csuite: 'ServiceNow\'s Knowledge 2026 announcements signal that AI governance is rapidly becoming a platform capability, not just a policy document. Enterprises that act now to establish centralized agent oversight will be significantly better positioned for both regulatory scrutiny and board-level accountability as AI deployment scales.',
+    links: [
+      { source: 'Fortune', url: 'https://fortune.com/2026/05/05/servicenow-knowledge-2026-autonomous-workforce-microsoft-nvidia-ai-announcements/', label: 'ServiceNow unveils AI workforce that can run your entire company' },
+      { source: 'ServiceNow', url: 'https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-expands-AI-Control-Tower-to-discover-observe-govern-secure-and-measure-AI-deployed-across-any-system-in-the-enterprise/default.aspx', label: 'ServiceNow expands AI Control Tower' },
+      { source: 'CX Today', url: 'https://www.cxtoday.com/security-privacy-compliance/servicenow-ai-agent-governance-knowledge-2026/', label: 'ServiceNow Moves to Govern Every AI Agent in the Enterprise' }
+    ],
+    related: ['m9', 'm1', 'm13']
+  },
+  m4: {
+    category: '⚖️ AI Regulation & Governance',
+    categoryClass: 'c-purple',
+    headline: 'EU AI Act Omnibus Deal: High-Risk AI Compliance Delayed to December 2027, But August 2026 Deadlines Remain',
+    date: 'May 7, 2026',
+    content: `<p><strong>What happened:</strong> The EU Council and European Parliament reached a provisional agreement on May 7, 2026 to amend the EU AI Act via a Digital Omnibus package. The deal postpones Annex III high-risk AI obligations — covering biometrics, critical infrastructure, education, employment, finance, law enforcement, and border management — from August 2026 to December 2027. However, transparency requirements for general-purpose AI models (GPAI), AI literacy obligations, and prohibitions on unacceptable-risk AI systems remain in force from August 2026. The deal also reinforces the EU AI Office's enforcement powers and bans AI-generated sexual abuse material.</p>
+    <p><strong>Why it matters to executives:</strong> Organizations operating or deploying AI in EU-regulated contexts have gained 16 additional months for their highest-complexity compliance work. However, this reprieve is provisional — formal adoption by the Parliament and Council is required before it is legally binding, and compliance programs should not be stood down based on this announcement alone. The August 2026 GPAI and transparency deadlines remain active obligations for organizations using large language models.</p>
+    <p><strong>Business opportunity:</strong> The delay provides additional runway to conduct thorough AI risk classification, build conformity assessment documentation, and establish model lifecycle controls — reducing the cost and risk of rushed compliance implementation.</p>
+    <p><strong>Risk, control, and governance implication:</strong> GC and CAE must ensure the organization's AI compliance program does not treat the proposed delay as enacted law. If formal adoption does not occur before August 2026, original deadlines apply. The EU AI Office's reinforced enforcement powers signal that non-compliance will be actively pursued, not merely flagged.</p>`,
+    actions: ['Direct GC to confirm which EU AI Act obligations apply under current deadlines and which may be affected by the Omnibus deal pending formal adoption', 'Update the AI governance policy to reflect the difference between provisions that take effect in August 2026 and those subject to potential delay', 'Commission CAE to complete an AI risk classification exercise using the August 2026 deadline as the planning horizon', 'Monitor the Omnibus deal\'s formal adoption timeline and brief the audit committee on any material changes to the compliance schedule'],
+    risks: ['Treating a provisional political agreement as enacted law creates compliance exposure if formal adoption is delayed or modified', 'August 2026 GPAI transparency obligations remain binding — non-compliance with active provisions carries significant penalty risk', 'EU AI Office enforcement powers have been reinforced, signaling active regulatory scrutiny across all provisions currently in force', 'Multi-jurisdictional operations face compounding compliance obligations — EU AI Act, California AI laws, and sector-specific financial regulations may overlap'],
+    auditQ: 'Has the organization completed an EU AI Act risk classification for all AI systems in scope, and is the compliance program calibrated to the August 2026 obligations that remain active regardless of the Omnibus deal outcome?',
+    csuite: 'The Omnibus deal is a meaningful reprieve for the most complex compliance work, but it is not yet law and should not slow down governance programs. Organizations that use this window to build robust AI inventories, classification frameworks, and control structures will be better positioned competitively and regulatorily than those that treat the delay as permission to wait.',
+    links: [
+      { source: 'EU Council', url: 'https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/', label: 'Council and Parliament agree to simplify AI rules' },
+      { source: 'EU Commission', url: 'https://ec.europa.eu/commission/presscorner/detail/en/ip_26_1024', label: 'EU agrees to simplify AI rules' },
+      { source: 'DLA Piper', url: 'https://knowledge.dlapiper.com/dlapiperknowledge/globalemploymentlatestdevelopments/2026/The-Digital-AI-Omnibus-Proposed-deferral-of-high-risk-AI-obligations-under-the-AI-Act', label: 'Digital AI Omnibus: Proposed deferral of high-risk obligations' }
+    ],
+    related: ['m5', 'm10', 'm6']
+  },
+  m5: {
+    category: '⚖️ AI Regulation & Governance',
+    categoryClass: 'c-purple',
+    headline: 'US Government Expands Pre-Deployment AI Testing — Google, Microsoft, and xAI Join CAISI Evaluation Program',
+    date: 'May 5, 2026',
+    content: `<p><strong>What happened:</strong> The US Department of Commerce's Center for AI Standards and Innovation (CAISI) announced pre-deployment evaluation agreements with Google DeepMind, Microsoft, and Elon Musk's xAI — joining OpenAI and Anthropic in submitting frontier AI models for government review before public release. CAISI will assess national security risks, cybersecurity capabilities, biosecurity implications, and chemical weapons potential in new models. The agreements align with President Trump's AI Action Plan, representing a notable policy shift for an administration that had previously resisted AI oversight measures.</p>
+    <p><strong>Why it matters to executives:</strong> US government pre-deployment evaluation is becoming standard practice for frontier AI models — effectively creating a regulatory checkpoint before new capabilities reach enterprise customers. This has two implications: new model releases may face delays as evaluation cycles complete, and the government's risk assessments may influence what capabilities enterprises can access and under what conditions.</p>
+    <p><strong>Business opportunity:</strong> Organizations that proactively align their own AI risk evaluation frameworks with the government's assessment criteria — cybersecurity, biosecurity, chemical risk — will be better positioned to demonstrate governance maturity to regulators and customers. Early participation in voluntary frameworks positions enterprises as responsible AI deployers.</p>
+    <p><strong>Risk, control, and governance implication:</strong> Government-identified risks in models that enterprises are already deploying may create retroactive compliance obligations or reputational exposure. CAE should assess whether enterprise AI risk management practices are aligned with the types of concerns CAISI is evaluating — particularly cybersecurity risk in AI models used in critical business functions.</p>`,
+    actions: ['Monitor CAISI evaluation outcomes for AI models currently in enterprise deployment — particularly cybersecurity-related risk findings', 'Review existing AI procurement policies to confirm they require vendor disclosure of government evaluation outcomes and material risk findings', 'Brief the board that US AI governance is rapidly maturing from voluntary principles to structured pre-deployment oversight', 'Request assurance from the relevant function that AI tools used in critical business processes have been assessed for the risk categories CAISI evaluates'],
+    risks: ['Government evaluation may surface risks in deployed models that enterprises were not previously aware of, creating remediation and disclosure obligations', 'Model release delays resulting from CAISI review cycles could affect enterprise AI roadmaps dependent on frontier model updates', 'Policy shift toward oversight could accelerate further regulatory action — including mandatory enterprise AI audits modeled on financial institution examinations', 'Organizations using models not subject to CAISI review (including open-source and smaller models) may face a different but unaddressed risk profile'],
+    auditQ: 'Are the AI models deployed across our critical business functions subject to independent risk evaluation — and would we be able to demonstrate to a regulator or board that our AI risk management is commensurate with the known risk profile of those models?',
+    csuite: 'The US government has joined the EU in moving from AI principle statements to structured oversight mechanisms. Executives should treat this as a signal that voluntary AI governance frameworks are transitioning to enforceable expectations — and that the time to build robust internal governance is now, not when the first audit notice arrives.',
+    links: [
+      { source: 'CNBC', url: 'https://www.cnbc.com/2026/05/05/ai-oversight-trump-google-microsoft-xai.html', label: 'Trump admin moves further into AI oversight' },
+      { source: 'Bloomberg', url: 'https://www.bloomberg.com/news/articles/2026-05-05/ai-firms-agree-to-give-us-early-access-to-evaluate-their-models', label: 'AI Firms Agree to Give US Early Access for Model Evaluation' },
+      { source: 'Washington Post', url: 'https://www.washingtonpost.com/technology/2026/05/05/google-microsoft-xai-ai-review/', label: 'NIST will review new AI models before release' }
+    ],
+    related: ['m4', 'm6', 'm8']
+  },
+  m6: {
+    category: '⚖️ AI Regulation & Governance',
+    categoryClass: 'c-purple',
+    headline: 'Pentagon Signs AI Deals with 8 Companies — Excludes Anthropic Over Safety Guardrails on Autonomous Weapons',
+    date: 'May 1, 2026',
+    content: `<p><strong>What happened:</strong> The US Department of Defense announced classified AI contracts with OpenAI, Google, Microsoft, SpaceX, Nvidia, Amazon Web Services, Oracle, and Reflection for use in military networks. Anthropic was excluded after the company refused to remove safety guardrails restricting Claude's use in fully autonomous weapons systems and mass domestic surveillance. A DOD official stated the Pentagon would "never again" rely on a single AI vendor, citing over-concentration risk from its previous Anthropic-dependent posture.</p>
+    <p><strong>Why it matters to executives:</strong> This story illustrates two distinct board-level concerns. First, AI provider safety governance is now a competitive differentiator that affects which contracts a vendor can win — Anthropic's principled stance cost it a major government contract, but may enhance its enterprise reputation for responsible AI. Second, the DOD's explicit acknowledgment of single-vendor concentration risk in AI is a governance lesson directly applicable to enterprise AI procurement strategy.</p>
+    <p><strong>Business opportunity:</strong> Enterprises that are currently sole-sourced to one AI provider should review their concentration exposure. The DOD's multi-vendor strategy is best practice — redundancy in AI capability reduces operational, financial, and reputational exposure from any single provider's service disruption, policy change, or reputational incident.</p>
+    <p><strong>Risk, control, and governance implication:</strong> The DOD's experience highlights that AI provider ethics and safety policies are material to business continuity and governance. Enterprises should include AI provider safety governance assessments in third-party risk reviews — a vendor's policy positions affect not only their own risk profile but the enterprise's risk exposure through association.</p>`,
+    actions: ['Review AI vendor concentration: if more than 70% of enterprise AI workloads depend on a single provider, initiate a diversification strategy', 'Include AI provider safety governance and ethics policy assessments in the standard third-party vendor risk review process', 'Brief the board that government AI procurement signals — including multi-vendor requirements — are increasingly setting governance expectations for enterprise AI as well', 'Engage GC to confirm that AI use in the organization does not create regulatory exposure similar to the autonomous weapons concerns driving this story'],
+    risks: ['Single-vendor AI concentration creates operational risk if the provider experiences outages, pricing changes, policy shifts, or reputational incidents', 'Associating with AI providers whose governance practices are controversial may create reputational exposure for the enterprise', 'Government exclusion of AI vendors from certain contexts — including Anthropic from defense — may signal future restrictions on enterprise use in regulated sectors', 'The lack of a multi-vendor AI strategy leaves the organization with limited leverage in commercial negotiations'],
+    auditQ: 'Has the organization assessed its concentration risk in AI vendor relationships, and does the AI procurement policy require multi-vendor capability for critical AI-dependent business functions?',
+    csuite: 'The Pentagon\'s decision to spread AI contracts across eight vendors and ban sole-source AI dependency is a governance lesson for every board. Vendor ethics and safety governance are no longer abstract CSR considerations — they determine which markets a vendor can serve and which risks an enterprise inherits by association. Build a multi-vendor AI strategy now.',
+    links: [
+      { source: 'CNN', url: 'https://www.cnn.com/2026/05/01/tech/pentagon-ai-anthropic', label: 'Pentagon strikes deals with 8 Big Tech companies after shunning Anthropic' },
+      { source: 'Washington Post', url: 'https://www.washingtonpost.com/technology/2026/05/01/pentagon-ai-deals-microsoft-amazon-google-classified-military/', label: 'Pentagon strikes AI deals for classified military use' },
+      { source: 'Gov Executive', url: 'https://www.govexec.com/technology/2026/05/pentagon-will-never-again-rely-single-ai-provider-official-says/413432/', label: 'Pentagon will never again rely on a single AI provider' }
+    ],
+    related: ['m1', 'm5', 'm13']
+  },
+  m7: {
+    category: '🔒 AI Risk & Fraud',
+    categoryClass: 'c-red',
+    headline: 'Deepfake CEO Fraud Costs Enterprises $1.1B in 2025 — Voice Cloning Attacks Surge 680%',
+    date: 'May 2026',
+    content: `<p><strong>What happened:</strong> Enterprise losses from AI-enabled deepfake fraud reached $1.1 billion in 2025, tripling from $360 million the prior year, according to multiple financial crime research sources. Voice cloning attacks — where AI replicates an executive's voice to authorize fraudulent payments — rose 680% in the past year. AI technology can now clone a voice convincingly using just 3 seconds of audio. In one widely documented case (engineering firm Arup), a finance employee was deceived by a fully deepfake video conference — every participant fabricated — authorizing a $39 million transfer. Generative AI-enabled fraud losses are projected to reach $40 billion by 2027.</p>
+    <p><strong>Why it matters to executives:</strong> Voice and video deepfakes now render traditional verbal authorization controls inadequate. CFOs, treasury teams, and finance officers are the primary targets. The speed and accessibility of deepfake technology means that any executive whose voice or image is publicly available — from interviews, earnings calls, or social media — is a potential fraud vector. Losses at this scale are material to financial statements and insurance coverage.</p>
+    <p><strong>Business opportunity:</strong> Organizations that invest in AI-powered deepfake detection, multi-channel verification protocols, and enhanced payment authorization controls now will have a meaningful fraud prevention advantage over peers still relying on verbal callback procedures.</p>
+    <p><strong>Risk, control, and governance implication:</strong> Existing treasury controls — callback verification, verbal authorization for large transfers — are now insufficient if the callback itself can be deepfaked. CFO and CAE should immediately review payment authorization controls for transactions above defined thresholds, introduce out-of-band verification (physically separate communications channels), and test current fraud detection capabilities against AI-generated voice and video.</p>`,
+    actions: ['Approve an immediate review of payment authorization controls for large and urgent transactions — verify that verbal callback procedures include out-of-band confirmation mechanisms not subject to deepfake interception', 'Commission a red team exercise to test whether current treasury and finance staff can detect AI-generated voice and video impersonation', 'Update the AI fraud risk framework to explicitly address deepfake-enabled business email compromise and executive impersonation scenarios', 'Brief the board and audit committee on deepfake fraud exposure and request assurance from CAE on control adequacy'],
+    risks: ['AI can clone executive voices from 3 seconds of publicly available audio — earnings calls, media appearances, and interviews are all source material', 'Losses at $1.1B industry-wide and growing 3x annually represent material financial and reputational exposure for individual firms', 'Cyber insurance policies may exclude AI-enabled fraud or require specific control attestations not currently in place', 'Supply chain and vendor payment fraud is an increasingly common application of deepfake impersonation targeting finance teams'],
+    auditQ: 'Have treasury and payment authorization controls been formally tested against AI-generated voice and video deepfake scenarios, and do current procedures include out-of-band verification that cannot be intercepted or replicated by AI?',
+    csuite: 'Deepfake fraud has crossed the threshold from an emerging threat to a demonstrated, scaled financial crime vector. The $39M Arup loss was not a unique event — it is now a replicable attack pattern available to any criminal with commodity AI tools. Every CFO should treat executive voice impersonation as an active fraud risk category requiring specific controls, not just awareness training.',
+    links: [
+      { source: 'Fortune', url: 'https://fortune.com/2026/03/03/boards-arent-ready-for-the-ai-age-what-happens-when-your-ceo-gets-deepfaked/', label: 'Boards aren\'t ready for the AI age: What happens when your CEO gets deepfaked?' },
+      { source: 'Brightside AI', url: 'https://www.brside.com/blog/deepfake-ceo-fraud-50m-voice-cloning-threat-cfos', label: 'Deepfake CEO Fraud: $50M Voice Cloning Threat to CFOs' },
+      { source: 'CybelAngel', url: 'https://cybelangel.com/blog/deepfake-ceo-fraud-how-voice-cloning-targets-us-executives/', label: 'Voice Cloning Is the New BEC: Deepfake CEO Fraud' }
+    ],
+    related: ['m8', 'm9', 'm11']
+  },
+  m8: {
+    category: '🔒 AI Risk & Fraud',
+    categoryClass: 'c-red',
+    headline: 'AI-Enabled Cyberattacks Accelerate — Mandiant Documents Attacker Dwell Time Collapse to 22 Seconds',
+    date: 'May 2026',
+    content: `<p><strong>What happened:</strong> Google Mandiant's M-Trends 2026 report documented that the median time from initial access to lateral movement by attackers had collapsed from 8 hours to just 22 seconds — driven by AI-assisted attack automation. This week, two major industrial firms reported intrusions: Itron's corporate IT systems were compromised, and Medtronic suffered a breach attributed to the ShinyHunters group, exposing millions of records. Supply chain attacks, AI-assisted reconnaissance, and credential-based intrusions are cited as the primary vectors driving this acceleration. Industry research also documents 2026 as "the year of AI-assisted attacks."</p>
+    <p><strong>Why it matters to executives:</strong> When attackers can move from initial entry to full compromise in 22 seconds, traditional incident detection and response timelines are operationally irrelevant. Security architectures designed around hours of response time are not fit-for-purpose. This has direct implications for cyber insurance coverage, board-level disclosure obligations, and the adequacy of current security investments.</p>
+    <p><strong>Business opportunity:</strong> Organizations that deploy AI-powered threat detection with automated response capabilities — matching AI-speed attacks with AI-speed defense — gain a structural advantage in resilience. This is also an area where investment is clearly justified given measurable, accelerating threat escalation.</p>
+    <p><strong>Risk, control, and governance implication:</strong> The 22-second dwell time finding fundamentally changes the risk calculus for enterprise cybersecurity. CAE should assess whether existing incident response playbooks, detection capabilities, and escalation thresholds are calibrated to this reality. Board-level cybersecurity reporting should be updated to reflect that the attacker speed threshold has changed by an order of magnitude.</p>`,
+    actions: ['Direct the relevant security function to review incident response playbooks against a 22-second lateral movement assumption — identify which controls would still function effectively at this speed', 'Commission CAE to assess whether current threat detection and monitoring capabilities can identify and contain an AI-assisted intrusion before critical systems are compromised', 'Review cyber insurance coverage for adequacy and confirm that AI-assisted attack scenarios are within policy scope, not excluded', 'Brief the board on the Mandiant M-Trends 2026 finding as a material change to the organization\'s threat environment'],
+    risks: ['Existing perimeter-based security architectures and human-speed incident response are structurally inadequate against 22-second attack timelines', 'Supply chain intrusions (Itron, Medtronic model) mean that third-party vendor compromise can be a vector into the organization\'s own systems', 'AI-generated phishing and credential theft at scale overwhelms human review capacity in security operations centers', 'Board and regulatory disclosure obligations may be triggered in timeframes shorter than current detection and response capabilities can support'],
+    auditQ: 'Are our incident detection and response capabilities calibrated to identify and contain an AI-assisted intrusion within seconds to minutes — and when were these capabilities last tested against realistic AI-speed attack simulations?',
+    csuite: 'The 22-second dwell time is not a technical footnote — it is a governance statement. Board oversight of cybersecurity risk has been premised on human-speed attacks and human-speed response. Both assumptions are now obsolete. The adequacy of current security investment, insurance, and board reporting must be reassessed against the AI-speed threat environment that Mandiant has now documented.',
+    links: [
+      { source: 'eSecurity Planet', url: 'https://www.esecurityplanet.com/weekly-roundup/supply-chain-attacks-ai-security-and-major-breaches-define-this-week-in-cybersecurity-in-may-2026/', label: 'Supply Chain Attacks, AI Security, and Major Breaches — May 2026' },
+      { source: 'The Hacker News', url: 'https://thehackernews.com/2026/05/2026-year-of-ai-assisted-attacks.html', label: '2026: The Year of AI-Assisted Attacks' },
+      { source: 'SiliconAngle', url: 'https://siliconangle.com/2026/04/03/three-insights-ai-attack-thecube-rsac-2026-rsac26/', label: 'AI attack trends reshape cybersecurity at RSAC 2026' }
+    ],
+    related: ['m7', 'm5', 'm13']
+  },
+  m9: {
+    category: '🤖 Agentic AI',
+    categoryClass: 'c-cyan',
+    headline: '58% of Enterprise AI Agents Require Manual Override — Only 7% of Firms Have Mature Agent Governance',
+    date: 'Q1 2026',
+    content: `<p><strong>What happened:</strong> Forrester's Q1 2026 enterprise AI agent research found that 58% of deployed AI agents require human manual override 20–40% of the time in production environments, despite vendor marketing claims of "lights-out automation." Deloitte's 2026 AI Governance Survey found that 89% of compliance leaders would trust autonomous AI agents only if mandatory human audit trails were in place. Separately, research across enterprise deployments finds that only 7–8% of firms have reached mature AI agent governance — while 40% of enterprise applications are expected to feature task-specific AI agents by end of 2026, up from less than 5% in 2025.</p>
+    <p><strong>Why it matters to executives:</strong> The gap between vendor promises and production performance is material. Organizations deploying AI agents on the basis of "lights-out" automation claims are accepting hidden operational risk — a 20–40% manual override rate represents significant unmeasured labor cost, control failure exposure, and potential for undetected errors. The EU AI Act's human-in-the-loop requirements for high-risk AI systems are not just regulatory compliance — they are operationally justified by real-world performance data.</p>
+    <p><strong>Business opportunity:</strong> Organizations that build robust human-oversight models into their AI agent deployments from the start — rather than retrofitting controls after failure — will achieve higher trust, faster scaling, and better regulatory positioning than those that take vendor automation claims at face value.</p>
+    <p><strong>Risk, control, and governance implication:</strong> CAE should immediately assess whether AI agent deployments across the organization have documented human oversight protocols, exception handling procedures, and audit trails — and whether the operational performance of deployed agents is being monitored against stated automation rates.</p>`,
+    actions: ['Direct all business units with deployed AI agents to provide a report on actual automation rates, exception rates, and human override frequency — compare against vendor claims', 'Require mandatory audit trails for all AI agent decisions affecting financial, customer, or compliance outcomes before further deployment is approved', 'Update AI procurement standards to require vendor disclosure of real-world automation rates from comparable enterprise deployments, not marketing materials', 'Commission CAE to evaluate agent governance maturity against the 7% industry benchmark and identify priority gaps'],
+    risks: ['AI agents operating with lower automation rates than expected create hidden labor costs and performance gaps against business cases', 'Absence of audit trails for AI agent decisions creates accountability gaps and potential regulatory exposure under financial crime, data protection, and AI regulations', 'Over-reliance on AI agent outputs without human oversight in high-stakes workflows (credit decisions, customer communications, compliance screening) creates model risk', 'Rapid expansion of AI agent deployment without governance scaling creates a control environment that cannot keep pace with operational reality'],
+    auditQ: 'Have AI agents deployed across business units been evaluated for actual versus expected automation performance, and do all agents with significant business impact have documented human oversight protocols and mandatory audit trails?',
+    csuite: 'The 58% manual override finding is a governance red flag that every board should note. AI agents are not yet the fully autonomous workforce that vendor marketing implies. Build human-AI collaboration models with explicit oversight protocols — not because regulators require it (though they will), but because that is what the data shows actually works in production.',
+    links: [
+      { source: 'CX Today', url: 'https://www.cxtoday.com/security-privacy-compliance/servicenow-ai-agent-governance-knowledge-2026/', label: 'ServiceNow Moves to Govern Every AI Agent in the Enterprise' },
+      { source: 'Compyl', url: 'https://compyl.com/blog/agentic-ai-compliance-hype-vs-reality-2026/', label: 'Agentic AI in Compliance: Hype vs. Reality in 2026' },
+      { source: 'Forrester / Deloitte', url: 'https://www.fifthrow.com/blog/ai-agent-orchestration-goes-enterprise-the-april-2026-playbook-for-systematic-innovation-risk-and-value-at-scale', label: 'AI Agent Orchestration Goes Enterprise: April 2026 Playbook' }
+    ],
+    related: ['m3', 'm10', 'm2']
+  },
+  m10: {
+    category: '🤖 Agentic AI',
+    categoryClass: 'c-cyan',
+    headline: 'EU AI Act Classifies Most Enterprise Multi-Agent Orchestration as "High-Risk" — Compliance Window Now Set',
+    date: 'May 2026',
+    content: `<p><strong>What happened:</strong> With the EU AI Act Omnibus deal (May 7) confirming the December 2027 deadline for Annex III high-risk AI obligations, enterprises now have a definitive compliance horizon for multi-agent AI systems operating in high-impact sectors. The EU AI Act classifies multi-agent orchestration used in biometrics, critical infrastructure, education, employment, financial services, law enforcement, and border management as high-risk — triggering requirements for human-in-the-loop controls, immutable audit trails, scenario-based incident testing, persistent identity management, and continuous performance monitoring throughout the agent lifecycle.</p>
+    <p><strong>Why it matters to executives:</strong> The December 2027 deadline is not distant. Building compliant AI agent governance infrastructure — inventories, risk classifications, conformity assessment documentation, human oversight protocols — requires 12–18 months of sustained effort for organizations at typical AI maturity levels. Organizations that begin now will achieve compliance without crisis-mode implementation; those that wait until mid-2027 will face compressed timelines, higher costs, and greater regulatory risk.</p>
+    <p><strong>Business opportunity:</strong> Organizations that achieve EU AI Act compliance ahead of the deadline gain competitive differentiation in regulated markets, stronger positions in EU-related procurement, and governance frameworks that are directly transferable to other emerging regulatory requirements globally.</p>
+    <p><strong>Risk, control, and governance implication:</strong> GC and CAE should assess current AI agent deployments against the high-risk classification criteria — any agent operating in the listed sectors with significant impact on individuals may be in scope. The existence of the Omnibus delay does not change the underlying compliance obligations — it only shifts the enforcement date.</p>`,
+    actions: ['Commission GC and CAE to complete an EU AI Act scoping exercise identifying which current and planned AI agent deployments fall within high-risk classification criteria', 'Approve a compliance roadmap targeting December 2027 with quarterly milestones — including AI inventory, risk classification, conformity assessment, and control documentation', 'Update vendor contracts for AI systems in high-risk categories to include required disclosure, audit rights, and compliance representation obligations', 'Brief the board on the December 2027 compliance horizon as a governance milestone requiring board-level oversight and resourcing commitment'],
+    risks: ['Misclassifying AI agents as not high-risk without formal analysis creates significant regulatory exposure if the EU AI Office later determines otherwise', 'Conformity assessment for high-risk systems requires technical documentation, testing records, and governance evidence that takes significant time to build', 'Vendor AI systems deployed by the organization may themselves be high-risk — deployer obligations under Article 26 apply regardless of whether the system was built internally', 'The Omnibus deal is provisional — if formal adoption is delayed, August 2026 deadlines may apply to systems currently classified as deferred'],
+    auditQ: 'Has the organization completed a formal EU AI Act risk classification for all AI systems and agents in scope, and is there a board-approved compliance roadmap with adequate resourcing to meet the December 2027 deadline?',
+    csuite: 'December 2027 sounds like the future, but for organizations operating AI agents in financial services, employment, and compliance functions, the compliance infrastructure work must begin now. The EU AI Act high-risk framework is one of the most demanding regulatory compliance requirements enterprises have faced — it requires not just policy but operational change, technology investment, and sustained governance discipline.',
+    links: [
+      { source: 'EU Commission', url: 'https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai', label: 'EU AI Act — Shaping Europe\'s digital future' },
+      { source: 'Secure Privacy', url: 'https://secureprivacy.ai/blog/eu-ai-act-2026-compliance', label: 'EU AI Act 2026: Key Compliance Requirements for Enterprises' },
+      { source: 'Legal Nodes', url: 'https://www.legalnodes.com/article/eu-ai-act-2026-updates-compliance-requirements-and-business-risks', label: 'EU AI Act 2026 Updates: Compliance Requirements and Business Risks' }
+    ],
+    related: ['m4', 'm9', 'm5']
+  },
+  m11: {
+    category: '📊 Business Impact',
+    categoryClass: 'c-blue',
+    headline: '79% of Enterprises Face AI Adoption Challenges Despite Surging Investment — Only 29% See Significant ROI',
+    date: '2026',
+    content: `<p><strong>What happened:</strong> Multiple 2026 enterprise AI surveys converge on a stark finding: while 97% of executives say their organization benefits from AI and 86% are increasing AI budgets, only 29% report significant organizational ROI. Research from Writer, Deloitte, RAND, and MIT indicates that 79% of organizations face AI adoption challenges (a double-digit increase from 2025), 80% of AI projects deliver no measurable business value, and 95% of generative AI pilots never scale to production. Leadership failures drive 84% of project failures, with data readiness problems accounting for most of the remainder.</p>
+    <p><strong>Why it matters to executives:</strong> The ROI gap between AI investment and business outcome is now a governance concern, not just a technology challenge. Boards are beginning to ask whether AI budgets are generating returns commensurate with investment — and CFOs face increasing pressure to justify AI spend against measurable outcomes. The fact that 54% of C-suite executives report that adopting AI is "tearing their company apart" points to organizational and change management failures, not technology limitations.</p>
+    <p><strong>Business opportunity:</strong> Organizations that adopt a product-oriented approach to AI — with clear ownership, measurable KPIs, and defined business outcomes — are 4.2 times more likely to scale successfully than those without structured implementation planning. Vendor-led deployments succeed at twice the rate of internal builds, suggesting strategic partnerships may outperform DIY approaches for most enterprises.</p>
+    <p><strong>Risk, control, and governance implication:</strong> The ROI gap creates pressure for shortcuts: approving deployments without adequate governance, scaling pilots before controls are established, and accepting vendor productivity claims without independent verification. CAE should assess whether AI business cases across the organization are grounded in measurable outcomes — and whether AI investments are subject to the same post-implementation review discipline as major capital projects.</p>`,
+    actions: ['Require all new AI investment proposals above a defined threshold to include explicit, measurable ROI targets and post-implementation review commitments — reject business cases based solely on productivity estimates', 'Commission CAE to conduct a rapid post-implementation review of the three largest AI investments over the past 24 months against stated business cases', 'Approve a structured governance framework for AI pilot-to-production scaling, with defined criteria that must be met before enterprise rollout is approved', 'Brief the board on the 29% ROI realization rate as context for AI budget discussions — differentiate between AI investments with clear business outcomes and those lacking measurement frameworks'],
+    risks: ['AI investment without outcome measurement creates fiduciary exposure — boards are increasingly scrutinizing AI spend as a governance matter', 'Pilots that cannot scale represent sunk cost and opportunity cost — organizations should apply disciplined go/no-go criteria at defined gates', 'The 67% of executives who believe their organization has already experienced a data leak through unapproved AI tools indicates shadow AI adoption that is not captured in official investment or ROI data', 'Overly optimistic AI productivity assumptions in workforce planning decisions may result in premature restructuring or hiring freezes that create talent risk'],
+    auditQ: 'Do our AI investments have defined, measurable ROI targets and post-implementation review mechanisms — and is there a governance process that requires demonstrated value before pilots are approved for enterprise-wide scaling?',
+    csuite: 'The 79% challenge rate and 29% ROI realization rate are not failure statistics — they are governance signals. Most organizations are investing in AI without the measurement frameworks, ownership models, and change management discipline required to realize returns. The question for every C-suite is not whether to invest in AI, but whether the organization has the governance infrastructure to convert that investment into measurable business value.',
+    links: [
+      { source: 'Writer', url: 'https://writer.com/blog/enterprise-ai-adoption-2026/', label: 'Enterprise AI adoption in 2026: Why 79% face challenges' },
+      { source: 'Deloitte', url: 'https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html', label: 'The State of AI in the Enterprise — 2026 AI Report' },
+      { source: 'ISACA', url: 'https://www.isaca.org/resources/white-papers/2026/the-promise-and-peril-of-the-ai-revolution', label: 'The Promise and Peril of the AI Revolution' }
+    ],
+    related: ['m12', 'm9', 'm7']
+  },
+  m12: {
+    category: '👥 Workforce & Talent',
+    categoryClass: 'c-orange',
+    headline: 'AI Skills Premium Hits 56% — But Entry-Level Hiring Drops 25% and Reskilling Gap Widens to 120M Workers',
+    date: '2026',
+    content: `<p><strong>What happened:</strong> Converging research from BCG, the World Economic Forum, the IMF, and Gallup documents a widening AI workforce bifurcation in 2026. Workers with advanced AI skills now earn 56% more than peers in equivalent roles without those skills. AI job postings are 134% above 2020 levels. However, entry-level hiring at the top 15 technology companies fell 25% from 2023 to 2024, Gen Z is bearing the largest displacement burden, and an estimated 120 million workers are at medium-term risk of redundancy because they are unlikely to receive the reskilling they need. Only 63% of companies plan to reskill existing employees — the majority plan to hire AI-skilled workers externally instead.</p>
+    <p><strong>Why it matters to executives:</strong> The AI workforce transition is creating simultaneous talent shortages at the skilled end and displacement risks at the entry level — a dual pressure that affects recruitment, retention, compensation, and workforce planning across every business unit. Organizations that invest in systematic AI reskilling now will build a competitive talent advantage, reduce external hiring costs, and mitigate the morale and productivity risks associated with unmanaged AI-driven displacement.</p>
+    <p><strong>Business opportunity:</strong> The 56% AI skills wage premium means that reskilling existing employees in AI-adjacent capabilities generates measurable compensation efficiency compared to external hiring at market rates. Organizations with structured AI literacy and capability programs also perform better on AI adoption and ROI metrics, according to BCG research.</p>
+    <p><strong>Risk, control, and governance implication:</strong> CHRO and CFO should assess whether current workforce planning assumptions adequately account for AI skill demand, entry-level pipeline disruption, and the cost of external AI talent acquisition versus internal development. Failure to reskill creates both talent risk and reputational risk in labor markets where AI displacement practices are under increasing public and regulatory scrutiny.</p>`,
+    actions: ['Approve a structured AI literacy and capability development program across JG Summit — prioritizing high-AI-exposure roles in finance, operations, and compliance', 'Direct CHRO to update workforce planning models to reflect the 56% AI skills premium in compensation benchmarking and total rewards strategy', 'Commission a role-level analysis identifying which positions are most exposed to AI task automation and require active reskilling or redesign within the next 24 months', 'Prioritize reskilling over external hiring where AI capability gaps can be addressed through structured development — preserving institutional knowledge and managing displacement risk'],
+    risks: ['Failure to invest in reskilling creates a talent pool inadequately prepared for AI-augmented workflows, limiting the organization\'s ability to scale AI adoption', 'External AI talent acquisition at market rates is increasingly expensive and creates retention volatility — internal development is more cost-effective and produces more loyal talent', 'Entry-level hiring reductions across the industry are depleting the talent pipeline organizations have historically relied on for junior workforce development', 'Regulatory and reputational risk from perceived AI-driven workforce displacement without demonstrated reskilling investment is increasing across Southeast Asia and globally'],
+    auditQ: 'Does the organization have a documented AI reskilling strategy with defined investment, target populations, and measurable outcomes — and is workforce planning updated to reflect the AI-driven skill demand shift documented in 2026 labor market research?',
+    csuite: 'The 56% skills premium is an investment signal, not just a labor market statistic. Every employee reskilled in AI capability is worth materially more to the organization — and costs significantly less than the equivalent external hire. CHRO and CEO should treat the AI reskilling agenda as a core strategic investment, not a discretionary people program, given its direct link to AI adoption success rates.',
+    links: [
+      { source: 'BCG', url: 'https://www.bcg.com/publications/2026/ai-will-reshape-more-jobs-than-it-replaces', label: 'AI Will Reshape More Jobs Than It Replaces' },
+      { source: 'WEF', url: 'https://www.weforum.org/stories/2026/01/ai-roadmap-transforming/', label: 'Invest in the workforce for the AI age' },
+      { source: 'IMF', url: 'https://www.imf.org/en/blogs/articles/2026/01/14/new-skills-and-ai-are-reshaping-the-future-of-work', label: 'New Skills and AI Are Reshaping the Future of Work' }
+    ],
+    related: ['m11', 'm9', 'm1']
+  },
+  m13: {
+    category: '💰 Funding & M&A',
+    categoryClass: 'c-green',
+    headline: 'Cybersecurity M&A Hits $96B Record — 270% Surge as AI Security Market Consolidates Around Identity and Governance',
+    date: '2025–2026',
+    content: `<p><strong>What happened:</strong> Momentum Cyber's year-end Almanac tallied $96 billion across 400 cybersecurity transactions in 2025, a 270% year-over-year increase in deal value. Palo Alto Networks' approximately $25 billion acquisition of CyberArk closed in February 2026, with a 26% acquisition premium. The market recorded 38 cybersecurity M&amp;A deals in March 2026 alone. Analysts identify identity security — the convergence of privileged access management, workforce identity, and AI agent identity management — as the primary consolidation driver. Gartner forecasts global AI spending to exceed $2 trillion in 2026.</p>
+    <p><strong>Why it matters to executives:</strong> The cybersecurity vendor landscape is consolidating rapidly. Point solutions are being absorbed into integrated platforms, changing the pricing dynamics, support models, and strategic positioning of existing vendor relationships. Organizations mid-contract with acquired vendors face integration uncertainty, while the emergence of AI agent identity as a new security category creates both new risk exposure and new vendor evaluation requirements.</p>
+    <p><strong>Business opportunity:</strong> Consolidation creates negotiating leverage: acquiring vendors are motivated to expand footprint across existing customer relationships, and enterprises that consolidate their own security vendor landscape can achieve meaningful cost reduction and simplification. However, vendor selection now requires longer-term strategic assessment — a point solution acquired today may be absorbed or discontinued within 18 months.</p>
+    <p><strong>Risk, control, and governance implication:</strong> The emergence of AI agent identity management as a distinct security category — separate from human identity and device identity — represents a new control gap for most organizations. CAE and CFO should assess whether existing identity security investments and vendor relationships cover AI agent identities, including the agents deployed through the enterprise AI tools introduced this week.</p>`,
+    actions: ['Review current cybersecurity vendor landscape against consolidation activity — identify which existing vendors have been acquired and what integration or continuity risks apply', 'Direct procurement to include long-term strategic stability assessment in cybersecurity vendor evaluations, given the current M&A consolidation pace', 'Assess whether existing identity security investments (PAM, IAM) extend to AI agent identities — if not, identify this as a control gap requiring remediation', 'Request CFO analysis of whether cybersecurity spend consolidation could achieve meaningful cost reduction without increasing risk exposure'],
+    risks: ['Acquired cybersecurity vendors may experience product roadmap changes, support quality degradation, or pricing restructuring post-acquisition', 'AI agent identities represent a rapidly growing, largely unmanaged attack surface not covered by traditional identity governance programs', 'The pace of cybersecurity consolidation may reduce competitive options and increase pricing leverage for dominant platform vendors over time', 'Organizations that do not actively manage AI agent identities face the same credential theft and privilege escalation risks as unmanaged human identities'],
+    auditQ: 'Does our identity governance program explicitly cover AI agent identities — including agents deployed through enterprise AI tools — and have we assessed the control gaps created by the rapid expansion of AI agent populations across business systems?',
+    csuite: 'The $96 billion cybersecurity M&A surge reflects an industry repricing itself for the AI era — identity and governance are the new battlegrounds. Boards should expect their cybersecurity vendor relationships, pricing, and coverage to change materially over the next 24 months. Organizations that build platform-oriented security strategies now, rather than continuing to accumulate point solutions, will achieve better economics and better governance outcomes.',
+    links: [
+      { source: 'Help Net Security', url: 'https://www.helpnetsecurity.com/2026/02/25/cybersecurity-venture-funding-ai-security-expands/', label: 'Cyber valuations climb as capital concentrates, AI security expands' },
+      { source: 'Tech Insider', url: 'https://tech-insider.org/cybersecurity-ma-consolidation-2026/', label: '38 Cybersecurity M&A Deals in March 2026 Alone' },
+      { source: 'CyberDB', url: 'https://www.cyberdb.co/cybersecurity-ma-trends-in-2026-the-era-of-platformization-and-ai-native-integration/', label: 'Cybersecurity M&A Trends in 2026: Platformization and AI-Native Integration' }
+    ],
+    related: ['m8', 'm3', 'm6']
+  }
+};
+
+const STORY_TITLES = {
+  m1: 'OpenAI & Anthropic Rival Enterprise Ventures',
+  m2: 'Anthropic Finance Agents + M365 + Moody\'s',
+  m3: 'ServiceNow AI Control Tower',
+  m4: 'EU AI Act Omnibus Delay',
+  m5: 'US CAISI Pre-Deployment Testing',
+  m6: 'Pentagon AI Deals — Anthropic Excluded',
+  m7: 'Deepfake CEO Fraud $1.1B',
+  m8: 'AI Cyberattacks — 22-Second Dwell Time',
+  m9: '58% AI Agents Need Manual Override',
+  m10: 'EU High-Risk AI Agent Compliance',
+  m11: '79% Enterprise AI ROI Gap',
+  m12: 'AI Skills Premium 56%',
+  m13: 'Cybersecurity M&A $96B Record'
+};
+
+function openModal(id) {
+  const d = MODALS[id];
+  if (!d) return;
+  document.getElementById('modal-category').textContent = d.category;
+  document.getElementById('modal-category').className = 'modal-category ' + (d.categoryClass || '');
+  document.getElementById('modal-headline').textContent = d.headline;
+  document.getElementById('modal-date').textContent = d.date;
+  document.getElementById('modal-content').innerHTML = d.content;
+
+  const pg = document.getElementById('modal-panels');
+  pg.innerHTML = `
+    <div class="panel panel-action">
+      <div class="panel-label">✦ Executive Actions</div>
+      <ul class="panel-list">
+        ${d.actions.map(a => `<li><span class="owner owner-ceo">Action</span>${a}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="panel panel-risk">
+      <div class="panel-label">⚠ Risks &amp; Watchouts</div>
+      <ul class="panel-list">
+        ${d.risks.map(r => `<li>${r}</li>`).join('')}
+      </ul>
+    </div>`;
+
+  document.getElementById('modal-csuite-text').textContent = d.csuite;
+
+  const linksDiv = document.getElementById('modal-links');
+  linksDiv.innerHTML = '<div class="modal-links-label">Sources</div>' +
+    d.links.map(l => `<a class="modal-link" href="${l.url}" target="_blank" rel="noopener noreferrer">
+      <span class="modal-link-source">${l.source}</span>
+      <span>${l.label}</span>
+      <span class="modal-link-arrow">↗</span>
+    </a>`).join('');
+
+  const relDiv = document.getElementById('modal-related');
+  relDiv.innerHTML = d.related.map(rid => `<span class="related-chip" onclick="openModal('${rid}')">${STORY_TITLES[rid] || rid}</span>`).join('');
+
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function filterSection(id) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.section').forEach(s => {
+    if (id === 'all') { s.style.display = ''; return; }
+    s.style.display = s.id === 'section-' + id ? '' : 'none';
+  });
+}
+
+const themeToggle = document.getElementById('themeToggle');
+const saved = localStorage.getItem('briefing-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+themeToggle.addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', next === 'dark' ? '' : 'light');
+  localStorage.setItem('briefing-theme', next === 'dark' ? '' : 'light');
+});
+</script>
+</body>
+</html>
