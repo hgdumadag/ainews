@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — Week 23, 2026 (June 1–8)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f16; --bg-2:#121826; --bg-3:#1a2233; --card:#141b29; --card-h:#1b2435;
+    --text:#e8edf6; --muted:#9aa7bd; --line:#26304a;
+    --gold:#e7b13a; --cyan:#39c2d6; --purple:#a98bff; --orange:#f29445; --red:#f0586a; --green:#3ec98a; --blue:#5aa0f0;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  [data-theme="light"]{
+    --bg:#f4f6fb; --bg-2:#ffffff; --bg-3:#eef2f9; --card:#ffffff; --card-h:#f7f9fd;
+    --text:#16203a; --muted:#5b6880; --line:#dde4f0;
+    --gold:#b8860b; --cyan:#1796a8; --purple:#7c5cff; --orange:#d97a26; --red:#d83a4d; --green:#1f9e64; --blue:#2f74d0;
+    --shadow:0 10px 28px rgba(20,40,80,.10);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(11,15,22,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  [data-theme="light"] nav{background:rgba(255,255,255,.88)}
+  .nav-in{display:flex;align-items:center;gap:12px;padding:10px 20px;max-width:1180px;margin:0 auto;flex-wrap:wrap}
+  .brand{font-weight:800;letter-spacing:.3px;font-size:15px;margin-right:6px;white-space:nowrap}
+  .brand .dot{color:var(--gold)}
+  .filters{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+  .fbtn{border:1px solid var(--line);background:var(--bg-2);color:var(--muted);padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;transition:.15s}
+  .fbtn:hover{color:var(--text);border-color:var(--muted)}
+  .fbtn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+  .theme{border:1px solid var(--line);background:var(--bg-2);color:var(--text);width:36px;height:32px;border-radius:8px;cursor:pointer;font-size:15px}
+
+  /* HERO */
+  .hero{padding:54px 0 26px;border-bottom:1px solid var(--line);background:
+     radial-gradient(1100px 360px at 12% -8%, rgba(231,177,58,.10), transparent 60%),
+     radial-gradient(1000px 360px at 92% -12%, rgba(57,194,214,.10), transparent 60%)}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold)}
+  h1{font-family:'Newsreader',serif;font-weight:600;font-size:46px;line-height:1.05;margin:10px 0 8px}
+  .sub{color:var(--muted);font-size:16px;max-width:760px}
+  .metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:30px}
+  .metric{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 14px;text-align:center}
+  .metric-num{font-size:32px;font-weight:800;line-height:1}
+  .metric-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-top:7px;font-weight:600}
+  #m-total .metric-num{color:var(--gold)} #m-risk .metric-num{color:var(--red)}
+  #m-opp .metric-num{color:var(--green)} #m-reg .metric-num{color:var(--purple)} #m-act .metric-num{color:var(--cyan)}
+
+  /* EXEC SUMMARY */
+  .summary{background:linear-gradient(180deg,var(--bg-2),var(--card));border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:30px 0}
+  .summary h2{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:9px}
+  .summary p{margin:0;color:var(--text);font-size:15.5px}
+
+  /* SECTIONS */
+  section.block{padding:28px 0 6px}
+  .sec-head{display:flex;align-items:center;gap:11px;margin:6px 0 16px}
+  .sec-head .ic{font-size:22px}
+  .sec-head h3{margin:0;font-size:21px;font-weight:700}
+  .sec-head .rule{flex:1;height:1px;background:var(--line)}
+  .sec-platforms .bar{color:var(--gold)} .sec-agents .bar{color:var(--cyan)}
+  .sec-regulation .bar{color:var(--purple)} .sec-workforce .bar{color:var(--orange)}
+  .sec-risk .bar{color:var(--red)} .sec-funding .bar{color:var(--green)}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;cursor:pointer;transition:.16s;position:relative;display:flex;flex-direction:column;gap:9px}
+  .card:hover{background:var(--card-h);transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--muted)}
+  .card-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .card-date{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.4px}
+  .card h4{margin:0;font-size:17px;font-weight:700;line-height:1.28}
+  .card .blurb{color:var(--muted);font-size:13.6px;margin:0}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+  .tag{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.4px}
+  .bg-gold{background:rgba(231,177,58,.16);color:var(--gold);border:1px solid rgba(231,177,58,.32)}
+  .bg-green{background:rgba(62,201,138,.15);color:var(--green);border:1px solid rgba(62,201,138,.32)}
+  .bg-purple{background:rgba(169,139,255,.16);color:var(--purple);border:1px solid rgba(169,139,255,.32)}
+  .bg-orange{background:rgba(242,148,69,.15);color:var(--orange);border:1px solid rgba(242,148,69,.32)}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:4px;padding-top:10px;border-top:1px solid var(--line)}
+  .badges{display:flex;gap:6px}
+  .badge{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:6px;text-transform:uppercase;letter-spacing:.5px}
+  .b-risk{background:rgba(240,88,106,.14);color:var(--red)} .b-opp{background:rgba(62,201,138,.14);color:var(--green)}
+  .b-act{background:rgba(240,88,106,.14);color:var(--red)} .b-discuss{background:rgba(231,177,58,.16);color:var(--gold)} .b-monitor{background:rgba(90,160,240,.14);color:var(--blue)}
+  .dive{font-size:11.5px;color:var(--muted);font-weight:600}
+  .card:hover .dive{color:var(--cyan)}
+
+  /* MODAL */
+  .overlay{position:fixed;inset:0;background:rgba(4,7,12,.72);backdrop-filter:blur(4px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:40px 18px;overflow-y:auto}
+  .overlay.open{display:flex}
+  .modal{background:var(--bg-2);border:1px solid var(--line);border-radius:18px;max-width:760px;width:100%;padding:30px 32px 28px;box-shadow:var(--shadow);position:relative}
+  .modal .x{position:absolute;top:16px;right:18px;background:var(--bg-3);border:1px solid var(--line);color:var(--text);width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:17px}
+  .m-cat{font-size:11.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+  .modal h2{font-family:'Newsreader',serif;font-weight:600;font-size:27px;line-height:1.15;margin:8px 0 8px}
+  .m-meta{font-size:12.5px;color:var(--muted);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .modal h5{margin:18px 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+  .modal p{margin:0 0 11px;font-size:14.6px}
+  .panel{border-radius:12px;padding:14px 16px;margin:14px 0}
+  .panel.act{background:rgba(62,201,138,.08);border:1px solid rgba(62,201,138,.28)}
+  .panel.watch{background:rgba(240,88,106,.07);border:1px solid rgba(240,88,106,.26)}
+  .panel h5{margin-top:0;color:var(--text)}
+  .panel ul{margin:0;padding-left:18px} .panel li{font-size:14px;margin-bottom:5px}
+  .qbox{background:var(--bg-3);border-left:3px solid var(--cyan);padding:12px 15px;border-radius:8px;font-size:14px;margin:14px 0}
+  .botline{background:var(--bg-3);border:1px solid var(--line);border-radius:10px;padding:13px 16px;font-size:14px;margin-top:14px}
+  .botline b{color:var(--gold)}
+  .related{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .chip{font-size:12px;background:var(--bg-3);border:1px solid var(--line);color:var(--text);padding:6px 11px;border-radius:999px;cursor:pointer}
+  .chip:hover{border-color:var(--cyan);color:var(--cyan)}
+
+  /* WATCHLIST + QUESTIONS */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0 10px}
+  .pane{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .pane h3{margin:0 0 14px;font-size:18px}
+  .wl{list-style:none;margin:0;padding:0}
+  .wl li{display:flex;gap:11px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .wl li:last-child{border-bottom:none}
+  .wl .ico{flex-shrink:0}
+  .ql{margin:0;padding-left:20px} .ql li{font-size:14px;margin-bottom:11px}
+  @media(max-width:820px){
+    .metrics{grid-template-columns:repeat(2,1fr)} h1{font-size:34px}
+    .grid{grid-template-columns:1fr} .twocol{grid-template-columns:1fr}
+    .nav-in{gap:8px} .brand{width:100%}
+  }
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 0 40px;color:var(--muted);font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <span class="brand">AI Intelligence<span class="dot">.</span> Briefing</span>
+    <div class="filters" id="filters">
+      <button class="fbtn active" data-f="all">All</button>
+      <button class="fbtn" data-f="platforms">Platforms</button>
+      <button class="fbtn" data-f="agents">Agentic AI</button>
+      <button class="fbtn" data-f="regulation">Regulation</button>
+      <button class="fbtn" data-f="workforce">Workforce</button>
+      <button class="fbtn" data-f="risk">Risk &amp; Fraud</button>
+      <button class="fbtn" data-f="funding">Funding &amp; M&amp;A</button>
+    </div>
+    <button class="theme" id="theme" title="Toggle light/dark">◑</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Executive Edition · Week 23</div>
+    <h1>AI Intelligence Briefing</h1>
+    <p class="sub">Strategic AI signals for C-suite and internal audit leadership — week of <strong>June 1 – June 8, 2026</strong>. Each card opens a deep dive with business implications, recommended executive actions, and an audit question.</p>
+    <div class="metrics">
+      <div class="metric" id="m-total"><div class="metric-num">11</div><div class="metric-lbl">Total Signals</div></div>
+      <div class="metric" id="m-risk"><div class="metric-num">6</div><div class="metric-lbl">Risk &amp; Governance</div></div>
+      <div class="metric" id="m-opp"><div class="metric-num">4</div><div class="metric-lbl">Opportunities</div></div>
+      <div class="metric" id="m-reg"><div class="metric-num">2</div><div class="metric-lbl">Regulation &amp; Legal</div></div>
+      <div class="metric" id="m-act"><div class="metric-num">7</div><div class="metric-lbl">Act / Discuss Now</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="summary">
+    <h2>⚡ 30-Second Executive Summary</h2>
+    <p>The week's defining signal is a widening <strong>AI value gap</strong>: roughly 80% of enterprises now capture a quarter or less of AI's potential economic value, turning execution and governance into a competitive moat rather than a technology race. The biggest opportunity sits in <strong>industrial and predictive AI</strong> — Nvidia's Kumo acquisition and PhysicsX's $300M raise show capital flowing into AI that designs and forecasts physical operations. The sharpest risk is <strong>trust erosion in finance functions</strong>: voice-cloning fraud, agent-hijacking, and a cyber crisis hitting investment firms all converge on the controls that protect money movement and confidential data. The discussion every board should schedule now: with EU AI Act enforcement (fines up to 7% of global revenue) live in August, <strong>does our organization have an owned, audited AI governance program — or just pilots?</strong></p>
+  </div>
+
+  <!-- ENTERPRISE PLATFORM WARS -->
+  <section class="block sec-platforms" data-sec="platforms">
+    <div class="sec-head"><span class="ic">🏛</span><h3>Enterprise Platform Wars</h3><span class="rule"></span></div>
+    <div class="grid">
+      <div class="card" data-cat="platforms" onclick="openModal('c1')">
+        <div class="card-top"><span class="card-date">JUN 2, 2026</span></div>
+        <h4>80% of enterprises capture just a quarter of AI's value — and the gap is widening</h4>
+        <p class="blurb">A synthesis of 10 major 2026 surveys finds a "winner-take-most" divide: leaders pull away through governance and integration, not models.</p>
+        <div class="tags"><span class="tag bg-gold owner-ceo">CEO</span><span class="tag bg-green owner-cfo">CFO</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-opp">Opportunity</span><span class="badge b-discuss">Discuss</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENTIC AI -->
+  <section class="block sec-agents" data-sec="agents">
+    <div class="sec-head"><span class="ic">🤖</span><h3>Agentic AI</h3><span class="rule"></span></div>
+    <div class="grid">
+      <div class="card" data-cat="agents" onclick="openModal('c2')">
+        <div class="card-top"><span class="card-date">JUN 2, 2026</span></div>
+        <h4>Anthropic discloses Claude's browser agent could be hijacked 31.5% of the time</h4>
+        <p class="blurb">The first hard number on agentic browsing risk: hostile web-page instructions hijacked the agent nearly a third of the time before safeguards.</p>
+        <div class="tags"><span class="tag bg-purple owner-gc">CAE</span><span class="tag bg-gold owner-ceo">CEO</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-risk">Risk</span><span class="badge b-discuss">Discuss</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGULATION & GOVERNANCE -->
+  <section class="block sec-regulation" data-sec="regulation">
+    <div class="sec-head"><span class="ic">⚖️</span><h3>AI Regulation &amp; Governance</h3><span class="rule"></span></div>
+    <div class="grid">
+      <div class="card" data-cat="regulation" onclick="openModal('c3')">
+        <div class="card-top"><span class="card-date">JUN 3, 2026</span></div>
+        <h4>EU AI Act enforcement goes live in August — fines reach 7% of global revenue</h4>
+        <p class="blurb">Regulators gain full enforcement power in August 2026, with penalties up to €35M or 7% of worldwide turnover, applied extraterritorially.</p>
+        <div class="tags"><span class="tag bg-purple owner-gc">GC</span><span class="tag bg-green owner-cfo">CFO</span><span class="tag bg-purple owner-gc">CAE</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-risk">Risk</span><span class="badge b-act">Act</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+      <div class="card" data-cat="regulation" onclick="openModal('c4')">
+        <div class="card-top"><span class="card-date">JUN 1, 2026</span></div>
+        <h4>Courts split on whether public AI tools waive attorney-client privilege</h4>
+        <p class="blurb">Four Q1 2026 federal decisions create an emerging split — feeding confidential data into ChatGPT-style tools may destroy work-product protection.</p>
+        <div class="tags"><span class="tag bg-purple owner-gc">GC</span><span class="tag bg-purple owner-gc">CAE</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-risk">Risk</span><span class="badge b-act">Act</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKFORCE -->
+  <section class="block sec-workforce" data-sec="workforce">
+    <div class="sec-head"><span class="ic">👥</span><h3>Workforce &amp; Talent</h3><span class="rule"></span></div>
+    <div class="grid">
+      <div class="card" data-cat="workforce" onclick="openModal('c5')">
+        <div class="card-top"><span class="card-date">JUN 5, 2026</span></div>
+        <h4>AI is now the No. 1 reason U.S. employers give for cutting jobs</h4>
+        <p class="blurb">AI was cited for nearly 40% of May's ~97,000 announced layoffs — up from 7% in January — the highest May cut total since 2020.</p>
+        <div class="tags"><span class="tag bg-gold owner-ceo">CEO</span><span class="tag bg-orange owner-chro">CHRO</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-risk">Risk</span><span class="badge b-discuss">Discuss</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISK & FRAUD -->
+  <section class="block sec-risk" data-sec="risk">
+    <div class="sec-head"><span class="ic">🔒</span><h3>AI Risk &amp; Fraud</h3><span class="rule"></span></div>
+    <div class="grid">
+      <div class="card" data-cat="risk" onclick="openModal('c6')">
+        <div class="card-top"><span class="card-date">JUN 3, 2026</span></div>
+        <h4>Investment firms overtake banks as the top ransomware target</h4>
+        <p class="blurb">Black Kite's 2026 report: a single managed-service-provider breach cascaded into 28 financial institutions; critical vendor vulnerabilities surged nearly 5x.</p>
+        <div class="tags"><span class="tag bg-purple owner-gc">CAE</span><span class="tag bg-green owner-cfo">CFO</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-risk">Risk</span><span class="badge b-act">Act</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+      <div class="card" data-cat="risk" onclick="openModal('c7')">
+        <div class="card-top"><span class="card-date">JUN 1, 2026</span></div>
+        <h4>1 in 4 people now hit by AI voice-cloning scams — finance teams in the crosshairs</h4>
+        <p class="blurb">A McAfee study finds voice clones built from 3 seconds of audio; FBI logs $893M+ in AI fraud complaints, with $40B projected by 2027.</p>
+        <div class="tags"><span class="tag bg-green owner-cfo">CFO</span><span class="tag bg-purple owner-gc">CAE</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-risk">Risk</span><span class="badge b-act">Act</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+      <div class="card" data-cat="risk" onclick="openModal('c8')">
+        <div class="card-top"><span class="card-date">JUN 5, 2026</span></div>
+        <h4>AI uncovers a decades-old server flaw — cutting both ways</h4>
+        <p class="blurb">OpenAI's Codex helped researchers expose "HTTP/2 Bomb." The same capability that speeds defense also accelerates attackers' vulnerability hunting.</p>
+        <div class="tags"><span class="tag bg-purple owner-gc">CAE</span><span class="tag bg-gold owner-ceo">CEO</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-risk">Risk</span><span class="badge b-monitor">Monitor</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNDING & M&A -->
+  <section class="block sec-funding" data-sec="funding">
+    <div class="sec-head"><span class="ic">💰</span><h3>Funding &amp; M&amp;A</h3><span class="rule"></span></div>
+    <div class="grid">
+      <div class="card" data-cat="funding" onclick="openModal('c9')">
+        <div class="card-top"><span class="card-date">JUN 3, 2026</span></div>
+        <h4>Nvidia buys Kumo AI to move from chips into business prediction</h4>
+        <p class="blurb">Nvidia acquired the foundation-model startup for enterprise forecasting — extending its reach up the stack into predictive software.</p>
+        <div class="tags"><span class="tag bg-gold owner-ceo">CEO</span><span class="tag bg-green owner-cfo">CFO</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-opp">Opportunity</span><span class="badge b-monitor">Monitor</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+      <div class="card" data-cat="funding" onclick="openModal('c10')">
+        <div class="card-top"><span class="card-date">JUN 7, 2026</span></div>
+        <h4>China's Moonshot AI in talks to raise $1B+ at a $30B valuation</h4>
+        <p class="blurb">The maker of the Kimi chatbot would jump from $20B to $30B — a signal that investor appetite for frontier-model challengers remains strong.</p>
+        <div class="tags"><span class="tag bg-gold owner-ceo">CEO</span><span class="tag bg-green owner-cfo">CFO</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-opp">Opportunity</span><span class="badge b-monitor">Monitor</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+      <div class="card" data-cat="funding" onclick="openModal('c11')">
+        <div class="card-top"><span class="card-date">JUN 7, 2026</span></div>
+        <h4>PhysicsX raises $300M to put AI into jet engines and chips</h4>
+        <p class="blurb">Temasek led a Series C at a $2.4B valuation for AI that designs industrial parts — evidence AI is moving into heavy industry and engineering.</p>
+        <div class="tags"><span class="tag bg-gold owner-ceo">CEO</span><span class="tag bg-green owner-cfo">CFO</span></div>
+        <div class="card-foot"><div class="badges"><span class="badge b-opp">Opportunity</span><span class="badge b-monitor">Monitor</span></div><span class="dive">↗ Deep dive</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WATCHLIST + QUESTIONS -->
+  <div class="twocol">
+    <div class="pane">
+      <h3>📌 Executive Watchlist</h3>
+      <ul class="wl">
+        <li><span class="ico">🔵</span><span><strong>Monitor:</strong> Capital is rotating into industrial &amp; predictive AI (Nvidia–Kumo, PhysicsX). Watch which of our operating businesses could be disrupted — or strengthened — by AI that designs and forecasts physical operations.</span></li>
+        <li><span class="ico">🟡</span><span><strong>Discuss:</strong> The "AI value gap" — 80% of firms capture ≤25% of AI's value. Where do we actually sit, and is the bottleneck technology, governance, or adoption?</span></li>
+        <li><span class="ico">🔴</span><span><strong>Act:</strong> Voice-cloning and deepfake fraud now target finance teams directly. Confirm callback verification and dual-authorization controls on all wire and vendor-change requests before next quarter-end.</span></li>
+        <li><span class="ico">🟣</span><span><strong>Audit question:</strong> Can internal audit provide assurance that AI tools used in financial reporting and close processes have documented controls and human oversight?</span></li>
+        <li><span class="ico">🩵</span><span><strong>Policy update:</strong> Issue clear guidance on staff use of public AI tools (ChatGPT, Claude, Gemini) with confidential data, given new court rulings on privilege waiver and the August EU AI Act enforcement date.</span></li>
+      </ul>
+    </div>
+    <div class="pane">
+      <h3>❓ Questions for Management</h3>
+      <ol class="ql">
+        <li>Who owns our enterprise AI governance program, and has internal audit independently assessed its design and operating effectiveness?</li>
+        <li>Do any of our AI deployments fall within EU AI Act scope, and are we ready for August 2026 enforcement and the 7%-of-revenue penalty exposure?</li>
+        <li>What controls verify the identity of executives authorizing wire transfers, given that 3 seconds of public audio can clone a voice?</li>
+        <li>As AI-driven layoffs accelerate sector-wide, how are we managing workforce transition, retained-knowledge risk, and reputational exposure?</li>
+        <li>Have we set policy and monitoring for staff entering confidential or privileged data into public AI tools, and for any autonomous "agents" acting on our systems?</li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL HOST -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal"></div>
+</div>
+
+<footer>
+  AI Intelligence Briefing — June 1 – June 8, 2026 · Prepared by Copilot for C-Suite Decision Makers · Sources verified as of June 8, 2026
+</footer>
+
+<script>
+const MODALS = {
+  c1:{cat:"Enterprise Platform Wars",color:"var(--gold)",date:"June 2, 2026",source:"Markets Insider (Marlabs / PwC 2026 AI Performance Study)",url:"https://markets.businessinsider.com/news/stocks/marlabs-2026-ai-adoption-report-provides-playbook-for-companies-to-drive-significant-ai-value-1036218072",
+    title:"80% of enterprises capture just a quarter of AI's value — and the gap is widening",
+    what:"Marlabs released a 2026 Enterprise AI Adoption Playbook synthesizing the ten most consequential 2026 enterprise AI surveys — more than 30,000 leaders across 100 countries. Its headline finding, drawn from PwC's 2026 AI Performance Study, is that roughly 80% of firms capture only 25% or less of AI's total potential economic value.",
+    why:"The report describes a \"winner-take-most\" dynamic in which top-tier enterprises pull away from the pack — not because they have better models, but because they execute better on operational integration, data quality, and governance. The differentiator is no longer access to AI; it is the discipline to deploy it well. For a diversified group, this reframes AI from an IT initiative into a board-level competitiveness issue, business unit by business unit.",
+    opp:"The firms closing the gap treat AI as an operating-model change with clear ownership, measurable use cases, and governance baked in from the start. That is a repeatable playbook, not a moonshot — and it favors organizations with strong process discipline and audit culture.",
+    risk:"Treating AI as scattered pilots without governance or value measurement is the fast path into the laggard 80%. The risk is quiet: capital and effort spent with little captured value, while better-run competitors compound their lead.",
+    actions:["Commission a candid assessment of where each major business unit sits on the AI value curve — captured value, not pilots launched.","Direct that every funded AI initiative carry a named owner, a measurable business outcome, and embedded controls.","Review whether AI value capture is a standing item in operating reviews, not a once-a-year update."],
+    risks:["\"Pilot purgatory\" — many experiments, little production value.","Benchmark figures are vendor-aggregated; validate against our own realized results before setting targets."],
+    q:"Can management show, for our top AI use cases, the value actually captured versus the value originally projected — and who is accountable for the gap?",
+    bottom:"The AI race is now an execution-and-governance race. Winning is less about adopting AI and more about <b>running it with discipline</b> — exactly where audit and process strength become competitive advantages.",
+    related:[["c5","AI-driven job cuts"],["c9","Nvidia–Kumo deal"]]},
+
+  c2:{cat:"Agentic AI",color:"var(--cyan)",date:"June 2, 2026",source:"WinBuzzer (Anthropic disclosure)",url:"https://winbuzzer.com/ai/openai/",
+    title:"Anthropic discloses Claude's browser agent could be hijacked 31.5% of the time",
+    what:"Anthropic published a safety disclosure stating that Claude's browser-using agent could be hijacked by hostile instructions embedded in web pages 31.5% of the time before mitigations were applied. The \"prompt-injection\" success rate dropped substantially after safeguards, but the pre-mitigation figure is the first hard, vendor-published number quantifying how exposed autonomous browsing agents are.",
+    why:"Enterprises are rushing to deploy AI \"agents\" that take actions — clicking, filling forms, moving data — on the open web and inside internal systems. This disclosure shows that a malicious web page or document can, in effect, give instructions to your agent. As agents gain authority over real systems and transactions, prompt-injection becomes a control weakness with direct financial and data-loss consequences.",
+    opp:"Vendor transparency here is genuinely useful: it gives risk and audit teams a concrete metric to demand from any agent they evaluate. \"What is your pre- and post-mitigation injection rate?\" can now become a standard procurement and assurance question.",
+    risk:"An agent with permissions to send email, move files, or initiate payments — combined with a one-in-three pre-mitigation hijack rate — is a material new attack surface that most control frameworks do not yet address.",
+    actions:["Direct that no AI agent be granted authority over money movement, data export, or system changes without human approval at the action step.","Request that security and audit add prompt-injection resistance to AI vendor due-diligence and to any internal agent pilot.","Brief the risk committee that \"agentic\" deployments require new controls, not just the model-governance applied to chatbots."],
+    risks:["Agents may be deployed by business units without security review.","Injection techniques evolve faster than published benchmarks; today's mitigation rate is not a permanent guarantee."],
+    q:"For any AI agent piloted in our environment, what actions can it take autonomously, and what independent control stands between a hijacked agent and a real transaction?",
+    bottom:"Autonomous agents are arriving faster than the controls around them. The governing principle for now: <b>agents may recommend, but humans must approve</b> anything that touches money, data, or systems.",
+    related:[["c7","Voice-cloning fraud"],["c8","AI-found server flaw"]]},
+
+  c3:{cat:"AI Regulation & Governance",color:"var(--purple)",date:"June 3, 2026",source:"MD+DI (commentary, Steptoe LLP)",url:"https://www.mddionline.com/artificial-intelligence/eu-ai-act-compliance-what-companies-need-to-know-about-penalties",
+    title:"EU AI Act enforcement goes live in August — fines reach 7% of global revenue",
+    what:"Legal experts highlighted that regulators gain full enforcement powers under the EU AI Act in August 2026. Penalties for prohibited-AI violations reach €35 million or 7% of global annual revenue, whichever is higher. The Act is the world's first comprehensive AI regulatory framework and applies extraterritorially to organizations whose AI systems affect people in the EU.",
+    why:"The 7%-of-global-revenue ceiling exceeds even GDPR's 4%, making this one of the highest-stakes compliance regimes any multinational faces. Crucially, exposure is not limited to EU-headquartered firms: any company placing AI systems on the EU market — or whose AI outputs are used in the EU — can fall within scope. For a global group, that means supply chains, exported products, and customer-facing AI all need triage.",
+    opp:"Early, documented compliance is a market-access asset and a trust signal. Firms that can demonstrate governed, classified, and risk-assessed AI will face fewer commercial frictions in regulated markets.",
+    risk:"Penalty exposure scales with total revenue, so a single prohibited or high-risk system used carelessly could generate fines disproportionate to that system's value. The August deadline leaves little runway for organizations still inventorying their AI.",
+    actions:["Direct legal and risk to confirm whether any of our AI systems fall within EU AI Act scope, prioritizing high-risk and prohibited categories.","Request an AI system inventory with risk classification ahead of the August enforcement date.","Brief the board on potential penalty exposure framed against group revenue, not system cost."],
+    risks:["\"Shadow AI\" deployed by business units may sit in scope unknown to the center.","Other jurisdictions (US states, others) are layering their own rules — a moving compliance target."],
+    q:"Do we have a complete, classified inventory of AI systems in scope of the EU AI Act, and who owns remediation before August enforcement?",
+    bottom:"AI governance just acquired teeth measured in <b>percentages of global revenue</b>. The board-level question is no longer whether to govern AI, but whether our governance is documented and auditable in time.",
+    related:[["c4","AI privilege rulings"],["c1","The AI value gap"]]},
+
+  c4:{cat:"AI Regulation & Governance",color:"var(--purple)",date:"June 1, 2026",source:"JD Supra (Akin Gump Strauss Hauer & Feld LLP)",url:"https://www.jdsupra.com/legalnews/federal-courts-issue-diverging-rulings-1384120/",
+    title:"Courts split on whether public AI tools waive attorney-client privilege",
+    what:"U.S. federal courts issued four significant decisions in Q1 2026 addressing whether using public generative-AI tools (such as ChatGPT, Claude, and Gemini) affects attorney-client privilege and work-product protection. An emerging split has formed: the Southern District of New York held that using public third-party AI tools may destroy work-product protection, while other courts diverged.",
+    why:"Employees routinely paste contracts, memos, investigation notes, and analysis into public AI tools to \"get help.\" These rulings signal that doing so may waive legal protections that the organization assumed were intact — converting a productivity shortcut into a discoverable, unprotected disclosure. For legal, audit, and compliance functions that handle sensitive material, this is an immediate policy gap.",
+    opp:"A clear, well-communicated internal policy — paired with sanctioned, enterprise-grade AI tools that keep data inside the organization's boundary — turns this risk into a differentiator in how carefully the company handles confidential information.",
+    risk:"Without guidance, well-meaning staff may waive privilege or expose confidential data simply by using the most convenient tool. The harm is often invisible until litigation or a regulatory request surfaces it.",
+    actions:["Update policy to define what categories of information may never be entered into public AI tools.","Direct that sanctioned, enterprise AI tools (which retain data within our control) be the default for work involving confidential or privileged content.","Request internal audit test for confidential-data leakage into public AI tools."],
+    risks:["The legal split means the safe standard is the strictest jurisdiction, not the most permissive.","Enforcement requires both policy and technical guardrails — policy alone will not stop convenient behavior."],
+    q:"What prevents an employee from pasting privileged or confidential material into a public AI tool today, and how would we even know if it happened?",
+    bottom:"Convenience is quietly eroding legal protection. The fix is a <b>clear policy plus sanctioned tools</b> — issued before an incident, not after.",
+    related:[["c3","EU AI Act enforcement"],["c2","Agent hijacking risk"]]},
+
+  c5:{cat:"Workforce & Talent",color:"var(--orange)",date:"June 5, 2026",source:"CNBC (Challenger, Gray & Christmas)",url:"https://www.cnbc.com/2026/06/05/ai-is-now-the-leading-reason-companies-give-for-cutting-jobs-says-new-report-what-that-means-for-workers.html",
+    title:"AI is now the No. 1 reason U.S. employers give for cutting jobs",
+    what:"Outplacement firm Challenger, Gray & Christmas reported that U.S. employers announced just over 97,000 job cuts in May 2026 — the highest May total since 2020. Employers cited AI as the primary reason for nearly 40% of those cuts, up from 7% in January, 10% in February, 25% in March, and 26% in April. It was the third consecutive monthly rise in layoffs.",
+    why:"AI has moved from a productivity talking point to the stated rationale for structural workforce reduction, and the share is climbing month over month. For leadership, this shifts the conversation from \"will AI affect headcount\" to \"how do we manage the transition responsibly\" — covering retained knowledge, morale, reskilling, and the reputational optics of attributing cuts to AI.",
+    opp:"Organizations that pair AI adoption with credible redeployment and reskilling can capture productivity gains while protecting institutional knowledge and employer brand — a meaningful differentiator in talent markets.",
+    risk:"Aggressive AI-attributed cuts can hollow out tacit knowledge, damage morale among remaining staff, and invite reputational and regulatory scrutiny — especially where productivity gains are assumed rather than proven.",
+    actions:["Direct HR and operating leaders to tie any AI-enabled role changes to a workforce-transition and reskilling plan.","Review knowledge-retention risk before eliminating roles where institutional expertise is concentrated.","Brief the board on how AI-related workforce decisions are governed and communicated."],
+    risks:["Productivity assumptions behind cuts may not materialize, leaving capability gaps.","\"AI\" can become a convenient label for cuts driven by other pressures — undermining credibility."],
+    q:"Where we are reducing roles on the basis of AI productivity, what evidence supports the productivity claim, and how are we protecting critical knowledge?",
+    bottom:"AI is now an explicit driver of layoffs sector-wide. The leadership task is to <b>manage the transition deliberately</b> — capturing efficiency without eroding capability or trust.",
+    related:[["c1","The AI value gap"],["c11","AI in heavy industry"]]},
+
+  c6:{cat:"AI Risk & Fraud",color:"var(--red)",date:"June 3, 2026",source:"Unite.AI (Black Kite 2026 Financial Services Report)",url:"https://www.unite.ai/black-kites-2026-financial-services-report-warns-of-a-growing-cybersecurity-crisis-across-banking-and-investment-firms/",
+    title:"Investment firms overtake banks as the top ransomware target",
+    what:"Black Kite's 2026 Financial Services Report describes a converging \"dual storm\" of ransomware and third-party risk. Investment firms surpassed banks as the top ransomware target with 84 incidents in 2025. Vendors with critical vulnerabilities surged 4.9-fold — from 15 in 2024 to 73 in 2025 — and a single managed-service-provider breach cascaded into 28 financial institutions in September 2025.",
+    why:"The most striking finding is concentration risk: one vendor compromise reaching 28 institutions. For any organization that relies on shared service providers, platforms, and outsourced processing, this is a direct illustration of how third-party AI and IT dependencies turn a single supplier's weakness into systemic exposure. Financial and treasury operations are squarely in the blast radius.",
+    opp:"This is a clear mandate to strengthen third-party risk management and concentration analysis — identifying the handful of vendors whose failure would cascade, and demanding evidence of their controls.",
+    risk:"Cyber risk is migrating from \"our perimeter\" to \"our suppliers' perimeters,\" where visibility and control are weakest. A breach at a critical shared provider can hit operations, finances, and reputation simultaneously and outside our direct control.",
+    actions:["Direct a concentration-risk review identifying vendors whose compromise would cascade across multiple business units.","Request assurance (independent attestations, evidence) on the security controls of our most critical third parties.","Reassess vendor contracts for breach-notification, liability, and audit-rights provisions."],
+    risks:["Fourth-party risk (our vendors' vendors) is largely invisible without deliberate mapping.","Shared-service efficiency and concentration risk pull in opposite directions — a board-level trade-off."],
+    q:"Which third parties, if breached, would disrupt multiple parts of our business at once, and what independent assurance do we hold over their controls?",
+    bottom:"Your cyber exposure increasingly lives in your <b>vendors' systems, not your own</b>. Third-party concentration risk deserves a named owner and board visibility.",
+    related:[["c7","Voice-cloning fraud"],["c8","AI-found server flaw"]]},
+
+  c7:{cat:"AI Risk & Fraud",color:"var(--red)",date:"June 1, 2026",source:"Yahoo News (McAfee study; CNN reporting)",url:"https://www.yahoo.com/news/us/articles/ai-voice-cloning-scams-surge-130035880.html",
+    title:"1 in 4 people now hit by AI voice-cloning scams — finance teams in the crosshairs",
+    what:"A McAfee global study of 7,000 people found that one in four respondents had experienced an AI voice-cloning scam or knew someone who had. Scammers need as little as three seconds of public audio to generate a convincing clone. The FBI has logged more than $893 million in AI-related fraud complaints, and Deloitte projects U.S. AI fraud losses could reach $40 billion by 2027.",
+    why:"While the headline cases involve families, the same technique scales directly to corporate fraud: a cloned executive voice instructing a finance staffer to authorize an urgent wire. Every earnings call, conference talk, and posted video is training data. Traditional controls that rely on recognizing a familiar voice are now actively unreliable — the control assumption itself has broken.",
+    opp:"A simple, well-drilled verification protocol — callback to a known number, pre-agreed code words, mandatory dual authorization on payments — defeats most of these attacks at near-zero cost. This is a high-impact, low-cost control upgrade.",
+    risk:"Finance and treasury teams can move money directly and handle urgent requests routinely — making them the highest-value targets. A single successful deepfake authorization can cause six- or seven-figure loss in minutes.",
+    actions:["Direct that all wire transfers and vendor bank-detail changes require out-of-band callback verification and dual authorization, regardless of who appears to be asking.","Prioritize targeted training for finance, treasury, and executive-assistant staff on voice/video deepfake scenarios.","Request internal audit test payment-authorization controls against a simulated deepfake request."],
+    risks:["Urgency and authority pressure defeat untrained staff even when policy exists.","Detection technology lags; process controls, not tools, are the reliable defense today."],
+    q:"If someone who sounds exactly like our CEO calls finance demanding an urgent transfer, what specific step stops the payment — and has it been tested?",
+    bottom:"\"I recognized their voice\" is no longer a control. The defense is <b>verified callback and dual authorization on every payment</b> — cheap, simple, and overdue.",
+    related:[["c6","Financial-sector cyber crisis"],["c2","Agent hijacking risk"]]},
+
+  c8:{cat:"AI Risk & Fraud",color:"var(--red)",date:"June 5, 2026",source:"WinBuzzer",url:"https://winbuzzer.com/ai/openai/",
+    title:"AI uncovers a decades-old server flaw — cutting both ways",
+    what:"OpenAI's Codex helped security researchers uncover \"HTTP/2 Bomb,\" a long-standing server-memory attack affecting widely used web infrastructure. Fixes are available for nginx, Apache, and Envoy, but Microsoft IIS and Pingora remained unresolved at the time of reporting. The discovery demonstrates AI being used to find serious vulnerabilities in mature, heavily scrutinized software.",
+    why:"This is the dual-use reality of AI security in one story: the same capability that lets defenders find and patch decades-old flaws lets attackers do exactly that, faster and at scale. AI is compressing the time between \"a vulnerability exists\" and \"someone is exploiting it,\" which raises the premium on rapid patching and current asset inventories.",
+    opp:"Defensive teams can use AI-assisted code and configuration review to find weaknesses before adversaries do — a genuine uplift for security functions willing to adopt it deliberately and with guardrails.",
+    risk:"The attacker's discovery cycle shortens just as much as the defender's. Organizations slow to patch, or unclear on what software they run, face a widening exposure window against AI-accelerated threats.",
+    actions:["Request confirmation that our exposure to newly disclosed infrastructure flaws (including any unpatched components) is being tracked and remediated.","Direct security to evaluate AI-assisted vulnerability review as a defensive capability, with appropriate controls.","Monitor vendor patch status for critical web-infrastructure components."],
+    risks:["Unpatched components in our own or vendors' stacks become higher-value targets once flaws are public.","AI lowers the skill barrier for finding exploitable bugs — threat volume rises."],
+    q:"How quickly can we identify and patch newly disclosed vulnerabilities across our estate, and is that fast enough against AI-accelerated attackers?",
+    bottom:"AI is a vulnerability scanner for <b>both sides</b>. The defenders who win are the ones who patch fast and know exactly what they run.",
+    related:[["c6","Financial-sector cyber crisis"],["c2","Agent hijacking risk"]]},
+
+  c9:{cat:"Funding & M&A",color:"var(--green)",date:"June 3, 2026",source:"AI Market Watch",url:"https://www.ai-market-watch.com/news/category/acquisition",
+    title:"Nvidia buys Kumo AI to move from chips into business prediction",
+    what:"Nvidia acquired Kumo AI, a four-year-old startup specializing in foundation models for business prediction. The deal extends Nvidia beyond its dominant chip business into predictive enterprise AI software — the layer where companies turn data into forecasts of demand, risk, and operations.",
+    why:"When the company that supplies the industry's compute starts acquiring the software that runs on it, it signals where margins and lock-in are heading. For enterprise buyers, deeper vertical integration by a dominant supplier can mean more capable, tightly integrated products — but also greater dependence on a single vendor across the AI stack.",
+    opp:"Predictive foundation models could make advanced forecasting accessible to more business functions without bespoke data-science builds — potentially useful across demand planning, credit, and operations.",
+    risk:"Supplier concentration: as one vendor spans chips, platforms, and now predictive software, customers' negotiating leverage and architectural flexibility can erode over time.",
+    actions:["Monitor how predictive foundation models could improve forecasting in our operating businesses.","Reassess vendor-concentration exposure as dominant AI suppliers integrate vertically.","Direct technology leaders to keep architectural optionality (multi-vendor) where feasible."],
+    risks:["Vertical integration can raise switching costs and long-run pricing power.","Acquired capabilities take time to mature into enterprise-ready products."],
+    q:"How dependent are our AI plans on any single supplier across chips, platform, and applications, and what is our fallback if terms change?",
+    bottom:"The compute leader is moving up into <b>predictive software</b>. Watch the opportunity in better forecasting — and the long-run risk of single-vendor dependence.",
+    related:[["c10","Moonshot AI raise"],["c11","PhysicsX raise"]]},
+
+  c10:{cat:"Funding & M&A",color:"var(--green)",date:"June 7, 2026",source:"Bloomberg (via industry tracker)",url:"https://llm-stats.com/ai-news",
+    title:"China's Moonshot AI in talks to raise $1B+ at a $30B valuation",
+    what:"Beijing-based Moonshot AI, maker of the Kimi chatbot, is reported to be in talks to raise more than $1 billion at a valuation around $30 billion — up from roughly $20 billion in a recent round. The raise signals continued strong investor appetite for Chinese frontier-model challengers despite a crowded field.",
+    why:"The frontier-model market is not consolidating to a few Western players; well-funded challengers continue to emerge, including in China. For a multinational, this matters for vendor choice, geopolitical and data-sovereignty considerations, and the pace of price/performance competition that ultimately benefits buyers.",
+    opp:"More credible model providers means more competition on price and capability — and more options for organizations that want to avoid dependence on a single region's vendors.",
+    risk:"Using models tied to specific jurisdictions raises data-governance, regulatory, and geopolitical questions that must be assessed before adoption, particularly for sensitive workloads.",
+    actions:["Monitor the competitive model landscape to inform sourcing and pricing strategy.","Direct that any non-domestic model provider be assessed for data-sovereignty and regulatory fit before use.","Reassess assumptions of a stable, Western-only AI vendor set."],
+    risks:["Geopolitical and data-residency constraints may limit where certain models can be used.","Valuation momentum can outrun durable commercial fundamentals."],
+    q:"If we adopt models from differing jurisdictions, how do we govern data residency, regulatory compliance, and geopolitical risk for each?",
+    bottom:"The model market keeps <b>fragmenting, not consolidating</b> — good for buyer leverage, but each new provider brings its own governance and geopolitical questions.",
+    related:[["c9","Nvidia–Kumo deal"],["c11","PhysicsX raise"]]},
+
+  c11:{cat:"Funding & M&A",color:"var(--green)",date:"June 7, 2026",source:"Bloomberg (via industry tracker)",url:"https://llm-stats.com/ai-news",
+    title:"PhysicsX raises $300M to put AI into jet engines and chips",
+    what:"London-based PhysicsX, which uses AI to design industrial parts such as jet engines and semiconductors, raised a $300 million Series C led by Temasek at a $2.4 billion valuation. The company applies AI to engineering and simulation problems in heavy industry — a domain well beyond chatbots and text.",
+    why:"This is a marker that AI investment is broadening from software and content into the design of physical products and industrial processes. For a diversified group with manufacturing, infrastructure, and industrial exposure, AI-driven engineering and simulation could reshape product development cycles, cost structures, and competitive timelines in the real-economy businesses — not just the back office.",
+    opp:"AI that accelerates engineering design and simulation can compress product-development timelines and reduce physical prototyping cost — directly relevant to industrial and manufacturing operations.",
+    risk:"Industrial AI moving into competitors' design processes could shift cost and speed benchmarks; organizations slow to evaluate it may find their development cycles uncompetitive.",
+    actions:["Direct relevant operating businesses to evaluate where AI-driven design and simulation could shorten development cycles or cut cost.","Monitor industrial-AI entrants as potential partners or competitive threats in our manufacturing segments.","Review whether our R&D and engineering functions have the data foundations to adopt these tools."],
+    risks:["Industrial AI adoption requires quality engineering data many firms lack.","Benefits concentrate in data-rich, simulation-heavy processes — not uniformly across operations."],
+    q:"In our industrial and manufacturing businesses, where could AI-driven design and simulation create — or erode — competitive advantage, and who is evaluating it?",
+    bottom:"AI is moving off the screen and into <b>jet engines and factories</b>. For real-economy operating businesses, industrial AI is the signal worth tracking this week.",
+    related:[["c9","Nvidia–Kumo deal"],["c5","AI and the workforce"]]}
+};
+
+const overlay=document.getElementById('overlay');
+const modal=document.getElementById('modal');
+
+function openModal(id){
+  const m=MODALS[id]; if(!m)return;
+  const actions=m.actions.map(a=>`<li>${a}</li>`).join('');
+  const risks=m.risks.map(r=>`<li>${r}</li>`).join('');
+  const related=m.related.map(r=>`<span class="chip" onclick="openModal('${r[0]}')">↗ ${r[1]}</span>`).join('');
+  modal.innerHTML=`
+    <button class="x" onclick="closeModal()">✕</button>
+    <div class="m-cat" style="color:${m.color}">${m.cat}</div>
+    <h2>${m.title}</h2>
+    <div class="m-meta">${m.date} · ${m.source} · <a href="${m.url}" target="_blank" rel="noopener">View source ↗</a></div>
+    <h5>What happened</h5><p>${m.what}</p>
+    <h5>Why it matters</h5><p>${m.why}</p>
+    <h5>Business opportunity</h5><p>${m.opp}</p>
+    <h5>Risk &amp; control implication</h5><p>${m.risk}</p>
+    <div class="panel act"><h5>✅ Executive Actions</h5><ul>${actions}</ul></div>
+    <div class="panel watch"><h5>⚠️ Risks &amp; Watchouts</h5><ul>${risks}</ul></div>
+    <div class="qbox"><strong>Audit / risk question:</strong> ${m.q}</div>
+    <div class="botline"><b>C-suite bottom line:</b> ${m.bottom}</div>
+    <div class="related">${related}</div>`;
+  overlay.classList.add('open');
+  document.body.style.overflow='hidden';
+  modal.scrollTop=0;
+}
+function closeModal(){overlay.classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// FILTERS
+document.getElementById('filters').addEventListener('click',e=>{
+  if(!e.target.classList.contains('fbtn'))return;
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  const f=e.target.dataset.f;
+  document.querySelectorAll('section.block').forEach(sec=>{
+    const cards=sec.querySelectorAll('.card');let any=false;
+    cards.forEach(c=>{const show=(f==='all'||c.dataset.cat===f);c.style.display=show?'':'none';if(show)any=true;});
+    sec.style.display=any?'':'none';
+  });
+});
+
+// THEME
+const themeBtn=document.getElementById('theme');
+const saved=localStorage.getItem('ai-brief-theme');
+if(saved==='light')document.documentElement.setAttribute('data-theme','light');
+themeBtn.addEventListener('click',()=>{
+  const light=document.documentElement.getAttribute('data-theme')==='light';
+  if(light){document.documentElement.removeAttribute('data-theme');localStorage.setItem('ai-brief-theme','dark');}
+  else{document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ai-brief-theme','light');}
+});
+</script>
+</body>
+</html>
