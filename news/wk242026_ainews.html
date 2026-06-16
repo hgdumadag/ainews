@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — June 8–15, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root[data-theme="dark"]{--bg:#080c18;--surface:#111827;--surface2:#1e2a3a;--border:#263040;--text:#f1f5f9;--text2:#cbd5e1;--text3:#64748b;--nav-bg:rgba(8,12,24,0.94)}
+:root[data-theme="light"]{--bg:#f0f4f8;--surface:#fff;--surface2:#e8eef5;--border:#d1dce8;--text:#0d1b2a;--text2:#2d4059;--text3:#6b7fa0;--nav-bg:rgba(240,244,248,0.94)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s;min-height:100vh}
+
+/* ── NAV ───────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.nav-brand{font-size:12px;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:.04em}
+.filter-btns{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.filter-btn{padding:4px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;letter-spacing:.03em}
+.filter-btn.active,.filter-btn:hover{color:#fff;border-color:transparent}
+.fb-all.active,.fb-all:hover{background:#6366f1}
+.fb-platforms.active,.fb-platforms:hover{background:#d97706}
+.fb-agents.active,.fb-agents:hover{background:#0891b2}
+.fb-regulation.active,.fb-regulation:hover{background:#7c3aed}
+.fb-workforce.active,.fb-workforce:hover{background:#c2410c}
+.fb-risk.active,.fb-risk:hover{background:#dc2626}
+.fb-impact.active,.fb-impact:hover{background:#1d4ed8}
+.theme-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text3);padding:4px 11px;border-radius:8px;cursor:pointer;font-size:11px;font-family:inherit;font-weight:600;transition:all .2s}
+.theme-btn:hover{background:var(--border);color:var(--text)}
+
+/* ── HERO ──────────────────────────────────────────── */
+.hero{padding:56px 24px 36px;max-width:1200px;margin:0 auto}
+.hero-badge{display:inline-block;padding:5px 16px;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:20px}
+.hero h1{font-size:clamp(30px,5vw,54px);font-weight:900;background:linear-gradient(135deg,#f1f5f9 20%,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;line-height:1.1}
+[data-theme="light"] .hero h1{background:linear-gradient(135deg,#0d1b2a 20%,#4f46e5);-webkit-background-clip:text;background-clip:text}
+.hero-sub{color:var(--text3);font-size:15px;margin-bottom:32px}
+
+/* ── METRICS ───────────────────────────────────────── */
+.metrics{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.metric{flex:1;min-width:130px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;position:relative;overflow:hidden}
+.metric::after{content:'';position:absolute;bottom:-12px;right:-12px;width:60px;height:60px;border-radius:50%;opacity:.07}
+.m-total::after{background:#818cf8}
+.m-risk::after{background:#f87171}
+.m-opp::after{background:#34d399}
+.m-reg::after{background:#c084fc}
+.m-act::after{background:#fbbf24}
+.metric-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.metric-num{font-size:38px;font-weight:900;line-height:1}
+.m-total .metric-num{color:#818cf8}
+.m-risk .metric-num{color:#f87171}
+.m-opp .metric-num{color:#34d399}
+.m-reg .metric-num{color:#c084fc}
+.m-act .metric-num{color:#fbbf24}
+
+/* ── EXEC SUMMARY ──────────────────────────────────── */
+.exec-summary{background:linear-gradient(135deg,rgba(79,70,229,.12),rgba(124,58,237,.07));border:1px solid rgba(99,102,241,.3);border-radius:16px;padding:26px 30px;margin-bottom:48px}
+.exec-summary h2{font-size:12px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:.09em;margin-bottom:12px}
+.exec-summary p{color:var(--text2);font-size:15px;line-height:1.75}
+
+/* ── SECTIONS ──────────────────────────────────────── */
+.section{max-width:1200px;margin:0 auto;padding:0 24px 52px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.section-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.section-title{font-size:17px;font-weight:700}
+.section-count{font-size:12px;color:var(--text3);font-weight:500}
+.section-line{flex:1;height:1px;background:var(--border)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+
+/* ── CARD ──────────────────────────────────────────── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.card-platforms::before{background:linear-gradient(90deg,#d97706,#f59e0b)}
+.card-agents::before{background:linear-gradient(90deg,#0891b2,#06b6d4)}
+.card-regulation::before{background:linear-gradient(90deg,#7c3aed,#a855f7)}
+.card-workforce::before{background:linear-gradient(90deg,#c2410c,#f97316)}
+.card-risk::before{background:linear-gradient(90deg,#dc2626,#ef4444)}
+.card-impact::before{background:linear-gradient(90deg,#1d4ed8,#3b82f6)}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
+.card-platforms:hover{border-color:#d97706}
+.card-agents:hover{border-color:#0891b2}
+.card-regulation:hover{border-color:#7c3aed}
+.card-workforce:hover{border-color:#c2410c}
+.card-risk:hover{border-color:#dc2626}
+.card-impact:hover{border-color:#1d4ed8}
+.card-date{font-size:11px;color:var(--text3);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.card-date span{display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5}
+.card-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.4}
+.card-summary{font-size:13px;color:var(--text3);line-height:1.55;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-footer{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.tag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.bg-gold{background:rgba(251,191,36,.18);color:#fbbf24}
+.bg-green{background:rgba(52,211,153,.18);color:#34d399}
+.bg-purple{background:rgba(192,132,252,.18);color:#c084fc}
+.bg-orange{background:rgba(251,146,60,.18);color:#fb923c}
+.badge{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px}
+.badge-risk{background:rgba(248,113,113,.15);color:#f87171}
+.badge-opp{background:rgba(52,211,153,.15);color:#34d399}
+.badge-gov{background:rgba(192,132,252,.15);color:#c084fc}
+.urgency{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;margin-left:auto}
+.u-act{background:rgba(239,68,68,.2);color:#ef4444}
+.u-discuss{background:rgba(251,191,36,.2);color:#fbbf24}
+.u-monitor{background:rgba(100,116,139,.2);color:#94a3b8}
+.card-hint{font-size:11px;color:var(--text3);margin-top:10px;opacity:.7}
+
+/* ── MODAL ─────────────────────────────────────────── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);z-index:200;justify-content:center;align-items:flex-start;overflow-y:auto;padding:36px 16px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:20px;max-width:680px;width:100%;padding:34px;position:relative;animation:minSlide .3s ease}
+@keyframes minSlide{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:absolute;top:18px;right:18px;background:var(--surface2);border:1px solid var(--border);color:var(--text3);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit}
+.modal-close:hover{background:var(--border);color:var(--text)}
+.modal-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text3);margin-bottom:8px}
+.modal-title{font-size:20px;font-weight:800;line-height:1.3;margin-bottom:14px}
+.modal-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+.modal-date{font-size:12px;color:var(--text3)}
+.modal-src a{font-size:12px;color:#60a5fa;text-decoration:none}
+.modal-src a:hover{text-decoration:underline}
+.modal-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
+.modal-body p{font-size:14px;color:var(--text2);line-height:1.78;margin-bottom:14px}
+.modal-panel{border-radius:12px;padding:16px 20px;margin-top:14px}
+.modal-panel h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.modal-panel ul{list-style:none}
+.modal-panel li{font-size:13px;line-height:1.65;padding:3px 0;color:var(--text2)}
+.modal-panel li::before{content:'→ ';opacity:.5}
+.p-act{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)}
+.p-act h4{color:#4ade80}
+.p-risk{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);margin-top:10px}
+.p-risk h4{color:#f87171}
+.modal-aq{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);border-radius:12px;padding:14px 18px;margin-top:14px}
+.modal-aq strong{display:block;font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.modal-aq p{font-size:13px;color:var(--text2);font-style:italic;line-height:1.65;margin:0}
+.modal-bl{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-top:10px}
+.modal-bl strong{display:block;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.modal-bl p{font-size:13px;color:var(--text2);line-height:1.65;margin:0}
+.modal-related{margin-top:18px}
+.modal-related strong{font-size:11px;color:var(--text3);font-weight:600;display:block;margin-bottom:8px}
+.related-chips{display:flex;gap:6px;flex-wrap:wrap}
+.rchip{font-size:11px;padding:4px 12px;border-radius:20px;background:var(--surface2);border:1px solid var(--border);color:var(--text3);cursor:pointer;transition:all .2s}
+.rchip:hover{background:var(--border);color:var(--text)}
+
+/* ── WATCHLIST ─────────────────────────────────────── */
+.watch-section{max-width:1200px;margin:0 auto;padding:0 24px 48px}
+.watch-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 30px}
+.watch-box h2{font-size:16px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.watch-box ul{list-style:none}
+.watch-box li{padding:11px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text2);line-height:1.65}
+.watch-box li:last-child{border-bottom:none}
+
+/* ── QUESTIONS ─────────────────────────────────────── */
+.q-section{max-width:1200px;margin:0 auto;padding:0 24px 48px}
+.q-box{background:linear-gradient(135deg,rgba(79,70,229,.07),rgba(124,58,237,.04));border:1px solid rgba(99,102,241,.2);border-radius:16px;padding:28px 30px}
+.q-box h2{font-size:16px;font-weight:700;margin-bottom:20px}
+.q-box ol{padding-left:20px}
+.q-box li{padding:10px 0;font-size:14px;color:var(--text2);line-height:1.7;border-bottom:1px solid var(--border)}
+.q-box li:last-child{border-bottom:none}
+
+/* ── FOOTER ────────────────────────────────────────── */
+footer{text-align:center;padding:28px 24px;border-top:1px solid var(--border);color:var(--text3);font-size:12px;line-height:1.9;margin-top:8px}
+
+.hidden{display:none!important}
+
+@media(max-width:768px){.hero{padding:32px 16px 24px}.section,.watch-section,.q-section{padding-left:16px;padding-right:16px}.modal{padding:22px 18px}.metrics{gap:8px}.metric{min-width:110px;padding:14px 14px}.metric-num{font-size:30px}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-brand">JG Summit · AI Briefing</span>
+  <div class="filter-btns">
+    <button class="filter-btn fb-all active" onclick="filterSection('all',this)">All</button>
+    <button class="filter-btn fb-platforms" onclick="filterSection('platforms',this)">🏛 Platform Wars</button>
+    <button class="filter-btn fb-agents" onclick="filterSection('agents',this)">🤖 Agentic AI</button>
+    <button class="filter-btn fb-regulation" onclick="filterSection('regulation',this)">⚖️ Governance</button>
+    <button class="filter-btn fb-impact" onclick="filterSection('impact',this)">📊 Business Impact</button>
+    <button class="filter-btn fb-workforce" onclick="filterSection('workforce',this)">👥 Workforce</button>
+    <button class="filter-btn fb-risk" onclick="filterSection('risk',this)">🔒 Risk &amp; Fraud</button>
+  </div>
+  <button class="theme-btn" onclick="toggleTheme()">☀/🌙</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Week 24 · Executive Intelligence</div>
+  <h1>AI Intelligence Briefing</h1>
+  <p class="hero-sub">June 8 – June 15, 2026 · 12 curated signals for C-suite decision-makers</p>
+
+  <div class="metrics">
+    <div class="metric m-total">
+      <div class="metric-label">Total Signals</div>
+      <div class="metric-num">12</div>
+    </div>
+    <div class="metric m-risk">
+      <div class="metric-label">Risk &amp; Governance</div>
+      <div class="metric-num">7</div>
+    </div>
+    <div class="metric m-opp">
+      <div class="metric-label">Opportunity &amp; Strategy</div>
+      <div class="metric-num">5</div>
+    </div>
+    <div class="metric m-reg">
+      <div class="metric-label">Regulation &amp; Legal</div>
+      <div class="metric-num">4</div>
+    </div>
+    <div class="metric m-act">
+      <div class="metric-label">Act or Discuss</div>
+      <div class="metric-num">9</div>
+    </div>
+  </div>
+
+  <div class="exec-summary">
+    <h2>⚡ 30-Second Executive Summary</h2>
+    <p>The week's defining signal: OpenAI confidentially filed for an IPO just days after Anthropic, setting up the enterprise AI market for its biggest capital event yet — and locking in a two-vendor race that will shape every enterprise AI procurement decision for years. Boards and CFOs should treat both firms as pre-IPO counterparties and review vendor contracts now. The biggest governance risk: IBM's survey of 2,000 technology leaders found two-thirds are accountable for AI systems they do not fully control, and only 11% feel prepared for the scale of AI agent deployment — a structural accountability gap that internal audit must address immediately. The most urgent legal development: the American Accounting Association warned that no authoritative standard yet defines what adequate human oversight looks like when AI classifies transactions or drafts workpapers, leaving CFOs and signing accountants exposed. <strong>Recommended discussion for audit leadership: Commission a rapid assessment of AI deployment coverage in your governance framework, particularly for agent-enabled and financial reporting use cases.</strong></p>
+  </div>
+</div>
+
+<!-- SECTIONS & CARDS rendered by JS -->
+<div id="sections-root"></div>
+
+<!-- WATCHLIST -->
+<section class="watch-section">
+  <div class="watch-box">
+    <h2>📋 Executive Watchlist</h2>
+    <ul>
+      <li>🔴 <strong>Act — AI Agent Accountability Gap:</strong> IBM data shows 70% of enterprises deploy AI faster than IT can track; only 11% are ready for agent-scale deployment. Internal audit should initiate an AI control-coverage assessment this quarter before regulators or an incident surfaces the gap first.</li>
+      <li>🟡 <strong>Discuss — Vendor IPO Exposure:</strong> Both OpenAI and Anthropic filed confidential S-1s this week. Enterprise AI contracts signed with these firms as private companies may contain terms that change materially post-IPO. Legal and procurement should review critical vendor agreements now.</li>
+      <li>🔴 <strong>Act — AI in Financial Reporting Has No Oversight Standard:</strong> The American Accounting Association confirms no authoritative standard governs human oversight of AI in financial reporting. CFOs should establish documented supervisory controls before a restatement event forces the issue.</li>
+      <li>🟣 <strong>Audit/Assurance — Third-Party AI Behavior:</strong> Reputational risk from vendor AI misbehavior persists even when legal liability is limited. Internal audit should expand third-party risk reviews to include AI ethics, output quality, and governance due diligence for all material AI vendors.</li>
+      <li>🩵 <strong>Policy/Governance Update — AI Governance Gap at Scale:</strong> 82% of mid-market enterprises run AI in production; only 26% have enterprise-wide governance. Boards should request a governance coverage dashboard showing which AI deployments sit inside and outside the policy framework.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- QUESTIONS FOR MANAGEMENT -->
+<section class="q-section">
+  <div class="q-box">
+    <h2>❓ Questions for Management &amp; the Audit Committee</h2>
+    <ol>
+      <li>What percentage of the organization's active AI deployments are covered by the enterprise AI governance framework — and does internal audit have visibility into the uncovered deployments?</li>
+      <li>Have legal and procurement reviewed our material AI vendor contracts — particularly with OpenAI and Anthropic — for terms that may change as these vendors transition from private firms to public companies?</li>
+      <li>What documented supervisory controls govern AI use in financial reporting, transaction classification, and workpaper preparation — and who is accountable when AI-assisted outputs result in a material misstatement?</li>
+      <li>Does the organization's delegation of authority policy explicitly address AI agent actions, and are those actions subject to the same authorization thresholds and audit trail requirements as equivalent human transactions?</li>
+      <li>Has the board been briefed on the reputational exposure that arises when third-party AI systems misbehave — and does the third-party risk program include AI-specific ethics and governance due diligence beyond contract review?</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  AI Intelligence Briefing — June 8 – June 15, 2026 &bull; Prepared by Copilot for C-Suite Decision Makers &bull; Sources verified as of June 15, 2026<br>
+  JG Summit Holdings, Inc. &bull; Technical &amp; Analytics Audit
+</footer>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modal-overlay" onclick="maybeClose(event)">
+  <div class="modal" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// ── STORY DATA ───────────────────────────────────────────────────────────────
+const STORIES = [
+  {
+    id: 1,
+    section: "platforms",
+    sectionLabel: "🏛 Enterprise Platform Wars",
+    date: "June 8, 2026",
+    source: "CNBC",
+    url: "https://www.cnbc.com/2026/06/08/openai-confidentially-files-for-ipo-prepping-wall-street-for-ai-debut.html",
+    headline: "OpenAI Confidentially Files for IPO, Joining Anthropic in Race to Public Markets",
+    summary: "OpenAI filed confidentially with the SEC, setting up one of the largest IPOs in history. Anthropic filed a week earlier, with SpaceX listing days later.",
+    type: "opp",
+    typeLabel: "Opportunity",
+    urgency: "discuss",
+    urgencyLabel: "Discuss",
+    roles: [{cls:"bg-gold",label:"CEO"},{cls:"bg-green",label:"CFO"}],
+    what: "OpenAI has confidentially filed for an IPO with the SEC, joining Anthropic which filed a week earlier. Together with SpaceX, these could rank among the three largest public offerings on record. OpenAI is currently valued at more than $300 billion.",
+    why: "The IPO race signals that the two leading enterprise AI vendors — OpenAI and Anthropic — are now on a path to public company accountability with shareholder obligations, disclosure requirements, and governance structures that differ materially from their current private-lab structures.",
+    opp: "Organizations that establish strategic enterprise relationships with OpenAI or Anthropic now — before IPO valuations are set — may negotiate more favorable long-term contract terms. This is also an opportunity to assess AI infrastructure investments against the likely post-IPO pricing landscape.",
+    risk: "Pre-IPO vendor contracts may contain terms — pricing, data handling, service levels — that change as these firms become subject to public company governance and shareholder pressure. Enterprise dependency on two vendors heading to simultaneous IPOs represents a concentration risk.",
+    actions: ["Review all material AI vendor contracts with OpenAI and Anthropic for change-of-control and post-IPO repricing provisions","Brief the board on vendor IPO timelines and assess whether current AI sourcing strategy creates undue concentration risk","Engage procurement and legal to evaluate whether to accelerate, defer, or renegotiate enterprise AI commitments ahead of public listings"],
+    watchouts: ["Post-IPO pricing pressure may increase enterprise AI costs significantly as these firms serve shareholder expectations","Security and data handling policies may shift under public company governance — review data processing agreements","Competitor AI platforms (AWS Bedrock, Google Vertex, Azure OpenAI) may use IPO disruption as an opportunity to lock in enterprise accounts"],
+    auditQ: "Are your material AI vendor contracts reviewed for terms that may shift post-IPO as vendors become subject to public company disclosure and governance requirements?",
+    bottomLine: "Two of the three largest AI vendors in the enterprise market will be public companies within months. Every organization with material OpenAI or Anthropic commitments should treat this as a material vendor governance event — not just a market news item.",
+    related: [2]
+  },
+  {
+    id: 2,
+    section: "platforms",
+    sectionLabel: "🏛 Enterprise Platform Wars",
+    date: "June 11, 2026",
+    source: "CNBC",
+    url: "https://www.cnbc.com/2026/06/11/as-openai-leans-into-enterprise-apple-and-google-target-consumer-ai.html",
+    headline: "As OpenAI Pivots Fully to Enterprise, Apple and Google Chase Consumer AI — Market Bifurcation Accelerates",
+    summary: "OpenAI is abandoning its consumer roots to compete with Anthropic for enterprise contracts. Apple and Google are betting on mass-market AI features with uncertain monetization.",
+    type: "opp",
+    typeLabel: "Opportunity",
+    urgency: "monitor",
+    urgencyLabel: "Monitor",
+    roles: [{cls:"bg-gold",label:"CEO"},{cls:"bg-green",label:"CFO"}],
+    what: "OpenAI is steering aggressively toward enterprise contracts, directly competing with Anthropic, while simultaneously filing for IPO. Apple and Google are going the opposite direction — rolling out AI features to their billions of consumer users even though it is unclear if consumers will pay for them. The enterprise AI vendor market is bifurcating into two distinct races.",
+    why: "Enterprise organizations are now effectively choosing between two enterprise-focused AI platform providers (OpenAI, Anthropic) and consumer-first platforms that offer enterprise capabilities as a secondary market. This bifurcation will define AI vendor relationships for years.",
+    opp: "The enterprise AI market consolidation around two primary vendors gives procurement teams clearer choices but also more leverage in contract negotiations before lock-in is complete.",
+    risk: "As OpenAI and Anthropic target the same enterprise accounts, switching costs will rise rapidly. Vendor concentration risk in enterprise AI is increasing, not decreasing, as the market consolidates.",
+    actions: ["Map current AI vendor dependencies and model a scenario where one of your primary vendors materially changes terms post-IPO","Commission a vendor diversification analysis assessing which AI use cases require platform lock-in and which can remain portable","Brief the board on the enterprise AI platform landscape and your organization's positioning strategy"],
+    watchouts: ["Single-vendor AI dependencies will become harder and more expensive to unwind as enterprise contracts mature","Consumer-grade AI tools used by employees via personal devices (Apple Intelligence, Google AI) create shadow AI and data leakage risk","Platform consolidation may reduce innovation options — monitor open-source AI alternatives as a hedge"],
+    auditQ: "Has your organization assessed vendor concentration risk in your AI stack as the enterprise AI market consolidates around OpenAI and Anthropic — and is there a board-approved diversification strategy?",
+    bottomLine: "The enterprise AI market is settling into a duopoly. Organizations that haven't made deliberate platform choices will have them made for them as lock-in deepens. This is the time to be strategic, not reactive.",
+    related: [1]
+  },
+  {
+    id: 3,
+    section: "agents",
+    sectionLabel: "🤖 Agentic AI",
+    date: "June 8, 2026",
+    source: "IBM Institute for Business Value",
+    url: "https://newsroom.ibm.com/2026-06-08-new-ibm-study-finds-cios-and-ctos-face-growing-ai-control-gap-as-enterprise-deployment-scales",
+    headline: "IBM: Two-Thirds of Technology Leaders Are Accountable for AI Systems They Don't Fully Control",
+    summary: "A global survey of 2,000 CIOs and CTOs finds 70% say AI deploys faster than IT can track; only 11% are prepared for agent-scale deployment. Designed-in control drives stronger outcomes.",
+    type: "risk",
+    typeLabel: "Risk",
+    urgency: "act",
+    urgencyLabel: "Act",
+    roles: [{cls:"bg-gold",label:"CEO"},{cls:"bg-purple",label:"CAE"}],
+    what: "IBM's Institute for Business Value surveyed 2,000 C-level technology executives globally. Key findings: two-thirds report being held accountable for AI systems they do not fully control; 70% say teams across the business deploy AI faster than IT can track; only 11% feel completely prepared for the scale of AI agent deployment. Critically, organizations that deliberately design control and governance into their AI systems achieve significantly stronger performance outcomes than peers.",
+    why: "This study puts a quantified face on what audit professionals have warned about: enterprises are deploying AI at a pace that has outrun governance infrastructure. When accountability is assigned to leaders who lack visibility and control, the conditions for material failures — errors, fraud, regulatory violations — are already in place.",
+    opp: "Organizations that invest now in AI control architecture — observability, authorization frameworks, audit trails — gain both a risk management advantage and measurable performance benefits over peers who delay.",
+    risk: "The accountability gap creates specific exposure: regulatory inquiries into AI-driven decisions the organization cannot fully explain; audit findings on AI controls; board liability when AI errors cause financial or operational harm.",
+    actions: ["Commission internal audit to map every AI deployment in the organization and assess whether each has documented governance and control coverage","Establish an AI accountability register — for every production AI system, name who is accountable, what controls exist, and how outputs are monitored","Prioritize governance infrastructure (observability tools, authorization frameworks, audit trails) alongside model investment"],
+    watchouts: ["The accountability gap will widen as AI agent deployments increase — do not assume the problem will self-correct","Shadow AI deployments — AI tools adopted by business units without IT or governance review — are likely the largest uncontrolled exposure","Regulators in financial services and healthcare are beginning to require evidence of AI control frameworks — a gap today becomes a regulatory finding tomorrow"],
+    auditQ: "Does internal audit have a mechanism to assess whether the organization's AI control framework keeps pace with AI deployment across business units — and is there a reporting line to the board on the current AI governance gap?",
+    bottomLine: "Two-thirds of enterprise technology leaders are being held accountable for AI systems they cannot see or control. Internal audit should treat this as a material control environment finding requiring urgent remediation — not a future-state problem.",
+    related: [4, 5]
+  },
+  {
+    id: 4,
+    section: "agents",
+    sectionLabel: "🤖 Agentic AI",
+    date: "June 9, 2026",
+    source: "Forbes",
+    url: "https://www.forbes.com/sites/janakirammsv/2026/06/09/microsoft-makes-governance-the-gate-for-enterprise-ai-agents/",
+    headline: "Microsoft Makes Governance the Prerequisite for Enterprise AI Agent Deployment at Build 2026",
+    summary: "At Build 2026, Microsoft positioned governance infrastructure — identity, access controls, and audit trails — as the mandatory entry point for enterprise AI agents, not model capability.",
+    type: "gov",
+    typeLabel: "Governance",
+    urgency: "discuss",
+    urgencyLabel: "Discuss",
+    roles: [{cls:"bg-gold",label:"CEO"},{cls:"bg-purple",label:"CAE"}],
+    what: "At its Build 2026 conference, Microsoft signaled a consequential shift: governance — not model capability — is now the hard problem of enterprise AI. Microsoft's approach requires organizations to establish identity-aware architecture, access authorization controls, and audit trail infrastructure before AI agents can be safely deployed at scale. This is not a Microsoft product announcement — it is a directional statement about what enterprise AI readiness requires.",
+    why: "Microsoft's market position means its architectural choices become de facto standards for enterprise AI deployment. By making governance the gate, Microsoft is validating what risk professionals have argued: agent deployment without control infrastructure is not a speed advantage — it is a liability.",
+    opp: "Organizations using Microsoft's AI stack have a clear, vendor-supported pathway to build governance infrastructure. This also represents an opportunity to reset governance conversations with business leaders who have treated controls as optional.",
+    risk: "Organizations that deploy AI agents without the identity, access, and audit infrastructure Microsoft now positions as prerequisites will face increasing friction — from their own vendor, from regulators, and from auditors — as this architecture becomes the expected standard.",
+    actions: ["Review your current AI agent deployment plans against Microsoft's governance prerequisites: identity architecture, access authorization, and audit trail completeness","Engage your Microsoft enterprise agreement team to understand which governance infrastructure is included in current licensing and what requires additional investment","Update your AI governance policy to formally require control architecture review before any new AI agent deployment is authorized"],
+    watchouts: ["Microsoft's governance architecture is designed for its own AI stack — organizations running multi-vendor AI environments must build platform-neutral equivalents","The governance infrastructure Microsoft describes requires IT and security investment that business units may resist as a deployment barrier","Don't let 'governance as gate' become security theater — the goal is operational visibility and auditability, not checkbox compliance"],
+    auditQ: "Has your organization's AI governance framework been updated to include agent-specific controls covering identity verification, access authorization, and complete audit trail requirements — aligned with recognized enterprise standards?",
+    bottomLine: "Microsoft has told the enterprise market that governance infrastructure is the price of entry for AI agents. Organizations that treat this as aspirational rather than immediate will find themselves behind the curve — on capability, on compliance, and on audit readiness.",
+    related: [3, 5]
+  },
+  {
+    id: 5,
+    section: "agents",
+    sectionLabel: "🤖 Agentic AI",
+    date: "June 11, 2026",
+    source: "Forbes",
+    url: "https://www.forbes.com/councils/forbesnonprofitcouncil/2026/06/11/agentic-ai-demands-a-new-governance-playbook/",
+    headline: "Agentic AI Is Shifting from 'Advisor' to 'Actor' — Enterprise Governance Has Not Kept Pace",
+    summary: "As AI moves from giving recommendations to taking autonomous actions — booking, filing, executing — the governance frameworks built for advisory AI are structurally inadequate for the new reality.",
+    type: "risk",
+    typeLabel: "Risk",
+    urgency: "act",
+    urgencyLabel: "Act",
+    roles: [{cls:"bg-purple",label:"CAE"},{cls:"bg-purple",label:"GC"}],
+    what: "The shift from AI as an advisor to AI as an actor — autonomously booking meetings, executing transactions, filing documents, initiating workflows — is accelerating across enterprise functions. Governance frameworks designed for AI that recommends (humans approve and execute) are structurally insufficient when AI directly takes action. Policymakers and enterprise governance teams are only beginning to explore what agentic governance requires.",
+    why: "When AI moves from advisor to actor, the control environment fundamentally changes. An AI that recommends a wire transfer and an AI that initiates one require completely different governance structures. Most enterprise policy frameworks have not been updated to reflect this shift.",
+    opp: "Organizations that build governance for agentic AI now — authorization frameworks, action logs, rollback capabilities — will be positioned as governance leaders when regulators formalize requirements.",
+    risk: "Autonomous AI actions taken without adequate authorization controls constitute control failures. An AI agent that executes an unauthorized transaction, files an incorrect regulatory return, or commits the organization to a contract has created a legal and audit exposure that is much harder to remediate after the fact.",
+    actions: ["Audit your delegation of authority policy to identify whether AI agent actions are explicitly covered — or assumed to fall under a human authorizer's mandate who may not review individual AI decisions","Establish action-level authorization thresholds for AI agents: what can an agent do autonomously, what requires human approval, and what is prohibited regardless of AI confidence","Require complete, tamper-evident audit trails for every agentic AI action — treat these as equivalent to human transaction records for audit and legal discovery purposes"],
+    watchouts: ["'Human-in-the-loop' governance is often more nominal than real — humans approving AI recommendations may not have the context to meaningfully review each decision","Agentic AI actions may not trigger the same approval workflows as human-initiated equivalents — check whether your ERP and financial systems log AI-initiated transactions separately","Legal liability for AI agent actions remains unsettled — your GC should brief the board on current exposure before agent deployment expands"],
+    auditQ: "Has your organization updated its delegation of authority and transaction authorization policy to explicitly address AI agent actions — and are those actions subject to the same authorization thresholds, logging, and audit review as equivalent human-initiated transactions?",
+    bottomLine: "The most important governance question of 2026 is not whether your organization uses AI — it is whether the actions AI takes on your behalf are authorized, logged, and auditable. Most enterprise frameworks have not yet answered this question.",
+    related: [3, 4]
+  },
+  {
+    id: 6,
+    section: "regulation",
+    sectionLabel: "⚖️ AI Regulation & Governance",
+    date: "June 15, 2026",
+    source: "Netrio / Censuswide",
+    url: "https://www.tmcnet.com/usubmit/2026/06/15/10399705.htm",
+    headline: "82% of Mid-Market Enterprises Run AI in Production — Only 26% Have Enterprise-Wide Governance",
+    summary: "A Censuswide survey of 401 U.S. IT leaders finds AI is widespread but massively under-governed. The gap between production deployment and enterprise-grade oversight is the defining AI risk of 2026.",
+    type: "risk",
+    typeLabel: "Risk",
+    urgency: "discuss",
+    urgencyLabel: "Discuss",
+    roles: [{cls:"bg-gold",label:"CEO"},{cls:"bg-purple",label:"CAE"}],
+    what: "Netrio's survey of 401 U.S. mid-market enterprise IT leaders (organizations with 200–5,000 employees), conducted by Censuswide, finds 82% already use AI in production somewhere in the organization. Yet only 26% say AI is scaled and governed enterprise-wide. The research highlights a dominant pattern: AI adoption far outpaces governance maturity, even in organizations actively managing AI programs.",
+    why: "The 82/26 gap is not a data quality issue — it reflects a structural reality in most enterprises: AI pilots and departmental deployments proliferate while enterprise governance frameworks struggle to catch up. For internal audit, this means a significant portion of AI in production is operating outside the policy framework.",
+    opp: "The survey provides a benchmark for boards and audit committees to pressure-test governance completeness. Organizations that close the gap ahead of regulatory requirements will have a significant first-mover advantage in audit readiness.",
+    risk: "Uncontrolled AI deployments create data quality risk, algorithmic bias exposure, regulatory compliance gaps, and audit findings. When these deployments involve customer data, financial decisions, or regulatory reporting, the consequences are material.",
+    actions: ["Request a governance coverage dashboard from IT and risk: what percentage of AI in production is covered by the enterprise governance framework","Prioritize governance framework extension to high-risk use cases first: financial reporting, customer decisions, regulatory submissions, and HR processes","Brief the board with the organization's own version of the 82/26 data — how many AI deployments exist, how many are governed, and what the remediation timeline is"],
+    watchouts: ["The 26% who say they are governed enterprise-wide may have weaker governance than they believe — 'governed' is not the same as 'adequately controlled'","Business unit leaders will resist centralized governance as a barrier to deployment velocity — the business case must frame governance as enablement, not restriction","Regulators in financial services (OJK, BSP, MAS) are increasingly asking for AI control inventories as part of supervisory reviews"],
+    auditQ: "What percentage of the organization's AI deployments are covered by the enterprise AI governance framework — and has internal audit independently verified the governance coverage map rather than relying solely on management's representation?",
+    bottomLine: "If the 82/26 finding reflects your organization, three-quarters of your AI portfolio is governed in name only. That is not a governance program — it is a risk exposure. Close the gap before a regulator or incident forces you to.",
+    related: [3, 5]
+  },
+  {
+    id: 7,
+    section: "impact",
+    sectionLabel: "📊 Business Impact",
+    date: "June 8, 2026",
+    source: "Carnegie Mellon Software Engineering Institute",
+    url: "https://www.sei.cmu.edu/news/sei-and-accenture-release-ai-adoption-maturity-model-to-help-organizations-scale-ai-with-predictable-outcomes/",
+    headline: "Carnegie Mellon SEI and Accenture Release AI Adoption Maturity Model for Predictable Enterprise Scaling",
+    summary: "Fortune 500 companies are already using the jointly-developed framework to benchmark AI maturity, plan investments, and set a baseline for scaling AI with predictable business outcomes.",
+    type: "opp",
+    typeLabel: "Opportunity",
+    urgency: "discuss",
+    urgencyLabel: "Discuss",
+    roles: [{cls:"bg-gold",label:"CEO"},{cls:"bg-green",label:"CFO"}],
+    what: "The Carnegie Mellon Software Engineering Institute (SEI) and Accenture jointly released an AI Adoption Maturity Model designed to help enterprises scale AI with predictable outcomes. The model provides a structured framework for organizations to benchmark their current AI maturity, identify gaps, and plan investments. Fortune 500 companies are reported to be using the model to establish baselines and guide AI investment planning.",
+    why: "Most organizations are scaling AI without a shared language for where they are, where they need to go, and what investment is required. The SEI/Accenture model — backed by Carnegie Mellon's research credibility and Accenture's implementation track record — provides the kind of board-credible framework that can align executive, IT, risk, and audit conversations.",
+    opp: "Organizations that adopt a recognized maturity model gain a structured basis for AI investment decisions, board reporting, and audit committee conversations. It also provides a defensible framework for regulators asking how the organization governs its AI program.",
+    risk: "Organizations without a structured AI maturity framework may be over-investing in high-capability, low-maturity deployments — or under-investing in the governance and data infrastructure that makes AI investments pay off.",
+    actions: ["Commission a rapid self-assessment against the SEI/Accenture AI Adoption Maturity Model to establish a baseline for board reporting","Use the maturity model to structure a board conversation on target AI maturity level — with milestones, investment requirements, and governance benchmarks","Align internal audit's AI assurance program to the maturity model so audit findings and recommendations are framed in a language the business understands"],
+    watchouts: ["Maturity models can become compliance theater if used for benchmarking without action — the value is in the improvement roadmap, not the score","Commercial maturity assessments from vendors may be biased toward recommending their own services — the SEI/Accenture model's academic foundation reduces but does not eliminate this risk","Maturity levels are relative — being 'mature' on a generic framework may not address specific regulatory requirements in your jurisdiction"],
+    auditQ: "Has the organization benchmarked its AI investment and governance program against a recognized maturity model — and does the board have a board-approved target maturity level with defined milestones and investment commitments?",
+    bottomLine: "Credible AI governance starts with a shared framework. The SEI/Accenture model gives boards and audit committees a Carnegie Mellon-backed language to demand accountability for AI programs — this is worth adopting.",
+    related: [6, 8]
+  },
+  {
+    id: 8,
+    section: "impact",
+    sectionLabel: "📊 Business Impact",
+    date: "June 13, 2026",
+    source: "Finextra",
+    url: "https://www.finextra.com/blogposting/32004/ai-governance-in-enterprise-adoption-why-trust-will-define-the-next-wave-of-innovation",
+    headline: "AI in Financial Services: Governance and Trust — Not Speed — Will Define the Next Competitive Wave",
+    summary: "Banks, insurers, and fintechs embedding AI in fraud detection, financial crime monitoring, and regulatory reporting are finding that governance maturity is the competitive differentiator — not model capability.",
+    type: "opp",
+    typeLabel: "Opportunity",
+    urgency: "discuss",
+    urgencyLabel: "Discuss",
+    roles: [{cls:"bg-gold",label:"CEO"},{cls:"bg-green",label:"CFO"},{cls:"bg-purple",label:"CAE"}],
+    what: "Across financial services — banks, insurers, payment providers, and fintechs — AI is now embedded in core operations: fraud detection, financial crime monitoring, software engineering, and regulatory reporting. Industry analysis finds that organizations competing on AI trust and governance — explainability, auditability, bias controls — are outperforming those competing solely on deployment speed. The shift reflects increasing regulatory expectations and institutional client demands for AI accountability.",
+    why: "Financial services regulators globally are signaling that AI governance is a supervisory priority. Institutional clients and counterparties are beginning to conduct AI due diligence as part of third-party risk reviews. Organizations that lag on AI trust infrastructure are accumulating regulatory and reputational exposure that will surface in the next supervisory cycle.",
+    opp: "Financial institutions that lead on AI governance can use that leadership as a competitive differentiator with regulators, institutional clients, and rating agencies. AI governance maturity will increasingly appear in credit and counterparty assessments.",
+    risk: "AI embedded in fraud detection or regulatory reporting without adequate explainability and bias controls creates silent operational risk — the kind that appears in adverse regulatory findings rather than individual transaction errors.",
+    actions: ["Review AI use in financial reporting, fraud detection, and regulatory submissions for explainability and auditability coverage","Commission internal audit to include AI governance as a standing agenda item in financial services audit plans — covering model documentation, validation, and human oversight","Engage your regulator proactively on AI governance posture before a supervisory inquiry surfaces gaps"],
+    watchouts: ["'Trust washing' — claiming AI governance maturity without the underlying controls — will be tested in regulatory reviews and creates additional liability","AI embedded in financial crime monitoring carries specific regulatory obligations (BSP Circular 1160, AMLC guidance) — governance gaps in this area carry elevated enforcement risk","Counterparty AI due diligence is emerging as a new dimension of third-party risk management — your governance posture will increasingly be assessed by partners"],
+    auditQ: "Does your AI governance framework include specific controls for financial services use cases — including model explainability requirements, algorithmic discrimination testing, and regulatory reporting integrity — and has this been independently validated by internal audit?",
+    bottomLine: "In financial services, AI governance is becoming a competitive asset. The organizations that treat governance as an audit checkbox will be outcompeted by those that treat it as a market differentiator — and flagged by regulators in the process.",
+    related: [6, 11]
+  },
+  {
+    id: 9,
+    section: "workforce",
+    sectionLabel: "👥 Workforce & Talent",
+    date: "June 9, 2026",
+    source: "Info-Tech Research Group",
+    url: "https://www.tmcnet.com/usubmit/2026/06/09/10396979.htm",
+    headline: "'Uniquely Human Abilities' Are the New Competitive Edge in the AI-Hybrid Workforce — Info-Tech Report",
+    summary: "Info-Tech's IT Talent Trends 2026 report finds technical skills alone no longer distinguish IT talent. Critical thinking, business acumen, and ethical reasoning — capabilities AI cannot replicate — are now the workforce differentiator.",
+    type: "opp",
+    typeLabel: "Opportunity",
+    urgency: "monitor",
+    urgencyLabel: "Monitor",
+    roles: [{cls:"bg-gold",label:"CEO"},{cls:"bg-orange",label:"CHRO"}],
+    what: "Info-Tech Research Group released its IT Talent Trends 2026 report at Info-Tech LIVE 2026, finding that as AI becomes embedded in technical work, the value of pure technical skills is commoditizing. The report identifies 'uniquely human abilities' — critical thinking, business acumen, ethical reasoning, and interpersonal judgment — as the new talent differentiators that organizations should hire and cultivate. The report provides an actionable roadmap for building human-AI hybrid teams.",
+    why: "As AI handles more technical execution, the value of human judgment in directing, interpreting, and governing AI outputs is rising sharply. This has direct implications for how organizations design AI governance roles, staff audit and risk functions, and evaluate senior talent.",
+    opp: "Organizations that redesign talent strategies around human-AI complementarity — hiring for judgment alongside technical skills — will build more effective AI governance and more resilient operations than peers focused solely on technical AI capability.",
+    risk: "Organizations that hire AI-technical talent without developing human oversight and governance capability risk building AI programs that are technically sophisticated but poorly governed and difficult to audit.",
+    actions: ["Review your AI talent strategy to ensure it builds human oversight and judgment capabilities alongside technical AI skills","Prioritize critical thinking, ethical reasoning, and business acumen in AI governance, audit, and risk roles — not just AI-technical skills","Design human-AI team structures where human oversight is built into the workflow, not added as a nominal sign-off"],
+    watchouts: ["'AI skills' hiring that prioritizes prompt engineering and model fine-tuning over governance and judgment is building the wrong organizational capability for long-term AI value","Audit and risk functions that automate AI governance itself with AI tools need to retain strong human oversight at the review and exception-handling layer","The workforce skills gap in AI governance — not AI technology — is the limiting factor for most enterprise AI programs in the next 24 months"],
+    auditQ: "Has your organization assessed whether its AI talent strategy builds human oversight and judgment capabilities alongside technical AI skills — particularly in audit, risk, finance, and compliance functions where AI governance is most consequential?",
+    bottomLine: "The organizations that will govern AI well are those that invest in human judgment alongside AI capability. The talent equation is shifting: the scarce resource is not AI-technical skill — it is the human judgment that makes AI programs trustworthy.",
+    related: [6, 7]
+  },
+  {
+    id: 10,
+    section: "risk",
+    sectionLabel: "🔒 AI Risk & Fraud",
+    date: "June 9, 2026",
+    source: "Forbes",
+    url: "https://www.forbes.com/sites/chuckbrooks/2026/06/09/ai-cybersecurity-risks-healthcare/",
+    headline: "AI Integration Reshapes Healthcare Cyber Risk — IBM Data Shows $7.4M Average Breach Cost, Industry's Highest",
+    summary: "AI's integration into healthcare diagnostics, IoT devices, and cloud systems has expanded the attack surface faster than security controls can keep pace. Healthcare now averages the highest breach cost of any sector for 14+ consecutive years.",
+    type: "risk",
+    typeLabel: "Risk",
+    urgency: "monitor",
+    urgencyLabel: "Monitor",
+    roles: [{cls:"bg-gold",label:"CEO"},{cls:"bg-purple",label:"CAE"}],
+    what: "AI integration in healthcare — across diagnostic AI systems, IoT medical devices, cloud migration, and clinical decision support — has created a vastly expanded attack surface that adversaries are exploiting with AI-powered, targeted attacks. IBM's Cost of a Data Breach Report 2025 reports the average U.S. healthcare breach cost at $7.42 million, the highest of any industry for 14 or 15 consecutive years. The digital transformation of healthcare has outpaced security measures, creating a critical risk gap.",
+    why: "Healthcare conglomerates with AI-integrated clinical and administrative systems are operating in the highest-cost breach environment of any sector. AI-enabled attacks are more targeted, more adaptive, and faster than traditional threats. The integration of AI across healthcare operations has increased both the value of targets and the capability of attackers.",
+    opp: "Organizations that build security-by-design into AI-integrated healthcare systems — rather than layering security on afterward — will achieve better protection at lower total cost and stronger regulatory compliance.",
+    risk: "AI-enabled breaches in healthcare carry compound consequences: patient safety risk, regulatory penalties (HIPAA/PHI), reputational damage, operational disruption, and breach notification costs that can exceed $7M per incident. Third-party AI systems in clinical workflows add a specific attack vector.",
+    actions: ["Commission a cyber risk assessment specifically covering AI-integrated clinical and administrative systems — not just traditional IT infrastructure","Review third-party AI vendor security controls for any AI system with access to patient data or clinical workflows","Ensure the board receives regular updates on AI-related cyber exposure, including specific scenarios for AI-enabled attacks on high-value healthcare systems"],
+    watchouts: ["AI diagnostic systems and IoT medical devices often have longer refresh cycles than enterprise IT — legacy AI-integrated devices may carry unpatched vulnerabilities for years","Ransomware actors are specifically targeting healthcare AI systems for their operational criticality and ransom leverage","Supply chain attacks on AI model providers used in clinical settings represent an emerging threat vector that most healthcare organizations have not specifically assessed"],
+    auditQ: "Has your organization conducted a cyber risk assessment specifically covering AI-integrated systems in healthcare operations — and does the board receive regular, AI-specific cyber risk updates rather than only general cybersecurity reporting?",
+    bottomLine: "Healthcare AI integration has made the sector's already-highest breach cost even more consequential. Organizations must treat AI-integrated clinical systems as the highest-priority cyber risk — not an IT issue that healthcare IT manages separately from enterprise risk.",
+    related: [11, 12]
+  },
+  {
+    id: 11,
+    section: "risk",
+    sectionLabel: "🔒 AI Risk & Fraud",
+    date: "June 15, 2026",
+    source: "Forbes / American Accounting Association",
+    url: "https://www.forbes.com/sites/yvonnehinson/2026/06/15/how-accounting-must-redraw-responsibility-for-ai-errors/",
+    headline: "No Standard Defines Who Is Responsible When AI Gets the Accounting Wrong — American Accounting Association CEO",
+    summary: "AI classifies transactions, drafts workpapers, and flags exceptions in financial reporting — but no authoritative standard yet defines adequate human oversight or allocates liability when AI-assisted outputs result in a material misstatement.",
+    type: "risk",
+    typeLabel: "Risk",
+    urgency: "act",
+    urgencyLabel: "Act",
+    roles: [{cls:"bg-green",label:"CFO"},{cls:"bg-purple",label:"CAE"}],
+    what: "The CEO of the American Accounting Association — the leading U.S. accounting academic body — warns that AI is reshaping audit risk faster than accounting standards can respond. Firms are deploying AI to classify thousands of transactions overnight, draft workpapers, and surface exceptions for human review. Yet no authoritative standard defines what adequate human oversight of AI looks like, or how liability is allocated when AI produces material misstatements. A restatement event caused by undetected AI error — where a staff accountant reviewed AI-flagged items but missed a pattern the AI also missed — leaves CFOs, auditors, and organizations in undefined liability territory.",
+    why: "This is not a future-state concern. Organizations using AI in financial reporting are operating today without a clear standard for what constitutes adequate oversight. This vacuum creates both audit risk (undocumented controls) and legal risk (undefined liability when errors occur). Standard-setters are moving slowly relative to AI deployment velocity.",
+    opp: "Organizations that proactively define and document AI oversight standards for financial reporting — even ahead of formal guidance — will be better positioned in regulatory reviews and litigation than those waiting for standards to be issued.",
+    risk: "A material misstatement caused by AI miscalculation, combined with inadequate documented oversight, exposes the CFO, audit committee, external auditors, and the organization to regulatory and litigation risk in a legal framework that has not yet allocated responsibility clearly.",
+    actions: ["Commission your CFO and CAE to jointly define and document supervisory control standards for AI used in financial reporting and transaction classification","Establish mandatory human review protocols for AI-assisted workpapers that specify what reviewers must check, not just that they must sign off","Brief the audit committee on current AI use in financial reporting and the control gaps that exist before formal standards are issued — proactive disclosure is better than discovered gaps"],
+    watchouts: ["'Human-in-the-loop' sign-offs on AI-generated workpapers may not constitute adequate oversight if reviewers lack context to identify AI errors the tool would miss","External auditor expectations for AI documentation are increasing even without formal standards — coordinate with your external audit firm on expectations now","AI-generated financial analyses used in board reporting carry the same risk — the quality of AI oversight should not vary by audience"],
+    auditQ: "Has internal audit assessed whether AI tools used in financial reporting, transaction classification, and workpaper preparation are subject to adequately documented supervisory controls — and is this documented in the control environment with sufficient specificity to satisfy a regulatory inquiry?",
+    bottomLine: "The American Accounting Association has identified a material governance gap: AI is making consequential financial reporting decisions, but the accountability framework assumes humans made those decisions. CFOs who do not fill this gap with documented controls are holding undefined liability on behalf of their organizations.",
+    related: [10, 12]
+  },
+  {
+    id: 12,
+    section: "risk",
+    sectionLabel: "🔒 AI Risk & Fraud",
+    date: "June 15, 2026",
+    source: "JD Supra / Volkov Law Group",
+    url: "https://www.jdsupra.com/legalnews/detangling-third-party-ai-risks-6461482/",
+    headline: "When Your Vendor's AI Misbehaves, You Own the Reputational Risk — Even Without Legal Liability",
+    summary: "A legal analysis distinguishes between third-party AI legal liability (often limited) and reputational risk (always present). Reduced legal exposure does not mean reduced risk — stakeholders and media hold organizations accountable regardless of contractual defenses.",
+    type: "risk",
+    typeLabel: "Risk",
+    urgency: "act",
+    urgencyLabel: "Act",
+    roles: [{cls:"bg-purple",label:"CAE"},{cls:"bg-purple",label:"GC"}],
+    what: "The Volkov Law Group's analysis, published on JD Supra, distinguishes between two types of third-party AI risk. When a vendor AI acts on your behalf (as your agent), your organization bears both legal and reputational risk. When a vendor provides incidental AI-enabled goods or services (not acting as your agent), legal liability is significantly reduced. However — and this is the critical finding — reputational risk persists regardless of legal defense. Stakeholders, media, and regulators may hold contracting organizations accountable for AI harms caused by vendors whose products they selected, approved, and publicly endorsed.",
+    why: "Most enterprise vendor risk frameworks focus on legal and contractual protections. This analysis argues that reputational exposure from vendor AI misconduct — biased outputs, harmful hallucinations, data misuse — cannot be contracted away. The organization that chose, deployed, and branded a vendor's AI remains associated with its behavior in the public mind.",
+    opp: "Organizations that include AI ethics and governance due diligence in vendor selection — not just contractual protections — are building reputational resilience that legal review alone cannot provide.",
+    risk: "Vendor AI misconduct events — algorithmic discrimination in customer decisions, AI-generated misinformation, data handling failures — may trigger regulatory investigations and reputational harm to the contracting organization even where liability is contractually limited.",
+    actions: ["Extend your third-party AI risk program to include reputational exposure assessment — not just legal and contractual review — for all material AI vendors","Incorporate AI ethics, output quality monitoring, and governance due diligence into vendor selection criteria, particularly for customer-facing and regulatory-sensitive AI applications","Establish ongoing vendor AI monitoring: review AI vendors' regulatory incidents, enforcement actions, and public misconduct events as part of your third-party risk program"],
+    watchouts: ["Contractual indemnification clauses do not shield your organization from regulatory investigations triggered by vendor AI misconduct — regulators pursue the deploying organization, not the vendor","AI vendor misconduct events are increasingly newsworthy — one publicized failure by a vendor you selected and deployed can be attributed to your organization regardless of contract terms","Vendor AI governance posture can deteriorate post-contract — build monitoring and exit rights into vendor agreements for material AI applications"],
+    auditQ: "Does your third-party AI risk program assess reputational exposure from vendor AI behavior — not just contractual and legal risk — and does the vendor selection process include AI ethics and governance due diligence alongside commercial and legal review?",
+    bottomLine: "The legal framework for third-party AI risk is still developing. The reputational framework is already mature: if your vendor's AI harms someone, your organization chose that vendor. Contractual protections are necessary but not sufficient — reputational risk management requires knowing what your vendor's AI actually does.",
+    related: [10, 11]
+  }
+];
+
+// ── SECTION DEFINITIONS ──────────────────────────────────────────────────────
+const SECTIONS = [
+  { id: "platforms", label: "🏛 Enterprise Platform Wars", color: "#d97706" },
+  { id: "agents",   label: "🤖 Agentic AI",               color: "#0891b2" },
+  { id: "regulation",label:"⚖️ AI Regulation & Governance",color:"#7c3aed" },
+  { id: "impact",   label: "📊 Business Impact",           color: "#1d4ed8" },
+  { id: "workforce",label: "👥 Workforce & Talent",        color: "#c2410c" },
+  { id: "risk",     label: "🔒 AI Risk & Fraud",           color: "#dc2626" }
+];
+
+// ── RENDER SECTIONS ──────────────────────────────────────────────────────────
+function buildSections() {
+  const root = document.getElementById("sections-root");
+  root.innerHTML = "";
+  SECTIONS.forEach(sec => {
+    const stories = STORIES.filter(s => s.section === sec.id);
+    if (!stories.length) return;
+    const sectionEl = document.createElement("section");
+    sectionEl.className = "section";
+    sectionEl.id = "section-" + sec.id;
+    sectionEl.innerHTML = `
+      <div class="section-header">
+        <div class="section-dot" style="background:${sec.color}"></div>
+        <h2 class="section-title">${sec.label}</h2>
+        <span class="section-count">${stories.length} signal${stories.length>1?'s':''}</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="cards" id="cards-${sec.id}"></div>`;
+    root.appendChild(sectionEl);
+    const grid = document.getElementById("cards-" + sec.id);
+    stories.forEach(s => grid.appendChild(buildCard(s)));
+  });
+}
+
+function buildCard(s) {
+  const el = document.createElement("article");
+  el.className = `card card-${s.section}`;
+  el.setAttribute("data-section", s.section);
+  const roleTags = s.roles.map(r => `<span class="tag ${r.cls}">${r.label}</span>`).join("");
+  const typeCls = s.type==="risk"?"badge-risk":s.type==="opp"?"badge-opp":"badge-gov";
+  const urgencyCls = s.urgency==="act"?"u-act":s.urgency==="discuss"?"u-discuss":"u-monitor";
+  el.innerHTML = `
+    <div class="card-date">${s.date} <span></span> ${s.source}</div>
+    <h3 class="card-title">${s.headline}</h3>
+    <p class="card-summary">${s.summary}</p>
+    <div class="card-footer">
+      ${roleTags}
+      <span class="badge ${typeCls}">${s.typeLabel}</span>
+      <span class="urgency ${urgencyCls}">${s.urgencyLabel}</span>
+    </div>
+    <div class="card-hint">↗ Deep dive</div>`;
+  el.onclick = () => openModal(s.id);
+  return el;
+}
+
+// ── MODAL ────────────────────────────────────────────────────────────────────
+function openModal(id) {
+  const s = STORIES.find(x => x.id === id);
+  if (!s) return;
+  const roleTags = s.roles.map(r => `<span class="tag ${r.cls}">${r.label}</span>`).join(" ");
+  const typeCls = s.type==="risk"?"badge-risk":s.type==="opp"?"badge-opp":"badge-gov";
+  const urgencyCls = s.urgency==="act"?"u-act":s.urgency==="discuss"?"u-discuss":"u-monitor";
+  const relatedChips = (s.related||[]).map(rid => {
+    const rs = STORIES.find(x=>x.id===rid);
+    return rs ? `<span class="rchip" onclick="openModal(${rid})">${rs.headline.substring(0,50)}…</span>` : "";
+  }).join("");
+  const actions = s.actions.map(a=>`<li>${a}</li>`).join("");
+  const watchouts = s.watchouts.map(w=>`<li>${w}</li>`).join("");
+  document.getElementById("modal-content").innerHTML = `
+    <div class="modal-cat">${s.sectionLabel}</div>
+    <h2 class="modal-title">${s.headline}</h2>
+    <div class="modal-meta">
+      <span class="modal-date">${s.date}</span>
+      <span class="modal-src"><a href="${s.url}" target="_blank" rel="noopener">↗ ${s.source}</a></span>
+      ${roleTags}
+      <span class="badge ${typeCls}">${s.typeLabel}</span>
+      <span class="urgency ${urgencyCls}">${s.urgencyLabel}</span>
+    </div>
+    <hr class="modal-divider">
+    <div class="modal-body">
+      <p><strong>What happened:</strong> ${s.what}</p>
+      <p><strong>Why it matters:</strong> ${s.why}</p>
+      <p><strong>Business opportunity:</strong> ${s.opp}</p>
+      <p><strong>Risk / control implication:</strong> ${s.risk}</p>
+    </div>
+    <div class="modal-panel p-act">
+      <h4>Executive Actions</h4>
+      <ul>${actions}</ul>
+    </div>
+    <div class="modal-panel p-risk">
+      <h4>Risks & Watchouts</h4>
+      <ul>${watchouts}</ul>
+    </div>
+    <div class="modal-aq">
+      <strong>Audit / Risk Question</strong>
+      <p>${s.auditQ}</p>
+    </div>
+    <div class="modal-bl">
+      <strong>C-Suite Bottom Line</strong>
+      <p>${s.bottomLine}</p>
+    </div>
+    ${relatedChips ? `<div class="modal-related"><strong>Related signals</strong><div class="related-chips">${relatedChips}</div></div>` : ""}`;
+  document.getElementById("modal-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function maybeClose(e) {
+  if (e.target === document.getElementById("modal-overlay")) closeModal();
+}
+
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+// ── FILTER ───────────────────────────────────────────────────────────────────
+function filterSection(sec, btn) {
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".section").forEach(s => {
+    s.style.display = (sec === "all" || s.id === "section-" + sec) ? "" : "none";
+  });
+}
+
+// ── THEME ────────────────────────────────────────────────────────────────────
+function toggleTheme() {
+  const html = document.documentElement;
+  const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  html.setAttribute("data-theme", next);
+  localStorage.setItem("ai-briefing-theme", next);
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+(function init() {
+  const saved = localStorage.getItem("ai-briefing-theme");
+  if (saved) document.documentElement.setAttribute("data-theme", saved);
+  buildSections();
+})();
+</script>
+</body>
+</html>
