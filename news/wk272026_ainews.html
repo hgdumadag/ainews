@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JG Summit AI Intelligence Briefing — Week 27, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0f14; --bg2:#111823; --panel:#151d29; --panel2:#1b2534; --line:#243040;
+  --tx:#e8eef6; --tx2:#9fb0c3; --tx3:#6f8299;
+  --gold:#e5b567; --cyan:#5bc9d6; --purple:#b18cf2; --orange:#f0a45b; --red:#ef6f76; --green:#5fcf94; --blue:#5b9bd6;
+  --shadow:0 10px 30px rgba(0,0,0,.45); --r:16px;
+}
+html[data-theme="light"]{
+  --bg:#eef2f7; --bg2:#e4eaf2; --panel:#ffffff; --panel2:#f5f8fc; --line:#d8e1ec;
+  --tx:#14202e; --tx2:#42566b; --tx3:#6f8299;
+  --shadow:0 10px 30px rgba(20,40,70,.12);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Inter',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 20px;max-width:1180px;margin:0 auto}
+.brand{font-weight:800;letter-spacing:.2px;font-size:15px;display:flex;align-items:center;gap:9px;white-space:nowrap}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--cyan));box-shadow:0 0 12px var(--cyan)}
+.filters{display:flex;gap:7px;flex-wrap:wrap;flex:1}
+.fbtn{border:1px solid var(--line);background:var(--panel);color:var(--tx2);padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:600;cursor:pointer;transition:.15s}
+.fbtn:hover{color:var(--tx);border-color:var(--tx3)}
+.fbtn.active{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.theme{border:1px solid var(--line);background:var(--panel);color:var(--tx);width:38px;height:34px;border-radius:10px;cursor:pointer;font-size:15px}
+
+/* HERO */
+.hero{padding:54px 0 26px;border-bottom:1px solid var(--line);background:radial-gradient(1200px 400px at 20% -10%,color-mix(in srgb,var(--gold) 10%,transparent),transparent),radial-gradient(1000px 400px at 90% -20%,color-mix(in srgb,var(--cyan) 10%,transparent),transparent)}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,6vw,58px);line-height:1.03;margin:0 0 12px}
+.sub{font-size:16.5px;color:var(--tx2);max-width:680px}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:30px}
+.metric{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 14px;text-align:center}
+.metric-num{font-family:'Fraunces',serif;font-size:34px;font-weight:600;line-height:1}
+.metric-lb{font-size:11.5px;color:var(--tx2);margin-top:7px;font-weight:600;letter-spacing:.3px}
+#m-total .metric-num{color:var(--cyan)}
+#m-risk .metric-num{color:var(--red)}
+#m-opp .metric-num{color:var(--green)}
+#m-reg .metric-num{color:var(--purple)}
+#m-act .metric-num{color:var(--gold)}
+
+/* SUMMARY */
+.summary{background:linear-gradient(120deg,color-mix(in srgb,var(--panel) 92%,var(--cyan)),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:24px 26px;margin:34px 0 8px;box-shadow:var(--shadow)}
+.summary h2{margin:0 0 12px;font-size:17px;display:flex;align-items:center;gap:9px}
+.summary p{margin:0;color:var(--tx);font-size:15.5px}
+.summary p b{color:var(--gold)}
+
+/* SECTION */
+section{padding:34px 0 6px}
+.sec-h{display:flex;align-items:center;gap:11px;margin:0 0 18px;font-size:21px;font-weight:800}
+.sec-h .bar{width:5px;height:24px;border-radius:3px}
+.sec-count{font-size:12px;font-weight:600;color:var(--tx3);border:1px solid var(--line);padding:2px 9px;border-radius:999px}
+
+/* CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 16px;cursor:pointer;transition:.18s;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:210px}
+.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--tx3)}
+.card[data-topic="platforms"]:before{background:var(--gold)}
+.card[data-topic="agents"]:before{background:var(--cyan)}
+.card[data-topic="regulation"]:before{background:var(--purple)}
+.card[data-topic="workforce"]:before{background:var(--orange)}
+.card[data-topic="risk"]:before{background:var(--red)}
+.card[data-topic="funding"]:before{background:var(--green)}
+.card:hover{transform:translateY(-3px);border-color:var(--tx3);box-shadow:var(--shadow)}
+.card-date{font-size:11.5px;font-weight:700;color:var(--tx3);letter-spacing:.4px;text-transform:uppercase}
+.card h3{margin:8px 0 8px;font-size:16.5px;line-height:1.28;font-weight:700}
+.card p{margin:0 0 14px;font-size:13.7px;color:var(--tx2);flex:1}
+.tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:auto}
+.tag{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:.4px}
+.bg-gold{background:color-mix(in srgb,var(--gold) 22%,transparent);color:var(--gold)}
+.bg-green{background:color-mix(in srgb,var(--green) 20%,transparent);color:var(--green)}
+.bg-purple{background:color-mix(in srgb,var(--purple) 22%,transparent);color:var(--purple)}
+.bg-orange{background:color-mix(in srgb,var(--orange) 22%,transparent);color:var(--orange)}
+.badge{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;border:1px solid}
+.b-risk{color:var(--red);border-color:color-mix(in srgb,var(--red) 55%,transparent)}
+.b-opp{color:var(--green);border-color:color-mix(in srgb,var(--green) 55%,transparent)}
+.urg{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:6px;letter-spacing:.5px}
+.u-monitor{background:color-mix(in srgb,var(--blue) 20%,transparent);color:var(--blue)}
+.u-discuss{background:color-mix(in srgb,var(--gold) 20%,transparent);color:var(--gold)}
+.u-act{background:color-mix(in srgb,var(--red) 22%,transparent);color:var(--red)}
+.dive{margin-top:11px;font-size:11.5px;color:var(--tx3);font-weight:600}
+
+/* WATCHLIST + QUESTIONS */
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-top:12px;box-shadow:var(--shadow)}
+.panel h2{margin:0 0 18px;font-size:20px}
+.watch{display:flex;gap:13px;padding:12px 0;border-bottom:1px solid var(--line)}
+.watch:last-child{border-bottom:none}
+.watch .ic{font-size:17px;flex-shrink:0;margin-top:1px}
+.watch .wl{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--tx3);display:block;margin-bottom:3px}
+.watch p{margin:0;font-size:14px;color:var(--tx)}
+.qlist{counter-reset:q;display:grid;gap:13px}
+.qitem{display:flex;gap:14px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+.qitem:before{counter-increment:q;content:counter(q);font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--cyan);flex-shrink:0;line-height:1.1}
+.qitem p{margin:0;font-size:14.5px}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(4,8,14,.72);backdrop-filter:blur(5px);display:none;align-items:flex-start;justify-content:center;z-index:100;padding:40px 18px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--line);border-radius:20px;max-width:720px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:pop .22s ease}
+@keyframes pop{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+.m-head{padding:24px 28px 18px;border-bottom:1px solid var(--line);position:relative}
+.m-cat{font-size:11.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
+.m-head h2{margin:9px 0 12px;font-family:'Fraunces',serif;font-weight:600;font-size:25px;line-height:1.15;padding-right:30px}
+.m-meta{font-size:12.5px;color:var(--tx2)}
+.m-meta a{color:var(--cyan);font-weight:600;text-decoration:none}
+.m-meta a:hover{text-decoration:underline}
+.x{position:absolute;top:20px;right:22px;background:var(--panel);border:1px solid var(--line);color:var(--tx);width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:16px;line-height:1}
+.m-body{padding:22px 28px 26px}
+.m-body p.para{margin:0 0 14px;font-size:14.7px;color:var(--tx);line-height:1.6}
+.m-panel{border-radius:13px;padding:16px 18px;margin:16px 0}
+.m-actions{background:color-mix(in srgb,var(--green) 12%,var(--panel));border:1px solid color-mix(in srgb,var(--green) 40%,transparent)}
+.m-risks{background:color-mix(in srgb,var(--red) 11%,var(--panel));border:1px solid color-mix(in srgb,var(--red) 40%,transparent)}
+.m-panel h4{margin:0 0 10px;font-size:13px;letter-spacing:.5px;text-transform:uppercase}
+.m-actions h4{color:var(--green)}.m-risks h4{color:var(--red)}
+.m-panel ul{margin:0;padding-left:18px}
+.m-panel li{font-size:13.8px;margin-bottom:7px;color:var(--tx)}
+.auditq{background:color-mix(in srgb,var(--purple) 13%,var(--panel));border-left:3px solid var(--purple);padding:13px 16px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14px}
+.auditq b{color:var(--purple)}
+.bottom{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:16px;font-size:14px}
+.bottom b{color:var(--gold)}
+.rel{margin-top:18px}
+.rel .rl{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 11px;font-size:12px;cursor:pointer;color:var(--tx2);transition:.15s}
+.chip:hover{color:var(--tx);border-color:var(--tx3)}
+
+footer{margin:46px 0 30px;padding-top:22px;border-top:1px solid var(--line);text-align:center;color:var(--tx3);font-size:12.5px}
+@media(max-width:720px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .metric:last-child{grid-column:span 2}
+  h1{font-size:34px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="brand"><span class="dot"></span> JG Summit · AI Intelligence Briefing</div>
+    <div class="filters" id="filters">
+      <button class="fbtn active" data-f="all">All</button>
+      <button class="fbtn" data-f="platforms">🏛 Platforms</button>
+      <button class="fbtn" data-f="agents">🤖 Agentic</button>
+      <button class="fbtn" data-f="regulation">⚖️ Regulation</button>
+      <button class="fbtn" data-f="risk">🔒 Risk & Fraud</button>
+      <button class="fbtn" data-f="workforce">👥 Workforce</button>
+      <button class="fbtn" data-f="funding">💰 Funding</button>
+    </div>
+    <button class="theme" id="theme" title="Toggle light / dark">◐</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Executive Briefing · Week 27 · June 29 – July 6, 2026</div>
+    <h1>AI Intelligence Briefing</h1>
+    <p class="sub">The week's AI signals that matter to strategy, risk, governance and audit — translated for the C-suite and internal audit leadership of JG Summit.</p>
+    <div class="metrics">
+      <div class="metric" id="m-total"><div class="metric-num">11</div><div class="metric-lb">Total Signals</div></div>
+      <div class="metric" id="m-risk"><div class="metric-num">8</div><div class="metric-lb">Risk &amp; Governance</div></div>
+      <div class="metric" id="m-opp"><div class="metric-num">3</div><div class="metric-lb">Opportunities</div></div>
+      <div class="metric" id="m-reg"><div class="metric-num">4</div><div class="metric-lb">Regulation &amp; Legal</div></div>
+      <div class="metric" id="m-act"><div class="metric-num">7</div><div class="metric-lb">Act / Discuss Now</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="summary">
+    <h2>⚡ 30-Second Executive Summary</h2>
+    <p>The centre of gravity in enterprise AI shifted this week from <b>“adopt faster”</b> to <b>“govern harder.”</b> Anthropic and the major cloud providers began standardising a cross-industry framework for scoring AI “jailbreak” severity, while China’s new anthropomorphic-AI rules forced ByteDance and Alibaba to pull consumer AI agents and a US court advanced the Disney/Universal–Midjourney copyright fight. The clearest <b>opportunity</b>: Salesforce closed its m3ter deal, confirming AI pricing is moving from per-seat subscriptions toward consumption- and outcome-based billing — a reason to revisit how JG Summit contracts and pays for AI — as record H1 venture funding ($510B) keeps the pipeline full. The sharpest <b>risk</b>: Mistral’s CEO publicly warned that closed AI providers retain customer data and gain “immense leverage” over the businesses that feed them context, even as tech layoffs (~one-third of all US H1 job cuts, up 83% YoY) show AI reshaping the workforce. <b>Recommended discussion for the Audit Committee:</b> where does accountability sit when an AI model makes a decision — because, as compliance leaders put it this week, AI can detect risk but it cannot own it.</p>
+  </div>
+
+  <!-- PLATFORMS -->
+  <section id="platforms">
+    <div class="sec-h"><span class="bar" style="background:var(--gold)"></span>🏛 Enterprise Platform Wars <span class="sec-count">2 signals</span></div>
+    <div class="grid">
+
+      <article class="card" data-topic="platforms" tabindex="0" role="button" onclick="openModal('c1')" onkeypress="if(event.key==='Enter')openModal('c1')">
+        <span class="card-date">June 30, 2026</span>
+        <h3>Anthropic ships Claude Sonnet 5 and pushes a cross-industry “jailbreak severity” standard with Amazon, Microsoft &amp; Google</h3>
+        <p>A shared framework for scoring AI misuse arrives alongside a new frontier model and an “auditable-artifact” science workbench — safety is becoming a joint standard, not a solo claim.</p>
+        <div class="tags"><span class="tag bg-gold">CEO</span><span class="tag bg-purple">CAE</span><span class="badge b-opp">Opportunity</span><span class="urg u-discuss">Discuss</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+      <article class="card" data-topic="platforms" tabindex="0" role="button" onclick="openModal('c2')" onkeypress="if(event.key==='Enter')openModal('c2')">
+        <span class="card-date">July 1, 2026</span>
+        <h3>Salesforce closes m3ter deal — AI billing shifts from per-seat subscriptions to consumption &amp; outcomes</h3>
+        <p>Metering and usage-based rating come natively into Agentforce, signalling how enterprises will increasingly be charged for AI: by consumption and results, not licences.</p>
+        <div class="tags"><span class="tag bg-green">CFO</span><span class="tag bg-gold">CEO</span><span class="badge b-opp">Opportunity</span><span class="urg u-monitor">Monitor</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- AGENTS -->
+  <section id="agents">
+    <div class="sec-h"><span class="bar" style="background:var(--cyan)"></span>🤖 Agentic AI <span class="sec-count">1 signal</span></div>
+    <div class="grid">
+
+      <article class="card" data-topic="agents" tabindex="0" role="button" onclick="openModal('c3')" onkeypress="if(event.key==='Enter')openModal('c3')">
+        <span class="card-date">July 5, 2026</span>
+        <h3>China forces ByteDance and Alibaba to pull consumer AI agents under world-first “humanlike AI” rules</h3>
+        <p>Doubao and Qwen are disabling user-created agents before Beijing’s July 15 anthropomorphic-AI rules take effect — the first national framework governing how autonomous agents may present and behave.</p>
+        <div class="tags"><span class="tag bg-purple">CAE</span><span class="tag bg-purple">GC</span><span class="badge b-risk">Risk</span><span class="urg u-monitor">Monitor</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- REGULATION -->
+  <section id="regulation">
+    <div class="sec-h"><span class="bar" style="background:var(--purple)"></span>⚖️ AI Regulation &amp; Governance <span class="sec-count">3 signals</span></div>
+    <div class="grid">
+
+      <article class="card" data-topic="regulation" tabindex="0" role="button" onclick="openModal('c4')" onkeypress="if(event.key==='Enter')openModal('c4')">
+        <span class="card-date">July 2, 2026</span>
+        <h3>US court advances Disney &amp; Universal vs. Midjourney — studios’ own AI use enters the copyright fight</h3>
+        <p>A discovery ruling lets the AI defendant probe how the studios themselves use AI, tying market-harm claims to internal AI practices — a warning that “we sue AI but also use it” cuts both ways.</p>
+        <div class="tags"><span class="tag bg-purple">GC</span><span class="tag bg-gold">CEO</span><span class="badge b-risk">Risk</span><span class="urg u-discuss">Discuss</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+      <article class="card" data-topic="regulation" tabindex="0" role="button" onclick="openModal('c5')" onkeypress="if(event.key==='Enter')openModal('c5')">
+        <span class="card-date">July 2, 2026</span>
+        <h3>Singapore &amp; Hong Kong AI rules diverge at mid-2026 — an APAC compliance map for regional operators</h3>
+        <p>A mid-year legal checkpoint shows two of Asia’s financial hubs taking different regulatory paths, raising the cost of a one-size-fits-all AI policy for companies operating across the region.</p>
+        <div class="tags"><span class="tag bg-purple">GC</span><span class="tag bg-purple">CAE</span><span class="badge b-risk">Risk</span><span class="urg u-monitor">Monitor</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+      <article class="card" data-topic="regulation" tabindex="0" role="button" onclick="openModal('c6')" onkeypress="if(event.key==='Enter')openModal('c6')">
+        <span class="card-date">July 2, 2026</span>
+        <h3>“Riding shotgun”: compliance leaders warn AI can detect risk but cannot own accountability</h3>
+        <p>As AI moves into monitoring, due diligence and reporting, the profession’s message is blunt — “the system said so” is not a defensible answer to regulators, boards or auditors.</p>
+        <div class="tags"><span class="tag bg-purple">CAE</span><span class="tag bg-purple">GC</span><span class="badge b-risk">Risk</span><span class="urg u-discuss">Discuss</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- RISK -->
+  <section id="risk">
+    <div class="sec-h"><span class="bar" style="background:var(--red)"></span>🔒 AI Risk &amp; Fraud <span class="sec-count">2 signals</span></div>
+    <div class="grid">
+
+      <article class="card" data-topic="risk" tabindex="0" role="button" onclick="openModal('c7')" onkeypress="if(event.key==='Enter')openModal('c7')">
+        <span class="card-date">July 5, 2026</span>
+        <h3>Mistral CEO warns closed AI providers retain your data and gain “immense leverage” over your business</h3>
+        <p>Arthur Mensch argues that as firms feed models their internal context, providers see it, learn from it — and have a history of competing with their best customers. A vendor-dependency and data-confidentiality flag (and a sales pitch).</p>
+        <div class="tags"><span class="tag bg-green">CFO</span><span class="tag bg-purple">CAE</span><span class="tag bg-gold">CEO</span><span class="badge b-risk">Risk</span><span class="urg u-discuss">Discuss</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+      <article class="card" data-topic="risk" tabindex="0" role="button" onclick="openModal('c8')" onkeypress="if(event.key==='Enter')openModal('c8')">
+        <span class="card-date">July 5, 2026</span>
+        <h3>AI rewrites cyber risk as enterprises and insurers race to close the incident-response gap</h3>
+        <p>Attacks are getting faster and harder to stop, and few organisations understand what actually happens after an incident is reported — widening the gap between cyber-insurance expectations and real-world resilience.</p>
+        <div class="tags"><span class="tag bg-purple">CAE</span><span class="tag bg-green">CFO</span><span class="badge b-risk">Risk</span><span class="urg u-discuss">Discuss</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- WORKFORCE -->
+  <section id="workforce">
+    <div class="sec-h"><span class="bar" style="background:var(--orange)"></span>👥 Workforce &amp; Talent <span class="sec-count">2 signals</span></div>
+    <div class="grid">
+
+      <article class="card" data-topic="workforce" tabindex="0" role="button" onclick="openModal('c9')" onkeypress="if(event.key==='Enter')openModal('c9')">
+        <span class="card-date">July 2, 2026</span>
+        <h3>Tech = nearly one-third of US H1 job cuts as sector layoffs jump 83% year-on-year — Challenger</h3>
+        <p>Outplacement data ties a sharp rise in tech job cuts to AI-driven restructuring, a leading indicator of how automation is reshaping headcount and skills demand across sectors.</p>
+        <div class="tags"><span class="tag bg-orange">CHRO</span><span class="tag bg-gold">CEO</span><span class="badge b-risk">Risk</span><span class="urg u-discuss">Discuss</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+      <article class="card" data-topic="workforce" tabindex="0" role="button" onclick="openModal('c10')" onkeypress="if(event.key==='Enter')openModal('c10')">
+        <span class="card-date">July 2, 2026</span>
+        <h3>“Reskill or reduce?” — if even Microsoft struggles, the AI workforce-transition question lands on every board</h3>
+        <p>Commentary on high-profile restructurings frames the central people decision of the AI era: whether to retrain the workforce for AI or cut it — with retention, trust and change-management stakes attached.</p>
+        <div class="tags"><span class="tag bg-orange">CHRO</span><span class="tag bg-gold">CEO</span><span class="badge b-risk">Risk</span><span class="urg u-monitor">Monitor</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- FUNDING -->
+  <section id="funding">
+    <div class="sec-h"><span class="bar" style="background:var(--green)"></span>💰 Funding &amp; M&amp;A <span class="sec-count">1 signal</span></div>
+    <div class="grid">
+
+      <article class="card" data-topic="funding" tabindex="0" role="button" onclick="openModal('c11')" onkeypress="if(event.key==='Enter')openModal('c11')">
+        <span class="card-date">July 1, 2026</span>
+        <h3>Global venture funding hits record $510B in H1 2026 — but OpenAI and Anthropic alone took 43%</h3>
+        <p>Crunchbase’s half-year data shows record capital flowing to AI even as it concentrates in a handful of frontier labs — a market-signal and a concentration-risk story for anyone dependent on the AI supply chain.</p>
+        <div class="tags"><span class="tag bg-gold">CEO</span><span class="tag bg-green">CFO</span><span class="badge b-opp">Opportunity</span><span class="urg u-discuss">Discuss</span></div>
+        <div class="dive">↗ Deep dive</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- WATCHLIST -->
+  <div class="panel" style="margin-top:40px">
+    <h2>🔭 Executive Watchlist</h2>
+    <div class="watch"><span class="ic">🔵</span><div><span class="wl">Monitor</span><p>The EU AI Act’s Article 50 transparency duties and general-purpose-AI obligations become enforceable <b>August 2, 2026</b>. Confirm any JG customer-facing AI offered in or to the EU market can meet chatbot-disclosure and AI-content-labelling requirements ahead of the deadline.</p></div></div>
+    <div class="watch"><span class="ic">🟡</span><div><span class="wl">Discuss</span><p>Map which closed-model AI providers hold JG Summit’s business context, and review what their data-retention terms actually permit — the vendor-leverage warning from Mistral this week is a prompt to check contracts, not just capabilities.</p></div></div>
+    <div class="watch"><span class="ic">🔴</span><div><span class="wl">Act</span><p>Reassess how JG pays for AI as vendors move from per-seat licences to consumption- and outcome-based billing (Salesforce–m3ter). Model the cost exposure and add usage caps/alerts before the next renewal cycle.</p></div></div>
+    <div class="watch"><span class="ic">🟣</span><div><span class="wl">Audit / Assurance Question</span><p>Do we hold a current inventory of AI models and agents in use across the group — each with a named owner, a human-override (“kill switch”), and independent validation for high-impact use cases?</p></div></div>
+    <div class="watch"><span class="ic">🩵</span><div><span class="wl">Policy / Governance Update</span><p>Reference an emerging cross-industry jailbreak-severity / AI-incident taxonomy (Anthropic with the major cloud providers) inside JG’s AI acceptable-use and incident-response policies, so severity is scored consistently.</p></div></div>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div class="panel">
+    <h2>❓ Questions for Management</h2>
+    <div class="qlist">
+      <div class="qitem"><p>Which business decisions across JG Summit are already influenced by AI or autonomous agents, and who is formally accountable for each outcome — the model, the vendor, or a named human owner?</p></div>
+      <div class="qitem"><p>What contractual protections (data-retention limits, audit rights, indemnification, exit/continuity clauses) do we hold with our AI vendors, and how concentrated is our dependency on any single provider?</p></div>
+      <div class="qitem"><p>If a customer-facing AI system produced a harmful or biased output tomorrow, could we suspend it immediately, explain the decision, and evidence human oversight to a regulator or auditor?</p></div>
+      <div class="qitem"><p>As AI drives workforce restructuring across our industries, what is our reskilling-versus-reduction plan, and how are we managing the retention, trust and change-management risks?</p></div>
+      <div class="qitem"><p>Are we tracking the EU AI Act (Aug 2), APAC rules (Singapore, Hong Kong, China) and US AI-copyright litigation for exposure to any JG entity that operates, sells, or builds AI across those markets?</p></div>
+    </div>
+  </div>
+
+  <footer>
+    AI Intelligence Briefing — June 29 – July 6, 2026 · Prepared by Copilot for C-Suite Decision Makers · Sources verified as of July 6, 2026
+  </footer>
+
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal"><div id="mcontent"></div></div>
+</div>
+
+<script>
+/* ---------- THEME ---------- */
+const root=document.documentElement, tbtn=document.getElementById('theme');
+const saved=localStorage.getItem('ai-brief-theme'); if(saved)root.setAttribute('data-theme',saved);
+tbtn.onclick=()=>{const n=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',n);localStorage.setItem('ai-brief-theme',n);};
+
+/* ---------- FILTERS ---------- */
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('.fbtn'); if(!b)return;
+  document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  const f=b.dataset.f;
+  document.querySelectorAll('.card').forEach(c=>{c.style.display=(f==='all'||c.dataset.topic===f)?'':'none';});
+  document.querySelectorAll('section').forEach(s=>{
+    const any=[...s.querySelectorAll('.card')].some(c=>c.style.display!=='none');
+    s.style.display=any?'':'none';
+  });
+});
+
+/* ---------- MODAL DATA ---------- */
+const MODALS={
+ "c1":{cat:"Enterprise Platform Wars",color:"var(--gold)","date":"June 30, 2026",source:"Anthropic (company newsroom)",url:"https://www.anthropic.com/news",
+  paras:["Anthropic made Claude Sonnet 5 generally available and its new default model, launched Claude Science — a workbench that produces what it calls “auditable artifacts” for researchers — and, most notably for governance, proposed an industry-wide framework for scoring the severity of AI “jailbreaks” (successful attempts to bypass a model’s safety controls) together with Amazon, Microsoft, Google and other partners.",
+  "Why it matters: the frontier-model race is now inseparable from a governance race. When the largest providers agree on a shared way to score misuse severity, that taxonomy tends to become the benchmark regulators, insurers and auditors reference — the same way common vulnerability scoring became standard in cybersecurity.",
+  "Business opportunity: enterprise-grade, auditable AI is maturing. “Auditable artifacts” and a common severity language make it easier to bring AI into regulated and assurance-sensitive workflows with evidence a reviewer can follow.",
+  "Risk / control implication: standardisation also raises the bar — once a severity framework exists, “we didn’t know how serious it was” becomes harder to defend. Rapidly-updating default models (a new Sonnet overnight) also mean control environments must assume the underlying model can change beneath them."],
+  actions:["Direct IT and risk teams to evaluate the jailbreak-severity framework as a reference for JG’s AI incident-response taxonomy","Commission a short assessment of where “auditable-artifact” AI could reduce assurance effort in finance or audit workflows","Challenge vendors on how they notify enterprises when a default model version changes"],
+  risks:["A shared industry severity scale can become a de-facto expectation regulators hold you to","Silent model upgrades can alter behaviour of controls built on the prior version","Concentration on a few frontier providers deepens platform dependency"],
+  auditq:"If our AI vendor silently upgraded its default model tomorrow, how would we know, and which of our controls assume the old model’s behaviour?",
+  bottom:"Safety is becoming a shared, scored standard — not a marketing claim. Treat cross-vendor severity frameworks as a governance input, and insist on change-notification from model providers.",
+  related:[{id:"c7",label:"Mistral vendor-leverage warning"},{id:"c6",label:"AI can’t own accountability"}]},
+
+ "c2":{cat:"Enterprise Platform Wars",color:"var(--gold)","date":"July 1, 2026",source:"Salesforce (company newsroom)",url:"https://www.salesforce.com/news/stories/salesforce-signs-definitive-agreement-to-acquire-m3ter/",
+  paras:["Salesforce completed its acquisition of m3ter, a metering-and-rating platform, on July 1, 2026, folding usage-based billing natively into Agentforce Revenue Management. The stated rationale: AI is shifting monetisation “from traditional subscriptions to consumption-based models,” and enterprises need to bill for flexible usage and outcomes.",
+  "Why it matters: this is a signal about how the whole market will charge for AI. As agentic AI does measurable units of work, per-seat licensing gives way to consumption- and outcome-based pricing. That changes budgeting, forecasting and cost control for every AI buyer — including JG Summit.",
+  "Business opportunity: outcome-based pricing can align cost with value actually delivered, and is a lever to renegotiate AI contracts away from paying for unused seats.",
+  "Risk / control implication: consumption billing introduces variable, harder-to-forecast cost and a new FinOps discipline — runaway usage can produce surprise invoices. It also deepens lock-in when billing, CRM and agents all live inside one vendor’s platform."],
+  actions:["Direct finance to model JG’s exposure to consumption-based AI pricing before the next renewal","Approve usage caps, budgets and alerting for any consumption-billed AI service","Reassess vendor concentration as billing, data and agents consolidate on single platforms"],
+  risks:["Variable consumption costs are harder to forecast and can spike without controls","Platform consolidation (CRM + billing + agents) increases switching costs","Outcome-based pricing shifts disputes to how “outcomes” are measured and metered"],
+  auditq:"For our consumption-priced AI services, what controls cap spend, alert on anomalies, and let us reconcile the vendor’s metering against our own usage records?",
+  bottom:"How you pay for AI is changing from seats to consumption. Get ahead of it with usage caps, forecasting and metering-reconciliation before the model becomes the norm at renewal.",
+  related:[{id:"c11",label:"Record H1 AI funding"},{id:"c1",label:"Anthropic platform moves"}]},
+
+ "c3":{cat:"Agentic AI",color:"var(--cyan)","date":"July 5, 2026",source:"The Next Web / South China Morning Post",url:"https://thenextweb.com/news/china-humanlike-ai-agent-rules",
+  paras:["ByteDance’s Doubao and Alibaba’s Qwen — two of China’s largest consumer AI apps — began disabling their customised and user-created agent features ahead of Beijing’s Interim Measures on anthropomorphic AI interaction services, which take effect July 15, 2026. Reports describe it as the world’s first national framework specifically governing humanlike AI interaction; related user data will stop being recoverable after mid-October.",
+  "Why it matters: regulators are now writing rules for how autonomous, humanlike agents may present and behave — not just what data they use. The measures reportedly target bots offering sustained emotional interaction while sparing workplace/productivity agents, drawing an early line between consumer and enterprise agent use.",
+  "Business opportunity: clear rules reduce ambiguity for enterprise agent deployments and may accelerate adoption of governed, disclosed, task-focused agents over anthropomorphic ones.",
+  "Risk / control implication: multinationals operating in or selling into China must adjust agent deployments and manage data-recoverability timelines. More broadly, this is a template other APAC regulators may follow — agent behaviour, disclosure and data retention are becoming regulated surfaces."],
+  actions:["Direct a review of any JG-deployed AI agents that mimic human personas or hold user chat histories","Monitor APAC regulators for follow-on anthropomorphic-AI rules beyond China","Update AI agent design standards to require clear machine-identity disclosure to users"],
+  risks:["Agents that present as human may face disclosure and behavioural restrictions across markets","Mandated data-deletion timelines can strand records users or the business expected to keep","Divergent national agent rules raise the cost of a single global agent design"],
+  auditq:"Do any of our customer-facing AI agents present as human, and can we disclose their AI nature and offer a human hand-off wherever regulation now requires it?",
+  bottom:"Agent behaviour is becoming a regulated surface, starting in China. Design agents to disclose they are AI, keep humans reachable, and track APAC rule-making closely.",
+  related:[{id:"c5",label:"Singapore & Hong Kong AI rules"},{id:"c6",label:"Accountability can’t be delegated"}]},
+
+ "c4":{cat:"AI Regulation & Governance",color:"var(--purple)","date":"July 2, 2026",source:"JD Supra (Shumaker, Loop & Kendrick)",url:"https://www.jdsupra.com/legalnews/client-alert-ai-copyright-showdown-can-1373762/",
+  paras:["In one of the most closely watched US AI-copyright cases, a court issued a discovery ruling in the Disney/Universal versus Midjourney litigation. Contrary to some headlines, the ruling was narrow: it permitted limited discovery into the studios’ own AI use tied to market harm, technological safeguards and the scope of relief — while rejecting broader demands about the studios’ internal AI development.",
+  "Why it matters: even a procedural ruling signals that a rights-holder’s own AI use can become evidence when it sues an AI company. “We litigate against AI but also deploy it internally” is now a live tension that courts may probe.",
+  "Business opportunity: clearer contours on AI-copyright discovery help legal teams calibrate both offensive and defensive positions and set internal AI-use documentation standards.",
+  "Risk / control implication: internal AI usage — what tools, on what data, with what safeguards — is increasingly discoverable and relevant to liability. Undocumented or inconsistent internal AI practices become a litigation exposure, not just an operational detail."],
+  actions:["Direct legal to document JG’s internal AI-tool usage, data sources and safeguards defensibly","Review contracts and IP positions where JG both licenses AI outputs and protects its own content","Brief the board on how AI-copyright precedent could affect content, media and marketing use of generative AI"],
+  risks:["A company’s own AI use can be discoverable in AI-related disputes","Inconsistent internal AI documentation weakens both plaintiff and defence positions","Generative-AI content pipelines may carry latent IP-provenance risk"],
+  auditq:"Can we produce a defensible record of which AI tools we use internally, on what data, and with what copyright safeguards — before we ever need it in a dispute?",
+  bottom:"Your own AI use is now evidence. Document internal AI tools, data and safeguards to the standard you would want a court to see.",
+  related:[{id:"c5",label:"APAC AI regulation map"},{id:"c6",label:"AI accountability limits"}]},
+
+ "c5":{cat:"AI Regulation & Governance",color:"var(--purple)","date":"July 2, 2026",source:"JD Supra (Legal Update)",url:"https://www.jdsupra.com/legalnews/ai-regulation-in-singapore-and-hong-8441594/",
+  paras:["A mid-2026 legal checkpoint set out how AI regulation is developing in Singapore and Hong Kong — two of Asia’s major financial hubs — highlighting where their approaches align and where they diverge as of the year’s midpoint.",
+  "Why it matters: for a conglomerate operating across Asia, AI compliance is not one rulebook. Divergent, fast-moving regimes across neighbouring jurisdictions raise the cost and complexity of a single group-wide AI policy and demand jurisdiction-aware controls.",
+  "Business opportunity: an early, structured read of APAC divergence lets JG design a compliance baseline that meets the strictest applicable regime while flagging jurisdiction-specific obligations — a competitive advantage over slower peers.",
+  "Risk / control implication: a group AI policy calibrated to one market may under- or over-comply in another. Cross-border AI services (data flows, disclosures, model governance) need mapping against each jurisdiction’s expectations."],
+  actions:["Commission a jurisdiction-by-jurisdiction map of AI obligations across the markets JG operates in","Direct legal and compliance to set a group AI baseline pegged to the strictest applicable regime","Monitor APAC regulators for convergence or new binding requirements"],
+  risks:["A single group AI policy may not satisfy every jurisdiction JG operates in","Cross-border AI data flows and disclosures face inconsistent regional rules","Rapid rule-making can outpace annual policy refresh cycles"],
+  auditq:"Have we mapped our AI deployments against the specific requirements of each jurisdiction we operate in, rather than assuming one group policy covers all?",
+  bottom:"APAC AI regulation is diverging. Build a jurisdiction-aware compliance map now, anchored to the strictest applicable regime, rather than a single generic policy.",
+  related:[{id:"c3",label:"China anthropomorphic-AI rules"},{id:"c4",label:"US AI-copyright ruling"}]},
+
+ "c6":{cat:"AI Regulation & Governance",color:"var(--purple)","date":"July 2, 2026",source:"Compliance Week",url:"https://www.complianceweek.com/best-practices/ai-in-compliance-are-we-still-driving-or-just-riding-shotgun/",
+  paras:["As AI becomes embedded in transaction monitoring, third-party due diligence, regulatory-change management, surveillance and reporting, compliance leaders posed a pointed question this week: are they still driving the programme, or merely “riding shotgun” while AI takes the wheel? The core message — AI may detect risk faster than any team, but it still cannot own accountability.",
+  "Why it matters: this reframes the AI conversation for control functions. Speed and coverage gains are real, but regulators, boards and auditors will not accept “the system said so” as a sufficient explanation. Accountability remains human and cannot be delegated to a model.",
+  "Business opportunity: functions that pair AI’s speed with clear human ownership and evidence trails can achieve “precision at the speed of compliance” — better and faster, not one at the expense of the other.",
+  "Risk / control implication: automation bias — deferring to algorithmic output — is the emerging failure mode. Controls need documented human review, override authority and explainability so decisions can be defended after the fact."],
+  actions:["Direct control functions to define, for each AI-assisted control, who owns the decision and how it is evidenced","Require documented human review and override on high-impact AI-driven determinations","Add automation-bias awareness to compliance and audit training"],
+  risks:["Automation bias: staff defer to AI output rather than challenge it","“The system said so” is not a defensible answer to regulators or auditors","Speed gains can mask undetected errors without human checkpoints"],
+  auditq:"For each AI-assisted control in our compliance programme, who is the accountable human owner, and how do we evidence their review and override authority?",
+  bottom:"AI can detect risk; it cannot own it. Keep a named human accountable for every AI-assisted control, with documented review and override.",
+  related:[{id:"c1",label:"Jailbreak-severity standard"},{id:"c3",label:"Regulated agent behaviour"}]},
+
+ "c7":{cat:"AI Risk & Fraud",color:"var(--red)","date":"July 5, 2026",source:"The Next Web",url:"https://thenextweb.com/news/mistral-ceo-open-source-enterprise-warning",
+  paras:["Mistral cofounder and CEO Arthur Mensch used a public post to urge enterprises away from closed AI models, arguing that closed providers now force data retention and gain “immense leverage” over customers. As companies connect models to their internal context, he warned, providers “see it, learn from it, and have a history of going after their most [successful customers].” The argument is real but caveated — and doubles as a pitch for Mistral’s own open products.",
+  "Why it matters: strip out the sales angle and a genuine governance question remains — what do our AI providers retain, learn from, and potentially compete on, once we feed them our proprietary business context? This is vendor dependency and data confidentiality, framed by an insider.",
+  "Business opportunity: it is a prompt to review AI sourcing strategy — open vs. closed, single vs. multi-vendor — and to treat data-retention and competitive-use terms as first-class procurement criteria.",
+  "Risk / control implication: sensitive data shared with external models may be retained or used to improve provider offerings. Concentration on one closed provider compounds the exposure and reduces negotiating leverage."],
+  actions:["Direct procurement to make data-retention and competitive-use terms explicit criteria in AI vendor selection","Commission a review of what proprietary context JG currently feeds external models","Reassess open-vs-closed and single-vs-multi-vendor AI strategy at portfolio level"],
+  risks:["Proprietary context shared with closed models may be retained or used to improve the provider","Single-provider dependency reduces leverage and raises switching costs","Marketing-driven claims can obscure — or exaggerate — the underlying data-governance issue"],
+  auditq:"What proprietary or sensitive data does JG currently send to external AI providers, and do our contracts restrict retention and competitive use of it?",
+  bottom:"Before feeding models your business context, know what the provider keeps and can do with it. Make data-retention terms a procurement gate and avoid over-concentration.",
+  related:[{id:"c2",label:"Consumption billing / lock-in"},{id:"c8",label:"Cyber risk & resilience"}]},
+
+ "c8":{cat:"AI Risk & Fraud",color:"var(--red)","date":"July 5, 2026",source:"Fortune India",url:"https://www.fortuneindia.com/business-news/ai-rewrites-cyber-risk-as-indias-enterprises-and-insurers-race-to-keep-up/146606",
+  paras:["A feature on the shifting cyber-risk landscape reported that AI is making attacks faster and harder to contain, while few enterprises understand what actually happens once an incident is reported — a gap between expectation and reality that is straining both response capability and cyber-insurance.",
+  "Why it matters: AI is compressing attacker timelines and widening the distance between having a policy and being resilient. Insurers are asking sharper, AI-specific questions, and the “we have a plan” answer is being tested against real response readiness.",
+  "Business opportunity: organisations that can evidence tested incident-response — detection, containment, recovery — will find better resilience and smoother insurance renewals than peers relying on paper plans.",
+  "Risk / control implication: incident-response plans must be exercised against AI-accelerated attack scenarios. The weak point is increasingly post-incident: containment, forensics and recovery, not just prevention."],
+  actions:["Direct a tabletop exercise of JG’s incident-response against AI-accelerated attack scenarios","Review cyber-insurance coverage and the AI-specific questions underwriters now ask","Request assurance on detection-to-containment times, not just perimeter controls"],
+  risks:["AI-accelerated attacks shorten the window to detect and contain","Untested response plans fail at the post-incident (containment/recovery) stage","Cyber-insurance may not respond as expected if controls can’t be evidenced"],
+  auditq:"When did we last test our incident-response end-to-end against an AI-accelerated attack, and can we evidence our detection-to-containment time to an insurer?",
+  bottom:"AI is rewriting cyber risk on the response side. Exercise incident-response against AI-speed attacks and make sure your insurance assumptions match reality.",
+  related:[{id:"c7",label:"Vendor data leverage"},{id:"c9",label:"Workforce disruption"}]},
+
+ "c9":{cat:"Workforce & Talent",color:"var(--orange)","date":"July 2, 2026",source:"HR Dive (Challenger, Gray & Christmas data)",url:"https://www.hrdive.com/news/tech-layoffs-surge-83percent-h1-2026-challenger-ai-disruption/824320/",
+  paras:["Outplacement firm Challenger, Gray & Christmas reported that technology firms accounted for nearly a third of all US job cuts in the first half of 2026, with sector layoffs up 83% year-on-year from January through June — attributed in large part to AI-driven workforce restructuring.",
+  "Why it matters: this is hard data, not sentiment, and it positions AI as a live driver of headcount decisions. Tech is often a leading indicator; the pattern of automation-linked restructuring tends to spread to other sectors.",
+  "Business opportunity: firms that move early on workforce planning — redeploying talent to higher-value work as AI absorbs routine tasks — can capture productivity gains while protecting engagement.",
+  "Risk / control implication: rapid AI-linked restructuring carries retention, morale, knowledge-loss and reputational risk, plus change-management execution risk. Cutting ahead of a clear operating model can erode capability faster than AI replaces it."],
+  actions:["Direct HR to build an AI workforce-impact and redeployment plan across the group’s businesses","Prioritise training so displaced roles can move to higher-value, AI-augmented work","Monitor sector layoff trends as a leading indicator for JG’s own planning"],
+  risks:["AI-linked restructuring risks knowledge loss, morale and retention damage","Cutting ahead of a clear operating model erodes capability","Reputational exposure if workforce changes appear AI-driven and abrupt"],
+  auditq:"Does JG have a workforce-transition plan that pairs any AI-driven role changes with reskilling, redeployment and change-management — or are cuts running ahead of the plan?",
+  bottom:"AI is now a measurable driver of layoffs. Get a redeployment-and-reskilling plan in place before restructuring, not after.",
+  related:[{id:"c10",label:"Reskill or reduce?"},{id:"c8",label:"AI-driven risk shifts"}]},
+
+ "c10":{cat:"Workforce & Talent",color:"var(--orange)","date":"July 2, 2026",source:"The HR Digest",url:"https://www.thehrdigest.com/reskilling-vs-layoffs-if-microsoft-cant-do-it-who-can/",
+  paras:["Commentary tied to high-profile restructurings framed the defining people-decision of the AI era: whether to retrain the existing workforce for AI or reduce it. The provocation — if even a company with Microsoft’s resources finds large-scale reskilling hard, most organisations will find it harder still.",
+  "Why it matters: it puts the strategic choice squarely on boards and CHROs. Reskilling preserves institutional knowledge and trust but is slow and costly; reduction is fast but risks capability, morale and reputation. The default should be a deliberate choice, not drift.",
+  "Business opportunity: organisations that build credible reskilling pathways can differentiate on talent attraction and retention at a time when workers increasingly weigh employers’ AI-skills investment.",
+  "Risk / control implication: absent a clear reskilling strategy, ad-hoc cuts and shadow AI adoption fill the vacuum — raising governance, morale and knowledge-continuity risk."],
+  actions:["Direct HR to present a costed reskilling-vs-reduction strategy to the board","Prioritise AI-skills pathways for roles most exposed to automation","Position AI-skills investment as a retention and employer-brand advantage"],
+  risks:["Reskilling is slow and costly; reduction is fast but erodes capability and trust","No clear strategy invites ad-hoc cuts and shadow AI adoption","Talent may leave for employers seen to invest more in AI skills"],
+  auditq:"Has management made a deliberate, costed choice between reskilling and reducing the workforce for AI — and can it evidence the reasoning to the board?",
+  bottom:"Reskill or reduce is a board-level choice, not a drift. Make it deliberately and fund the reskilling path where capability and trust matter.",
+  related:[{id:"c9",label:"Tech layoffs surge"},{id:"c2",label:"How we pay for AI"}]},
+
+ "c11":{cat:"Funding & M&A",color:"var(--green)","date":"July 1, 2026",source:"Crunchbase News",url:"https://news.crunchbase.com/venture/global-startup-exits-ipo-ma-soar-ai-q2-h1-2026/",
+  paras:["Crunchbase’s half-year data showed global venture funding reached a record $510 billion in H1 2026 — surpassing all of 2025 — with more than 70% of Q2 capital flowing to AI-focused companies. But concentration is extreme: OpenAI and Anthropic alone accounted for roughly 43% of all startup funding in the half, and a handful of frontier labs absorbed the bulk of megarounds. The half also delivered the strongest exit market since 2021.",
+  "Why it matters: capital is validating AI at record scale, but it is pooling into a very small number of providers. That concentration shapes the supply chain everyone else depends on — pricing power, roadmap control and systemic dependency all sit with a few labs.",
+  "Business opportunity: a strong funding and exit market keeps the AI innovation pipeline full and expands enterprise tooling choices — useful for JG’s own AI roadmap and vendor selection.",
+  "Risk / control implication: dependency on a concentrated set of frontier providers is a strategic and operational risk — pricing, continuity and negotiating leverage all skew to the vendor. Concentration also raises the stakes if any single provider stumbles."],
+  actions:["Direct strategy to assess JG’s dependency on the small set of frontier AI providers","Build optionality (multi-vendor / open-model fallbacks) into critical AI-enabled processes","Monitor AI market concentration as a supply-chain and pricing risk"],
+  risks:["Extreme funding concentration gives a few labs outsized pricing and roadmap power","Systemic dependency: a single provider’s disruption ripples across dependents","Frothy valuations raise the risk of abrupt market repricing"],
+  auditq:"How exposed is JG to a small number of frontier AI providers, and do our critical AI-enabled processes have a viable fallback if one becomes unavailable or unaffordable?",
+  bottom:"Record AI capital is concentrating in a few labs. Treat provider concentration as a supply-chain risk and build optionality into critical AI workflows.",
+  related:[{id:"c2",label:"AI billing shift"},{id:"c7",label:"Provider leverage"}]}
+};
+
+/* ---------- MODAL RENDER ---------- */
+function openModal(id){
+  const m=MODALS[id]; if(!m)return;
+  const roleChips=(m.related||[]).map(r=>`<span class="chip" onclick="openModal('${r.id}')">${r.label} ↗</span>`).join('');
+  const html=`
+    <div class="m-head">
+      <button class="x" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="m-cat" style="color:${m.color}">${m.cat}</div>
+      <h2>${MODAL_TITLES[id]}</h2>
+      <div class="m-meta">${m.date} · ${m.source} · <a href="${m.url}" target="_blank" rel="noopener">Read the source ↗</a></div>
+    </div>
+    <div class="m-body">
+      ${m.paras.map(p=>`<p class="para">${p}</p>`).join('')}
+      <div class="m-panel m-actions"><h4>✓ Executive Actions</h4><ul>${m.actions.map(a=>`<li>${a}</li>`).join('')}</ul></div>
+      <div class="m-panel m-risks"><h4>⚠ Risks &amp; Watchouts</h4><ul>${m.risks.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+      <div class="auditq"><b>Audit / Risk question:</b> ${m.auditq}</div>
+      <div class="bottom"><b>C-suite bottom line:</b> ${m.bottom}</div>
+      <div class="rel"><div class="rl">Related signals</div><div class="chips">${roleChips}</div></div>
+    </div>`;
+  document.getElementById('mcontent').innerHTML=html;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* titles pulled from card headings so modal matches card */
+const MODAL_TITLES={
+ "c1":"Anthropic ships Claude Sonnet 5 and pushes a cross-industry “jailbreak severity” standard with Amazon, Microsoft &amp; Google",
+ "c2":"Salesforce closes m3ter deal — AI billing shifts from subscriptions to consumption &amp; outcomes",
+ "c3":"China forces ByteDance and Alibaba to pull consumer AI agents under world-first “humanlike AI” rules",
+ "c4":"US court advances Disney &amp; Universal vs. Midjourney — studios’ own AI use enters the copyright fight",
+ "c5":"Singapore &amp; Hong Kong AI rules diverge at mid-2026 — an APAC compliance map for regional operators",
+ "c6":"“Riding shotgun”: compliance leaders warn AI can detect risk but cannot own accountability",
+ "c7":"Mistral CEO warns closed AI providers retain your data and gain “immense leverage” over your business",
+ "c8":"AI rewrites cyber risk as enterprises and insurers race to close the incident-response gap",
+ "c9":"Tech = nearly one-third of US H1 job cuts as sector layoffs jump 83% year-on-year",
+ "c10":"“Reskill or reduce?” — the AI workforce-transition question lands on every board",
+ "c11":"Global venture funding hits record $510B in H1 2026 — but OpenAI and Anthropic alone took 43%"
+};
+</script>
+</body>
+</html>
