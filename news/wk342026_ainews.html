@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — August 17 – August 23, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0b0f1a; --bg-2:#121829; --card:#161d31; --card-2:#1b2440; --border:#25304d;
+    --text:#e8ecf6; --text-dim:#9aa6c4; --accent:#6ea8ff; --accent-2:#8b7dff;
+    --gold:#f5c451; --cyan:#38d3d3; --purple:#b48bff; --orange:#ff9d5c; --red:#ff6b6b;
+    --green:#43c98a; --blue:#5b9dff; --shadow:0 8px 30px rgba(0,0,0,.35);
+  }
+  [data-theme="light"] {
+    --bg:#f4f6fb; --bg-2:#ffffff; --card:#ffffff; --card-2:#f7f9fe; --border:#e2e7f2;
+    --text:#1c2333; --text-dim:#586079; --accent:#3b6fe0; --accent-2:#6b57e6;
+    --gold:#b7860b; --cyan:#0f9b9b; --purple:#7b52d6; --orange:#d9781f; --red:#d94141;
+    --green:#1f9e63; --blue:#2f6fd6; --shadow:0 8px 26px rgba(30,45,90,.10);
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; font-family:"Inter",-apple-system,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.55; -webkit-font-smoothing:antialiased; }
+  a { color:var(--accent); }
+  nav { position:sticky; top:0; z-index:50; background:rgba(11,15,26,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
+  [data-theme="light"] nav { background:rgba(255,255,255,.9); }
+  .nav-inner { max-width:1180px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .brand { font-weight:800; font-size:1rem; letter-spacing:.2px; margin-right:auto; display:flex; align-items:center; gap:9px; }
+  .brand .spark { color:var(--accent); font-size:1.15rem; }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; }
+  .filt { font:inherit; font-size:.8rem; font-weight:600; padding:6px 12px; border-radius:999px; border:1px solid var(--border); background:var(--card); color:var(--text-dim); cursor:pointer; transition:.15s; }
+  .filt:hover { color:var(--text); border-color:var(--accent); }
+  .filt.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .theme-btn { font:inherit; font-size:.95rem; width:38px; height:34px; border-radius:9px; border:1px solid var(--border); background:var(--card); color:var(--text); cursor:pointer; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
+  header.hero { padding:54px 0 26px; }
+  .eyebrow { color:var(--accent); font-weight:700; font-size:.8rem; letter-spacing:2px; text-transform:uppercase; }
+  h1 { font-size:2.6rem; line-height:1.08; margin:.35em 0 .2em; font-weight:800; letter-spacing:-.5px; }
+  .subtitle { color:var(--text-dim); font-size:1.05rem; margin:0; }
+  .metrics { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin:30px 0 8px; }
+  .metric { background:linear-gradient(160deg,var(--card),var(--card-2)); border:1px solid var(--border); border-radius:14px; padding:16px 14px; text-align:center; box-shadow:var(--shadow); }
+  .metric-num { font-size:2rem; font-weight:800; line-height:1; }
+  .metric-lbl { color:var(--text-dim); font-size:.72rem; margin-top:8px; text-transform:uppercase; letter-spacing:.6px; }
+  .m-total .metric-num { color:var(--accent); }
+  .m-risk .metric-num { color:var(--red); }
+  .m-opp .metric-num { color:var(--green); }
+  .m-reg .metric-num { color:var(--purple); }
+  .m-act .metric-num { color:var(--gold); }
+  .exec { background:linear-gradient(150deg,rgba(110,168,255,.10),rgba(139,125,255,.08)); border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:14px; padding:22px 24px; margin:26px 0 8px; }
+  .exec h2 { margin:0 0 8px; font-size:1.15rem; }
+  .exec p { margin:0; color:var(--text); }
+  .topic-block { margin:40px 0 0; }
+  .section-title { display:flex; align-items:center; gap:11px; font-size:1.35rem; font-weight:800; margin:0 0 16px; }
+  .section-title .dot { width:11px; height:11px; border-radius:50%; display:inline-block; }
+  .tone-gold .dot { background:var(--gold); } .section-title.tone-gold { color:var(--gold); }
+  .tone-cyan .dot { background:var(--cyan); } .section-title.tone-cyan { color:var(--cyan); }
+  .tone-purple .dot { background:var(--purple); } .section-title.tone-purple { color:var(--purple); }
+  .tone-orange .dot { background:var(--orange); } .section-title.tone-orange { color:var(--orange); }
+  .tone-red .dot { background:var(--red); } .section-title.tone-red { color:var(--red); }
+  .tone-green .dot { background:var(--green); } .section-title.tone-green { color:var(--green); }
+  .tone-blue .dot { background:var(--blue); } .section-title.tone-blue { color:var(--blue); }
+  .cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:15px; padding:18px 18px 14px; cursor:pointer; transition:.18s; display:flex; flex-direction:column; box-shadow:var(--shadow); }
+  .card:hover { transform:translateY(-3px); border-color:var(--accent); }
+  .card:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .card-date { color:var(--text-dim); font-size:.76rem; font-weight:600; }
+  .card-headline { font-size:1.02rem; line-height:1.32; margin:0 0 8px; font-weight:700; }
+  .card-summary { color:var(--text-dim); font-size:.86rem; margin:0 0 14px; flex:1; }
+  .card-tags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .card-foot { margin-top:12px; border-top:1px dashed var(--border); padding-top:9px; }
+  .deepdive { color:var(--accent); font-size:.78rem; font-weight:700; }
+  .tag { font-size:.68rem; font-weight:700; padding:3px 8px; border-radius:6px; letter-spacing:.3px; color:#0b0f1a; }
+  .bg-gold { background:var(--gold); } .bg-green { background:var(--green); }
+  .bg-purple { background:var(--purple); } .bg-orange { background:var(--orange); }
+  .badge { font-size:.68rem; font-weight:700; padding:3px 9px; border-radius:999px; letter-spacing:.3px; }
+  .b-risk { background:rgba(255,107,107,.16); color:var(--red); border:1px solid rgba(255,107,107,.4); }
+  .b-opp { background:rgba(67,201,138,.16); color:var(--green); border:1px solid rgba(67,201,138,.4); }
+  .u-monitor { background:rgba(91,157,255,.16); color:var(--blue); border:1px solid rgba(91,157,255,.4); }
+  .u-discuss { background:rgba(245,196,81,.16); color:var(--gold); border:1px solid rgba(245,196,81,.4); }
+  .u-act { background:rgba(255,107,107,.18); color:var(--red); border:1px solid rgba(255,107,107,.45); }
+  .panel { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:26px 26px; margin-top:40px; box-shadow:var(--shadow); }
+  .panel h2 { margin:0 0 6px; font-size:1.35rem; }
+  .panel .sub { color:var(--text-dim); margin:0 0 18px; font-size:.9rem; }
+  .wl-list { list-style:none; margin:0; padding:0; display:grid; gap:12px; }
+  .wl-item { display:flex; gap:13px; align-items:flex-start; background:var(--card-2); border:1px solid var(--border); border-left:4px solid var(--border); border-radius:11px; padding:13px 15px; }
+  .wl-item.tone-blue { border-left-color:var(--blue); }
+  .wl-item.tone-green { border-left-color:var(--green); }
+  .wl-item.tone-red { border-left-color:var(--red); }
+  .wl-item.tone-purple { border-left-color:var(--purple); }
+  .wl-item.tone-orange { border-left-color:var(--orange); }
+  .wl-emoji { font-size:1.05rem; line-height:1.6; }
+  .wl-label { font-weight:700; font-size:.72rem; text-transform:uppercase; letter-spacing:.6px; display:block; margin-bottom:3px; }
+  .wl-label.tone-blue { color:var(--blue); } .wl-label.tone-green { color:var(--green); }
+  .wl-label.tone-red { color:var(--red); } .wl-label.tone-purple { color:var(--purple); }
+  .wl-label.tone-orange { color:var(--orange); }
+  .wl-item p { margin:0; font-size:.88rem; color:var(--text); }
+  .q-list { list-style:none; margin:0; padding:0; display:grid; gap:12px; }
+  .q-list li { display:flex; gap:13px; align-items:flex-start; background:var(--card-2); border:1px solid var(--border); border-radius:11px; padding:13px 15px; }
+  .q-num { flex:none; width:26px; height:26px; border-radius:7px; background:var(--accent); color:#fff; font-weight:700; font-size:.85rem; display:flex; align-items:center; justify-content:center; }
+  .q-list p { margin:0; font-size:.9rem; }
+  footer { text-align:center; color:var(--text-dim); font-size:.82rem; padding:44px 20px 60px; margin-top:44px; border-top:1px solid var(--border); }
+  .modal-overlay { position:fixed; inset:0; background:rgba(4,7,15,.72); backdrop-filter:blur(4px); display:none; align-items:flex-start; justify-content:center; z-index:100; padding:34px 16px; overflow-y:auto; }
+  .modal-overlay.open { display:flex; }
+  .modal { background:var(--bg-2); border:1px solid var(--border); border-radius:18px; max-width:760px; width:100%; box-shadow:0 24px 70px rgba(0,0,0,.5); animation:pop .18s ease; }
+  @keyframes pop { from { transform:translateY(14px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+  .modal-head { padding:22px 26px 16px; border-bottom:1px solid var(--border); position:relative; }
+  .modal-cat { font-weight:700; font-size:.74rem; text-transform:uppercase; letter-spacing:1px; }
+  .modal-head h3 { margin:8px 0 10px; font-size:1.4rem; line-height:1.25; padding-right:40px; }
+  .modal-meta { display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:.82rem; color:var(--text-dim); }
+  .modal-meta a { font-weight:600; }
+  .modal-close { position:absolute; top:18px; right:20px; width:32px; height:32px; border-radius:8px; border:1px solid var(--border); background:var(--card); color:var(--text); font-size:1.1rem; cursor:pointer; line-height:1; }
+  .modal-body { padding:22px 26px 26px; }
+  .modal-body p.para { margin:0 0 14px; font-size:.94rem; }
+  .mpanel { border-radius:12px; padding:15px 17px; margin:16px 0; border:1px solid var(--border); }
+  .mpanel h4 { margin:0 0 9px; font-size:.86rem; text-transform:uppercase; letter-spacing:.6px; }
+  .mpanel ul { margin:0; padding-left:18px; }
+  .mpanel li { margin:5px 0; font-size:.9rem; }
+  .m-actions { background:rgba(67,201,138,.09); border-color:rgba(67,201,138,.35); }
+  .m-actions h4 { color:var(--green); }
+  .m-risks { background:rgba(255,107,107,.08); border-color:rgba(255,107,107,.32); }
+  .m-risks h4 { color:var(--red); }
+  .m-audit { background:rgba(180,139,255,.09); border-color:rgba(180,139,255,.32); }
+  .m-audit h4 { color:var(--purple); }
+  .m-audit p { margin:0; font-size:.92rem; font-style:italic; }
+  .m-bottom { background:linear-gradient(150deg,rgba(110,168,255,.12),rgba(139,125,255,.08)); border-color:var(--border); }
+  .m-bottom h4 { color:var(--accent); }
+  .m-bottom p { margin:0; font-size:.95rem; font-weight:600; }
+  .modal-tags { display:flex; flex-wrap:wrap; gap:7px; margin:4px 0 4px; }
+  .related { margin-top:18px; }
+  .related h4 { font-size:.78rem; text-transform:uppercase; letter-spacing:.6px; color:var(--text-dim); margin:0 0 9px; }
+  .chip { display:inline-block; font:inherit; font-size:.8rem; text-align:left; background:var(--card); border:1px solid var(--border); border-radius:9px; padding:8px 11px; margin:0 7px 7px 0; color:var(--text); cursor:pointer; max-width:100%; }
+  .chip:hover { border-color:var(--accent); color:var(--accent); }
+  @media (max-width:820px) { .metrics { grid-template-columns:repeat(2,1fr); } h1 { font-size:2rem; } .brand { width:100%; margin-bottom:6px; } }
+  @media (max-width:520px) { .metrics { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <div class="brand"><span class="spark">◆</span> JG Summit · AI Intelligence Briefing</div>
+    <div class="filters">
+      <button class="filt active" data-filter="all" onclick="applyFilter(this)">All</button>
+<button class="filt" data-filter="platforms" onclick="applyFilter(this)">Enterprise Platform Wars</button>
+<button class="filt" data-filter="risk" onclick="applyFilter(this)">AI Risk &amp; Fraud</button>
+<button class="filt" data-filter="regulation" onclick="applyFilter(this)">AI Regulation &amp; Governance</button>
+<button class="filt" data-filter="agents" onclick="applyFilter(this)">Agentic AI</button>
+<button class="filt" data-filter="funding" onclick="applyFilter(this)">Funding &amp; M&amp;A</button>
+<button class="filt" data-filter="impact" onclick="applyFilter(this)">Business Impact</button>
+<button class="filt" data-filter="workforce" onclick="applyFilter(this)">Workforce &amp; Talent</button>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle light/dark theme" onclick="toggleTheme()">☀️</button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Weekly Executive Edition · Week 34</div>
+    <h1>AI Intelligence Briefing</h1>
+    <p class="subtitle">Material enterprise AI developments · August 17 – August 23, 2026</p>
+
+    <div class="metrics">
+      <div class="metric m-total"><div class="metric-num">10</div><div class="metric-lbl">Total Signals</div></div>
+      <div class="metric m-risk"><div class="metric-num">5</div><div class="metric-lbl">Risk &amp; Governance</div></div>
+      <div class="metric m-opp"><div class="metric-num">5</div><div class="metric-lbl">Opportunity</div></div>
+      <div class="metric m-reg"><div class="metric-num">4</div><div class="metric-lbl">Governance &amp; Legal</div></div>
+      <div class="metric m-act"><div class="metric-num">5</div><div class="metric-lbl">Act or Discuss</div></div>
+    </div>
+  </header>
+
+  <div class="exec">
+    <h2>⚡ 30-Second Executive Summary</h2>
+    <p>The week&#x27;s defining signal was a competitive inflection: Anthropic overtook OpenAI in quarterly revenue for the first time ($11.6B with a small operating profit, versus OpenAI&#x27;s widening $12.3B loss), with enterprise and coding spend tilting toward Anthropic. The biggest risk and governance development was OpenAI publicly pausing frontier training as its models&#x27; cyber capabilities approached a &quot;Critical&quot; threshold — alongside regulators moving on AI-driven personalized pricing (FTC Section 5) and a chip export-control loophole exposed by Chinese firms accessing NVIDIA compute remotely. The biggest opportunities were in the AI stack itself: Stripe agreed to buy the multi-model router OpenRouter, Google deepened custom silicon with a $12.2B Marvell tie-up, Etched&#x27;s inference-chip valuation doubled to $21B, and OpenAI advanced privacy-preserving Private Safety Processing. Recommended discussion: whether our AI vendor strategy accounts for the Anthropic/OpenAI power shift, frontier-safety pauses, and tightening regulation of AI pricing, data, and compute.</p>
+  </div>
+
+  
+    <section class="topic-block" data-section="platforms" id="sec-platforms">
+      <h2 class="section-title tone-gold"><span class="dot"></span>🏛 Enterprise Platform Wars</h2>
+      <div class="cards-grid">
+        
+        <article class="card" data-section="platforms" tabindex="0" role="button"
+                 aria-label="Open deep dive: Anthropic overtakes OpenAI in quarterly revenue for the first time" onclick="openModal('anthropic-revenue')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('anthropic-revenue');}">
+          <div class="card-top">
+            <span class="card-date">Aug 19, 2026</span>
+            <span class="badge b-opp">Opportunity</span>
+          </div>
+          <h3 class="card-headline">Anthropic overtakes OpenAI in quarterly revenue for the first time</h3>
+          <p class="card-summary">Anthropic posted $11.6B in Q2 revenue and a small operating profit — surpassing OpenAI, whose losses widened to $12.3B. Enterprise and coding spend is tilting toward Anthropic, reshaping the frontier-vendor competitive map buyers depend on.</p>
+          <div class="card-tags"><span class="tag bg-gold owner-ceo">CEO</span><span class="tag bg-green owner-cfo">CFO</span><span class="tag bg-purple owner-gc">CAE</span><span class="badge u-discuss">Discuss</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="topic-block" data-section="risk" id="sec-risk">
+      <h2 class="section-title tone-red"><span class="dot"></span>🔒 AI Risk &amp; Fraud</h2>
+      <div class="cards-grid">
+        
+        <article class="card" data-section="risk" tabindex="0" role="button"
+                 aria-label="Open deep dive: OpenAI publicly pauses frontier training as models&#x27; cyber capabilities outrun safeguards" onclick="openModal('openai-pause')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('openai-pause');}">
+          <div class="card-top">
+            <span class="card-date">Aug 18, 2026</span>
+            <span class="badge b-risk">Risk</span>
+          </div>
+          <h3 class="card-headline">OpenAI publicly pauses frontier training as models&#x27; cyber capabilities outrun safeguards</h3>
+          <p class="card-summary">Sam Altman said OpenAI unilaterally paused parts of frontier reinforcement-learning training because capabilities were outpacing safety, with its Astra work approaching a &quot;Critical&quot; cybersecurity threshold. It is a rare admission that safety is now setting the pace of model development.</p>
+          <div class="card-tags"><span class="tag bg-purple owner-gc">CAE</span><span class="tag bg-purple owner-gc">GC</span><span class="tag bg-gold owner-ceo">CEO</span><span class="badge u-discuss">Discuss</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+
+        <article class="card" data-section="risk" tabindex="0" role="button"
+                 aria-label="Open deep dive: OpenAI previews Private Safety Processing to keep Zero Data Retention intact" onclick="openModal('openai-privacy')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('openai-privacy');}">
+          <div class="card-top">
+            <span class="card-date">Aug 20, 2026</span>
+            <span class="badge b-opp">Opportunity</span>
+          </div>
+          <h3 class="card-headline">OpenAI previews Private Safety Processing to keep Zero Data Retention intact</h3>
+          <p class="card-summary">OpenAI reaffirmed Zero Data Retention for eligible API customers and previewed Private Safety Processing — a system to detect misuse without retaining prompts and responses or exposing content to staff. It sharpens the enterprise data-governance contrast between AI vendors.</p>
+          <div class="card-tags"><span class="tag bg-purple owner-gc">CAE</span><span class="tag bg-purple owner-gc">GC</span><span class="tag bg-green owner-cfo">CFO</span><span class="badge u-monitor">Monitor</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="topic-block" data-section="regulation" id="sec-regulation">
+      <h2 class="section-title tone-purple"><span class="dot"></span>⚖️ AI Regulation &amp; Governance</h2>
+      <div class="cards-grid">
+        
+        <article class="card" data-section="regulation" tabindex="0" role="button"
+                 aria-label="Open deep dive: FTC proposes enforcing against undisclosed AI-driven personalized pricing" onclick="openModal('ftc-pricing')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ftc-pricing');}">
+          <div class="card-top">
+            <span class="card-date">Aug 19, 2026</span>
+            <span class="badge b-risk">Risk</span>
+          </div>
+          <h3 class="card-headline">FTC proposes enforcing against undisclosed AI-driven personalized pricing</h3>
+          <p class="card-summary">The FTC issued a proposed enforcement policy statement signaling it will use Section 5 against businesses that set personalized prices without clear disclosure of the personalization and the consumer data behind it. Any algorithmic or AI-based pricing model is now squarely in scope.</p>
+          <div class="card-tags"><span class="tag bg-purple owner-gc">GC</span><span class="tag bg-green owner-cfo">CFO</span><span class="tag bg-purple owner-gc">CAE</span><span class="badge u-act">Act</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+
+        <article class="card" data-section="regulation" tabindex="0" role="button"
+                 aria-label="Open deep dive: Chinese AI firms tap banned NVIDIA compute remotely, exposing a chip export-control loophole" onclick="openModal('china-loophole')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('china-loophole');}">
+          <div class="card-top">
+            <span class="card-date">Aug 19, 2026</span>
+            <span class="badge b-risk">Risk</span>
+          </div>
+          <h3 class="card-headline">Chinese AI firms tap banned NVIDIA compute remotely, exposing a chip export-control loophole</h3>
+          <p class="card-summary">ByteDance, Tencent, and Alibaba reportedly accessed advanced NVIDIA compute remotely through cloud providers in Southeast Asia and elsewhere, exploiting export rules that governed physical chip ownership rather than remote access. Washington is now weighing how to close the gap.</p>
+          <div class="card-tags"><span class="tag bg-purple owner-gc">CAE</span><span class="tag bg-purple owner-gc">GC</span><span class="tag bg-gold owner-ceo">CEO</span><span class="badge u-monitor">Monitor</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="topic-block" data-section="agents" id="sec-agents">
+      <h2 class="section-title tone-cyan"><span class="dot"></span>🤖 Agentic AI</h2>
+      <div class="cards-grid">
+        
+        <article class="card" data-section="agents" tabindex="0" role="button"
+                 aria-label="Open deep dive: Harvey advances enterprise legal AI with memory-driven agents and its first in-house model, Tenet" onclick="openModal('harvey-tenet')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('harvey-tenet');}">
+          <div class="card-top">
+            <span class="card-date">Aug 18, 2026</span>
+            <span class="badge b-risk">Risk</span>
+          </div>
+          <h3 class="card-headline">Harvey advances enterprise legal AI with memory-driven agents and its first in-house model, Tenet</h3>
+          <p class="card-summary">Harvey launched Harvey II — legal agents with persistent matter context and memory — and revealed Tenet, its first proprietary model. Notably, Tenet is post-trained on a Chinese open base model (Kimi K3), placing a foreign base under privileged legal work and raising a base-model provenance question.</p>
+          <div class="card-tags"><span class="tag bg-purple owner-gc">GC</span><span class="tag bg-purple owner-gc">CAE</span><span class="tag bg-orange owner-chro">CHRO</span><span class="badge u-discuss">Discuss</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="topic-block" data-section="funding" id="sec-funding">
+      <h2 class="section-title tone-green"><span class="dot"></span>💰 Funding &amp; M&amp;A</h2>
+      <div class="cards-grid">
+        
+        <article class="card" data-section="funding" tabindex="0" role="button"
+                 aria-label="Open deep dive: Stripe agrees to acquire OpenRouter, the multi-model routing layer" onclick="openModal('stripe-openrouter')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('stripe-openrouter');}">
+          <div class="card-top">
+            <span class="card-date">Aug 19, 2026</span>
+            <span class="badge b-opp">Opportunity</span>
+          </div>
+          <h3 class="card-headline">Stripe agrees to acquire OpenRouter, the multi-model routing layer</h3>
+          <p class="card-summary">Stripe is acquiring OpenRouter, the gateway that routes requests across 400+ AI models, pushing the payments giant deeper into the AI stack. Consolidation of the model-routing layer signals that AI &#x27;plumbing&#x27; — and its governance — is becoming strategic infrastructure.</p>
+          <div class="card-tags"><span class="tag bg-green owner-cfo">CFO</span><span class="tag bg-purple owner-gc">CAE</span><span class="badge u-monitor">Monitor</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+
+        <article class="card" data-section="funding" tabindex="0" role="button"
+                 aria-label="Open deep dive: Etched&#x27;s valuation more than doubles to $21B in a month on inference-chip demand" onclick="openModal('etched')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('etched');}">
+          <div class="card-top">
+            <span class="card-date">Aug 18, 2026</span>
+            <span class="badge b-opp">Opportunity</span>
+          </div>
+          <h3 class="card-headline">Etched&#x27;s valuation more than doubles to $21B in a month on inference-chip demand</h3>
+          <p class="card-summary">Transformer-specialized inference-chip startup Etched raised $700M at a $21B valuation (led by Jane Street), having reportedly booked over $1B in contracts. Investors are aggressively funding alternatives to general-purpose GPUs to cut AI inference cost.</p>
+          <div class="card-tags"><span class="tag bg-green owner-cfo">CFO</span><span class="tag bg-gold owner-ceo">CEO</span><span class="badge u-monitor">Monitor</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="topic-block" data-section="impact" id="sec-impact">
+      <h2 class="section-title tone-blue"><span class="dot"></span>📊 Business Impact</h2>
+      <div class="cards-grid">
+        
+        <article class="card" data-section="impact" tabindex="0" role="button"
+                 aria-label="Open deep dive: Google deepens custom-silicon push with Marvell deal to buy up to $12.2B in shares" onclick="openModal('google-marvell')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('google-marvell');}">
+          <div class="card-top">
+            <span class="card-date">Aug 19, 2026</span>
+            <span class="badge b-opp">Opportunity</span>
+          </div>
+          <h3 class="card-headline">Google deepens custom-silicon push with Marvell deal to buy up to $12.2B in shares</h3>
+          <p class="card-summary">Google expanded a multiyear custom AI-chip partnership with Marvell that could let it buy up to $12.2B of Marvell shares, sending Marvell up ~10% and Broadcom down as Google diversifies its TPU supply chain. Hyperscalers are hedging their reliance on any single chip supplier.</p>
+          <div class="card-tags"><span class="tag bg-gold owner-ceo">CEO</span><span class="tag bg-green owner-cfo">CFO</span><span class="badge u-monitor">Monitor</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="topic-block" data-section="workforce" id="sec-workforce">
+      <h2 class="section-title tone-orange"><span class="dot"></span>👥 Workforce &amp; Talent</h2>
+      <div class="cards-grid">
+        
+        <article class="card" data-section="workforce" tabindex="0" role="button"
+                 aria-label="Open deep dive: Google says generative AI can automate parts of &quot;forward-deployed engineering&quot; — even as it keeps hiring" onclick="openModal('google-fde')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('google-fde');}">
+          <div class="card-top">
+            <span class="card-date">Aug 19, 2026</span>
+            <span class="badge b-risk">Risk</span>
+          </div>
+          <h3 class="card-headline">Google says generative AI can automate parts of &quot;forward-deployed engineering&quot; — even as it keeps hiring</h3>
+          <p class="card-summary">Google said generative AI can now automate pieces of forward-deployed engineering — generating integration code, diagnosing issues, and proposing data-readiness fixes — while still hiring hundreds of human engineers. It previews how AI reshapes high-skill implementation roles rather than simply erasing them.</p>
+          <div class="card-tags"><span class="tag bg-orange owner-chro">CHRO</span><span class="tag bg-gold owner-ceo">CEO</span><span class="tag bg-green owner-cfo">CFO</span><span class="badge u-discuss">Discuss</span></div>
+          <div class="card-foot"><span class="deepdive">↗ Deep dive</span></div>
+        </article>
+      </div>
+    </section>
+
+  <section class="panel" id="watchlist">
+    <h2>🧭 Executive Watchlist</h2>
+    <p class="sub">Five signals to track into next week.</p>
+    <ul class="wl-list">
+      
+      <li class="wl-item tone-blue">
+        <span class="wl-emoji">🔵</span>
+        <div><span class="wl-label tone-blue">Monitor</span><p>NVIDIA is reported to be closing on a ~$12.9B acquisition of open-model hub Hugging Face (breaking Aug 26) — a potential consolidation of the open-model ecosystem to track into next week.</p></div>
+      </li>
+
+      <li class="wl-item tone-green">
+        <span class="wl-emoji">🟡</span>
+        <div><span class="wl-label tone-green">Discuss</span><p>OpenAI&#x27;s CFO said the company &quot;will be a public company in 2027,&quot; and Anthropic is reportedly preparing a dual-class structure ahead of a possible IPO — frontier-vendor IPO governance will shape enterprise dependencies.</p></div>
+      </li>
+
+      <li class="wl-item tone-red">
+        <span class="wl-emoji">🔴</span>
+        <div><span class="wl-label tone-red">Act</span><p>OpenAI paused frontier RL training over a &quot;Critical&quot; cyber-capability threshold — revisit AI-agent monitoring, isolation, and kill-switch controls now.</p></div>
+      </li>
+
+      <li class="wl-item tone-purple">
+        <span class="wl-emoji">🟣</span>
+        <div><span class="wl-label tone-purple">Audit</span><p>Harvey&#x27;s first in-house legal model (Tenet) is post-trained on a Chinese open base model (Kimi K3) — probe base-model provenance in AI tools handling privileged or regulated data.</p></div>
+      </li>
+
+      <li class="wl-item tone-orange">
+        <span class="wl-emoji">🩵</span>
+        <div><span class="wl-label tone-orange">Policy</span><p>The FTC&#x27;s proposed personalized-pricing enforcement (Section 5) and U.S. moves to close chip export-control loopholes signal tightening AI regulation across pricing and compute.</p></div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="panel" id="questions">
+    <h2>❓ Questions for Management</h2>
+    <p class="sub">For internal audit leadership and the Audit Committee.</p>
+    <ol class="q-list">
+      <li><span class="q-num">1</span><p>With Anthropic overtaking OpenAI in quarterly revenue and enterprise spend tilting, does our AI vendor strategy avoid over-dependence on any single frontier lab and preserve tested switching options?</p></li>
+<li><span class="q-num">2</span><p>OpenAI paused frontier training over &quot;Critical&quot; cyber capabilities — how do we monitor frontier-vendor safety posture, and do our AI agents have kill-switch, isolation, and monitoring controls?</p></li>
+<li><span class="q-num">3</span><p>The FTC has proposed enforcing against undisclosed AI/personalized pricing — do any of our pricing, offer, or personalization models require disclosure to avoid Section 5 exposure?</p></li>
+<li><span class="q-num">4</span><p>Do we know the base-model provenance of the AI tools we use for privileged or regulated work (legal, finance, HR), and is it acceptable under our data-governance and privilege requirements?</p></li>
+<li><span class="q-num">5</span><p>As AI automates implementation work and vendors consolidate the AI stack (Stripe–OpenRouter, custom silicon, cloud compute), how are we managing workforce transition and vendor-concentration risk?</p></li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  AI Intelligence Briefing — August 17 – August 23, 2026 · Prepared by Copilot for C-Suite Decision Makers · Sources verified as of August 23, 2026
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-cat" id="modalCat"></div>
+      <h3 id="modalTitle"></h3>
+      <div class="modal-meta" id="modalMeta"></div>
+      <div class="modal-tags" id="modalTags"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+  const MODALS = {"anthropic-revenue": {"section_title": "🏛 Enterprise Platform Wars", "section_colour": "gold", "headline": "Anthropic overtakes OpenAI in quarterly revenue for the first time", "date": "Aug 19, 2026", "source_name": "Yahoo Finance", "source_url": "https://finance.yahoo.com/technology/ai/articles/anthropic-surpasses-openai-q2-revenue-121706311.html", "badge": "Opportunity", "urgency": "Discuss", "roles": ["CEO", "CFO", "CAE"], "paras": ["<b>What happened.</b> Anthropic reported roughly $11.6 billion in second-quarter revenue and a small operating profit, moving ahead of OpenAI in quarterly revenue for the first time. Reporting (WSJ, CNBC) noted OpenAI's second-quarter revenue rose about 18% sequentially while its losses widened to around $12.3 billion, weighed down by the cost of a much broader consumer footprint.", "<b>Why it matters.</b> The company with the bigger consumer brand is no longer automatically the revenue leader. Anthropic concentrated on expensive enterprise and coding workloads (Claude Code among them), while OpenAI said Q3 growth had re-accelerated — so one quarter does not settle the race.", "<b>Business opportunity.</b> A more competitive two-horse frontier market gives enterprise buyers leverage on price, terms, and capability — and reinforces the case for a governed multi-vendor model strategy.", "<b>Risk / control implication.</b> A shifting frontier leaderboard ripples through the partners, customers, and suppliers tied to each lab; over-dependence on a single vendor becomes a concentration risk as market share moves."], "actions": ["Reassess AI vendor strategy to avoid over-dependence on any single frontier lab and preserve switching options.", "Use the more competitive market to renegotiate pricing, terms, and capacity commitments.", "Brief the board on how a frontier power-shift affects partners and suppliers in your AI supply chain."], "watchouts": ["One quarter is not a trend — OpenAI reported re-accelerating Q3 growth.", "Concentration on whichever lab is 'winning' recreates single-vendor risk."], "audit_q": "Does our AI vendor strategy avoid over-dependence on any single frontier lab and preserve tested switching options as market share shifts?", "bottom_line": "The frontier race just tightened. Treat multi-vendor optionality as a governance requirement, not a nice-to-have.", "related": [{"id": "openai-pause", "headline": "OpenAI publicly pauses frontier training as models' cyber capabilities outrun safeguards"}, {"id": "stripe-openrouter", "headline": "Stripe agrees to acquire OpenRouter, the multi-model routing layer"}, {"id": "google-marvell", "headline": "Google deepens custom-silicon push with Marvell deal to buy up to $12.2B in shares"}]}, "openai-pause": {"section_title": "🔒 AI Risk & Fraud", "section_colour": "red", "headline": "OpenAI publicly pauses frontier training as models' cyber capabilities outrun safeguards", "date": "Aug 18, 2026", "source_name": "Cybernews", "source_url": "https://cybernews.com/ai-news/openai-pauses-frontier-ai-training-as-models-outstrip-pace-of-safety-says-altman/", "badge": "Risk", "urgency": "Discuss", "roles": ["CAE", "GC", "CEO"], "paras": ["<b>What happened.</b> OpenAI said in a public update that it paused deployment-focused reinforcement-learning training for two weeks and kept its largest planned frontier RL run on hold, with a significant number of \"Astra\" and cyber workloads still paused while safeguards are upgraded. Preliminary evidence suggested Astra may meet a \"Critical\" cybersecurity capability threshold; Sam Altman said the pause was unilateral because capabilities were outpacing safety and alignment.", "<b>Why it matters.</b> A leading lab is now letting safety work set the pace of model development, explicitly citing an earlier research-environment security incident. For enterprises, it signals that frontier models are gaining genuinely dangerous cyber capabilities — and that vendor safety posture can directly affect model availability.", "<b>Business opportunity.</b> Enterprises that build frontier-vendor safety monitoring into AI risk programs can make better-informed sourcing and continuity decisions.", "<b>Risk / control implication.</b> If a critical model can be paused for safety, continuity planning must assume it; and the underlying capability jump raises the baseline cyber-threat level facing every enterprise."], "actions": ["Reassess AI-agent monitoring, isolation, and kill-switch controls against higher model cyber capability.", "Add frontier-vendor safety posture and pause/continuity risk to third-party risk reviews.", "Request continuity runbooks and fallback models for AI-dependent critical workflows."], "watchouts": ["A safety pause on a critical model can interrupt availability without much notice.", "Rising model cyber capability lifts the baseline threat level for all enterprises."], "audit_q": "How do we monitor frontier-vendor safety posture, and do our AI agents have tested kill-switch, isolation, and monitoring controls?", "bottom_line": "When the model-maker hits the brakes for safety, that is a risk signal. Build vendor-safety monitoring and agent controls to match.", "related": [{"id": "anthropic-revenue", "headline": "Anthropic overtakes OpenAI in quarterly revenue for the first time"}, {"id": "openai-privacy", "headline": "OpenAI previews Private Safety Processing to keep Zero Data Retention intact"}, {"id": "china-loophole", "headline": "Chinese AI firms tap banned NVIDIA compute remotely, exposing a chip export-control loophole"}]}, "openai-privacy": {"section_title": "🔒 AI Risk & Fraud", "section_colour": "red", "headline": "OpenAI previews Private Safety Processing to keep Zero Data Retention intact", "date": "Aug 20, 2026", "source_name": "The Next Web", "source_url": "https://thenextweb.com/news/openai-zero-data-retention-private-safety-processing", "badge": "Opportunity", "urgency": "Monitor", "roles": ["CAE", "GC", "CFO"], "paras": ["<b>What happened.</b> OpenAI reaffirmed Zero Data Retention for eligible API customers and previewed Private Safety Processing, a system intended to detect misuse across interactions without retaining customer prompts and responses for routine monitoring and without requiring company personnel to view the underlying content. Coverage contrasted the approach with a 30-day retention requirement Anthropic applies to some of its most advanced models.", "<b>Why it matters.</b> Data retention and monitoring architecture is becoming a first-order procurement criterion for regulated enterprises — the differences between vendors are now material and comparable.", "<b>Business opportunity.</b> Stronger no-retention, privacy-preserving monitoring options make it easier to deploy AI on sensitive workflows while satisfying data-governance requirements.", "<b>Risk / control implication.</b> Vendor data-handling commitments vary and must be verified contractually; 'zero retention' claims should be tested against actual monitoring, logging, and exception paths."], "actions": ["Compare AI vendors' data-retention and monitoring architectures as a named procurement criterion.", "Verify zero-retention and privacy commitments contractually, including exception and logging paths.", "Map which sensitive workflows can move to AI once data-governance requirements are met."], "watchouts": ["'Zero retention' still has exception and abuse-monitoring paths — verify them.", "Retention terms differ sharply between vendors and models; read the specific SKU's terms."], "audit_q": "Have we verified, contractually and technically, the data-retention and monitoring behavior of each AI vendor handling our sensitive data?", "bottom_line": "Data-handling is now a differentiator you can compare. Make retention and monitoring architecture a written procurement test.", "related": [{"id": "openai-pause", "headline": "OpenAI publicly pauses frontier training as models' cyber capabilities outrun safeguards"}, {"id": "harvey-tenet", "headline": "Harvey advances enterprise legal AI with memory-driven agents and its first in-house model, Tenet"}, {"id": "ftc-pricing", "headline": "FTC proposes enforcing against undisclosed AI-driven personalized pricing"}]}, "ftc-pricing": {"section_title": "⚖️ AI Regulation & Governance", "section_colour": "purple", "headline": "FTC proposes enforcing against undisclosed AI-driven personalized pricing", "date": "Aug 19, 2026", "source_name": "JD Supra (FTC policy)", "source_url": "https://www.jdsupra.com/legalnews/ftc-proposes-enforcement-policy-3965870/", "badge": "Risk", "urgency": "Act", "roles": ["GC", "CFO", "CAE"], "paras": ["<b>What happened.</b> On August 19, 2026, the Federal Trade Commission issued a proposed enforcement policy statement outlining its intent to enforce Section 5 of the FTC Act against personalized pricing. Reporting indicated businesses would need to clearly disclose that a price is personalized, what the personalization is based on, and what types of consumer data are used — or risk unfair-or-deceptive-practice enforcement, including lawsuits.", "<b>Why it matters.</b> AI and algorithmic personalization have moved from marketing tactic to regulated conduct. Enterprises using AI for pricing, offers, or dynamic discounting face new disclosure obligations and litigation exposure.", "<b>Business opportunity.</b> Getting ahead of disclosure requirements can be a trust differentiator and reduce legal risk as scrutiny intensifies.", "<b>Risk / control implication.</b> Pricing, marketing, and personalization models need governance: documented data inputs, disclosure language, and human oversight to avoid Section 5 exposure."], "actions": ["Direct legal and pricing teams to inventory AI/algorithmic pricing and personalization models and assess disclosure obligations.", "Update policy to require clear personalized-pricing disclosures where applicable.", "Add pricing-model governance (data inputs, disclosures, oversight) to the audit plan."], "watchouts": ["Undisclosed personalized pricing could trigger Section 5 enforcement and litigation.", "Disclosure obligations extend to the data inputs and personalization logic, not just the price."], "audit_q": "Do any of our pricing, offer, or personalization models require disclosure to avoid FTC Section 5 exposure, and who governs them?", "bottom_line": "AI-driven pricing is now regulated conduct. Inventory personalization models and fix disclosure before enforcement, not after.", "related": [{"id": "china-loophole", "headline": "Chinese AI firms tap banned NVIDIA compute remotely, exposing a chip export-control loophole"}, {"id": "openai-privacy", "headline": "OpenAI previews Private Safety Processing to keep Zero Data Retention intact"}, {"id": "anthropic-revenue", "headline": "Anthropic overtakes OpenAI in quarterly revenue for the first time"}]}, "china-loophole": {"section_title": "⚖️ AI Regulation & Governance", "section_colour": "purple", "headline": "Chinese AI firms tap banned NVIDIA compute remotely, exposing a chip export-control loophole", "date": "Aug 19, 2026", "source_name": "Yahoo News", "source_url": "https://www.yahoo.com/news/politics/articles/chinese-ai-firms-accessing-banned-134550272.html", "badge": "Risk", "urgency": "Monitor", "roles": ["CAE", "GC", "CEO"], "paras": ["<b>What happened.</b> Reporting indicated Chinese AI firms — including ByteDance, Tencent, and Alibaba — accessed advanced NVIDIA computing remotely through cloud providers in Thailand, Malaysia, Japan, and elsewhere, exploiting U.S. export controls that focused on physical chip ownership rather than remote access. U.S. policymakers are now weighing a crackdown on cloud-based access.", "<b>Why it matters.</b> The loophole shows how export controls and AI-supply-chain rules can shift quickly, with knock-on effects for cloud providers, chip demand, and any enterprise relying on cross-border AI compute.", "<b>Business opportunity.</b> Enterprises that map their AI compute supply chain can anticipate regulatory changes and avoid disruption.", "<b>Risk / control implication.</b> New rules targeting remote/cloud access could affect availability, pricing, and compliance obligations for enterprises using multinational cloud AI capacity."], "actions": ["Map where your AI compute physically runs and under which jurisdictions and export rules.", "Monitor U.S. moves to regulate remote/cloud access to controlled AI chips.", "Assess compliance and continuity exposure if cross-border AI compute rules tighten."], "watchouts": ["Export-control changes can rapidly alter cloud AI availability and compliance duties.", "Cloud access blurs 'where' compute runs — jurisdiction and control questions get harder."], "audit_q": "Do we know the jurisdictions and export-control status of the AI compute we rely on, and our exposure if remote-access rules tighten?", "bottom_line": "AI compute is now a geopolitical control point. Map your compute supply chain before the rules move under you.", "related": [{"id": "google-marvell", "headline": "Google deepens custom-silicon push with Marvell deal to buy up to $12.2B in shares"}, {"id": "ftc-pricing", "headline": "FTC proposes enforcing against undisclosed AI-driven personalized pricing"}, {"id": "openai-pause", "headline": "OpenAI publicly pauses frontier training as models' cyber capabilities outrun safeguards"}]}, "harvey-tenet": {"section_title": "🤖 Agentic AI", "section_colour": "cyan", "headline": "Harvey advances enterprise legal AI with memory-driven agents and its first in-house model, Tenet", "date": "Aug 18, 2026", "source_name": "The Next Web", "source_url": "https://thenextweb.com/news/harvey-tenet-legal-model-kimi-k3-chinese-base", "badge": "Risk", "urgency": "Discuss", "roles": ["GC", "CAE", "CHRO"], "paras": ["<b>What happened.</b> Legal-AI company Harvey launched Harvey II, giving its legal agents persistent matter and project context plus memory of how a user works, and revealed Tenet, its first in-house model. Reporting noted Tenet is post-trained on Kimi K3, an open model from China's Moonshot AI — putting a Chinese base model beneath work often covered by legal privilege.", "<b>Why it matters.</b> Agentic AI is moving into high-stakes professional-services workflows where memory and context materially improve output — but the choice of underlying base model becomes a governance question for privileged and regulated work.", "<b>Business opportunity.</b> Memory-driven legal agents can raise productivity and consistency across complex matters for legal and compliance teams.", "<b>Risk / control implication.</b> The base-model provenance of AI tools used on privileged or regulated data (legal, finance, HR) needs due diligence — foreign or opaque base models can raise privilege, security, and compliance concerns."], "actions": ["Require disclosure of base-model provenance for AI tools used on privileged or regulated work.", "Assess privilege, security, and compliance implications of foreign base models in professional workflows.", "Pilot memory-driven agents in legal/compliance with clear data-governance guardrails."], "watchouts": ["A foreign or opaque base model beneath privileged work can raise privilege and compliance risk.", "Persistent agent memory expands the sensitive-data footprint that must be governed."], "audit_q": "Do we know the base-model provenance of AI tools used on our privileged or regulated work, and is it acceptable under our governance requirements?", "bottom_line": "Agentic AI is entering privileged work. Make base-model provenance and memory governance part of due diligence.", "related": [{"id": "openai-privacy", "headline": "OpenAI previews Private Safety Processing to keep Zero Data Retention intact"}, {"id": "anthropic-revenue", "headline": "Anthropic overtakes OpenAI in quarterly revenue for the first time"}, {"id": "stripe-openrouter", "headline": "Stripe agrees to acquire OpenRouter, the multi-model routing layer"}]}, "stripe-openrouter": {"section_title": "💰 Funding & M&A", "section_colour": "green", "headline": "Stripe agrees to acquire OpenRouter, the multi-model routing layer", "date": "Aug 19, 2026", "source_name": "CNBC", "source_url": "https://www.cnbc.com/2026/08/19/stripe-openrouter-fintech-ai-model-marketplace-.html", "badge": "Opportunity", "urgency": "Monitor", "roles": ["CFO", "CAE"], "paras": ["<b>What happened.</b> Stripe said it is acquiring OpenRouter, the model-routing layer used to send requests across more than 400 AI models. Stripe framed AI as a commerce-platform shift in its investor letter, reporting first-half revenue growth of about 41%.", "<b>Why it matters.</b> The routing/gateway layer — which decides which model handles which request, at what cost — is becoming strategic infrastructure and a natural control point for governance, cost attribution, and vendor flexibility.", "<b>Business opportunity.</b> Multi-model routing lets enterprises optimize cost and capability across providers and avoid single-model lock-in.", "<b>Risk / control implication.</b> As routing consolidates under large platforms, enterprises should ensure they retain visibility and control over which models process which data."], "actions": ["Evaluate multi-model routing/gateway options for cost optimization and vendor flexibility.", "Ensure governance over which models process which data through any routing layer.", "Monitor consolidation of AI 'plumbing' under large platforms for lock-in risk."], "watchouts": ["Routing layers see and direct sensitive prompts — govern data flow and provider choice.", "Consolidation under a platform can reintroduce lock-in at the infrastructure layer."], "audit_q": "For any multi-model routing we use, do we control and log which models process which data, and can we switch providers?", "bottom_line": "The model-routing layer is now strategic. Treat it as a governed control point for cost, data flow, and vendor choice.", "related": [{"id": "anthropic-revenue", "headline": "Anthropic overtakes OpenAI in quarterly revenue for the first time"}, {"id": "etched", "headline": "Etched's valuation more than doubles to $21B in a month on inference-chip demand"}, {"id": "harvey-tenet", "headline": "Harvey advances enterprise legal AI with memory-driven agents and its first in-house model, Tenet"}]}, "etched": {"section_title": "💰 Funding & M&A", "section_colour": "green", "headline": "Etched's valuation more than doubles to $21B in a month on inference-chip demand", "date": "Aug 18, 2026", "source_name": "TechCrunch", "source_url": "https://techcrunch.com/2026/08/18/etcheds-valuation-doubles-to-21b-in-a-month/", "badge": "Opportunity", "urgency": "Monitor", "roles": ["CFO", "CEO"], "paras": ["<b>What happened.</b> Etched raised $700 million at a $21 billion valuation, more than doubling its worth in about a month, in a round led by Jane Street (which also received Etched's first shipped rack). The company says it has booked more than $1 billion in contracts; roughly 15% of its ~400 employees reportedly came from NVIDIA.", "<b>Why it matters.</b> Specialized inference silicon aimed at driving down the cost of running (not training) AI is attracting extraordinary capital — a signal that inference economics are now the competitive battleground for enterprise AI.", "<b>Business opportunity.</b> Cheaper, specialized inference could materially lower the per-token cost of production AI workloads over time.", "<b>Risk / control implication.</b> Rapid valuation jumps and hardware concentration warrant caution; enterprises should track inference-cost trends without betting on any single unproven supplier."], "actions": ["Track specialized inference silicon as a lever to reduce production AI running costs.", "Factor inference-cost trajectory into multi-year AI business cases.", "Avoid over-committing to any single unproven hardware supplier."], "watchouts": ["Fast valuation jumps can outrun proven, shipped performance.", "Inference-hardware bets carry supplier-concentration and roadmap risk."], "audit_q": "Do our AI business cases reflect the trajectory of inference costs, and are we avoiding over-reliance on any single unproven hardware supplier?", "bottom_line": "Inference economics are the new battleground. Track cost trends; don't bet the roadmap on one unproven chip.", "related": [{"id": "stripe-openrouter", "headline": "Stripe agrees to acquire OpenRouter, the multi-model routing layer"}, {"id": "google-marvell", "headline": "Google deepens custom-silicon push with Marvell deal to buy up to $12.2B in shares"}, {"id": "china-loophole", "headline": "Chinese AI firms tap banned NVIDIA compute remotely, exposing a chip export-control loophole"}]}, "google-marvell": {"section_title": "📊 Business Impact", "section_colour": "blue", "headline": "Google deepens custom-silicon push with Marvell deal to buy up to $12.2B in shares", "date": "Aug 19, 2026", "source_name": "CNBC", "source_url": "https://www.cnbc.com/2026/08/19/marvell-google-ai-chips.html", "badge": "Opportunity", "urgency": "Monitor", "roles": ["CEO", "CFO"], "paras": ["<b>What happened.</b> Google and Marvell expanded a multiyear custom AI-chip partnership that could let Google buy up to $12.2 billion of Marvell shares. Marvell's stock jumped about 10% as Google diversified the suppliers behind its TPU chip ecosystem, while Broadcom dipped as investors priced in multisourcing risk.", "<b>Why it matters.</b> Hyperscalers are actively reducing reliance on any single chip supplier — a supply-chain hedge that shapes cost, availability, and competition across the AI hardware market enterprises ultimately buy from.", "<b>Business opportunity.</b> More custom-silicon competition can improve efficiency and pricing for cloud AI services over time.", "<b>Risk / control implication.</b> Shifting supplier alliances change vendor-concentration and continuity dynamics for enterprises dependent on specific cloud AI stacks."], "actions": ["Track hyperscaler custom-silicon moves for downstream cloud AI pricing and availability.", "Reassess vendor-concentration assumptions in your cloud AI stack.", "Use supplier diversification signals in capacity and cost planning."], "watchouts": ["Supplier realignments can shift availability and pricing of the cloud AI you consume.", "Custom silicon deepens lock-in to a specific hyperscaler's stack."], "audit_q": "How exposed are our critical AI workloads to a single hyperscaler's chip stack, and what is our diversification or exit plan?", "bottom_line": "The chip layer is being multisourced above you. Factor hyperscaler silicon shifts into cloud cost and concentration planning.", "related": [{"id": "china-loophole", "headline": "Chinese AI firms tap banned NVIDIA compute remotely, exposing a chip export-control loophole"}, {"id": "etched", "headline": "Etched's valuation more than doubles to $21B in a month on inference-chip demand"}, {"id": "anthropic-revenue", "headline": "Anthropic overtakes OpenAI in quarterly revenue for the first time"}]}, "google-fde": {"section_title": "👥 Workforce & Talent", "section_colour": "orange", "headline": "Google says generative AI can automate parts of \"forward-deployed engineering\" — even as it keeps hiring", "date": "Aug 19, 2026", "source_name": "The Neuron", "source_url": "https://www.theneuron.ai/digest/everything-that-happened-in-ai-today-wednesday-august-19-2026/", "badge": "Risk", "urgency": "Discuss", "roles": ["CHRO", "CEO", "CFO"], "paras": ["<b>What happened.</b> Google said generative AI can automate portions of forward-deployed engineering — the hands-on work of adapting software to a customer's systems — including generating integration code, diagnosing issues, and proposing data-readiness fixes. At the same time, Google is still hiring hundreds of human forward-deployed engineers, and OpenAI, Anthropic, Microsoft, and Amazon are all investing in the same Palantir-style embedded-delivery model.", "<b>Why it matters.</b> High-skill implementation roles are being reshaped, not simply eliminated — AI compresses the work while human judgment and customer context remain essential. It is a concrete template for how AI changes technical labor.", "<b>Business opportunity.</b> AI-augmented delivery can compress multi-year software migrations into weeks, accelerating enterprise transformation.", "<b>Risk / control implication.</b> Workforce planning must account for role redesign and reskilling as AI automates parts of technical delivery, avoiding both over-cutting and under-investing in skills."], "actions": ["Plan role redesign and reskilling for technical delivery functions AI is beginning to automate.", "Pilot AI-augmented implementation with human oversight on customer context and judgment.", "Track vendor 'embedded engineer' models reshaping the AI implementation talent market."], "watchouts": ["Over-automating delivery can strip out the human judgment customers rely on.", "Under-investing in reskilling leaves teams unable to supervise AI-augmented work."], "audit_q": "As AI automates parts of technical delivery, how are we redesigning roles and investing in the skills needed to supervise AI-augmented work?", "bottom_line": "AI is reshaping high-skill delivery roles, not deleting them. Plan role redesign and reskilling deliberately.", "related": [{"id": "anthropic-revenue", "headline": "Anthropic overtakes OpenAI in quarterly revenue for the first time"}, {"id": "harvey-tenet", "headline": "Harvey advances enterprise legal AI with memory-driven agents and its first in-house model, Tenet"}, {"id": "stripe-openrouter", "headline": "Stripe agrees to acquire OpenRouter, the multi-model routing layer"}]}};
+  const ROLE_CLASS = {"CEO":"bg-gold","CFO":"bg-green","CAE":"bg-purple","GC":"bg-purple","CHRO":"bg-orange"};
+  const BADGE_CLASS = {"Risk":"b-risk","Opportunity":"b-opp"};
+  const URG_CLASS = {"Monitor":"u-monitor","Discuss":"u-discuss","Act":"u-act"};
+
+  function toggleTheme() {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+    try { localStorage.setItem('ai-briefing-theme', next); } catch(e) {}
+  }
+  (function() {
+    let t = 'dark';
+    try { t = localStorage.getItem('ai-briefing-theme') || 'dark'; } catch(e) {}
+    document.documentElement.setAttribute('data-theme', t);
+    window.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
+    });
+  })();
+
+  function applyFilter(btn) {
+    document.querySelectorAll('.filt').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.getAttribute('data-filter');
+    document.querySelectorAll('.topic-block').forEach(sec => {
+      sec.style.display = (f === 'all' || sec.getAttribute('data-section') === f) ? '' : 'none';
+    });
+  }
+
+  function openModal(id) {
+    const d = MODALS[id];
+    if (!d) return;
+    document.getElementById('modalCat').textContent = d.section_title;
+    document.getElementById('modalCat').style.color = 'var(--' + d.section_colour + ')';
+    document.getElementById('modalTitle').textContent = d.headline;
+    document.getElementById('modalMeta').innerHTML =
+      '<span>' + d.date + '</span><span>•</span><a href="' + d.source_url + '" target="_blank" rel="noopener">' + d.source_name + ' ↗</a>';
+    let tags = '';
+    d.roles.forEach(r => { tags += '<span class="tag ' + (ROLE_CLASS[r]||'bg-purple') + '">' + r + '</span>'; });
+    tags += '<span class="badge ' + (BADGE_CLASS[d.badge]||'') + '">' + d.badge + '</span>';
+    tags += '<span class="badge ' + (URG_CLASS[d.urgency]||'') + '">' + d.urgency + '</span>';
+    document.getElementById('modalTags').innerHTML = tags;
+
+    let body = '';
+    d.paras.forEach(p => { body += '<p class="para">' + p + '</p>'; });
+    body += '<div class="mpanel m-actions"><h4>✅ Executive Actions</h4><ul>' + d.actions.map(a => '<li>' + a + '</li>').join('') + '</ul></div>';
+    body += '<div class="mpanel m-risks"><h4>⚠️ Risks &amp; Watchouts</h4><ul>' + d.watchouts.map(a => '<li>' + a + '</li>').join('') + '</ul></div>';
+    body += '<div class="mpanel m-audit"><h4>🔎 Audit / Risk Question</h4><p>' + d.audit_q + '</p></div>';
+    body += '<div class="mpanel m-bottom"><h4>🎯 C-Suite Bottom Line</h4><p>' + d.bottom_line + '</p></div>';
+    if (d.related && d.related.length) {
+      body += '<div class="related"><h4>Related signals</h4>';
+      d.related.forEach(r => { body += '<button class="chip" onclick="openModal(\'' + r.id + '\')">' + r.headline + '</button>'; });
+      body += '</div>';
+    }
+    document.getElementById('modalBody').innerHTML = body;
+    const ov = document.getElementById('modalOverlay');
+    ov.classList.add('open'); ov.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
