@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intelligence Briefing — Week of September 7–14, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0e12;
+  --bg-card: #13161c;
+  --bg-card-hover: #191d25;
+  --bg-expanded: #151820;
+  --border: #1f2430;
+  --border-accent: #2a3040;
+  --text: #e8eaf0;
+  --text-muted: #8891a5;
+  --text-dim: #5a6275;
+  --accent: #c9a44c;
+  --accent-light: #e0c06a;
+  --accent-dim: rgba(201,164,76,0.12);
+  --red: #e05555; --red-dim: rgba(224,85,85,0.12);
+  --green: #4caf7c; --green-dim: rgba(76,175,124,0.12);
+  --blue: #5b8def; --blue-dim: rgba(91,141,239,0.12);
+  --purple: #9b7ae0; --purple-dim: rgba(155,122,224,0.12);
+  --cyan: #4dc9c9; --cyan-dim: rgba(77,201,201,0.12);
+  --orange: #e08a3c; --orange-dim: rgba(224,138,60,0.12);
+  --hero-grad-start: #12151c;
+  --nav-bg: rgba(12,14,18,0.92);
+  --hero-glow-a: rgba(201,164,76,0.06);
+  --hero-glow-b: rgba(91,141,239,0.04);
+  --panel-action-bg: rgba(76,175,124,0.06);
+  --panel-action-border: rgba(76,175,124,0.15);
+  --panel-risk-bg: rgba(224,85,85,0.06);
+  --panel-risk-border: rgba(224,85,85,0.15);
+  --panel-li-border: rgba(255,255,255,0.04);
+  --shadow-card: rgba(0,0,0,0.3);
+  --overlay-bg: rgba(0,0,0,0.75);
+  --noise-opacity: 0.03;
+}
+[data-theme="light"] {
+  --bg: #f4f6f9; --bg-card: #ffffff; --bg-card-hover: #f0f4f8; --bg-expanded: #ffffff;
+  --border: #d8dde6; --border-accent: #c0c8d4;
+  --text: #1a2332; --text-muted: #4a5568; --text-dim: #8896a8;
+  --accent: #135EAB; --accent-light: #1a74d0; --accent-dim: rgba(19,94,171,0.10);
+  --red: #c53030; --red-dim: rgba(197,48,48,0.08);
+  --green: #04955F; --green-dim: rgba(4,149,95,0.08);
+  --blue: #135EAB; --blue-dim: rgba(19,94,171,0.08);
+  --purple: #6b46c1; --purple-dim: rgba(107,70,193,0.08);
+  --cyan: #0d9488; --cyan-dim: rgba(13,148,136,0.08);
+  --orange: #c05621; --orange-dim: rgba(192,86,33,0.08);
+  --hero-grad-start: #e8edf4; --nav-bg: rgba(244,246,249,0.94);
+  --hero-glow-a: rgba(19,94,171,0.06); --hero-glow-b: rgba(4,149,95,0.05);
+  --panel-action-bg: rgba(4,149,95,0.06); --panel-action-border: rgba(4,149,95,0.18);
+  --panel-risk-bg: rgba(197,48,48,0.05); --panel-risk-border: rgba(197,48,48,0.15);
+  --panel-li-border: rgba(0,0,0,0.06);
+  --shadow-card: rgba(19,94,171,0.08); --overlay-bg: rgba(255,255,255,0.82);
+  --noise-opacity: 0.015;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;transition:background 0.4s ease;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65;min-height:100vh;}
+body,header,.nav-strip,.card,.modal,.exec-strip,.metric,.modal-csuite,.panel,.footer,.theme-toggle,.nav-btn{
+  transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease;
+}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:var(--noise-opacity,1);}
+
+/* HERO */
+.hero{position:relative;padding:5rem 2rem 3rem;text-align:center;overflow:hidden;
+  background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--bg) 100%);}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse at 30% 20%,var(--hero-glow-a) 0%,transparent 50%),
+              radial-gradient(ellipse at 70% 80%,var(--hero-glow-b) 0%,transparent 50%);
+  pointer-events:none;}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;
+  align-items:center;justify-content:center;gap:12px;}
+.hero-label::before{content:'';width:24px;height:2px;background:var(--accent);}
+.hero h1{font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(32px,5vw,56px);line-height:1.15;color:var(--text);
+  max-width:820px;margin:0 auto 1rem;}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;
+  color:var(--text-muted);max-width:640px;margin:0 auto 2.5rem;}
+.metrics-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+  background:var(--border);border-radius:10px;max-width:900px;margin:0 auto;overflow:hidden;}
+.metric{background:var(--bg-card);padding:18px 20px;text-align:center;cursor:default;}
+.metric:hover{background:var(--bg-card-hover);}
+.metric-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;
+  color:var(--accent);line-height:1.2;margin-bottom:4px;}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text-dim);line-height:1.6;}
+
+/* LIGHT THEME OVERRIDES */
+[data-theme="light"] .hero h1 span,
+[data-theme="light"] .metric-value{
+  background:linear-gradient(135deg,#135EAB,#04955F);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+[data-theme="light"] .metrics-bar{background:linear-gradient(135deg,#135EAB,#04955F);}
+[data-theme="light"] .metric{background:rgba(255,255,255,0.95);}
+[data-theme="light"] .metric:hover{background:rgba(255,255,255,1);}
+[data-theme="light"] .exec-strip{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));}
+[data-theme="light"] .modal-csuite{background:linear-gradient(135deg,rgba(19,94,171,0.06),rgba(4,149,95,0.06));}
+[data-theme="light"] .bg-gold{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .bg-green{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .bg-blue{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .bg-red{background:rgba(255,156,163,0.20);color:#b83240;}
+[data-theme="light"] .bg-purple{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .bg-cyan{background:rgba(100,203,192,0.15);color:#0d9488;}
+[data-theme="light"] .bg-orange{background:rgba(244,244,49,0.15);color:#8a6d00;}
+[data-theme="light"] .bar-gold::before{background:linear-gradient(180deg,#135EAB,#04955F);}
+[data-theme="light"] .bar-blue::before{background:#135EAB;}
+[data-theme="light"] .bar-green::before{background:#04955F;}
+[data-theme="light"] .bar-red::before{background:#FF9CA3;}
+[data-theme="light"] .bar-purple::before{background:#6b46c1;}
+[data-theme="light"] .bar-cyan::before{background:#64CBC0;}
+[data-theme="light"] .bar-orange::before{background:#F4F431;}
+[data-theme="light"] .icon-gold{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .icon-green{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .icon-blue{background:rgba(100,203,192,0.12);color:#0a7a6e;}
+[data-theme="light"] .icon-red{background:rgba(255,156,163,0.15);color:#b83240;}
+[data-theme="light"] .icon-purple{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .icon-cyan{background:rgba(100,203,192,0.12);color:#0d9488;}
+[data-theme="light"] .icon-orange{background:rgba(244,244,49,0.15);color:#8a6d00;}
+[data-theme="light"] .owner-ceo{background:rgba(19,94,171,0.10);color:#135EAB;}
+[data-theme="light"] .owner-cfo{background:rgba(4,149,95,0.10);color:#04955F;}
+[data-theme="light"] .owner-cio{background:rgba(100,203,192,0.15);color:#0a7a6e;}
+[data-theme="light"] .owner-gc{background:rgba(107,70,193,0.10);color:#6b46c1;}
+[data-theme="light"] .owner-ciso{background:rgba(255,156,163,0.15);color:#b83240;}
+[data-theme="light"] .owner-chro{background:rgba(244,244,49,0.15);color:#8a6d00;}
+[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,rgba(19,94,171,0.10),rgba(4,149,95,0.08));color:#135EAB;}
+[data-theme="light"] .hero-label{color:#04955F;}
+[data-theme="light"] .hero-label::before{background:linear-gradient(90deg,#135EAB,#04955F);}
+[data-theme="light"] .card{box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(19,94,171,0.10);}
+[data-theme="light"] .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);border-color:var(--border);}
+[data-theme="light"] .related-chip:hover{background:rgba(19,94,171,0.08);border-color:#135EAB;color:#135EAB;}
+[data-theme="light"] .nav-scroll-area::before{background:linear-gradient(90deg,rgba(244,246,249,0.95),transparent);}
+[data-theme="light"] .nav-scroll-area::after{background:linear-gradient(-90deg,rgba(244,246,249,0.95),transparent);}
+
+/* NAV */
+.nav-strip{position:sticky;top:0;z-index:100;background:var(--nav-bg);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:0 12px;}
+.nav-wrapper{display:flex;align-items:center;max-width:1080px;margin:0 auto;gap:4px;}
+.nav-scroll-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);
+  background:var(--bg-card);color:var(--text-muted);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+  opacity:0;pointer-events:none;transition:opacity 0.2s,background 0.2s;flex-shrink:0;}
+.nav-scroll-btn.visible{opacity:1;pointer-events:auto;}
+.nav-scroll-btn:hover{background:var(--bg-card-hover);}
+.nav-scroll-area{flex:1;position:relative;overflow:hidden;}
+.nav-scroll-area::before,.nav-scroll-area::after{
+  content:'';position:absolute;top:0;bottom:0;width:28px;z-index:2;pointer-events:none;}
+.nav-scroll-area::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
+.nav-scroll-area::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
+.nav-scroll-area.fade-left::before{opacity:1;}
+.nav-scroll-area:not(.fade-left)::before{opacity:0;}
+.nav-scroll-area.fade-right::after{opacity:1;}
+.nav-scroll-area:not(.fade-right)::after{opacity:0;}
+.nav-inner{display:flex;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:8px 4px;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
+  letter-spacing:0.3px;color:var(--text-muted);background:transparent;
+  border:none;cursor:pointer;padding:6px 14px;border-radius:6px;
+  white-space:nowrap;transition:all 0.2s;}
+.nav-btn:hover{color:var(--text);background:var(--bg-card);}
+.nav-btn.active{color:var(--accent);background:var(--accent-dim);}
+.theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);
+  background:var(--bg-card);cursor:pointer;position:relative;flex-shrink:0;margin-left:4px;}
+.theme-toggle .icon-sun,.theme-toggle .icon-moon{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:16px;transition:all 0.3s ease;}
+.theme-toggle .icon-sun{opacity:0;transform:translate(-50%,-50%) rotate(-90deg) scale(0.5);}
+.theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-sun{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1);}
+[data-theme="light"] .theme-toggle .icon-moon{opacity:0;transform:translate(-50%,-50%) rotate(90deg) scale(0.5);}
+
+/* EXEC STRIP */
+.exec-strip{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);
+  border-radius:12px;padding:20px 24px;margin:28px auto 0;max-width:1080px;}
+.exec-strip-label{font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.exec-strip p{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-muted);line-height:1.75;}
+.exec-strip strong{color:var(--text);font-weight:600;}
+
+/* MAIN */
+.main{max-width:1080px;margin:0 auto;padding:0 20px 60px;}
+#content-area{padding-top:8px;}
+
+/* SECTION */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.section{animation:fadeUp 0.5s ease both;padding:28px 0 12px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;
+  align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.icon-gold{background:var(--accent-dim);color:var(--accent);}
+.icon-red{background:var(--red-dim);color:var(--red);}
+.icon-green{background:var(--green-dim);color:var(--green);}
+.icon-blue{background:var(--blue-dim);color:var(--blue);}
+.icon-purple{background:var(--purple-dim);color:var(--purple);}
+.icon-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.icon-orange{background:var(--orange-dim);color:var(--orange);}
+.section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;
+  color:var(--text);flex:1;}
+.section-count{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:1px;color:var(--text-dim);background:var(--bg-card);
+  border:1px solid var(--border);border-radius:20px;padding:3px 10px;white-space:nowrap;}
+
+/* CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+  padding:20px;cursor:pointer;position:relative;overflow:hidden;
+  transition:all 0.25s ease;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  border-radius:0;opacity:0;transition:opacity 0.25s;}
+.card:hover{transform:translateY(-2px);background:var(--bg-card-hover);
+  border-color:var(--border-accent);box-shadow:0 8px 32px var(--shadow-card);}
+.card:hover::before{opacity:1;}
+.bar-gold::before{background:var(--accent);}
+.bar-red::before{background:var(--red);}
+.bar-green::before{background:var(--green);}
+.bar-blue::before{background:var(--blue);}
+.bar-purple::before{background:var(--purple);}
+.bar-cyan::before{background:var(--cyan);}
+.bar-orange::before{background:var(--orange);}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.card-headline{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;
+  color:var(--text);line-height:1.4;margin-bottom:8px;}
+.card-summary{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-muted);
+  line-height:1.55;margin-bottom:12px;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;
+  text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+.bg-gold{background:var(--accent-dim);color:var(--accent);}
+.bg-green{background:var(--green-dim);color:var(--green);}
+.bg-blue{background:var(--blue-dim);color:var(--blue);}
+.bg-red{background:var(--red-dim);color:var(--red);}
+.bg-purple{background:var(--purple-dim);color:var(--purple);}
+.bg-cyan{background:var(--cyan-dim);color:var(--cyan);}
+.bg-orange{background:var(--orange-dim);color:var(--orange);}
+.card-bottom{display:flex;justify-content:space-between;align-items:center;}
+.card-risk-badge{font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+.card-expand-hint{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-dim);}
+
+/* MODAL */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.modal-overlay{position:fixed;inset:0;background:var(--overlay-bg);
+  z-index:1000;display:none;align-items:flex-start;justify-content:center;
+  overflow-y:auto;padding:40px 20px;}
+.modal-overlay.active{display:flex;animation:fadeIn 0.2s ease;}
+.modal{background:var(--bg-expanded);border:1px solid var(--border-accent);
+  border-radius:16px;width:100%;max-width:800px;animation:slideUp 0.3s ease;
+  position:relative;overflow:hidden;margin:auto;}
+.modal-top-bar{display:flex;justify-content:space-between;align-items:center;
+  padding:16px 24px;border-bottom:1px solid var(--border);}
+.modal-category{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+.c-gold{color:var(--accent);} .c-red{color:var(--red);} .c-green{color:var(--green);}
+.c-blue{color:var(--blue);} .c-purple{color:var(--purple);}
+.c-cyan{color:var(--cyan);} .c-orange{color:var(--orange);}
+.modal-close{background:none;border:1px solid var(--border);border-radius:6px;
+  color:var(--text-muted);cursor:pointer;width:30px;height:30px;font-size:14px;
+  display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.modal-close:hover{background:var(--red-dim);border-color:var(--red);color:var(--red);}
+.modal-body{padding:28px 28px 32px;}
+.modal-headline{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;
+  color:var(--text);line-height:1.25;margin-bottom:8px;}
+.modal-date{font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;}
+.modal-content{font-family:'Source Serif 4',serif;font-size:15px;line-height:1.75;
+  color:var(--text-muted);margin-bottom:24px;}
+.modal-content p{margin-bottom:14px;}
+.modal-content p:last-child{margin-bottom:0;}
+.modal-content strong{color:var(--text);font-weight:600;}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+.panel{border-radius:10px;padding:18px 20px;}
+.panel-action{background:var(--panel-action-bg);border:1px solid var(--panel-action-border);}
+.panel-risk{background:var(--panel-risk-bg);border:1px solid var(--panel-risk-border);}
+.panel-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.panel-label-icon{font-size:12px;}
+.panel-action .panel-label-icon{color:var(--green);}
+.panel-risk .panel-label-icon{color:var(--red);}
+.panel-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.panel-list li{font-family:'Source Serif 4',serif;font-size:13.5px;
+  color:var(--text-muted);line-height:1.5;padding-bottom:10px;
+  border-bottom:1px solid var(--panel-li-border);}
+.panel-list li:last-child{border-bottom:none;padding-bottom:0;}
+.panel-risk .panel-list li::before{content:'▸';color:var(--red);margin-right:6px;font-size:11px;}
+.owner{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;
+  text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-right:6px;
+  display:inline-block;vertical-align:middle;}
+.owner-ceo{background:var(--accent-dim);color:var(--accent);}
+.owner-cfo{background:var(--green-dim);color:var(--green);}
+.owner-cio{background:var(--blue-dim);color:var(--blue);}
+.owner-gc{background:var(--purple-dim);color:var(--purple);}
+.owner-ciso{background:var(--red-dim);color:var(--red);}
+.owner-chro{background:var(--orange-dim);color:var(--orange);}
+.modal-csuite{background:var(--accent-dim);border:1px solid rgba(201,164,76,0.15);
+  border-radius:10px;padding:18px 20px;margin-bottom:24px;}
+.modal-csuite-label{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+#modal-csuite-text{font-family:'Source Serif 4',serif;font-size:14px;
+  color:var(--text-muted);line-height:1.7;}
+.modal-links{margin-bottom:20px;}
+.modal-links-label,.modal-related-label{font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:10px;}
+.modal-link-list{display:flex;flex-direction:column;gap:6px;}
+.modal-link{display:flex;align-items:center;gap:8px;padding:10px 14px;
+  background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+  text-decoration:none;color:var(--text-muted);transition:all 0.2s;font-size:13px;}
+.modal-link:hover{border-color:var(--accent);color:var(--text);}
+.modal-link-source{font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--accent);min-width:80px;}
+.modal-link-arrow{margin-left:auto;color:var(--text-dim);}
+.modal-related{margin-top:4px;}
+.related-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.related-chip{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-muted);
+  background:var(--bg-card);border:1px solid var(--border);border-radius:6px;
+  padding:6px 12px;cursor:pointer;transition:all 0.2s;}
+.related-chip:hover{background:var(--accent-dim);border-color:var(--accent);color:var(--accent);}
+
+/* FOOTER */
+.footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border);}
+.footer p{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{padding:3rem 1.5rem 2rem;}
+  .metrics-bar{grid-template-columns:repeat(3,1fr);}
+  .cards-grid{grid-template-columns:1fr;}
+  .modal-body{padding:20px;}
+  .panel-grid{grid-template-columns:1fr;}
+}
+@media(max-width:500px){.metrics-bar{grid-template-columns:repeat(2,1fr);}}
+
+/* --- Week-37 additions --- */
+.metric-num{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;
+  color:var(--accent);line-height:1.2;margin-bottom:4px;}
+[data-theme="light"] .metric-num{background:linear-gradient(135deg,#135EAB,#04955F);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.card-badges{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;
+  text-transform:uppercase;padding:4px 9px;border-radius:4px;font-weight:500;}
+.u-act{background:var(--red-dim);color:var(--red);border:1px solid var(--red);}
+.u-discuss{background:var(--orange-dim);color:var(--orange);border:1px solid var(--orange);}
+.u-monitor{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue);}
+.owner-ceo{background:var(--accent-dim);color:var(--accent);}
+.owner-cfo{background:var(--green-dim);color:var(--green);}
+.owner-gc{background:var(--purple-dim);color:var(--purple);}
+.owner-chro{background:var(--orange-dim);color:var(--orange);}
+.modal-question{background:var(--purple-dim);border:1px solid var(--purple);
+  border-radius:8px;padding:18px 20px;margin-top:20px;}
+.modal-question-label{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:8px;}
+.modal-question p{font-family:'Source Serif 4',serif;font-size:15px;color:var(--text);margin:0;}
+.closing{max-width:1200px;margin:56px auto 0;padding:0 2rem;}
+.closing-block{background:var(--bg-card);border:1px solid var(--border);
+  border-radius:12px;padding:28px 30px;margin-bottom:24px;}
+.closing-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
+.wl-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--panel-li-border);}
+.wl-item:last-child{border-bottom:none;}
+.wl-dot{font-size:15px;line-height:1.6;flex-shrink:0;}
+.wl-body{font-size:15px;line-height:1.65;color:var(--text-muted);}
+.wl-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--text);display:block;margin-bottom:4px;}
+.q-list{counter-reset:q;list-style:none;}
+.q-list li{counter-increment:q;position:relative;padding:14px 0 14px 42px;
+  border-bottom:1px solid var(--panel-li-border);font-size:15px;line-height:1.65;color:var(--text-muted);}
+.q-list li:last-child{border-bottom:none;}
+.q-list li::before{content:counter(q);position:absolute;left:0;top:14px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);
+  border:1px solid var(--border-accent);border-radius:5px;width:24px;height:24px;
+  display:flex;align-items:center;justify-content:center;}
+.section.hidden{display:none;}
+@media(max-width:768px){.closing{padding:0 1.2rem;}.closing-block{padding:20px;}}
+</style>
+
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-label">C-Suite Intelligence Briefing · Week 37</div>
+  <h1><span>AI Intelligence Briefing</span><br>Week of September 7–14, 2026</h1>
+  <p class="hero-sub">AI governance moves from principle to machinery — while connectors, not models, turn out to be the way data leaves the building</p>
+  <div class="metrics-bar">
+    <div class="metric" id="m-total"><div class="metric-num">15</div><div class="metric-label">Total<br>Signals</div></div>
+    <div class="metric" id="m-risk"><div class="metric-num">10</div><div class="metric-label">Risk &amp;<br>Governance</div></div>
+    <div class="metric" id="m-opp"><div class="metric-num">5</div><div class="metric-label">Opportunity<br>Signals</div></div>
+    <div class="metric" id="m-reg"><div class="metric-num">4</div><div class="metric-label">Regulation<br>&amp; Legal</div></div>
+    <div class="metric" id="m-act"><div class="metric-num">14</div><div class="metric-label">Act or<br>Discuss</div></div>
+  </div>
+</header>
+
+<nav class="nav-strip">
+  <div class="nav-wrapper">
+    <button class="nav-scroll-btn" id="nav-scroll-left">‹</button>
+    <div class="nav-scroll-area" id="nav-scroll-area">
+      <div class="nav-inner" id="nav-inner">
+        <button class="nav-btn active" data-section="all">All Topics</button>
+        <button class="nav-btn" data-section="platforms">Platform Wars</button><button class="nav-btn" data-section="agents">Agentic AI</button><button class="nav-btn" data-section="regulation">Regulation</button><button class="nav-btn" data-section="risk">Risk & Fraud</button><button class="nav-btn" data-section="workforce">Workforce</button><button class="nav-btn" data-section="funding">Funding & M&A</button><button class="nav-btn" data-section="impact">Business Impact</button>
+      </div>
+    </div>
+    <button class="nav-scroll-btn" id="nav-scroll-right">›</button>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+      <span class="icon-moon">🌙</span>
+      <span class="icon-sun">☀️</span>
+    </button>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="exec-strip">
+    <div class="exec-strip-label">⚡ 30-Second Executive Summary</div>
+    <p>This week's defining signal is that <strong>AI governance moved from principle to machinery</strong>. California created the first registry of licensed AI auditors and a framework for independent verification, ISACA named the four gaps conventional IT audit leaves open on autonomous agents, and Salesforce bid to own the audit trail of AI actions across vendors it does not control. Two things landed alongside it that the committee will be asked about: an Anthropic researcher resigned publicly saying the labs are gambling with our lives, with Anthropic's own alignment lead putting extinction risk above 10% within the decade; and OpenAI's <strong>GPT-6 Astra</strong>, released September 3 and therefore outside this window, became the first model the company rates Critical for cyber capability. The clearest opportunity is cost: OpenAI priced a full-duplex voice agent layer at <strong>$0.05 per minute</strong>, making automation of airline reservations, retail service and banking queues economically obvious for the first time. The sharpest risk is that <strong>connectors, not models, are the exfiltration route</strong> — Check Point pulled a victim's Gmail data out of ChatGPT through a shared internal service. The discussion worth having this quarter: who in the group holds the authority to enable a new AI model or agent against bank, HR and customer data, and what evidence we retain when they do.</p>
+  </div>
+  <div id="content-area">
+  <div class="section" id="section-platforms" data-section="platforms" style="animation-delay:0.00s">
+    <div class="section-header">
+      <div class="section-icon icon-gold">🏛</div>
+      <div class="section-title">Enterprise Platform Wars</div>
+      <div class="section-count">2 stories</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card bar-gold" onclick="openModal('msft-grok-office')">
+        <div class="card-date">September 12, 2026</div>
+        <div class="card-headline">Microsoft makes Grok selectable inside Word, Excel and PowerPoint</div>
+        <div class="card-summary">Copilot becomes a multi-model distribution layer rather than an OpenAI-only interface, so a second model vendor can now touch documents across the whole estate. Admin opt-in, off by default, no EU, EFTA or UK preview.</div>
+        <div class="card-tags"><span class="tag bg-purple">CAE</span><span class="tag bg-purple">GC</span><span class="tag bg-gold">CEO</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-discuss">DISCUSS</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+      <div class="card bar-gold" onclick="openModal('salesforce-harness')">
+        <div class="card-date">September 10, 2026</div>
+        <div class="card-headline">Salesforce previews an AI Control Plane to govern agents it did not build</div>
+        <div class="card-summary">The average large enterprise now runs 3.1 agent orchestration platforms. Salesforce's answer is a vendor-agnostic registry, policy and cost-control layer, which is effectively a bid to own the audit trail of AI actions.</div>
+        <div class="card-tags"><span class="tag bg-purple">CAE</span><span class="tag bg-gold">CEO</span><span class="tag bg-green">CFO</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-green">OPPORTUNITY</span>
+            <span class="badge u-discuss">DISCUSS</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="section-agents" data-section="agents" style="animation-delay:0.08s">
+    <div class="section-header">
+      <div class="section-icon icon-cyan">🤖</div>
+      <div class="section-title">Agentic AI</div>
+      <div class="section-count">2 stories</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card bar-cyan" onclick="openModal('sf-job-ready-agents')">
+        <div class="card-date">September 11, 2026</div>
+        <div class="card-headline">Salesforce ships seven named agents and a runtime that pursues goals for weeks</div>
+        <div class="card-summary">Pre-built agents for service, HR, commerce and supply chain go generally available, backed by a long-horizon runtime with durable memory. Vendor-reported results are strong; the audit frameworks for multi-day autonomy do not yet exist.</div>
+        <div class="card-tags"><span class="tag bg-gold">CEO</span><span class="tag bg-orange">CHRO</span><span class="tag bg-purple">CAE</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-green">OPPORTUNITY</span>
+            <span class="badge u-discuss">DISCUSS</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+      <div class="card bar-cyan" onclick="openModal('openai-gpt-live')">
+        <div class="card-date">September 10, 2026</div>
+        <div class="card-headline">OpenAI prices a full-duplex voice agent layer at $0.05 per minute</div>
+        <div class="card-summary">GPT-Live-1 listens and speaks at the same time, handing reasoning and actions to a separate backend. It removes the brittleness from voice automation, and also removes the pauses that used to tell a customer something had gone wrong.</div>
+        <div class="card-tags"><span class="tag bg-gold">CEO</span><span class="tag bg-green">CFO</span><span class="tag bg-purple">CAE</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-green">OPPORTUNITY</span>
+            <span class="badge u-discuss">DISCUSS</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="section-regulation" data-section="regulation" style="animation-delay:0.16s">
+    <div class="section-header">
+      <div class="section-icon icon-purple">⚖️</div>
+      <div class="section-title">AI Regulation & Governance</div>
+      <div class="section-count">4 stories</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card bar-purple" onclick="openModal('anthropic-resignation')">
+        <div class="card-date">September 9, 2026</div>
+        <div class="card-headline">Anthropic researcher resigns saying the AI race is gambling with our lives</div>
+        <div class="card-summary">Jacob Coxon quit after three years of pretraining research at OpenAI and Anthropic. Anthropic's own alignment lead then publicly put the risk of AI causing human extinction within the decade above 10%.</div>
+        <div class="card-tags"><span class="tag bg-gold">CEO</span><span class="tag bg-purple">CAE</span><span class="tag bg-purple">GC</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-discuss">DISCUSS</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+      <div class="card bar-purple" onclick="openModal('ca-ai-auditor-registry')">
+        <div class="card-date">September 9, 2026</div>
+        <div class="card-headline">California creates the first AI auditor registry and independent verifier framework</div>
+        <div class="card-summary">SB 813 and AB 1405 move AI oversight from vendor self-attestation to registered third-party verification. It is the clearest template yet for what AI assurance will be expected to look like, including here.</div>
+        <div class="card-tags"><span class="tag bg-purple">CAE</span><span class="tag bg-purple">GC</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-act">ACT</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+      <div class="card bar-purple" onclick="openModal('china-spc-ai-rules')">
+        <div class="card-date">September 7, 2026</div>
+        <div class="card-headline">China's Supreme People's Court issues the first national rules for AI disputes</div>
+        <div class="card-summary">Twenty-four articles telling lower courts how to apply existing law to deepfakes, algorithmic price discrimination, training-data rights and AI-generated evidence. No new statute, no grace period, immediate exposure.</div>
+        <div class="card-tags"><span class="tag bg-purple">GC</span><span class="tag bg-gold">CEO</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-act">ACT</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+      <div class="card bar-purple" onclick="openModal('isaca-agent-audit')">
+        <div class="card-date">September 11, 2026</div>
+        <div class="card-headline">ISACA names four gaps conventional IT audit leaves open on autonomous agents</div>
+        <div class="card-summary">Deterministic audit procedures can look complete and still miss every agent-specific failure mode. The gaps are prompt and configuration evidence, probabilistic output, action boundaries, and change governance.</div>
+        <div class="card-tags"><span class="tag bg-purple">CAE</span><span class="tag bg-purple">GC</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-act">ACT</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="section-risk" data-section="risk" style="animation-delay:0.24s">
+    <div class="section-header">
+      <div class="section-icon icon-red">🔒</div>
+      <div class="section-title">AI Risk & Fraud</div>
+      <div class="section-count">2 stories</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card bar-red" onclick="openModal('anthropic-threat-report')">
+        <div class="card-date">September 10, 2026</div>
+        <div class="card-headline">Anthropic documents lone operators running state-scale attacks with AI</div>
+        <div class="card-summary">A threat report covering December 2025 to August 2026: agent swarms running full attack chains, industrial-scale model theft, and two undergraduates producing a dozen possible zero-days in a month.</div>
+        <div class="card-tags"><span class="tag bg-purple">CAE</span><span class="tag bg-purple">GC</span><span class="tag bg-gold">CEO</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-act">ACT</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+      <div class="card bar-red" onclick="openModal('checkpoint-chatgpt-leak')">
+        <div class="card-date">September 8, 2026</div>
+        <div class="card-headline">Researchers pull a victim's Gmail data out of ChatGPT and into another account</div>
+        <div class="card-summary">A shared internal service inside supposedly isolated containers became a covert channel between accounts. The lesson is not the bug, it is that connected apps turn any AI flaw into a data-exfiltration amplifier.</div>
+        <div class="card-tags"><span class="tag bg-purple">CAE</span><span class="tag bg-purple">GC</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-act">ACT</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="section-workforce" data-section="workforce" style="animation-delay:0.32s">
+    <div class="section-header">
+      <div class="section-icon icon-orange">👥</div>
+      <div class="section-title">Workforce & Talent</div>
+      <div class="section-count">2 stories</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card bar-orange" onclick="openModal('korn-ferry-gap')">
+        <div class="card-date">September 8, 2026</div>
+        <div class="card-headline">79% of CEOs see AI efficiency gains. Only 51% of their staff do.</div>
+        <div class="card-summary">A 16,000-person survey across 11 markets finds executives and frontline employees describing different realities, with 52% of AI-weary workers reporting that AI increased their workload.</div>
+        <div class="card-tags"><span class="tag bg-orange">CHRO</span><span class="tag bg-gold">CEO</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-discuss">DISCUSS</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+      <div class="card bar-orange" onclick="openModal('oracle-ai-restructuring')">
+        <div class="card-date">September 11, 2026</div>
+        <div class="card-headline">Oracle ties a $2.1B restructuring plan to AI adoption and discloses no headcount</div>
+        <div class="card-summary">The filing names adoption and integration of AI technologies as part of the plan's purpose, with severance the largest cost line. It supports causation at plan level and nothing more precise than that.</div>
+        <div class="card-tags"><span class="tag bg-orange">CHRO</span><span class="tag bg-green">CFO</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-discuss">DISCUSS</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="section-funding" data-section="funding" style="animation-delay:0.40s">
+    <div class="section-header">
+      <div class="section-icon icon-green">💰</div>
+      <div class="section-title">Funding & M&A</div>
+      <div class="section-count">1 story</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card bar-green" onclick="openModal('mistral-series-d')">
+        <div class="card-date">September 8, 2026</div>
+        <div class="card-headline">Mistral raises €3B at over €21B, Europe's largest private tech round</div>
+        <div class="card-summary">A Samsung-led round makes sovereign, open-weight AI a funded alternative to the US hyperscalers. For a group facing data-residency expectations, that is supplier diversification with a regulatory rationale.</div>
+        <div class="card-tags"><span class="tag bg-gold">CEO</span><span class="tag bg-green">CFO</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-green">OPPORTUNITY</span>
+            <span class="badge u-monitor">MONITOR</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="section-impact" data-section="impact" style="animation-delay:0.48s">
+    <div class="section-header">
+      <div class="section-icon icon-blue">📊</div>
+      <div class="section-title">Business Impact</div>
+      <div class="section-count">2 stories</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card bar-blue" onclick="openModal('oracle-q1-backlog')">
+        <div class="card-date">September 10, 2026</div>
+        <div class="card-headline">Oracle books $28.5B of capex in one quarter against a $664B backlog</div>
+        <div class="card-summary">Cloud infrastructure revenue up 121%, free cash flow at negative $5.4B, and roughly half the backlog tied to a single customer. This is the cleanest public read on whether the AI capex cycle is financeable.</div>
+        <div class="card-tags"><span class="tag bg-green">CFO</span><span class="tag bg-gold">CEO</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-red">RISK</span>
+            <span class="badge u-discuss">DISCUSS</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+      <div class="card bar-blue" onclick="openModal('ph-ai-masterplan')">
+        <div class="card-date">September 8, 2026</div>
+        <div class="card-headline">The Philippines finalises a $34.4B AI infrastructure masterplan to 2033</div>
+        <div class="card-summary">A target of 1.5GW of AI data-centre capacity from a 50MW base, with 152,000 GPUs and 40% renewable power. It is a roadmap rather than a regulation, and the funding is less additive than the headline suggests.</div>
+        <div class="card-tags"><span class="tag bg-gold">CEO</span><span class="tag bg-green">CFO</span></div>
+        <div class="card-bottom">
+          <span class="card-badges">
+            <span class="badge bg-green">OPPORTUNITY</span>
+            <span class="badge u-discuss">DISCUSS</span>
+          </span>
+          <span class="card-expand-hint">↗ Deep dive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="closing">
+    <div class="closing-block">
+      <div class="closing-label">📌 Executive Watchlist — next 30 to 90 days</div>
+      <div class="wl-item"><div class="wl-dot">🔵</div><div class="wl-body"><span class="wl-tag">Monitor</span>Governor Newsom has until <strong>September 30</strong> to act on more than thirty remaining California AI bills, including chatbot disclosure and a 90-day notice requirement for AI-driven displacement affecting 25% or more of a workforce. These are the provisions most likely to be copied elsewhere.</div></div><div class="wl-item"><div class="wl-dot">🟡</div><div class="wl-body"><span class="wl-tag">Discuss</span>OpenAI says the less-restricted cyber capabilities in GPT-6 Astra go only to vetted organisations through its Daybreak programme, expanding <strong>in the coming weeks</strong>. Whether our security function can obtain defensive tooling that attackers are already using without restriction is a Q4 procurement question, not an IT one.</div></div><div class="wl-item"><div class="wl-dot">🔴</div><div class="wl-body"><span class="wl-tag">Act</span>Rotate every AI service credential and API key in the group within 90 days. Two independent sources this week, Check Point's ChatGPT disclosure and Anthropic's threat report, both point to connectors and stolen keys as the live exfiltration route rather than model flaws.</div></div><div class="wl-item"><div class="wl-dot">🟣</div><div class="wl-body"><span class="wl-tag">Audit / assurance</span>Establish the agent evidence standard covering prompt, model version, permissions, tool calls, approvals and rollback before the first agent goes live in any business unit. ISACA's guidance is the reference, and retrofitting this after deployment is materially more expensive.</div></div><div class="wl-item"><div class="wl-dot">🩵</div><div class="wl-body"><span class="wl-tag">Policy / governance</span>Draft the model-approval matrix for Microsoft 365 Copilot: which models may process bank, HR and customer data, who approves each case, and what is logged. The Grok toggle is a single administrative click with group-wide consequences.</div></div>
+    </div>
+    <div class="closing-block">
+      <div class="closing-label">❓ Questions for Management</div>
+      <ol class="q-list"><li>Who in the group currently holds the authority to enable a new AI model inside Microsoft 365 or any other production platform, what evidence is retained when they exercise it, and is that decision right documented anywhere outside IT?</li><li>Which AI connectors have read access to banking, HR, legal or audit repositories today, who approved each one, and when was that authorisation last reviewed?</li><li>What percentage of our AI service credentials and API keys have been rotated in the last 90 days, and can our monitoring detect AI-initiated network activity as a distinct pattern, yes or no?</li><li>For any agent authorised to take a monetary or customer-affecting action, how is human confirmation recorded, how quickly can a completed action be reversed, and who is accountable when it cannot be?</li><li>What is the group's total contractual exposure to multi-year AI infrastructure and cloud commitments, including prepayments made directly by business units, and who reviews those terms centrally before signature?</li></ol>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>AI Intelligence Briefing — September 7 – September 14, 2026 · Prepared by Copilot for C-Suite Decision Makers · Sources verified as of September 14, 2026</p>
+</footer>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-top-bar">
+      <div class="modal-category" id="modal-category"></div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-headline" id="modal-headline"></h2>
+      <div class="modal-date" id="modal-date"></div>
+      <div class="modal-content" id="modal-content"></div>
+      <div class="panel-grid" id="panel-grid"></div>
+      <div class="modal-question">
+        <div class="modal-question-label">◈ Audit &amp; Risk Question</div>
+        <p id="modal-question-text"></p>
+      </div>
+      <div class="modal-csuite" id="modal-csuite">
+        <div class="modal-csuite-label">⚡ C-Suite Bottom Line</div>
+        <p id="modal-csuite-text"></p>
+      </div>
+      <div class="modal-links">
+        <div class="modal-links-label">Sources &amp; Further Reading</div>
+        <div class="modal-link-list" id="modal-link-list"></div>
+      </div>
+      <div class="modal-related">
+        <div class="modal-related-label">Related Topics</div>
+        <div class="related-chips" id="related-chips"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const MODALS = {
+ "msft-grok-office": {
+  "date": "September 12, 2026",
+  "headline": "Microsoft makes Grok selectable inside Word, Excel and PowerPoint",
+  "category": "ENTERPRISE PLATFORMS",
+  "catColor": "c-gold",
+  "content": "<p>On <strong>September 12</strong>, Microsoft added SpaceXAI's <strong>Grok</strong> models to Copilot inside Word, Excel and PowerPoint. SpaceXAI has been added to Microsoft's Online Services Subprocessor List. The preview is limited to eligible Frontier customers, is <strong>disabled by default</strong>, and requires an administrator to switch on a dedicated setting. It is not available in the EU, EFTA or the UK.</p>\n   <p>The business point is not Grok itself. It is that the Copilot surface our people already use every day has become a <strong>distribution channel for models Microsoft does not own</strong>. Microsoft says candidate models pass safety validation and Responsible AI review, and that administrators keep visibility over what each model processes. Earlier Grok availability in Azure AI Foundry, Copilot Studio and GitHub Copilot predates this window and is a separate, developer-facing matter.</p>\n   <p>For a group running Microsoft 365 across banking, retail, aviation, property and manufacturing, a tenant-wide toggle is the wrong unit of decision. A model that is fine for drafting a marketing brief is not automatically fine for a credit memo, an employee grievance file, or customer data covered by the Data Privacy Act.</p>",
+  "actions": [
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Direct IT and the business units to adopt a model-by-use-case approval matrix rather than a single tenant-wide enablement decision. The default answer for bank, HR and customer data should be no until each case is approved."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Review SpaceXAI's subprocessor terms, retention and telemetry commitments against our banking, employee-data and consumer-data restrictions before any opt-in is granted."
+   },
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Request assurance that the administrative toggle sits under change control, that enablement is logged, and that we can evidence which model processed which class of document."
+   }
+  ],
+  "risks": [
+   {
+    "text": "Tenant-wide enablement is a single click with group-wide consequences. The control point is administrative, and administrative controls are the ones that get bypassed under delivery pressure."
+   },
+   {
+    "text": "Model proliferation multiplies testing, support and vendor-assurance work without a matching capability gain on most office tasks."
+   },
+   {
+    "text": "The EU, EFTA and UK exclusion signals that Microsoft is not yet confident of the regulatory position. We should not be more confident than the vendor."
+   }
+  ],
+  "question": "Who in the group holds the authority to enable a new AI model inside Microsoft 365, what evidence is retained when they do, and has that decision right been documented anywhere outside IT?",
+  "csuite": "Microsoft can now control model distribution without owning every model. That gives us negotiating leverage, but we also inherit model-specific data obligations we did not choose. The decision to make this quarter is governance rather than procurement: one approval matrix, owned outside IT, covering which models may touch which data classes.",
+  "links": [
+   {
+    "source": "Microsoft Tech Community",
+    "title": "Expanding model choice in Copilot with Grok",
+    "url": "https://techcommunity.microsoft.com/blog/microsoft-copilot-blog/expanding-model-choice-in-copilot-with-grok/4555749"
+   },
+   {
+    "source": "ExplainX",
+    "title": "Microsoft Copilot Grok in Word, Excel and PowerPoint",
+    "url": "https://www.explainx.ai/blog/microsoft-copilot-grok-word-excel-powerpoint-2026"
+   }
+  ],
+  "related": [
+   "salesforce-harness",
+   "checkpoint-chatgpt-leak",
+   "isaca-agent-audit"
+  ]
+ },
+ "salesforce-harness": {
+  "date": "September 10, 2026",
+  "headline": "Salesforce previews an AI Control Plane to govern agents it did not build",
+  "category": "ENTERPRISE PLATFORMS",
+  "catColor": "c-gold",
+  "content": "<p>Ahead of Dreamforce, Salesforce formalised a six-layer <strong>Trusted Enterprise AI Harness</strong> covering trusted context, agency, action, governance, security and models, and added an <strong>AI Control Plane</strong> that can register, monitor and cost-govern agents built on Salesforce, Microsoft, Google or AWS platforms.</p>\n   <p>The problem it targets is real and measurable. VentureBeat's July 2026 orchestration survey of 107 respondents at firms above 100 employees found <strong>85% run two or more orchestration platforms</strong>, averaging <strong>3.1 platforms</strong>, with 53% expecting to stay hybrid through year-end. Agent sprawl arrives in most organisations before any control layer does.</p>\n   <p>Two cautions belong on the record. The full Harness is <strong>not generally available until early 2027</strong>, so cross-vendor portability is a roadmap claim rather than a shipped capability. And Salesforce's own researchers published a September 8 preprint showing harness changes lifted a smaller model's task success from 29.2% to 78.0% across seven enterprise benchmarks, but fine-tuning that model to imitate a stronger expert dropped it back to 63.1%. Model and harness have to be tuned together, which cuts against the portability pitch.</p>",
+  "actions": [
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Commission a 30-day inventory of every agent orchestration platform already in use across the business units. We cannot assure what we have not counted, and the sector average suggests we already have more than we think."
+   },
+   {
+    "owner": "CFO",
+    "cls": "owner-cfo",
+    "text": "Insert a control-plane clause into AI vendor renewals above the group's material-contract threshold, requiring per-agent cost telemetry, session traces and hard cost caps before any pilot converts to production."
+   },
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Challenge any proposal to standardise on a single vendor's control plane before that vendor's cross-vendor capability is generally available and independently demonstrated."
+   }
+  ],
+  "risks": [
+   {
+    "text": "Buying governance from the vendor whose agents you are governing is a structural conflict. The control plane ideally sits with a party that does not sell the agents."
+   },
+   {
+    "text": "Salesforce's own research shows model-harness coupling is fragile, so portability across vendors is aspirational rather than demonstrated."
+   },
+   {
+    "text": "Salesforce cites third-party data that 88% of enterprise agent projects never reach production and that more than 40% are cancelled. That describes an early, churning market, not one ready to consolidate around a standard."
+   }
+  ],
+  "question": "Do we have a single register of every AI agent operating in the group, who owns it, what it is permitted to do, and what it cost last month, and if not, what is the target date to have one?",
+  "csuite": "Agent sprawl is arriving ahead of controls and the vendors know it. Whether or not Salesforce is the right answer, the question it is answering is ours: who holds the audit trail of AI actions across the group. Settling that in Q4 sets our assurance posture for 2027 and 2028.",
+  "links": [
+   {
+    "source": "VentureBeat",
+    "title": "Salesforce's new enterprise AI harness seeks to ground agents in shared business context",
+    "url": "https://venturebeat.com/orchestration/many-models-many-agents-many-tasks-salesforces-new-enterprise-ai-harness-seeks-to-ground-all-in-your-shared-business-context"
+   },
+   {
+    "source": "Yahoo Finance",
+    "title": "Salesforce formalizes its agent governance stack",
+    "url": "https://finance.yahoo.com/technology/ai/articles/salesforce-formalizes-agent-governance-stack-223032022.html"
+   }
+  ],
+  "related": [
+   "sf-job-ready-agents",
+   "isaca-agent-audit",
+   "msft-grok-office"
+  ]
+ },
+ "sf-job-ready-agents": {
+  "date": "September 11, 2026",
+  "headline": "Salesforce ships seven named agents and a runtime that pursues goals for weeks",
+  "category": "AGENTIC AI",
+  "catColor": "c-cyan",
+  "content": "<p>Salesforce packaged its Agentforce capabilities into seven named, pre-built agents covering support, IT and HR, commerce, outbound sales, supply chain, inbound lead generation and customer experience. Six are generally available now; the outbound sales agent is in pilot with general availability targeted for November. Multi-Agent Orchestration is GA, with an Agent Optimizer targeted for October.</p>\n   <p>The material change is the <strong>long-horizon runtime</strong>. It gives a single agent memory, durable execution and dynamic steering, so an instruction such as rescuing at-risk deals before quarter-end becomes a plan the agent carries across days and weeks, with tools, guardrails and human-approval gates. Salesforce reports 7 billion cumulative Agentic Work Units, 3.2 billion of them in one quarter.</p>\n   <p>The headline customer numbers, including 79% of one vendor's support conversations resolved autonomously and 60% of another customer's sales pipeline built by an agent, are <strong>vendor-supplied and unaudited</strong>. Treat them as proof the category works somewhere, not as a forecast for our own deflection rates.</p>\n   <p>From an assurance standpoint, durable state is the new exposure. A plan that persists across a role change, a restructure or a policy update is a control nobody is watching.</p>",
+  "actions": [
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Approve a tightly scoped 60-day pilot in one retail banner and one airline function, with KPIs for deflection rate, CSAT and cost per resolved case agreed before launch rather than after."
+   },
+   {
+    "owner": "CHRO",
+    "cls": "owner-chro",
+    "text": "Update policy before Q4 on which employee and customer interactions may be routed to an agent, what disclosure the customer sees, and how a contested outcome is appealed."
+   },
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Request assurance that any agent authorised to take a monetary action is treated as a new control point, with quarterly testing and a documented reversal path."
+   }
+  ],
+  "risks": [
+   {
+    "text": "Vendor case metrics are marketing math. The customers quoted have incentives aligned with the vendor and the figures are not independently verified."
+   },
+   {
+    "text": "Long-horizon agents carry durable state. A plan that survives a role change or a policy update is an unowned control, and standard RPA audit programmes do not test for it."
+   },
+   {
+    "text": "Roadmap dates move. Several capabilities in the announcement are pilot or targeted-GA, and buying on unreleased features is how a 2027 capability ends up in a 2026 budget."
+   }
+  ],
+  "question": "For any agent we deploy that can take a monetary or customer-affecting action, how is human confirmation recorded, how fast can a completed action be reversed, and who is accountable when it cannot be?",
+  "csuite": "The technology is production-ready before our governance is. For banking, delegating a multi-day workflow to an autonomous agent pulls in model-risk governance, decisioning review and consumer protection at once. The upside in retail and aviation service deflection is real, but the committee should treat any agent with spending authority as a control point requiring the same scrutiny as a human approver.",
+  "links": [
+   {
+    "source": "Salesforce",
+    "title": "Agentforce: job-ready AI agents",
+    "url": "https://www.salesforce.com/news/stories/agentforce-job-ready-ai-agents/"
+   },
+   {
+    "source": "Yahoo Finance",
+    "title": "Salesforce formalizes its agent governance stack",
+    "url": "https://finance.yahoo.com/technology/ai/articles/salesforce-formalizes-agent-governance-stack-223032022.html"
+   }
+  ],
+  "related": [
+   "salesforce-harness",
+   "isaca-agent-audit",
+   "openai-gpt-live"
+  ]
+ },
+ "openai-gpt-live": {
+  "date": "September 10, 2026",
+  "headline": "OpenAI prices a full-duplex voice agent layer at $0.05 per minute",
+  "category": "AGENTIC AI",
+  "catColor": "c-cyan",
+  "content": "<p>OpenAI released <strong>GPT-Live-1</strong> through its API at a reported <strong>$0.05 per voice minute</strong>. The architecture splits in two: a live conversation layer that handles interruptions, silence, background noise, tone and telephony, and a separate backend, OpenAI's or a third party's, that owns permissions, confirmations, private functions and durable task state.</p>\n   <p>That split matters more than the price. Interrupting the speech does <strong>not</strong> automatically cancel work already running in the backend. A customer who says to cancel may be heard perfectly and still have the transaction complete, unless the application explicitly propagates the cancellation.</p>\n   <p>OpenAI cited almost 80% fewer interruptions at one early user. That is vendor-reported early-user evidence, not an independent benchmark. Philippine-language and accented-English performance was not evidenced at all in the launch materials, which is a material gap for us.</p>\n   <p>At this price plus backend charges, the economics are genuinely interesting for airline reservations, retail service, bank contact centres and property enquiries. The control question is whether a more natural conversation makes an erroneous action easier to miss.</p>",
+  "actions": [
+   {
+    "owner": "CFO",
+    "cls": "owner-cfo",
+    "text": "Commission a controlled cost comparison in one airline or retail contact-centre queue against the existing stack, priced on total cost per resolved contact rather than per voice minute, since backend charges sit on top."
+   },
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Direct that any customer-facing voice deployment carry a human escalation path and a tested transaction-evidence trail before it handles a single live call."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Assess recording consent, voice provenance and complaint-handling obligations under the Data Privacy Act and sector rules before pilot approval."
+   }
+  ],
+  "risks": [
+   {
+    "text": "Cancellation does not propagate by default. A customer can verbally cancel and still be charged unless the application is explicitly built to stop backend work."
+   },
+   {
+    "text": "Speech accuracy varies by language, accent and noise, and the launch evidence covers none of our operating languages."
+   },
+   {
+    "text": "Fluent conversation conceals error. The more natural the voice, the less likely a customer or a supervisor is to notice that the wrong thing happened."
+   }
+  ],
+  "question": "For every voice or chat agent that can complete a transaction, can we produce the evidence trail a complaint investigation would need, covering what the customer said, what the agent did, and what confirmation was captured?",
+  "csuite": "Voice automation just got cheap enough to deploy at scale across reservations, retail service and banking queues. Architecture decides whether that is an efficiency gain or a complaints problem, because the voice layer is not where control lives, the backend is. Approve pilots, but require the escalation path and the evidence trail as conditions of approval.",
+  "links": [
+   {
+    "source": "OpenAI",
+    "title": "Introducing GPT-Live-1 in the API",
+    "url": "https://openai.com/index/introducing-gpt-live-1-in-the-api/"
+   },
+   {
+    "source": "OpenAI Developers",
+    "title": "Live API guide",
+    "url": "https://developers.openai.com/api/docs/guides/live"
+   },
+   {
+    "source": "Unite.AI",
+    "title": "OpenAI's GPT-Live-1 arrives in the API at $0.05 per minute",
+    "url": "https://www.unite.ai/openais-gpt-live-1-arrives-in-the-api-at-0-05-per-minute/"
+   }
+  ],
+  "related": [
+   "sf-job-ready-agents",
+   "isaca-agent-audit",
+   "korn-ferry-gap"
+  ]
+ },
+ "anthropic-resignation": {
+  "date": "September 9, 2026",
+  "headline": "Anthropic researcher resigns saying the AI race is gambling with our lives",
+  "category": "REGULATION & GOVERNANCE",
+  "catColor": "c-purple",
+  "content": "<p><strong>Jacob Coxon</strong>, 27, resigned from Anthropic on September 8 and set out his reasons publicly on September 9, after three years of pretraining research split between OpenAI and Anthropic. His central claim: neither company is acting responsibly, both are racing toward self-improving superintelligence, and the people building these systems earnestly believe the technology could kill everyone by the end of the decade. He was explicit that this is not a marketing stunt, and that executives soften their public phrasing while expressing the same fear privately. The Wall Street Journal first reported the departure; the Washington Post, CNBC, Forbes and CBC followed within a day.</p>\n   <p>What made it more than a resignation post was the response from inside the company. <strong>Evan Hubinger</strong>, Anthropic's Alignment Science Lead, publicly agreed, putting his own estimate of extinction risk from AI at <strong>more than 10% within the decade</strong>, while adding that risk from currently available models is low and his concern is superintelligence arising from recursive self-improvement. He also said Anthropic does not yet have a plan to solve alignment for superintelligence and is not clearly on track to. Samuel Marks, who leads Anthropic's scalable oversight work, said competitive and financial incentives explain why the work continues anyway.</p>\n   <p><strong>One attribution point worth getting right before this reaches a board.</strong> The 10% figure is Hubinger's, not CEO Dario Amodei's. Amodei and co-founder Jared Kaplan did sign the July <em>Pacing the Frontier</em> statement, alongside roughly 1,400 researchers including OpenAI's chief scientist, which argued that industry and government may need the option to buy time to address emerging risks. That is a materially different statement from a personal extinction estimate, and the two are already being conflated in coverage.</p>\n   <p>Why this belongs in an audit briefing rather than a news digest: it is <strong>vendor-dependency information</strong>. Senior staff at both of our most likely frontier vendors are publicly describing themselves as locked in a race they consider dangerous. The read-across for us is roadmap volatility, the prospect of vendors unilaterally restricting capabilities, and faster regulation.</p>",
+  "actions": [
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Brief the board on what our AI strategy assumes about vendor roadmap continuity, and stress-test the 2027 business cases against a scenario in which capability improvement slows or access is restricted by policy."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Monitor legislative momentum. Public statements by lab staff are now feeding proposals on catastrophic risk, and contracts should anticipate vendor-initiated capability restrictions rather than assume continuous availability."
+   },
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Hold the line on present-tense assurance work. The controls that matter this quarter are credential hygiene, connector governance and agent evidence, not the probability debate."
+   }
+  ],
+  "risks": [
+   {
+    "text": "The timing is convenient. These statements land alongside IPO positioning and an active policy push, so some of the alarm is strategic even where the underlying concern is sincere. Discount for that without dismissing it."
+   },
+   {
+    "text": "Safety talent leaving frontier labs changes the internal culture of vendors we depend on, and therefore their product and release decisions. That is a supply risk we have no way to audit."
+   },
+   {
+    "text": "Over-rotating on existential framing crowds out the failure modes actually harming enterprises now: stolen credentials, connector exposure and unreviewed agent actions."
+   }
+  ],
+  "question": "What does our AI strategy assume about the continuity of vendor model roadmaps, and what happens to our 2027 business cases if frontier capability plateaus or access is restricted by regulation?",
+  "csuite": "The value here for the committee is not the extinction estimate, which we are in no position to evaluate. It is that senior staff at both of our likely frontier vendors are publicly describing a race they consider dangerous. Treat that as vendor-dependency information pointing to roadmap volatility, unilateral capability restrictions and faster regulation. Plan for those three and leave the probability argument to others.",
+  "links": [
+   {
+    "source": "Washington Post",
+    "title": "Anthropic researcher resigns with warning over reckless race toward superintelligence",
+    "url": "https://www.washingtonpost.com/technology/2026/09/09/anthropic-researcher-resigns-warning-reckless-race-toward-superintelligence/"
+   },
+   {
+    "source": "CNBC",
+    "title": "Anthropic researcher quits over AI safety concerns",
+    "url": "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html"
+   },
+   {
+    "source": "Forbes",
+    "title": "Anthropic alignment lead warns AI could kill all humans as researcher quits",
+    "url": "https://www.forbes.com/sites/siladityaray/2026/09/09/anthropic-alignment-lead-warns-ai-could-kill-all-humans-as-researcher-quits/"
+   }
+  ],
+  "related": [
+   "anthropic-threat-report",
+   "ca-ai-auditor-registry",
+   "isaca-agent-audit"
+  ]
+ },
+ "ca-ai-auditor-registry": {
+  "date": "September 9, 2026",
+  "headline": "California creates the first AI auditor registry and independent verifier framework",
+  "category": "REGULATION & GOVERNANCE",
+  "catColor": "c-purple",
+  "content": "<p>Governor Newsom signed <strong>SB 813</strong>, establishing Independent Verification Organizations that can certify compliance with state AI law, and <strong>AB 1405</strong>, which directs the California Government Operations Agency to stand up an <strong>AI Auditor Registry</strong> and prohibits unregistered persons from offering, selling or conducting AI audits. It is the first framework of its kind in the United States.</p>\n   <p>The direction of travel is the point. Oversight moves from the vendor saying it complies to a qualified, registered third party verifying it against reproducible evidence. Newsom has more than thirty further AI measures to act on by <strong>September 30</strong>, including a chatbot disclosure bill and a measure requiring 90 days' notice of AI-driven displacement affecting 25% or more of a workforce.</p>\n   <p>Direct application to a Philippine group is limited. Indirect application is not. Global platforms tend to build one evidence pipeline and apply it everywhere, so our upstream vendors' documentation will improve whether we ask for it or not, and multilateral lenders and local regulators will read California as reference architecture. Anything beyond that, including claims that this becomes a national template, is inference rather than reported fact.</p>",
+  "actions": [
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Map AB 1405 and SB 813 evidence requirements against our own internal audit and third-party assurance programme now, while it is cheap. The gap analysis is worth more to us than the compliance obligation."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Identify which group systems process data on California persons, and brief the committee on whether any would need registered verification under the new regime."
+   },
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Direct that AI evaluation artefacts be retained in reproducible form from now on. Retrofitting evidence after a framework lands is the expensive path."
+   }
+  ],
+  "risks": [
+   {
+    "text": "Implementing rules are not yet published, so scope, qualification standards and cross-border reach are all still open."
+   },
+   {
+    "text": "A licensing regime favours large assurance firms and may squeeze out the smaller specialist providers we would otherwise use."
+   },
+   {
+    "text": "Registry status is not a quality guarantee. Registration proves eligibility rather than competence, and a registered verifier's sign-off is not a defence if the underlying control failed."
+   }
+  ],
+  "question": "If a regulator or a lender asked us tomorrow to produce independent verification that a production AI system does what we say it does, what evidence could we hand over today, and for how many of our systems?",
+  "csuite": "California has written the first draft of what AI assurance will be expected to look like, and ASEAN regulators and development banks will read it. Our advantage is timing: building the evidence discipline now, while it is voluntary, costs a fraction of retrofitting it under a deadline. This is the clearest near-term mandate for the internal audit function in this briefing.",
+  "links": [
+   {
+    "source": "Office of the Governor of California",
+    "title": "Governor Newsom signs first-in-the-nation AI safeguards",
+    "url": "https://www.gov.ca.gov/2026/09/09/governor-newsom-signs-first-in-the-nation-ai-safeguards-to-protect-californians-calls-on-the-federal-government-to-do-its-part/"
+   },
+   {
+    "source": "California Legislature",
+    "title": "SB 813 bill text and history",
+    "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB813"
+   },
+   {
+    "source": "Transparency Coalition",
+    "title": "AI legislative update, September 11, 2026",
+    "url": "https://www.transparencycoalition.ai/news/ai-legislative-update-september11-2026"
+   }
+  ],
+  "related": [
+   "isaca-agent-audit",
+   "china-spc-ai-rules",
+   "ph-ai-masterplan"
+  ]
+ },
+ "china-spc-ai-rules": {
+  "date": "September 7, 2026",
+  "headline": "China's Supreme People's Court issues the first national rules for AI disputes",
+  "category": "REGULATION & GOVERNANCE",
+  "catColor": "c-purple",
+  "content": "<p>China's Supreme People's Court published Fa Fa [2026] No. 10, running to 24 articles across five parts covering tort, intellectual property, procedure and working mechanisms. It does not create a new AI law. It instructs lower courts on how to apply the Civil Code, the Personal Information Protection Law, the Copyright Law and the Product Quality Law to concrete AI scenarios, which makes it <strong>immediately enforceable through the existing court system</strong>.</p>\n   <p>The provisions that matter commercially: fault-based liability is the default; deepfakes and voice cloning of identifiable persons require consent; publicly available personal information can generally be used for training within a reasonable scope unless the individual expressly refuses; generative AI providers become liable if they fail to stop infringing output after valid notice, and malicious prompters are directly liable. <strong>Algorithm-driven price discrimination</strong> can trigger liability where it materially restricts consumer rights.</p>\n   <p>Product liability attaches only to AI with a physical carrier, so robots and vehicles qualify and pure software services do not. AI-generated court documents must be verified and disclosed, and using AI to fabricate evidence can lead to dismissal, fines, detention or criminal liability.</p>\n   <p>For our China-facing retail, food-import and joint-venture operations, the exposed surfaces are marketing content generated with AI, HR screening tools, customer chatbots, and any dynamic pricing that varies by customer profile.</p>",
+  "actions": [
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Direct China-facing subsidiaries and JV partners to complete a 60-day audit of every AI touchpoint, covering marketing content, HR screening, chatbots and connected devices, against the 24-scenario checklist."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Update contracts with Chinese vendors and platforms to allocate liability explicitly across developer, provider and user roles in line with the new opinions."
+   },
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Brief the board that AI liability in China is live with no transition period, and that the practical exposure sits in marketing and pricing rather than in technology."
+   }
+  ],
+  "risks": [
+   {
+    "text": "No grace period. The opinions interpret laws already in force, so exposure is immediate rather than phased."
+   },
+   {
+    "text": "Enforcement in the first six to twelve months will be uneven and may vary by province, making early exposure hard to price."
+   },
+   {
+    "text": "The physical-carrier boundary for product liability is a bright line that will be tested in litigation, and today's comfortable reading may not survive the first appellate decision."
+   }
+  ],
+  "question": "Which of our China-facing operations use AI in customer-facing marketing, pricing or HR screening, and can each produce consent records and training-data provenance if a Chinese court asks?",
+  "csuite": "This is the first fully operational national AI liability regime anywhere, and it runs through the courts rather than a new regulator. Our exposure concentrates in consumer-facing marketing and dynamic pricing in China-linked businesses. It is also the most likely template ASEAN jurisdictions will study when they move from principles to adjudication.",
+  "links": [
+   {
+    "source": "Dan Young CPA",
+    "title": "China AI dispute rules: what foreign companies need to know",
+    "url": "https://www.danyoungcpa.com/china-ai-dispute-rules-foreign-companies/"
+   },
+   {
+    "source": "Gasgoo Auto News",
+    "title": "Supreme People's Court releases first rules for AI dispute adjudication",
+    "url": "https://autonews.gasgoo.com/articles/news/gasgoo-express-supreme-peoples-court-releases-first-rules-for-ai-dispute-adjudication-jlr-china-responds-to-global-layoff-rumors-2097589056363126785"
+   }
+  ],
+  "related": [
+   "ca-ai-auditor-registry",
+   "anthropic-threat-report",
+   "ph-ai-masterplan"
+  ]
+ },
+ "isaca-agent-audit": {
+  "date": "September 11, 2026",
+  "headline": "ISACA names four gaps conventional IT audit leaves open on autonomous agents",
+  "category": "REGULATION & GOVERNANCE",
+  "catColor": "c-purple",
+  "content": "<p>ISACA published practitioner guidance arguing that standard IT audit procedures can produce a clean opinion on an agentic workflow while missing the ways it actually fails. Four gaps are named: <strong>prompt and configuration evidence</strong>, <strong>probabilistic outputs</strong>, <strong>action boundaries</strong>, and <strong>change governance</strong>.</p>\n   <p>The underlying problem is where behaviour lives. Part of an agent's behaviour sits in vendor-controlled model weights we cannot inspect. The rest sits in prompts, tool definitions, permissions and configuration that we do control, and that are frequently changed without going through change management at all. An auditor who tests the application and not the prompt has tested the wrong artefact.</p>\n   <p>The recommendation is boundary testing, meaning what happens when the agent is pushed past its intended authority, plus independent third-party review. Worth noting for weighting: this is an article by one author in ISACA's industry-news stream, <strong>not a newly issued ISACA standard</strong>.</p>\n   <p>This is the most directly actionable item in this week's briefing for the internal audit function, and it lands in the same week as two platform announcements that will put agents in front of our customers.</p>",
+  "actions": [
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Direct that prompts, tool definitions, permissions and model versions be placed under version control and treated as auditable configuration. This is the single highest-value control to establish before agents go live."
+   },
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Add boundary and privilege-escalation testing to the agent audit programme. What the agent does when asked to exceed its authority is the test that matters."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Define evidence-retention requirements for agent activity, covering intent, context, tools invoked, outputs, approvals and rollback, before the first production deployment rather than after the first incident."
+   }
+  ],
+  "risks": [
+   {
+    "text": "Testing cannot prove the behaviour of a probabilistic system. An audit programme that implies it can creates false assurance, which is worse than acknowledged uncertainty."
+   },
+   {
+    "text": "Vendor opacity persists. Where behaviour lives in model weights we cannot inspect, the honest opinion is scoped rather than clean."
+   },
+   {
+    "text": "Agent controls slow delivery, and business units under pressure will route around them. The control has to be designed into the deployment path rather than bolted on as a gate."
+   }
+  ],
+  "question": "Does our current AI and RPA audit programme test prompts, model versions, tool permissions and action boundaries, or does it test the surrounding application and assume the agent behaves?",
+  "csuite": "Our existing RPA audit programmes are not sufficient for agents, and the gap is structural rather than a matter of effort. Agent evidence has to cover intent, context, tools, outputs, approvals and rollback. Establishing that standard before deployment is far cheaper than reconstructing it during an incident, and it applies across every operating sector.",
+  "links": [
+   {
+    "source": "ISACA",
+    "title": "Auditing agentic AI workflows: how to control test when the system decides for itself",
+    "url": "https://www.isaca.org/resources/news-and-trends/industry-news/2026/auditing-agentic-ai-workflows-how-to-control-test-when-the-system-decides-for-itself"
+   },
+   {
+    "source": "ISACA",
+    "title": "IT Audit Framework",
+    "url": "https://www.isaca.org/resources/it-audit-framework"
+   }
+  ],
+  "related": [
+   "sf-job-ready-agents",
+   "salesforce-harness",
+   "ca-ai-auditor-registry"
+  ]
+ },
+ "anthropic-threat-report": {
+  "date": "September 10, 2026",
+  "headline": "Anthropic documents lone operators running state-scale attacks with AI",
+  "category": "AI RISK & FRAUD",
+  "catColor": "c-red",
+  "content": "<p>Anthropic published a threat-intelligence report covering disruption of Claude misuse between December 2025 and August 2026. The central finding, in its own words, is that sophisticated attacks no longer require sophisticated attackers. Attackers now run agent swarms handling reconnaissance, exploitation and exfiltration, with a human only selecting targets.</p>\n   <p>The cases that matter to us. A Russian operation used AI-driven workflows across the full attack chain, including <strong>DNS hijacking of a hotel Wi-Fi vendor</strong>, and bulk-exported mailboxes from drone component manufacturers. A Changsha-based pair identified as <strong>undergraduate students</strong> ran automated exploit foundries against roughly 50 organisations and produced more than a dozen possible zero-day findings in a single month. A financially motivated group planted malicious instructions in an AI vendor's evaluation sandbox, harvested production API keys from several model providers, and pivoted to 30 AI companies in four days.</p>\n   <p>Separately, Anthropic describes industrial-scale distillation by Chinese labs, peaking near 3 million exchanges a day from more than 3,500 fraudulent accounts. That claim is <strong>independently corroborated</strong> by a joint NSA, CISA and FBI advisory issued September 8 warning of model extraction through distillation and knowledge-extraction attacks, which recommends identity controls, rate limiting, behavioural monitoring and output controls. The two surfaced through separate research paths this week, which strengthens the finding.</p>\n   <p>One caveat on weighting: Anthropic is both the threat reporter and a commercial party, and the report doubles as evidence of its own safeguards. The named Chinese labs will contest attribution.</p>",
+  "actions": [
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Request assurance on AI credential hygiene across the group, covering rotation cadence, default keys, session-token lifetimes and MFA on admin panels, and report the exception count to the committee."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Update supplier due diligence to require AI vendors to certify that our data is not routed through undisclosed proxies and that their model weights were not distilled from a competitor. This is now a live trade-secret question."
+   },
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Direct that the hotel Wi-Fi DNS-hijacking pattern be treated as an executive travel risk rather than only an IT one. It targets travelling senior staff directly, which is a live exposure for our aviation and property businesses."
+   }
+  ],
+  "risks": [
+   {
+    "text": "The threat model has shifted. A lone financially motivated attacker with AI is now equivalent to a small state-sponsored team a year ago, so controls calibrated to the old threat model are calibrated wrong."
+   },
+   {
+    "text": "Anthropic is a commercial party reporting on its own product's misuse. Independent replication is limited and the report has a marketing function."
+   },
+   {
+    "text": "Naming Chinese labs has commercial and diplomatic consequences for any Philippine entity partnering with them, and the attributions will be contested."
+   }
+  ],
+  "question": "What percentage of our AI service credentials have been rotated in the last 90 days, and can our monitoring detect AI-initiated network activity as a distinct pattern, yes or no?",
+  "csuite": "The practical implication is not exotic. Credential rotation, tokenised access and behavioural monitoring move from good-practice enhancements to base infrastructure, because the cost of mounting a competent attack has collapsed. For banking the exposure is credential-driven; for aviation and property the hotel Wi-Fi pattern is a directly applicable template against our own travelling executives.",
+  "links": [
+   {
+    "source": "Anthropic",
+    "title": "Threat intelligence report, September 2026",
+    "url": "https://www.anthropic.com/threat-intelligence-report-september-2026"
+   },
+   {
+    "source": "SiliconANGLE",
+    "title": "Anthropic says AI now lets lone operators run state-level hacking campaigns",
+    "url": "https://siliconangle.com/2026/09/10/anthropic-says-ai-now-lets-lone-operators-run-state-level-hacking-campaigns/"
+   },
+   {
+    "source": "CISA",
+    "title": "Joint advisory on mitigating risks from model distillation and knowledge extraction",
+    "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-251a"
+   }
+  ],
+  "related": [
+   "checkpoint-chatgpt-leak",
+   "china-spc-ai-rules",
+   "isaca-agent-audit"
+  ]
+ },
+ "checkpoint-chatgpt-leak": {
+  "date": "September 8, 2026",
+  "headline": "Researchers pull a victim's Gmail data out of ChatGPT and into another account",
+  "category": "AI RISK & FRAUD",
+  "catColor": "c-red",
+  "content": "<p>Check Point researchers demonstrated cross-account data leakage in ChatGPT. Mutable properties in a shared internal Artifactory service became a covert channel between containers that were supposed to be isolated. A malicious prompt, a shared conversation or a custom GPT could trigger hidden work alongside a normal-looking response, and relay a victim's connected Gmail data to a different account.</p>\n   <p>The severity depended entirely on what the victim's session had access to: files, history, tools, connected applications and their permissions. Default low-risk read actions could execute <strong>before the user confirmed anything</strong>.</p>\n   <p>Check Point says the channel was closed by the time of publication and OpenAI confirmed decommissioning the affected instance. So the specific bug is remediated. The structural lesson is not: sandbox isolation is not sufficient when internal services are shared underneath, and every connector we authorise increases the blast radius of the next flaw.</p>\n   <p>For us the amplifiers are obvious. Banking, HR, legal and audit connectors are precisely the ones where a silent read is most damaging and least likely to be noticed.</p>",
+  "actions": [
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Request a review of connected-app logs across the group for silent read activity, and confirm which AI connectors are authorised against sensitive repositories today."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Update policy to require explicit confirmation for any AI connector touching banking, HR, legal or audit data, and disable connectors with no documented business owner."
+   },
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Direct that least privilege apply to AI tools on the same basis as to employees. An agent's connector list should be reviewed and re-approved on the same cycle as user access."
+   }
+  ],
+  "risks": [
+   {
+    "text": "The demonstrated environment may differ from our enterprise tenants and the specific channel is closed, but analogous shared-state paths in other providers have not been ruled out."
+   },
+   {
+    "text": "Read actions that execute before confirmation mean the exposure happens before any control we rely on has a chance to fire."
+   },
+   {
+    "text": "Connector sprawl is largely invisible to us today. Authorisations are granted per user, accumulate quietly, and are almost never revoked."
+   }
+  ],
+  "question": "Which AI connectors currently have read access to banking, HR, legal or audit repositories, who approved each one, and when was that authorisation last reviewed?",
+  "csuite": "Sandbox isolation is not the control we assumed it was. Exposure scales with the connectors we authorise, which makes connector governance rather than model selection the lever that actually reduces risk. This one is cheap to act on and should not wait for the next planning cycle.",
+  "links": [
+   {
+    "source": "Check Point Research",
+    "title": "The shared clipboard inside the sandbox: cross-account data leakage in ChatGPT",
+    "url": "https://research.checkpoint.com/2026/the-shared-clipboard-inside-the-sandbox-cross-account-data-leakage-in-chatgpt/"
+   },
+   {
+    "source": "OpenAI Help Center",
+    "title": "Apps in ChatGPT",
+    "url": "https://help.openai.com/en/articles/11487775-apps-in-chatgpt"
+   }
+  ],
+  "related": [
+   "anthropic-threat-report",
+   "msft-grok-office",
+   "isaca-agent-audit"
+  ]
+ },
+ "korn-ferry-gap": {
+  "date": "September 8, 2026",
+  "headline": "79% of CEOs see AI efficiency gains. Only 51% of their staff do.",
+  "category": "WORKFORCE & TALENT",
+  "catColor": "c-orange",
+  "content": "<p>Korn Ferry surveyed 16,000 people across 11 markets and organisational levels. <strong>79% of CEOs</strong> reported AI efficiency gains. Among individual contributors, <strong>51%</strong> did. Separately, 62% reported heavier workloads overall and 45% said day-to-day activity was preventing meaningful growth work. Among workers describing themselves as AI-weary, <strong>52% said AI had increased their workload</strong>.</p>\n   <p>What the survey measures is <strong>perceived</strong> efficiency rather than measured productivity, and it is a vendor survey with the sampling and self-report biases that implies. The finding is still useful, because a 28-point gap between the top and the frontline is not a measurement artefact. It is a signal that AI is being layered on top of existing process rather than replacing any of it.</p>\n   <p>That is the pattern to check for in our own units. If a tool is introduced without removing the manual step it was meant to replace, the frontline carries both. Retail, airline and plant staff feel this first and report it last.</p>",
+  "actions": [
+   {
+    "owner": "CHRO",
+    "cls": "owner-chro",
+    "text": "Commission employee-level workload measurement before and after AI deployment in at least two units. Perception surveys at executive level will keep telling us what we want to hear."
+   },
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Direct that AI programmes be tied to process redesign rather than licence counts. The reported gap is what happens when tools are added and steps are not removed."
+   },
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Challenge productivity claims in business unit AI business cases by asking them to reconcile to financial or service outcomes rather than to tool adoption rates."
+   }
+  ],
+  "risks": [
+   {
+    "text": "Self-report bias runs both ways. Executives have incentives to overstate value and frontline staff to overstate burden, and neither number is an operational measurement."
+   },
+   {
+    "text": "Group-wide averages will hide frontline friction in the units where service quality is most visible to customers."
+   },
+   {
+    "text": "Workload increases may be transitional, and cutting a programme too early on the strength of early friction is its own failure mode."
+   }
+  ],
+  "question": "For each AI deployment in the business units, what manual step was removed, and can the unit evidence that removal, or was the tool simply added on top?",
+  "csuite": "The gap between what the top of the house believes about AI and what the frontline experiences is the most reliable predictor of a stalled deployment. For a group with a large, operationally diverse workforce the fix is unglamorous: measure workload at role level, and treat process redesign as the deliverable rather than the tool.",
+  "links": [
+   {
+    "source": "Korn Ferry",
+    "title": "Workforce 2026 report: unlocking growth requires rethinking how work gets done",
+    "url": "https://www.kornferry.com/about-us/press/korn-ferry-workforce-2026-report-unlocking-growth-requires-rethinking-how-work-gets-done"
+   },
+   {
+    "source": "HR Dive",
+    "title": "Korn Ferry 2026 workplace insights on productivity",
+    "url": "https://www.hrdive.com/news/korn-ferry-2026-workplace-insights-productivity/830090/"
+   }
+  ],
+  "related": [
+   "oracle-ai-restructuring",
+   "sf-job-ready-agents",
+   "openai-gpt-live"
+  ]
+ },
+ "oracle-ai-restructuring": {
+  "date": "September 11, 2026",
+  "headline": "Oracle ties a $2.1B restructuring plan to AI adoption and discloses no headcount",
+  "category": "WORKFORCE & TALENT",
+  "catColor": "c-orange",
+  "content": "<p>Oracle's filing put its restructuring plan at up to <strong>$2.1 billion</strong> and explicitly included the adoption and integration of AI technologies among its purposes. Costs relate primarily to employee severance, and <strong>$167 million</strong> of plan expense was recorded in the quarter. Later reporting during the week put total plan costs nearer $2.8 billion once additional actions are included, and suggested further expansion tied to the company's AI capital spending.</p>\n   <p>What the filing does <strong>not</strong> contain is an AI-attributable job count. It supports causation at the level of the plan. Any headline assigning a specific layoff total to AI goes beyond the filed evidence, and several did this week.</p>\n   <p>The wider backdrop: tech-sector layoffs tracked at more than 128,000 through September 10 already exceed the full-year 2025 figure, though the trackers' own AI-attributed subset covers a minority of those. Much of what is presented as AI-driven restructuring is ordinary cost-cutting, re-framed.</p>\n   <p>The lesson for us is about evidence discipline rather than headcount. Oracle reinvested in cloud capacity while booking severance, with savings and spending moving at once. That is exactly the pattern that makes AI productivity claims unfalsifiable if nobody insists on tracking them separately.</p>",
+  "actions": [
+   {
+    "owner": "CHRO",
+    "cls": "owner-chro",
+    "text": "Require task-level business cases before any role is removed on AI grounds, and document which capabilities the group loses along with the headcount."
+   },
+   {
+    "owner": "CFO",
+    "cls": "owner-cfo",
+    "text": "Track severance, reinvestment and realised savings as three separate lines. Netting them together makes it impossible to tell whether AI produced value or just moved cost."
+   },
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Request post-implementation assurance on any AI-linked workforce reduction, with specific attention to segregation of duties in banking controls, aviation safety and plant reliability roles."
+   }
+  ],
+  "risks": [
+   {
+    "text": "AI is one of several restructuring drivers and the most presentable one. Attribution in filings and press coverage is systematically generous to the AI narrative."
+   },
+   {
+    "text": "Savings can be fully offset by compute and licence costs, leaving the headcount reduction as the only durable change."
+   },
+   {
+    "text": "Capability loss surfaces late. The control or expertise quietly carried by a removed role is usually discovered during the next incident rather than during the business case."
+   }
+  ],
+  "question": "For every role redesigned or removed on AI grounds, what task-level evidence supports the decision, and which control capabilities does the group lose as a result?",
+  "csuite": "Management should not equate headcount reduction with productivity, and the committee should not accept that equation when it appears in a business case. Banking controls, aviation safety and plant reliability all depend on capabilities that are easy to cut and expensive to rediscover. Post-implementation assurance is the check that keeps the claim honest.",
+  "links": [
+   {
+    "source": "SEC EDGAR",
+    "title": "Oracle Corporation Form 10-Q, period ended August 31, 2026",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm"
+   },
+   {
+    "source": "Livemint",
+    "title": "Tech layoffs 2026: companies that laid off employees",
+    "url": "https://www.livemint.com/companies/news/tech-layoffs-2026-as-ai-takes-center-stage-heres-a-list-of-major-companies-that-laid-off-employees-11789203637160.html"
+   }
+  ],
+  "related": [
+   "korn-ferry-gap",
+   "oracle-q1-backlog",
+   "sf-job-ready-agents"
+  ]
+ },
+ "mistral-series-d": {
+  "date": "September 8, 2026",
+  "headline": "Mistral raises €3B at over €21B, Europe's largest private tech round",
+  "category": "FUNDING & M&A",
+  "catColor": "c-green",
+  "content": "<p>Mistral closed <strong>€3 billion</strong> at a post-money valuation <strong>above €21 billion</strong>, led by Samsung with Scaleup Europe Fund and PSG Equity co-leading. Advent, BlackRock-managed funds, the Grand Duchy of Luxembourg, NVIDIA, ASML and Salesforce Ventures participated. Proceeds go to frontier research, compute, infrastructure and international expansion. Mistral reports operating in 20 countries with more than 125 large enterprise customers.</p>\n   <p><strong>A note on the numbers.</strong> Reuters described the valuation as around €21 billion, Mistral's own materials say more than €21 billion, and CNBC reported roughly $24 billion. These are the same round at different FX bases and different rounding, not a factual conflict. Mistral's own post-money wording is the better-supported anchor. The July reports of a Samsung investment at roughly €20 billion were discussions, not this round.</p>\n   <p>In the same week, Mistral announced a partnership putting its models into Cloudera across public cloud, private cloud, on-premises and air-gapped environments. Taken together, the funding and the distribution deal make open-weight, in-country deployment a genuine procurement option rather than a research curiosity, which matters for regulated banking data, proprietary food formulations, airline maintenance data and petrochemical process data.</p>",
+  "actions": [
+   {
+    "owner": "CFO",
+    "cls": "owner-cfo",
+    "text": "Include Mistral in the vendor-diversification study and quantify switching and self-hosting economics against the managed US APIs over a five-year horizon."
+   },
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Direct that one regulated workload be benchmarked against Mistral and two US providers, so the sovereignty option is priced on evidence rather than positioning."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Request Mistral's data processing addendum and licensing terms for regulated processing, and benchmark them against our current hyperscaler arrangements."
+   }
+  ],
+  "risks": [
+   {
+    "text": "A private valuation is a financing mark rather than audited market value, and infrastructure spending may absorb much of the round."
+   },
+   {
+    "text": "Sovereign positioning does not close a model-performance gap. If the models underperform on our actual workloads, jurisdiction is a weak consolation."
+   },
+   {
+    "text": "Air-gapped and on-premises deployment shifts patching, logging, lineage and model-update obligations onto us. Sovereignty transfers work rather than eliminating it."
+   }
+  ],
+  "question": "If a regulator required a regulated workload to run in-country on infrastructure we control, how long would it take us to move it, and what would it cost?",
+  "csuite": "A funded, non-US, open-weight platform strengthens our negotiating position with the US hyperscalers whether or not we ever deploy it. The genuine use case is regulated banking data and proprietary industrial data where exporting context is the problem. The economics remain unproven, so this belongs on the evaluation list rather than the procurement list.",
+  "links": [
+   {
+    "source": "Reuters",
+    "title": "French AI company Mistral hits new valuation in funding round",
+    "url": "https://www.reuters.com/world/europe/french-ai-company-mistral-hits-24-billion-valuation-funding-round-2026-09-08/"
+   },
+   {
+    "source": "CNBC",
+    "title": "Mistral AI funding and valuation, Samsung-led round",
+    "url": "https://www.cnbc.com/2026/09/08/mistral-ai-funding-valuation-samsung.html"
+   },
+   {
+    "source": "Mistral AI",
+    "title": "Mistral and Cloudera partner on sovereign enterprise AI",
+    "url": "https://mistral.ai/news/mistral-x-cloudera/"
+   }
+  ],
+  "related": [
+   "oracle-q1-backlog",
+   "ph-ai-masterplan",
+   "anthropic-resignation"
+  ]
+ },
+ "oracle-q1-backlog": {
+  "date": "September 10, 2026",
+  "headline": "Oracle books $28.5B of capex in one quarter against a $664B backlog",
+  "category": "BUSINESS IMPACT",
+  "catColor": "c-blue",
+  "content": "<p>Oracle's quarterly capital expenditure rose to <strong>$28.5 billion</strong> from $8.5 billion a year earlier. Cloud infrastructure revenue grew <strong>121% to $7.4 billion</strong>. More than $30 billion of new AI cloud contracts lifted backlog to <strong>$664 billion</strong>. The company delivered 850 megawatts of capacity and more than 300,000 GPUs in the quarter. Free cash flow was <strong>negative $5.4 billion</strong>, against negative $362 million a year earlier.</p>\n   <p>Two structural details matter more than the growth rate. Roughly <strong>half the backlog sits with a single customer</strong>. And customer prepayments have risen to around 40% of capex from effectively zero a year ago, which reduces Oracle's direct funding need while transferring concentration and enforceability risk into long-dated contracts. The subsequent 10-Q disclosed a further $288 billion of data-centre lease commitments generally commencing through fiscal 2029.</p>\n   <p>Analyst opinion split visibly, with buy-side reiterations on one side and concern about debt and cash flow on the other. The market's own read was a modest decline after an intraday rally.</p>\n   <p>Why this belongs in front of the committee: AI infrastructure has become project finance. Our real estate and power interests may participate in it, our operating companies are being asked to sign into it, and our banking business may be lending against it.</p>",
+  "actions": [
+   {
+    "owner": "CFO",
+    "cls": "owner-cfo",
+    "text": "Model long-duration AI commitments under utilisation downside cases, and add hyperscaler borrower concentration and stranded-capacity scenarios to banking credit stress testing."
+   },
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Reassess vendor exposure. Treat backlog announcements as pipeline rather than realised return, and require portability and exit rights in any long-dated cloud commitment."
+   },
+   {
+    "owner": "CAE",
+    "cls": "owner-gc",
+    "text": "Request assurance on the group's aggregate contractual exposure to AI infrastructure commitments across business units. Prepayment terms in particular are becoming standard and are rarely visible centrally."
+   }
+  ],
+  "risks": [
+   {
+    "text": "Customer concentration at roughly half the backlog means one counterparty's financing trouble becomes the vendor's, and then ours."
+   },
+   {
+    "text": "Negative free cash flow against rising debt narrows the room for error if capacity arrives after pricing has declined."
+   },
+   {
+    "text": "Prepayment structures shift risk to customers. Our business units may be signing prepaid capacity commitments that treasury never sees."
+   }
+  ],
+  "question": "What is the group's total contractual exposure to multi-year AI infrastructure and cloud commitments, including prepayments made by individual business units, and who reviews those terms centrally?",
+  "csuite": "AI infrastructure now resembles project finance more than software procurement, and Oracle's quarter is the clearest public scorecard available. For us it cuts three ways: long commitments in the operating companies, potential participation through real estate and power, and borrower concentration in the banking book. All three should be reviewed against the same downside case.",
+  "links": [
+   {
+    "source": "Oracle Investor Relations",
+    "title": "Oracle announces Q1 results driven by triple-digit cloud infrastructure growth",
+    "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Q1-Results-Driven-by-Triple-Digit-Growth-in-Cloud-Infrastructure-Revenues/default.aspx"
+   },
+   {
+    "source": "Reuters",
+    "title": "Oracle quarterly revenue beats estimates as AI boom drives cloud demand",
+    "url": "https://www.reuters.com/technology/oracles-quarterly-revenue-beats-estimates-ai-boom-drives-cloud-demand-2026-09-10/"
+   },
+   {
+    "source": "CNBC",
+    "title": "Oracle Q1 earnings report",
+    "url": "https://www.cnbc.com/2026/09/11/oracle-stock-q1-earnings-ai-cloud.html"
+   }
+  ],
+  "related": [
+   "oracle-ai-restructuring",
+   "ph-ai-masterplan",
+   "mistral-series-d"
+  ]
+ },
+ "ph-ai-masterplan": {
+  "date": "September 8, 2026",
+  "headline": "The Philippines finalises a $34.4B AI infrastructure masterplan to 2033",
+  "category": "BUSINESS IMPACT",
+  "catColor": "c-blue",
+  "content": "<p>The DICT finalised an eight-year AI infrastructure masterplan covering 2026 to 2033, targeting <strong>1.5GW</strong> of AI data-centre capacity from a roughly <strong>50MW</strong> baseline, with about <strong>400MW by 2030</strong>, <strong>152,000 GPUs</strong>, and 40% renewable power for AI infrastructure by 2033. Headline investment is <strong>$34.4 billion</strong>, split $13.5 billion public and $21 billion private.</p>\n   <p><strong>Read the funding carefully.</strong> Newsbytes reports that only <strong>$16.3 billion is genuinely additional</strong>, because roughly $18.2 billion overlaps programmes already announced. That halves the new-money figure and should temper any business case built on the headline.</p>\n   <p>This is a policy and investment roadmap, not binding AI regulation. No equally material new NPC, BSP, SEC or ASEAN-wide AI rule was verified in this week's window, which is itself worth noting for a committee tracking local regulatory movement.</p>\n   <p>The intersection with our businesses is unusually direct: property for sites, banking for project finance, petrochemicals and power for the energy intensity, and connectivity throughout. The binding constraint will be power and permitting rather than capital, which is the same lesson visible in the global data-centre stories this week.</p>",
+  "actions": [
+   {
+    "owner": "CEO",
+    "cls": "owner-ceo",
+    "text": "Direct a mapping of property, energy, connectivity and banking opportunities against the masterplan's 400MW phase, with a view on which the group would actually bid for."
+   },
+   {
+    "owner": "CFO",
+    "cls": "owner-cfo",
+    "text": "Distinguish committed from aspirational funding in any business case referencing this plan. Roughly half the headline is already-announced programmes rebadged."
+   },
+   {
+    "owner": "GC",
+    "cls": "owner-gc",
+    "text": "Engage DICT and DOE early on permitting and data-residency rules, since the terms set in the first phase will shape what is buildable later."
+   }
+  ],
+  "risks": [
+   {
+    "text": "Funding and power may not materialise on schedule. GDP and job projections attached to the plan are targets rather than commitments."
+   },
+   {
+    "text": "Household and industrial power constraints are the binding limit. A 1.5GW target on the current grid is an energy plan disguised as a technology plan."
+   },
+   {
+    "text": "Roughly $18.2 billion of the headline overlaps existing programmes, so the plan is less additive than the announcement implies."
+   }
+  ],
+  "question": "What percentage of our planned Philippine AI-infrastructure exposure is contractually funded, power-secured and supported by creditworthy counterparties, and what happens to that exposure if the 400MW phase slips two years?",
+  "csuite": "This is the highest local-relevance item in the briefing and it touches four of our businesses at once. The opportunity is real but the constraint is power and permitting rather than capital, and the headline investment number is roughly half new money. Treat it as a planning input for the property and banking businesses rather than as a committed pipeline.",
+  "links": [
+   {
+    "source": "Philippine News Agency",
+    "title": "DICT finalises AI infrastructure masterplan",
+    "url": "https://www.pna.gov.ph/articles/1283577"
+   },
+   {
+    "source": "Newsbytes.ph",
+    "title": "DICT rolls out 8-year AI infra roadmap, eyes $34.4B investments",
+    "url": "https://newsbytes.ph/2026/09/09/dict-rolls-out-8-year-ai-infra-roadmap-eyes-34-4-billion-investments/"
+   },
+   {
+    "source": "Inquirer Business",
+    "title": "PH sets $34B plan to catch up in AI race",
+    "url": "https://business.inquirer.net/609950/ph-sets-34-b-plan-to-catch-up-in-ai-race"
+   }
+  ],
+  "related": [
+   "oracle-q1-backlog",
+   "mistral-series-d",
+   "ca-ai-auditor-registry"
+  ]
+ }
+};
+
+function cardTitle(id) { return MODALS[id] ? MODALS[id].headline : id; }
+
+function openModal(cardId) {
+  const card = MODALS[cardId];
+  if (!card) return;
+  const cat = document.getElementById('modal-category');
+  cat.textContent = card.category;
+  cat.className = 'modal-category ' + card.catColor;
+  document.getElementById('modal-headline').textContent = card.headline;
+  document.getElementById('modal-date').textContent = card.date;
+  document.getElementById('modal-content').innerHTML = card.content;
+  document.getElementById('panel-grid').innerHTML = `
+    <div class="panel panel-action">
+      <div class="panel-label"><span class="panel-label-icon">✓</span> Executive Actions</div>
+      <ul class="panel-list">
+        ${card.actions.map(a => `<li><span class="owner ${a.cls}">${a.owner}</span> ${a.text}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="panel panel-risk">
+      <div class="panel-label"><span class="panel-label-icon">⚠</span> Risks &amp; Watchouts</div>
+      <ul class="panel-list">
+        ${card.risks.map(r => `<li>${r.text}</li>`).join('')}
+      </ul>
+    </div>`;
+  document.getElementById('modal-question-text').textContent = card.question;
+  document.getElementById('modal-csuite-text').textContent = card.csuite;
+  document.getElementById('modal-link-list').innerHTML = card.links.map(l => `
+    <a class="modal-link" href="${l.url}" target="_blank" rel="noopener">
+      <span class="modal-link-source">${l.source}</span>
+      <span>${l.title}</span>
+      <span class="modal-link-arrow">↗</span>
+    </a>`).join('');
+  document.getElementById('related-chips').innerHTML = card.related.map(r =>
+    `<div class="related-chip" onclick="event.stopPropagation();openModal('${r}')">${cardTitle(r).substring(0,55)}${cardTitle(r).length > 55 ? '…' : ''}</div>`).join('');
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.section;
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.classList.toggle('hidden', f !== 'all' && sec.dataset.section !== f);
+    });
+    window.scrollTo({ top: document.querySelector('.main').offsetTop - 80, behavior: 'smooth' });
+  });
+});
+
+(function() {
+  const navInner = document.getElementById('nav-inner');
+  const btnLeft = document.getElementById('nav-scroll-left');
+  const btnRight = document.getElementById('nav-scroll-right');
+  const scrollArea = document.getElementById('nav-scroll-area');
+  function updateScrollState() {
+    const sl = navInner.scrollLeft;
+    const max = navInner.scrollWidth - navInner.clientWidth;
+    btnLeft.classList.toggle('visible', sl > 2);
+    btnRight.classList.toggle('visible', sl < max - 2);
+    scrollArea.classList.toggle('fade-left', sl > 2);
+    scrollArea.classList.toggle('fade-right', sl < max - 2);
+  }
+  btnLeft.addEventListener('click', () => navInner.scrollBy({ left: -200, behavior: 'smooth' }));
+  btnRight.addEventListener('click', () => navInner.scrollBy({ left: 200, behavior: 'smooth' }));
+  navInner.addEventListener('scroll', updateScrollState, { passive: true });
+  window.addEventListener('resize', updateScrollState);
+  setTimeout(updateScrollState, 100);
+})();
+
+(function() {
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  if (localStorage.getItem('ai-briefing-theme') === 'light') html.setAttribute('data-theme', 'light');
+  toggle.addEventListener('click', () => {
+    if (html.getAttribute('data-theme') === 'light') {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('ai-briefing-theme', 'dark');
+    } else {
+      html.setAttribute('data-theme', 'light');
+      localStorage.setItem('ai-briefing-theme', 'light');
+    }
+  });
+})();
+</script>
+</body>
+</html>
