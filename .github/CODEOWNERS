@@ -1,0 +1,3 @@
+# Weekly executive AI briefings require the publication owner's review.
+# Enforce with a master branch rule requiring Code Owner approval.
+/news/ @hgdumadag
