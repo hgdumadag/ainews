@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Executive Briefing — Week 43, 2026 (Oct 19–25)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0e12;--bg-card:#13161c;--bg-card-hover:#191d25;--bg-expanded:#151820;--border:#1f2430;--border-accent:#2a3040;--text:#e8eaf0;--text-muted:#8891a5;--text-dim:#5a6275;--accent:#c9a44c;--accent-light:#e0c06a;--accent-dim:rgba(201,164,76,0.12);--red:#e05555;--red-dim:rgba(224,85,85,0.12);--green:#4caf7c;--green-dim:rgba(76,175,124,0.12);--blue:#5b8def;--blue-dim:rgba(91,141,239,0.12);--purple:#9b7ae0;--purple-dim:rgba(155,122,224,0.12);--cyan:#4dc9c9;--cyan-dim:rgba(77,201,201,0.12);--orange:#e08a3c;--orange-dim:rgba(224,138,60,0.12);--hero-grad-start:#12151c;--nav-bg:rgba(12,14,18,0.92);--hero-glow-a:rgba(201,164,76,0.06);--hero-glow-b:rgba(91,141,239,0.04);--panel-action-bg:rgba(76,175,124,0.06);--panel-action-border:rgba(76,175,124,0.15);--panel-risk-bg:rgba(224,85,85,0.06);--panel-risk-border:rgba(224,85,85,0.15);--panel-li-border:rgba(255,255,255,0.04);--shadow-card:rgba(0,0,0,0.3);--overlay-bg:rgba(0,0,0,0.75);--noise-opacity:0.03}
+[data-theme="light"]{--bg:#f4f6f9;--bg-card:#fff;--bg-card-hover:#f0f4f8;--bg-expanded:#fff;--border:#d8dde6;--border-accent:#c0c8d4;--text:#1a2332;--text-muted:#4a5568;--text-dim:#8896a8;--accent:#135EAB;--accent-light:#1a74d0;--accent-dim:rgba(19,94,171,0.10);--red:#c53030;--red-dim:rgba(197,48,48,0.08);--green:#04955F;--green-dim:rgba(4,149,95,0.08);--blue:#135EAB;--blue-dim:rgba(19,94,171,0.08);--purple:#6b46c1;--purple-dim:rgba(107,70,193,0.08);--cyan:#0d9488;--cyan-dim:rgba(13,148,136,0.08);--orange:#c05621;--orange-dim:rgba(192,86,33,0.08);--hero-grad-start:#e8edf4;--nav-bg:rgba(244,246,249,0.94);--hero-glow-a:rgba(19,94,171,0.06);--hero-glow-b:rgba(4,149,95,0.05);--panel-action-bg:rgba(4,149,95,0.06);--panel-action-border:rgba(4,149,95,0.18);--panel-risk-bg:rgba(197,48,48,0.05);--panel-risk-border:rgba(197,48,48,0.15);--panel-li-border:rgba(0,0,0,0.06);--shadow-card:rgba(19,94,171,0.08);--overlay-bg:rgba(255,255,255,0.82);--noise-opacity:0.015}
+*{box-sizing:border-box;margin:0;padding:0}
+html{transition:background .4s ease;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;line-height:1.65;background:var(--bg);color:var(--text);min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:var(--noise-opacity,1)}
+body,.hero,.nav-strip,.card,.modal,.exec-strip,.metric,.modal-csuite,.panel,.footer,.theme-toggle,.nav-btn{transition:background .35s ease,color .35s ease,border-color .35s ease,box-shadow .35s ease}
+.hero{position:relative;overflow:hidden;padding:72px 32px 48px;background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--bg) 100%)}
+.hero::before{content:'';position:absolute;left:-20%;top:-50%;width:140%;height:200%;background:radial-gradient(ellipse at 30% 20%,var(--hero-glow-a) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,var(--hero-glow-b) 0%,transparent 50%);pointer-events:none}
+.hero-inner{position:relative;max-width:1100px;margin:0 auto}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.hero-label::before{content:'';width:24px;height:1px;background:var(--accent)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:700;line-height:1.1;margin-bottom:18px}
+.hero h1 span{color:var(--accent)}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;color:var(--text-muted);max-width:760px;margin-bottom:36px}
+.metrics-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:10px;overflow:hidden;max-width:900px}
+.metric{background:var(--bg-card);padding:18px 20px;text-align:center}
+.metric-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--accent);line-height:1.2}
+.metric-label{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);margin-top:6px;line-height:1.4}
+.nav-strip{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-wrapper{max-width:1200px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:6px}
+.nav-scroll-area{position:relative;flex:1;overflow:hidden}
+.nav-scroll-area::before,.nav-scroll-area::after{content:'';position:absolute;top:0;bottom:0;width:28px;z-index:2;pointer-events:none;opacity:0;transition:opacity .2s}
+.nav-scroll-area::before{left:0;background:linear-gradient(90deg,var(--bg,#0c0e12),transparent)}
+.nav-scroll-area::after{right:0;background:linear-gradient(-90deg,var(--bg,#0c0e12),transparent)}
+.nav-scroll-area.fade-left::before,.nav-scroll-area.fade-right::after{opacity:1}
+.nav-inner{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;white-space:nowrap;padding:7px 14px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text-muted);cursor:pointer;transition:all .2s}
+.nav-btn:hover{color:var(--text);background:var(--bg-card)}
+.nav-btn.active{color:var(--accent);background:var(--accent-dim);border-color:var(--border-accent)}
+.nav-scroll-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);cursor:pointer;opacity:0;pointer-events:none;flex-shrink:0;transition:opacity .2s}
+.nav-scroll-btn.visible{opacity:1;pointer-events:auto}
+.theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);margin-left:8px;position:relative;cursor:pointer;flex-shrink:0;color:var(--text)}
+.theme-toggle span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .3s}
+.theme-toggle .icon-sun{opacity:0;transform:rotate(-90deg) scale(.5)}
+.theme-toggle .icon-moon{opacity:1}
+[data-theme="light"] .theme-toggle .icon-sun{opacity:1;transform:none}
+[data-theme="light"] .theme-toggle .icon-moon{opacity:0;transform:rotate(90deg) scale(.5)}
+.main{max-width:1200px;margin:0 auto;padding:32px 24px 64px}
+.exec-strip{background:var(--accent-dim);border:1px solid var(--border-accent);border-radius:12px;padding:22px 26px;margin-bottom:36px}
+.exec-label,.panel-label,.modal-csuite-label,.modal-links-label,.modal-related-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.exec-strip p{font-family:'Source Serif 4',serif;font-size:15px;line-height:1.7}
+.section{margin-bottom:44px;animation:fadeUp .5s ease both}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600}
+.section-count{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--border);border-radius:20px;padding:3px 10px}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.card{position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;cursor:pointer;transition:all .25s ease;overflow:hidden;display:flex;flex-direction:column}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;opacity:0;transition:opacity .25s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--shadow-card);background:var(--bg-card-hover)}
+.card:hover::before{opacity:1}
+.card-date,.modal-date{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.card-headline{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;line-height:1.4;margin-bottom:8px}
+.card-summary{font-size:13px;color:var(--text-muted);margin-bottom:14px;flex:1}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tag,.card-risk-badge{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;letter-spacing:.5px}
+.card-bottom{display:flex;justify-content:space-between;align-items:center}
+.card-risk-badge{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px}
+.card-expand-hint{font-size:11px;color:var(--text-dim)}
+.c-gold{color:var(--accent)}.c-red{color:var(--red)}.c-green{color:var(--green)}.c-blue{color:var(--blue)}.c-purple{color:var(--purple)}.c-cyan{color:var(--cyan)}.c-orange{color:var(--orange)}
+.bg-gold{background:var(--accent-dim);color:var(--accent)}.bg-red{background:var(--red-dim);color:var(--red)}.bg-green{background:var(--green-dim);color:var(--green)}.bg-blue{background:var(--blue-dim);color:var(--blue)}.bg-purple{background:var(--purple-dim);color:var(--purple)}.bg-cyan{background:var(--cyan-dim);color:var(--cyan)}.bg-orange{background:var(--orange-dim);color:var(--orange)}
+.bar-gold::before{background:var(--accent)}.bar-red::before{background:var(--red)}.bar-green::before{background:var(--green)}.bar-blue::before{background:var(--blue)}.bar-purple::before{background:var(--purple)}.bar-cyan::before{background:var(--cyan)}.bar-orange::before{background:var(--orange)}
+.icon-gold{background:var(--accent-dim);color:var(--accent)}.icon-red{background:var(--red-dim);color:var(--red)}.icon-green{background:var(--green-dim);color:var(--green)}.icon-blue{background:var(--blue-dim);color:var(--blue)}.icon-purple{background:var(--purple-dim);color:var(--purple)}.icon-cyan{background:var(--cyan-dim);color:var(--cyan)}.icon-orange{background:var(--orange-dim);color:var(--orange)}
+.modal-overlay{position:fixed;inset:0;background:var(--overlay-bg);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:1000;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px}
+.modal-overlay.active{display:flex;animation:fadeIn .2s ease}
+.modal{background:var(--bg-expanded);border:1px solid var(--border-accent);border-radius:16px;max-width:800px;width:100%;animation:slideUp .3s ease;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.modal-top-bar{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:1px solid var(--border)}
+.modal-category{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.modal-close{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);cursor:pointer;font-size:14px}
+.modal-body{padding:28px}
+.modal-headline{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1.25;margin-bottom:8px}
+.modal-content{font-family:'Source Serif 4',serif;font-size:15px;line-height:1.75;color:var(--text-muted);margin:18px 0 24px}
+.modal-content p{margin-bottom:14px}.modal-content strong{color:var(--text);font-weight:600}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.panel{border-radius:12px;padding:18px 20px;border:1px solid var(--border)}
+.panel-action{background:var(--panel-action-bg);border-color:var(--panel-action-border)}
+.panel-action .panel-label{color:var(--green)}
+.panel-risk{background:var(--panel-risk-bg);border-color:var(--panel-risk-border)}
+.panel-risk .panel-label{color:var(--red)}
+.panel-list{list-style:none;font-family:'Source Serif 4',serif;font-size:13.5px;line-height:1.55;color:var(--text-muted)}
+.panel-list li{padding:9px 0;border-bottom:1px solid var(--panel-li-border)}
+.panel-list li:last-child{border-bottom:none}
+.panel-risk .panel-list li{position:relative;padding-left:16px}
+.panel-risk .panel-list li::before{content:'';position:absolute;left:0;top:17px;width:6px;height:6px;border-radius:50%;background:var(--red)}
+.panel-list .owner{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-right:6px;display:inline-block;vertical-align:middle}
+.owner-ceo{background:var(--accent-dim);color:var(--accent)}.owner-cfo{background:var(--green-dim);color:var(--green)}.owner-cio{background:var(--blue-dim);color:var(--blue)}.owner-gc{background:var(--purple-dim);color:var(--purple)}.owner-ciso{background:var(--red-dim);color:var(--red)}.owner-chro{background:var(--orange-dim);color:var(--orange)}
+.modal-csuite{background:var(--accent-dim);border:1px solid var(--border-accent);border-radius:12px;padding:18px 22px;margin-bottom:24px}
+.modal-csuite p{font-family:'Source Serif 4',serif;font-size:14px;line-height:1.7}
+.modal-link-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.modal-link{display:flex;gap:12px;align-items:center;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text-muted);text-decoration:none;font-size:13px}
+.modal-link:hover{border-color:var(--accent);color:var(--text)}
+.modal-link-source{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);flex-shrink:0}
+.modal-link-arrow{margin-left:auto;color:var(--text-dim)}
+.related-chips{display:flex;flex-wrap:wrap;gap:8px}
+.related-chip{font-size:12px;padding:6px 12px;border:1px solid var(--border);border-radius:20px;background:var(--bg-card);color:var(--text-muted);cursor:pointer}
+.related-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.committee-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.committee-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 22px}
+.committee-panel h3{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:12px}
+.committee-list{list-style:none}
+.committee-list li{padding:12px 0;border-bottom:1px solid var(--panel-li-border);font-family:'Source Serif 4',serif;font-size:13.5px;line-height:1.55;color:var(--text-muted)}
+.committee-list li:last-child{border-bottom:none}
+.committee-list .wl-item{display:block;color:var(--text);font-weight:600;margin-bottom:2px}
+.committee-list .owner{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-right:6px;display:inline-block;vertical-align:middle}
+.ref-chip{display:inline-block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;padding:3px 9px;border:1px solid var(--border-accent);border-radius:20px;background:var(--accent-dim);color:var(--accent);cursor:pointer}
+.ref-chip:hover{border-color:var(--accent)}
+.wl-note{font-size:12px;color:var(--text-dim);margin-top:10px;font-style:italic}
+.footer{text-align:center;padding:32px 24px 48px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;line-height:1.8;color:var(--text-dim);text-transform:uppercase}
+[data-theme="light"] .hero h1 span,[data-theme="light"] .metric-value{background:linear-gradient(135deg,#135EAB,#04955F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+[data-theme="light"] .metrics-bar{background:linear-gradient(135deg,#135EAB,#04955F)}
+[data-theme="light"] .metric{background:rgba(255,255,255,.95)}
+[data-theme="light"] .exec-strip,[data-theme="light"] .modal-csuite{background:linear-gradient(135deg,rgba(19,94,171,.06),rgba(4,149,95,.06))}
+[data-theme="light"] .bg-gold{background:rgba(19,94,171,.10);color:#135EAB}[data-theme="light"] .bg-red{background:rgba(255,156,163,.20);color:#b83240}[data-theme="light"] .bg-green{background:rgba(4,149,95,.10);color:#04955F}[data-theme="light"] .bg-blue{background:rgba(100,203,192,.15);color:#0a7a6e}[data-theme="light"] .bg-purple{background:rgba(107,70,193,.10);color:#6b46c1}[data-theme="light"] .bg-cyan{background:rgba(100,203,192,.15);color:#0d9488}[data-theme="light"] .bg-orange{background:rgba(244,244,49,.15);color:#8a6d00}
+[data-theme="light"] .bar-gold::before{background:linear-gradient(180deg,#135EAB,#04955F)}[data-theme="light"] .bar-blue::before{background:#135EAB}[data-theme="light"] .bar-green::before{background:#04955F}[data-theme="light"] .bar-red::before{background:#FF9CA3}[data-theme="light"] .bar-purple::before{background:#6b46c1}[data-theme="light"] .bar-cyan::before{background:#64CBC0}[data-theme="light"] .bar-orange::before{background:#F4F431}
+[data-theme="light"] .icon-gold{background:rgba(19,94,171,.10)}[data-theme="light"] .icon-green{background:rgba(4,149,95,.10)}[data-theme="light"] .icon-blue{background:rgba(100,203,192,.12)}[data-theme="light"] .icon-red{background:rgba(255,156,163,.15)}[data-theme="light"] .icon-purple{background:rgba(107,70,193,.10)}[data-theme="light"] .icon-cyan{background:rgba(100,203,192,.12)}[data-theme="light"] .icon-orange{background:rgba(244,244,49,.15)}
+[data-theme="light"] .owner-ceo{background:rgba(19,94,171,.10);color:#135EAB}[data-theme="light"] .owner-cfo{background:rgba(4,149,95,.10);color:#04955F}[data-theme="light"] .owner-cio{background:rgba(100,203,192,.15);color:#0a7a6e}[data-theme="light"] .owner-gc{background:rgba(107,70,193,.10);color:#6b46c1}[data-theme="light"] .owner-ciso{background:rgba(255,156,163,.15);color:#b83240}[data-theme="light"] .owner-chro{background:rgba(244,244,49,.15);color:#8a6d00}
+[data-theme="light"] .nav-btn.active{background:linear-gradient(135deg,rgba(19,94,171,.10),rgba(4,149,95,.08));color:#135EAB}
+[data-theme="light"] .card{box-shadow:0 1px 3px rgba(0,0,0,.04)}[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(19,94,171,.10)}
+[data-theme="light"] .modal{box-shadow:0 20px 60px rgba(0,0,0,.15)}
+[data-theme="light"] .related-chip:hover{background:rgba(19,94,171,.08);border-color:#135EAB;color:#135EAB}
+[data-theme="light"] .hero-label{color:#04955F}[data-theme="light"] .hero-label::before{background:linear-gradient(90deg,#135EAB,#04955F);width:32px;height:2px}
+[data-theme="light"] .nav-scroll-area::before{background:linear-gradient(90deg,rgba(244,246,249,.95),transparent)}[data-theme="light"] .nav-scroll-area::after{background:linear-gradient(-90deg,rgba(244,246,249,.95),transparent)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@media(max-width:768px){.hero{padding:48px 20px 32px}.nav-wrapper{padding:8px 12px}.metrics-bar{grid-template-columns:1fr}.cards-grid{grid-template-columns:1fr}.modal-body{padding:20px}.modal-top-bar{padding:14px 20px}.main{padding:24px 16px 48px}}
+@media(max-width:640px){.panel-grid,.committee-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="hero-inner">
+<div class="hero-label">AI Executive Briefing · Week of Oct 19–25, 2026</div>
+<h1>This week in <span>AI</span>: an AI-found PHP flaw, vendor finances and agent controls</h1>
+<p class="hero-sub" id="hero-sub"></p>
+<div class="metrics-bar" id="metrics-bar"></div>
+</div></header>
+<nav class="nav-strip"><div class="nav-wrapper">
+<button class="nav-scroll-btn" id="nav-scroll-left" aria-label="Scroll left">‹</button>
+<div class="nav-scroll-area" id="nav-scroll-area"><div class="nav-inner" id="nav-inner"></div></div>
+<button class="nav-scroll-btn" id="nav-scroll-right" aria-label="Scroll right">›</button>
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><span class="icon-moon">🌙</span><span class="icon-sun">☀️</span></button>
+</div></nav>
+<main class="main">
+<div class="exec-strip"><div class="exec-label">⚡ 30-Second Executive Summary</div><p id="exec-summary"></p></div>
+<div id="content-area"></div>
+</main>
+<div class="modal-overlay" id="modal-overlay"><div class="modal">
+<div class="modal-top-bar"><div class="modal-category" id="modal-category"></div><button class="modal-close" id="modal-close" aria-label="Close">✕</button></div>
+<div class="modal-body">
+<h2 class="modal-headline" id="modal-headline"></h2><div class="modal-date" id="modal-date"></div>
+<div class="modal-content" id="modal-content"></div>
+<div class="panel-grid" id="panel-grid"></div>
+<div class="modal-csuite"><div class="modal-csuite-label">⚡ Bottom Line</div><p id="modal-csuite-text"></p></div>
+<div class="modal-links"><div class="modal-links-label">Sources &amp; Further Reading</div><div class="modal-link-list" id="modal-link-list"></div></div>
+<div class="modal-related"><div class="modal-related-label">Related Topics</div><div class="related-chips" id="related-chips"></div></div>
+</div></div></div>
+<footer class="footer">AI Executive Briefing — Week of Oct 19–25, 2026 · Prepared by Audit Technology and Innovations, Corporate Internal Audit, for the Audit and Risk Committee · Researched and drafted with AI assistance (Claude, by Anthropic) and reviewed by ATI · Sources verified as of October 26, 2026</footer>
+<script>
+const meta = {
+  period: "Week of Oct 19–25, 2026",
+  asOf: "October 26, 2026",
+  heroSub: "The search index returned few dated items this week, so this edition has thirteen stories and coverage is likely incomplete rather than a confirmed quiet week. The week’s most urgent story is the patching of two AI-found critical PHP flaws. The common thread: the finances and policy positions of frontier AI vendors came into view, controls on what AI agents may do are becoming products and policy questions, and AI supply chains face scrutiny on provenance, data and hardware.",
+  summary: "Two critical PHP flaws (“PHP2Shell”), found with AI tools, were patched on October 21; Amazon reports broad exploitation attempts while CISA had seen none, so patch status of every PHP system matters now. DHS published an order excluding DeepSeek products from US federal civilian procurements and directing removal of DeepSeek products and “third-party products and services developed using DeepSeek implementations”. A draft Anthropic IPO prospectus, as reviewed by the Wall Street Journal and reported by Dealroom, shows $16.3 billion in first-half 2026 revenue and an $80.7 billion net loss, about $72 billion of it non-cash; the public filing is not yet out. Walmart launched Agent Gateway for approved AI agents, and TechCrunch reports that Agent Profiles, “rolling out next month”, will let customers require approval for each purchase or set a spending limit. Google Cloud said OpenAI’s GPT-6 models are rolling out in private preview to select enterprise customers. Market Impact and Hardware & Infrastructure have no story this week because no item met the source rule."
+};
+const metrics = [
+  {value:"$16.3B", label:"Anthropic's first-half 2026 revenue in its draft IPO prospectus, per a WSJ review reported by Dealroom (draft, not filed publicly)", cid:"C-02"},
+  {value:"17.6 million", label:"Files (22.72TB) Cybernews researchers found in an open Azure bucket of AI aggregator 302.ai; Cybernews has “no evidence” malicious actors accessed them", cid:"C-07"},
+  {value:"60 days", label:"Window for US federal civilian agencies to request an exception to the DHS order to remove DeepSeek products, per BleepingComputer", cid:"C-08"},
+  {value:"More than 50 people", label:"Threshold of imminent risk of death or injury (or over $1B damage) at which Anthropic's draft bill would let the government seek to block a model's release", cid:"C-09"},
+  {value:"9.2", label:"CVSS v4 score of each of the two critical PHP flaws (PHP2Shell), found with AI tools and patched Oct 21, per Tenable", cid:"C-13"}
+];
+const sections = [
+{ id:"platforms", title:"Enterprise Platform Wars", icon:"🏛", iconClass:"icon-gold", cards:[
+ { id:"google-cloud-openai-models-preview", cid:"C-01", date:"Oct 21, 2026",
+  headline:"Google Cloud starts private preview of OpenAI GPT-6 models",
+  summary:"Google Cloud is rolling out three OpenAI GPT-6 models in private preview to select enterprise customers, billed on one Google invoice. Zero Data Retention is “coming soon”.",
+  tags:[["CIO","bg-blue"],["CISO","bg-red"],["GC","bg-purple"]], barClass:"bar-gold", riskLevel:"LOW", riskClass:"bg-gold", category:"ENTERPRISE PLATFORMS", catColor:"c-gold",
+  content:`<p>Google Cloud said that <strong>OpenAI’s GPT-6 Astra, GPT-6.1 Sol and GPT-6 Luna</strong> models “are rolling out now in private preview to select enterprise customers” in its Model Garden, “with more coming soon”. Access is requested through a form, and no general-availability date was given.</p><p>Google said it “is now the only hyperscale cloud provider offering access to all three leading closed source LLMs” (Gemini, Claude and GPT), “alongside more than <strong>200</strong> first-party, third-party, and open models”. That is Google’s own claim.</p><p>Because the models are transacted through Google Cloud Marketplace, usage “appears on a single Google Cloud invoice, draws down existing cloud commitments” and counts toward Flexible Savings Plans, according to Google. Zero Data Retention options and Confidential Compute are both described as “coming soon”, so neither is available yet.</p>`,
+  actions:[
+   {owner:"CIO", ownerClass:"owner-cio", text:"Ask Google Cloud for the preview terms before any unit applies, and keep group data out of the preview until Zero Data Retention and Confidential Compute are available (proposed rule)."},
+   {owner:"CISO", ownerClass:"owner-ciso", text:"Require a data-handling review of OpenAI models on Google Cloud before any use; do not assume OpenAI’s own enterprise terms apply."},
+   {owner:"GC", ownerClass:"owner-gc", text:"Review the marketplace and model-provider terms, including who acts as data processor, before units sign up."}
+  ],
+  risks:[
+   {text:"Data handling: Zero Data Retention and Confidential Compute are “coming soon”, so data terms for these models on Google Cloud should not be assumed to match OpenAI’s own."},
+   {text:"Scope: this is a private preview with no general-availability date, so access and terms may change."},
+   {text:"Vendor sprawl: multi-model access lowers single-vendor dependence but widens the set of model providers whose terms the group must review."}
+  ],
+  csuite:"Units already committed to Google Cloud could test OpenAI models without a new vendor contract. That is an option, not an exposure, until someone adopts it, and the data-handling terms need review first.",
+  links:[
+   {source:"Google Cloud", title:"Google Cloud brings OpenAI models to customers", url:"https://cloud.google.com/blog/products/ai-machine-learning/google-cloud-brings-openai-models-to-customers"},
+   {source:"CNBC", title:"OpenAI to bring AI models to Google's cloud, in further expansion beyond Microsoft", url:"https://www.cnbc.com/amp/2026/10/21/openai-bring-its-ai-models-to-googles-cloud-expands-beyond-microsoft.html"}
+  ], related:["openai-30b-raise-report","anthropic-draft-ipo-prospectus"] }
+]},
+{ id:"funding", title:"Funding & M&A", icon:"💰", iconClass:"icon-green", cards:[
+ { id:"anthropic-draft-ipo-prospectus", cid:"C-02", date:"Oct 20–21, 2026",
+  headline:"Anthropic draft IPO prospectus reportedly shows $16.3B revenue, $80.7B loss",
+  summary:"A draft Anthropic prospectus, as reviewed by the WSJ and reported by Dealroom, shows $16.3B first-half revenue and an $80.7B net loss, about $72B of it non-cash.",
+  tags:[["CFO","bg-green"],["CIO","bg-blue"],["GC","bg-purple"]], barClass:"bar-gold", riskLevel:"MEDIUM", riskClass:"bg-orange", category:"FUNDING & M&A", catColor:"c-gold",
+  content:`<p>This updates the Anthropic IPO watch item from earlier editions: what is new is the reported content of a draft prospectus and a possible November listing. Dealroom reports that “Anthropic’s draft IPO prospectus shows <strong>$16.3 billion</strong> in first-half 2026 revenue against an <strong>$80.7 billion</strong> net loss”, according to “a Wall Street Journal review of the document”. Revenue rose from $1.1 billion a year earlier, and about <strong>$72 billion</strong> of the loss comes from non-cash accounting charges, per Dealroom. The WSJ original was not read, so every figure here is second-hand and from a draft that is not public.</p><p>Per Dealroom, the draft “says Anthropic could commit up to <strong>$750 billion</strong> to compute capacity in the coming years”, and lists noncancelable cloud deals including Google (<strong>$111 billion</strong>), AWS (<strong>$110 billion</strong>) and Microsoft (<strong>$31 billion</strong>), with much of that payable regardless of usage. Investing.com, relaying the WSJ, puts the noncancelable cloud agreements at roughly <strong>$450 billion</strong> over the next decade; investinglive’s “$600 billion” adds leased Google chips to that figure. Outlets total the commitments differently.</p><p>About <strong>20%</strong> of revenue came from two customers. Dealroom says Anthropic “separately told investors” that third-quarter revenue was <strong>$16.8 billion</strong>, up 45% from the second quarter. Dealroom says Anthropic is preparing to list “as soon as November 2026” and that “the public filing is expected within weeks”. Anthropic declined to comment, according to investinglive.</p>`,
+  actions:[
+   {owner:"CFO", ownerClass:"owner-cfo", text:"Add Anthropic and the other frontier-model suppliers to the vendor financial watch list, and review the public S-1 when it is filed (proposed: within 30 days of filing)."},
+   {owner:"CIO", ownerClass:"owner-cio", text:"List which group units use Anthropic models, directly or through cloud vendors, and record a fallback model for each."},
+   {owner:"GC", ownerClass:"owner-gc", text:"Check continuity, pricing-change and termination clauses in contracts that depend on a single frontier-model vendor."}
+  ],
+  risks:[
+   {text:"Vendor concentration: the reported fixed cloud commitments are large relative to revenue, so pricing or terms could change after listing."},
+   {text:"Data quality: all figures come from a draft, second-hand through Dealroom; the public S-1 may differ."},
+   {text:"Customer concentration: about 20% of revenue from two customers is a supplier-stability signal."}
+  ],
+  csuite:"The loss is mostly non-cash, per the report, but the commitments are large and the figures are unconfirmed. For JG Summit this is a vendor-continuity question to put to anyone relying on one frontier vendor, not a direct exposure.",
+  links:[
+   {source:"Dealroom", title:"Anthropic's draft S-1 reveals $16.3B revenue, $80.7B loss and up to $750B compute bill", url:"https://dealroom.co/news/164610-anthropics-draft-s-1-reveals-16-3b-revenue-80-7b-loss-and-up-to-750b-com/"},
+   {source:"investinglive", title:"Anthropic IPO draft shows nearly 15-fold revenue jump and $600 billion in compute deals", url:"https://investinglive.com/stocks/anthropic-ipo-draft-shows-nearly-15-fold-revenue-jump-and-600-billion-in-compute-deals/"},
+   {source:"Investing.com (relaying WSJ)", title:"Anthropic revenue hits $16.3 billion as preliminary S-1 outlines IPO risks", url:"https://www.investing.com/news/stock-market-news/anthropic-revenue-hits-163-billion-as-preliminary-s1-outlines-ipo-risks--wsj-4960928"}
+  ], related:["openai-30b-raise-report","google-cloud-openai-models-preview"] },
+ { id:"openai-30b-raise-report", cid:"C-03", date:"Oct 22, 2026",
+  headline:"OpenAI reportedly working on raising up to $30B at $1.25T pre-money",
+  summary:"TechCrunch, citing CNBC’s sources, reports OpenAI may raise up to $30B at a $1.25T pre-money valuation. The lead investor is reported two ways, and terms are not final.",
+  tags:[["CFO","bg-green"],["CIO","bg-blue"]], barClass:"bar-gold", riskLevel:"LOW", riskClass:"bg-gold", category:"FUNDING & M&A", catColor:"c-gold",
+  content:`<p>TechCrunch reports that OpenAI “is reportedly close to securing another mega round of private funding, rather than plowing ahead with an IPO”: up to <strong>$30 billion</strong> at a <strong>$1.25 trillion</strong> pre-money valuation, “in a round led by Coatue and investors in UAE”, according to sources who spoke to CNBC. A CNBC headline says the round is “led by UAE investors”, so the lead investor is reported two ways. The CNBC article itself could not be read.</p><p>“Terms are still being negotiated, both outlets report, so they could ultimately change,” TechCrunch writes. OpenAI declined to comment.</p><p>TechCrunch adds that OpenAI’s March raise valued it at <strong>$852 billion</strong> post-money, and that Bloomberg had earlier reported OpenAI was working on raising $30 billion at a <strong>$1.4 trillion</strong> valuation.</p>`,
+  actions:[
+   {owner:"CFO", ownerClass:"owner-cfo", text:"Record this as a market-sentiment input only and keep AI vendor cost assumptions unchanged until the round closes and terms are confirmed."},
+   {owner:"CIO", ownerClass:"owner-cio", text:"Confirm which group units depend on OpenAI models through Microsoft or Google Cloud, and check whether those contracts carry price protection."}
+  ],
+  risks:[
+   {text:"Reporting: terms are still being negotiated, and the lead investor and valuation basis differ between outlets."},
+   {text:"Source: the CNBC original was not read; figures reach this briefing through TechCrunch, and confidence is Medium."},
+   {text:"Supplier funding: a model supplier’s funding path affects how long current pricing and terms last."}
+  ],
+  csuite:"A lower valuation than the earlier Bloomberg figure would be a sentiment signal about frontier AI pricing, if confirmed. It has little direct effect on the group today.",
+  links:[
+   {source:"TechCrunch", title:"OpenAI working on new $30B raise at $1.25T valuation ahead of IPO", url:"https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/"},
+   {source:"CNBC", title:"OpenAI nears up to $30 billion funding round at $1.25 trillion valuation led by UAE investors", url:"https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html"}
+  ], related:["anthropic-draft-ipo-prospectus","google-cloud-openai-models-preview"] }
+]},
+{ id:"agents", title:"Agentic AI & Governance", icon:"🤖", iconClass:"icon-cyan", cards:[
+ { id:"walmart-agent-gateway", cid:"C-04", date:"Oct 21, 2026",
+  headline:"Walmart opens Agent Gateway to approved AI shopping agents",
+  summary:"Walmart launched an MCP server for approved AI agents. TechCrunch reports per-purchase approval and spending limits arrive next month, while Amazon bars outside agents.",
+  tags:[["CIO","bg-blue"],["CISO","bg-red"],["GC","bg-purple"]], barClass:"bar-cyan", riskLevel:"MEDIUM", riskClass:"bg-orange", category:"AGENTIC AI", catColor:"c-cyan",
+  content:`<p>AFP reports that “Walmart on Wednesday unveiled tools allowing artificial intelligence agents such as Meta’s Muse to shop on behalf of its customers”, taking the opposite approach to Amazon, “which bars outside AI agents from its platform”.</p><p>TechCrunch describes <strong>Agent Gateway</strong> as Walmart’s “new MCP server, which is designed to help approved agents connect to Walmart”. It reports that with <strong>Agent Profiles</strong>, “rolling out next month”, customers can require approval for each transaction or authorise transactions “within a certain spending limit they set”.</p><p>TechCrunch also reports, paraphrasing Walmart, that agents cannot access customers’ payment information and that agents that do not comply with the terms will be blocked from Walmart’s site. This is the outlet’s description, not a Walmart quote. The list of approved agents and the enforcement details were not reported.</p>`,
+  actions:[
+   {owner:"CIO", ownerClass:"owner-cio", text:"Write a short design note on how each group customer channel (retail and banking apps first) would identify, approve, cap and block a customer-delegated AI agent (proposed: within 60 days)."},
+   {owner:"CISO", ownerClass:"owner-ciso", text:"Set logging requirements for agent-initiated transactions so each action can be traced to a customer and an agent."},
+   {owner:"GC", ownerClass:"owner-gc", text:"Review customer terms of use for whether they cover purchases or transactions made through a customer’s AI agent, including who bears fraud losses."}
+  ],
+  risks:[
+   {text:"Liability: it is unclear who bears the loss when a customer’s agent transacts or is misused, and the sources do not say how Walmart handles this."},
+   {text:"Control gaps: enforcement details and the approved-agent list were not reported, so the design cannot be fully assessed."},
+   {text:"Timing: Agent Profiles are due in November, so customer-agent traffic is a near-term channel question rather than a distant one."}
+  ],
+  csuite:"Walmart’s approach (an approved-agent list, per-agent profiles, spending caps and blocking) is a usable reference for any group channel where customers may send AI agents to buy. The open question for JG Summit is who bears the loss when an agent goes wrong.",
+  links:[
+   {source:"TechCrunch", title:"While Amazon blocks AI agents, Walmart rolls out the welcome mat", url:"https://techcrunch.com/2026/10/21/while-amazon-blocks-ai-agents-walmart-rolls-out-the-welcome-mat/"},
+   {source:"AFP via CTV News", title:"Walmart welcomes AI agents as Anthropic launches its own", url:"https://www.ctvnews.ca/sci-tech/article/walmart-welcomes-ai-agents-as-anthropic-launches-its-own/"}
+  ], related:["onepassword-for-agents","rhode-island-v-meta-ai-ads","claude-duet-research-preview"] },
+ { id:"claude-duet-research-preview", cid:"C-05", date:"Oct 21, 2026",
+  headline:"Anthropic opens Claude Duet proactive agent as US waitlist preview",
+  summary:"Claude Duet is a waitlisted US research preview for Pro and Max subscribers; Team and Enterprise are not included. Anthropic says it asks before sensitive actions.",
+  tags:[["CISO","bg-red"],["CIO","bg-blue"],["CHRO","bg-orange"]], barClass:"bar-cyan", riskLevel:"LOW", riskClass:"bg-gold", category:"AGENTIC AI", catColor:"c-cyan",
+  content:`<p>Anthropic says “Claude Duet is a research preview on a waitlist for Claude Pro and Max subscribers in the US”, and that “Team and Enterprise plans are not included yet”. It is “Powered by Opus 5.5” and is described by Anthropic as “a proactive agent that understands what needs your attention”.</p><p>Anthropic says Duet “asks you before sensitive operations like sending messages or paying”. Its FAQ cautions that “It may misread a thread or miscalibrate what’s urgent”.</p><p>TestingCatalog reports that Duet can use “more than 6,000 connectors and plugins” and “checks those accounts every few hours”, and that it must show the proposed action and wait for approval before sending a message, making a payment, signing a document or deleting anything. Anthropic’s product page also says Duet “Works with more than 6,000 connectors and plugins”; the every-few-hours check-in figure is TestingCatalog’s and does not appear on Anthropic’s page. Anthropic’s Mike Krieger posted on X: “We’re opening Claude Duet today as a research preview, starting with a waitlist.”</p>`,
+  actions:[
+   {owner:"CISO", ownerClass:"owner-ciso", text:"Update the shadow-AI policy so staff may not connect personal AI agents, including proactive ones such as Duet, to work email, finance or HR accounts without approval (proposed: this quarter)."},
+   {owner:"CHRO", ownerClass:"owner-chro", text:"Brief staff on the rule in the next security-awareness cycle, with examples of personal agents connected to work accounts."},
+   {owner:"CIO", ownerClass:"owner-cio", text:"Use approval-before-action as a baseline requirement for any internal agent pilot."}
+  ],
+  risks:[
+   {text:"Shadow AI: staff could connect consumer-tier agents to work accounts outside any approval or logging."},
+   {text:"Reliability: Anthropic’s own FAQ warns the agent may misread a thread or miscalibrate urgency."},
+   {text:"Scope: preview, consumer tiers and US only, so exposure today is limited."}
+  ],
+  csuite:"Duet is a consumer product, so the group’s exposure is staff linking personal agents to work accounts. The approval-before-action design is a useful reference for internal pilots.",
+  links:[
+   {source:"Anthropic", title:"Claude Duet product page", url:"https://claude.com/product/claude-duet"},
+   {source:"TestingCatalog", title:"Anthropic opens Claude Duet preview for US Pro and Max users", url:"https://www.testingcatalog.com/claude-duet/"}
+  ], related:["onepassword-for-agents","walmart-agent-gateway"] }
+]},
+{ id:"regulation", title:"Regulation", icon:"⚖️", iconClass:"icon-purple", cards:[
+ { id:"dhs-deepseek-exclusion-order", cid:"C-08", date:"Oct 20, 2026",
+  headline:"DHS orders DeepSeek products out of US federal civilian systems",
+  summary:"DHS ordered DeepSeek products, and third-party products built with DeepSeek, out of US federal civilian systems. BleepingComputer reports a 60-day exception period",
+  tags:[["CIO","bg-blue"],["CISO","bg-red"],["GC","bg-purple"]], barClass:"bar-purple", riskLevel:"MEDIUM", riskClass:"bg-orange", category:"REGULATION", catColor:"c-purple",
+  content:`<p>The Department of Homeland Security published a “Notice of Order Regarding Exclusion and Removal of DeepSeek Products” from federal civilian executive branch IT systems and procurements, “pursuant to the authority granted by the Federal Acquisition Supply Chain Security Act of 2018” (91 FR 66346).</p><p>The exclusion covers IT products and services developed by <strong>Hangzhou DeepSeek Artificial Intelligence Co., Ltd</strong> and its affiliates. Removal covers “all DeepSeek and DeepSeek-affiliate products, and third-party products and services developed using DeepSeek implementations”.</p><p>The Federal Register text read does not state deadlines. BleepingComputer reports that agencies must “immediately remove covered products from agency IT systems, or seek an exception”, with exception requests due within <strong>60 days</strong> of the order, and says the order is not a general ban on private or consumer use. Whether contractors are covered is not stated.</p>`,
+  actions:[
+   {owner:"CIO", ownerClass:"owner-cio", text:"Ask the group’s main AI-related vendors in writing whether any product embeds or was built with DeepSeek models or code, and record the answers (proposed: top 20 vendors by AI-related spend, within 60 days)."},
+   {owner:"CISO", ownerClass:"owner-ciso", text:"Add a “built on which named models” question to vendor security questionnaires."},
+   {owner:"GC", ownerClass:"owner-gc", text:"Check whether any group contract with a US federal agency or federal contractor could pass this order down."}
+  ],
+  risks:[
+   {text:"Regulatory: the order binds US federal civilian agencies only, so there is no direct obligation for the group; no Philippine regulator action on DeepSeek was found."},
+   {text:"Provenance gap: most vendor questionnaires do not ask which model a product is built on, so embedded DeepSeek components could go unseen."},
+   {text:"Evidence: the removal and 60-day details rest on BleepingComputer, because the signed order is rendered as images in the Federal Register."}
+  ],
+  csuite:"The order does not bind JG Summit, but its third-party scope sets a precedent: it asks what a product was built with, not just who sells it. That is a question worth adding to vendor reviews.",
+  links:[
+   {source:"Federal Register (DHS)", title:"Notice of Order Regarding Exclusion and Removal of DeepSeek Products From Federal Civilian Executive Branch IT Systems and Procurements", url:"https://www.federalregister.gov/documents/2026/10/20/2026-21447/notice-of-order-regarding-exclusion-and-removal-of-deepseek-products-from-federal-civilian-executive"},
+   {source:"BleepingComputer", title:"DHS bans DeepSeek products across US federal civilian agencies", url:"https://www.bleepingcomputer.com/news/security/dhs-bans-deepseek-products-across-us-federal-civilian-agencies/"}
+  ], related:["ai-aggregator-302ai-exposure","anthropic-draft-ai-safety-bill"] },
+ { id:"anthropic-draft-ai-safety-bill", cid:"C-09", date:"Oct 19–20, 2026",
+  headline:"Anthropic pitches draft AI safety bill; a court could halt a model release",
+  summary:"Anthropic gave lawmakers a draft bill under which a D.C. judge could be asked to halt a model posing a risk to 50+ people. The sources read do not say it has been introduced.",
+  tags:[["GC","bg-purple"],["CIO","bg-blue"]], barClass:"bar-purple", riskLevel:"LOW", riskClass:"bg-gold", category:"REGULATION", catColor:"c-purple",
+  content:`<p>Bloomberg, via Insurance Journal, reports that “Anthropic PBC has presented its own draft bill to US lawmakers”, citing Politico, “which first reported on the bill”. The articles read do not say the bill has been introduced or name a sponsor, and the bill text was not seen.</p><p>Per Politico, as reported by Bloomberg, the government could block a model if it is determined to “imminently risk killing or injuring more than <strong>50 people</strong> or causing more than <strong>$1 billion</strong> in damages”. TechCrunch reports that evaluators “would have 72 hours to contact the Commerce Department”; Commerce “would then have to request to a Washington, D.C., judge a halt to the model’s release”; and the bill would “forbid any federal agency from having the discretion to halt the model’s distribution on its own”.</p><p>An Anthropic spokesperson said: “This bill represents the proposals outlined in Anthropic’s Advanced AI Framework” and “These are sensible policies we believe Congress should act on.”</p>`,
+  actions:[
+   {owner:"GC", ownerClass:"owner-gc", text:"Add the draft to the regulatory watch register as a proposal only, and note its 50-person and $1 billion thresholds; take no group action unless it is introduced."},
+   {owner:"CIO", ownerClass:"owner-cio", text:"Ask frontier-model vendors at renewal how a court-ordered halt of a model release would affect service continuity and customer notice."}
+  ],
+  risks:[
+   {text:"Proposal stage: it is a draft from one company, with no sponsor or introduction reported, so details may change or never become law."},
+   {text:"Continuity: if a similar rule were enacted, a halted release could affect vendor roadmaps and the models the group depends on."},
+   {text:"Evidence: the bill text was not seen; the details come from Bloomberg’s and TechCrunch’s descriptions."}
+  ],
+  csuite:"This creates no obligation for the group. It signals the shape of US frontier-model rules that vendors may face, with a court rather than an agency deciding on a halt.",
+  links:[
+   {source:"Insurance Journal (Bloomberg)", title:"Anthropic Pitches AI Safety Bill to Lawmakers", url:"https://www.insurancejournal.com/news/national/2026/10/19/889292.htm"},
+   {source:"TechCrunch", title:"Anthropic pitches AI safety bill that may block a model if 50+ people could be killed", url:"https://techcrunch.com/2026/10/20/anthropic-pitches-ai-safety-bill-that-may-block-a-model-if-50-people-could-be-killed/"}
+  ], related:["anthropic-draft-ipo-prospectus","dhs-deepseek-exclusion-order"] },
+ { id:"rhode-island-v-meta-ai-ads", cid:"C-10", date:"Oct 22, 2026",
+  headline:"Rhode Island sues Meta, alleging its AI ad tools helped scammers",
+  summary:"Fox News reports Rhode Island sued Meta over AI ad tools and scam ads. Single source: the complaint was not read. The same page covers OCC remarks on unauthorized AI agents.",
+  tags:[["GC","bg-purple"],["CISO","bg-red"]], barClass:"bar-purple", riskLevel:"LOW", riskClass:"bg-gold", category:"REGULATION", catColor:"c-purple",
+  content:`<p>Fox News reports that Rhode Island sued Meta, alleging its AI ad tools helped scammers. The suit, as quoted by Fox, says “Meta knowingly helped create and optimize these ads to ensure that they were as effective as possible”. Fox says “the complaint marks the first scams-related suit brought against Meta by a U.S. state”; that “first” is Fox’s characterisation. This card rests on one source, a Fox News live blog. The complaint was not read, and these are allegations at filing stage.</p><p>On the same page, Fox reports that Comptroller of the Currency Jonathan Gould appeared on FOX Business to discuss reports of unauthorized AI agents accessing customer accounts. The detail of those reports is not given in the entry read.</p><p>Fox also paraphrases Florida Gov. Ron DeSantis as raising criminal liability for AI executives; his quoted X post says “the AI company would go bankrupt and you wouldn’t get made whole”.</p>`,
+  actions:[
+   {owner:"GC", ownerClass:"owner-gc", text:"Track the complaint and, once it is available, check whether its theory could support claims by group brands impersonated in scam ads (proposed: legal review when the complaint is published)."},
+   {owner:"CISO", ownerClass:"owner-ciso", text:"Ask the banking unit to confirm its controls for detecting unauthorized AI-agent access to customer accounts, and report the result to the committee."}
+  ],
+  risks:[
+   {text:"Allegations: the suit is at filing stage and no finding has been made."},
+   {text:"Single source: only a Fox News live blog was read, so confidence is Medium."},
+   {text:"Regulatory direction: US bank supervisors are watching unauthorized agent access, and the BSP may ask similar questions."}
+  ],
+  csuite:"The suit targets the ad platform’s own AI tools, not the advertisers. If it succeeds, platforms may tighten ad review, which would help brands that are impersonated in scams.",
+  links:[
+   {source:"Fox News", title:"AI’s future hinges on public safety concern, cybersecurity, regulatory work in Congress (live blog)", url:"https://www.foxnews.com/live-news/ai-tech-stocks-donald-trump-midterms-safeguards-regulations-october-22"}
+  ], related:["walmart-agent-gateway","onepassword-for-agents"] }
+]},
+{ id:"workforce", title:"Workforce Disruption", icon:"👥", iconClass:"icon-orange", cards:[
+ { id:"micron-taoyuan-strike-call", cid:"C-12", date:"Oct 20–22, 2026",
+  headline:"Micron’s Taoyuan union in Taiwan calls a one-day strike over bonuses",
+  summary:"The union at Micron’s Taoyuan site, which makes DRAM and HBM chips, announced a one-day strike for Oct 22 in a bonus dispute. Neither source confirms it took place.",
+  tags:[["CIO","bg-blue"],["CFO","bg-green"]], barClass:"bar-orange", riskLevel:"LOW", riskClass:"bg-gold", category:"WORKFORCE", catColor:"c-orange",
+  content:`<p>Reuters, via The Star, reports that the union at Micron’s Taoyuan operations “said it would launch a strike on Thursday” (22 October), to coincide with a mediation meeting with the Taichung union, “escalating a dispute over employee bonuses”. The Taoyuan site makes DRAM and HBM chips, “key components in AI servers”.</p><p>CNA (Focus Taiwan) reports that the Taoyuan union announced a “one-day strike on Thursday in solidarity” with the Taichung union, and that strike authorisation passed with “1,994 of the 2,012 members who cast ballots” in favour. The unions want <strong>15%</strong> of Micron’s operating profits distributed to employees.</p><p>CNA also reports that Micron and the Taichung union signed an agreement on 21 October and cancelled the Thursday mediation, while the Taoyuan dispute was unresolved. Neither source confirms that the strike took place, and its length and effect on production are unknown.</p>`,
+  actions:[
+   {owner:"CIO", ownerClass:"owner-cio", text:"Ask memory and server suppliers whether the Taoyuan dispute affects delivery dates for group orders (proposed: only orders due within the next two quarters)."},
+   {owner:"CFO", ownerClass:"owner-cfo", text:"Note memory-price risk in the 2027 IT budget review alongside the Philippine hardware-shortage item in this edition."}
+  ],
+  risks:[
+   {text:"Unconfirmed: the sources do not show whether the 22 October strike happened or how long it lasted."},
+   {text:"Supply: a sustained stoppage at a DRAM and HBM site would add to memory price pressure."},
+   {text:"Weak signal: this is the lowest-rated story in the edition and is included for its link to memory supply."}
+  ],
+  csuite:"Workers are seeking a share of AI-driven memory profits. It matters to the group only if disruption lasts and feeds the memory cost squeeze described elsewhere in this edition.",
+  links:[
+   {source:"The Star (Reuters)", title:"Micron union in Taiwan to launch strike as bonus dispute escalates", url:"https://www.thestar.com.my/tech/tech-news/2026/10/20/micron-union-in-taiwan-to-launch-strike-as-bonus-dispute-escalates"},
+   {source:"Focus Taiwan (CNA)", title:"Micron, Taichung union reach deal in labor talks", url:"https://focustaiwan.tw/society/202610210014"}
+  ], related:["ph-it-distributor-hardware-shortage"] }
+]},
+{ id:"security", title:"AI Security", icon:"🛡", iconClass:"icon-red", cards:[
+ { id:"php2shell-ai-found-php-flaws", cid:"C-13", date:"Oct 21–23, 2026",
+  headline:"PHP2Shell: AI-found critical PHP flaws patched Oct 21, attacks reported",
+  summary:"Two critical PHP flaws (CVSS 9.2), found with AI tools and patched Oct 21, allow unauthenticated code execution. Amazon reports broad attacks; CISA saw none.",
+  tags:[["CISO","bg-red"],["CIO","bg-blue"],["GC","bg-purple"]], barClass:"bar-red", riskLevel:"HIGH", riskClass:"bg-red", category:"AI SECURITY", catColor:"c-red",
+  content:`<p>On October 21 the PHP project released emergency patches for two critical flaws, <strong>CVE-2026-109618</strong> (memory corruption when PHP runs out of memory) and <strong>CVE-2026-109619</strong> (stale internal state reused across requests), together nicknamed “PHP2Shell”. Tenable reports the PHP security team rated each <strong>9.2</strong> on CVSS v4. They allow remote code execution without logging in. Fortune quotes OpenAI’s Greg Brockman saying the bug had been in PHP for 14 years, and Tenable says the earliest affected code path dates to PHP 5.4.0.</p><p><strong>How AI was involved.</strong> Per Fortune, security firm Calif found the first issue on August 1 using OpenAI’s GPT-5.6 Sol, in an audit OpenAI funded through its Patch the Planet initiative. Wiz, which Fortune describes as Google-owned, independently found its first issue on August 19 using Wiz Atlas, Google’s Gemini 4 Argon and GPT-5.6 Sol. On Fortune’s dates, the first AI-assisted find came about 11 weeks before public disclosure (Wiz’s own timeline starts on August 19, about nine weeks before). The Next Web reports Calif cautioned that no model finds all bugs from simple prompts, and that knowing PHP’s history mattered more than the model. OpenAI called the find “one of the most impactful security issues in recent memory”, as relayed by The Next Web.</p><p><strong>Patch status.</strong> Fixed versions are 8.5.12, 8.4.27, 8.3.36 and 8.2.35 (Tenable). PHP 8.1 and older no longer receive official releases; PHP published minimal source backports for 7.4, 8.0 and 8.1, and Tenable says PHP 5.4 to 7.3 get no fix from the PHP project. PHP says updating is the only complete fix. Help Net Security reports that Palo Alto Networks’ PAN-OS and Panorama are also affected, with no fix shipped as of its October 22 update.</p><p><strong>Exploitation: the sources differ.</strong> Fortune quotes Amazon Web Services as saying on October 21 that the flaw is “now being broadly exploited in the wild”; Tenable adds that Amazon saw a first attempt on a honeypot on October 17, four days before disclosure. Fortune reports Cloudflare saw tens of thousands of exploit attempts within 45 minutes of the news spreading. Against that, Tenable reports CISA said on October 21 it had not observed exploitation, neither CVE was in CISA’s Known Exploited Vulnerabilities catalog as of October 23, and PHP’s team found no functional exploits at release. Public exploit code is circulating, but Tenable has not verified that it works.</p><p><strong>Disruption and scale.</strong> Per Reuters as relayed by Fortune, multiple governments, including some agencies in the Netherlands and Finland, took websites offline as a precaution. Fortune also lists Archive.org as temporarily offline. Help Net Security reports the UK NCSC urged organisations that cannot fix a system at once to take it offline. Wiz says PHP affects about 70% of the internet; Tenable, citing W3Techs, puts PHP at 69.3% of websites whose server-side language is known, which measures PHP use, not how many sites are vulnerable. Palo Alto Networks’ early analysis counted 22.6 million potentially vulnerable instances, per Fortune. In the Philippines, Backend News reports that CERT-PH, the national response team under DICT, warned agencies and businesses to check and patch PHP, and stressed that updating a CMS or site application without updating PHP itself does not fix the flaws. CERT-PH said the sources it reviewed did not establish a confirmed compromise of a Philippine organisation.</p>`,
+  actions:[
+   {owner:"CISO", ownerClass:"owner-ciso", text:"Within days, inventory every PHP system the group runs or relies on (WordPress, Drupal and Joomla sites, vendor-hosted sites, appliances) and patch internet-facing ones first to a fixed version or a vendor-confirmed backport. Updating a CMS or plugin does not patch PHP itself, and hosting providers need to be asked (CERT-PH, via Backend News)."},
+   {owner:"CISO", ownerClass:"owner-ciso", text:"For anything that cannot be patched now, apply PHP’s interim settings (listed by PHP via Tenable) and, as the UK NCSC and CISA advise, take it offline, then review logs from Oct 17 for exploitation attempts (proposed: that start date, given Amazon’s Oct 17 sighting)."},
+   {owner:"CIO", ownerClass:"owner-cio", text:"Retire or upgrade PHP 8.1 and older, which get no official fix, and ask network and security appliance vendors, including Palo Alto Networks, for written patch status."},
+   {owner:"GC", ownerClass:"owner-gc", text:"Ask key web and software vendors to confirm patch dates and any compromise, and check what notification duties a confirmed breach would trigger."}
+  ],
+  risks:[
+   {text:"Exploitation status is disputed: Amazon says broad attacks, CISA reported none on Oct 21, and PHP found no working exploits at release. Treat unpatched internet-facing systems as exposed."},
+   {text:"Hidden PHP: appliances, vendor-hosted sites and bundled products may run vulnerable PHP, and some are not yet fixed (PAN-OS, per Help Net Security)."},
+   {text:"Unsupported versions: PHP 8.1 and older have only minimal source backports or no fix, so upgrades cannot always be a patch."},
+   {text:"Pace: OpenAI expects “similar findings to increase sharply” in the coming months (The Next Web), so patch speed becomes a standing control. The 70% figure is Wiz’s estimate of PHP’s reach, not a count of vulnerable sites."}
+  ],
+  csuite:"The practical question this week is a patch-status answer for every PHP system we run or depend on. AI found flaws that had been in PHP for over a decade, so expect more disclosures like this; asset inventory and patch speed are the controls that matter.",
+  links:[
+   {source:"Fortune", title:"AI tools discovered the PHP vulnerability that could take down 70% of the internet; now the race is on to patch it", url:"https://fortune.com/2026/10/21/ai-tools-discovered-the-php-vulnerability-that-could-take-down-70-of-the-internet-now-the-race-is-on-to-patch-it-before-ai-powered-hackers-attack/"},
+   {source:"Tenable", title:"php2shell (CVE-2026-109618, CVE-2026-109619): Critical PHP RCE FAQ", url:"https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote"},
+   {source:"Help Net Security", title:"PHP2Shell: Critical PHP vulnerabilities patched, update now!", url:"https://www.helpnetsecurity.com/2026/10/21/php2shell-php-vulnerabilities-patched-cve-2026-109618-cve-2026-109619/"},
+   {source:"The Next Web", title:"PHP rushes out emergency patches for two critical bugs AI found first", url:"https://thenextweb.com/news/php2shell-php-rce-ai-openai-wiz"},
+   {source:"Backend News", title:"DICT calls for PHP updates to protect Philippine websites", url:"https://backendnews.net/dict-warns-of-security-flaws-in-unpatched-php-websites/"}
+  ], related:["ai-aggregator-302ai-exposure","onepassword-for-agents"] },
+ { id:"onepassword-for-agents", cid:"C-06", date:"Oct 22, 2026",
+  headline:"1Password launches tool for AI agents to log in without seeing credentials",
+  summary:"TechCrunch reports 1Password lets agents log into personal accounts without seeing credentials, with user confirmation per login. Single source; business plans not reported.",
+  tags:[["CISO","bg-red"],["CIO","bg-blue"]], barClass:"bar-red", riskLevel:"LOW", riskClass:"bg-gold", category:"AI SECURITY", catColor:"c-red",
+  content:`<p>TechCrunch reports that 1Password “on Thursday launched a new tool by which users can allow agents to log into their personal accounts on their behalf, without the agent ever having access to a user’s credentials”. This card rests on that one article; no second outlet was read.</p><p>Per TechCrunch, when an agent tries to log in, “a unique digital key is sent to 1Password to confirm the agent’s digital identity”; the user gets an alert and “can personally confirm the request”; 1Password then fills in the credentials.</p><p>TechCrunch names supported agents as “Claude Duet from Anthropic, OpenAI’s Dots or ChatGPT Work, Grok Bot, Meta’s Muse, or agents from Town”. The article gives no pricing, plan or business-availability details.</p>`,
+  actions:[
+   {owner:"CISO", ownerClass:"owner-ciso", text:"Include credential isolation and per-login human confirmation in the baseline requirements for any agent allowed to act on accounts."},
+   {owner:"CIO", ownerClass:"owner-cio", text:"Ask the group’s password-manager vendors whether comparable agent controls exist for business vaults (proposed: at the next vendor review)."}
+  ],
+  risks:[
+   {text:"Scope: the article describes personal accounts; whether it applies to business vaults is not reported."},
+   {text:"Evidence: single source (TechCrunch), so confidence is Medium."},
+   {text:"Control limits: the article mentions confirming a request, not declining one or setting limits."}
+  ],
+  csuite:"Vendors are building credential isolation and per-login approval for agents. These are reasonable baseline requirements for any agent the group allows to act on accounts, but this product is a personal-account option, not a group control.",
+  links:[
+   {source:"TechCrunch", title:"1Password launches a way for AI agents to log in on your behalf without seeing your password", url:"https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/"}
+  ], related:["claude-duet-research-preview","walmart-agent-gateway"] },
+ { id:"ai-aggregator-302ai-exposure", cid:"C-07", date:"Oct 21–22, 2026",
+  headline:"Cybernews: AI aggregator 302.ai exposed 17.6 million files in open bucket",
+  summary:"Cybernews researchers found 17.6 million files (22.72TB) in an open Azure bucket of AI aggregator 302.ai. They have no evidence of malicious access.",
+  tags:[["CISO","bg-red"],["CIO","bg-blue"],["GC","bg-purple"]], barClass:"bar-red", riskLevel:"MEDIUM", riskClass:"bg-orange", category:"AI SECURITY", catColor:"c-red",
+  content:`<p>Cybernews says its researchers found that “the AI aggregator leaked nearly 23TB of user data, or <strong>17.6 million</strong> files”, in a publicly accessible Azure storage bucket. Insurance Business relays the same finding, so this is one Cybernews research result reported by two outlets. 302.ai is developed by Univerads Technology Limited, a Hong Kong company founded in 2020.</p><p>The data included “over 144,000 chat logs” and “over 26,000 .zip files”, some personal information, and customer-support chatbot logs from enterprise clients.</p><p>Cybernews says “it’s highly likely” the data was exposed accidentally and “We have no evidence that malicious actors accessed or downloaded the data”. It dates the discovery to 2 August, disclosure to 11 August and a closed bucket to 8 September; the data went offline after Cybernews contacted the company, and no company response is reported. The exposure predates the week; only the publication is new.</p>`,
+  actions:[
+   {owner:"CISO", ownerClass:"owner-ciso", text:"Tell staff not to paste company data into AI aggregator sites outside approved vendors, and check web-proxy logs for traffic to 302.ai (proposed: 90 days of logs)."},
+   {owner:"CIO", ownerClass:"owner-cio", text:"Add AI aggregator and reseller sites to the approved-vendor review, so units cannot adopt them without a data-handling check."},
+   {owner:"GC", ownerClass:"owner-gc", text:"Ask key vendors whether they route prompts through aggregators such as 302.ai, and obtain their data-handling terms."}
+  ],
+  risks:[
+   {text:"Shadow AI: aggregators route prompts to many models and keep logs, so staff using them create a leak path outside approved vendors."},
+   {text:"Third-party handling: the exposed data included enterprise customers’ chatbot logs, and the operator’s response is not reported."},
+   {text:"Unknown exposure: whether any Philippine users or group data were affected is not known."}
+  ],
+  csuite:"No group exposure is shown. The practical lesson is that staff use of AI aggregator sites is a plausible data-leak path that policy and monitoring can address now.",
+  links:[
+   {source:"Cybernews", title:"AI aggregator leak exposed sex doll support chats and 18 million files", url:"https://cybernews.com/security/302-ai-data-leak-exposed-millions-files/"},
+   {source:"Insurance Business", title:"Millions of AI files exposed in leak that caught a sex doll maker’s chatbot", url:"https://www.insurancebusinessmag.com/us/news/cyber/millions-of-ai-files-exposed-in-leak-that-caught-a-sex-doll-makers-chatbot-594374.aspx"}
+  ], related:["dhs-deepseek-exclusion-order","claude-duet-research-preview"] }
+]},
+{ id:"industry", title:"Industry-Specific Impact", icon:"🏭", iconClass:"icon-cyan", cards:[
+ { id:"ph-it-distributor-hardware-shortage", cid:"C-11", date:"Oct 21–24, 2026",
+  headline:"Philippine IT distributor CEO says hardware shortage “is really real”",
+  summary:"VST ECS CEO Jimmy Go expects wider Philippine AI adoption “only now or maybe next year” and says hardware supply is tight. This is a distributor’s view; EO 119’s reach is unclear.",
+  tags:[["CIO","bg-blue"],["CFO","bg-green"],["GC","bg-purple"]], barClass:"bar-cyan", riskLevel:"LOW", riskClass:"bg-gold", category:"INDUSTRY-SPECIFIC IMPACT", catColor:"c-cyan",
+  content:`<p>VST ECS Phils. CEO <strong>Jimmy Go</strong> said, at the company’s CXO Tech Summit 2026 in Boracay: “I think it’s only now or maybe next year that we’ll see that the Philippines will have more AI implementation in the country”. The Daily Tribune reports he said the Philippines lags Southeast Asian peers in AI server adoption; that comparison is the Tribune’s paraphrase.</p><p>Go said “The shortage is really real”, referring to hardware. Gadget Pilipinas reports, paraphrasing Go, that a global squeeze on high-performance memory and enterprise storage driven by AI demand has raised infrastructure costs and pushed several planned deployments into 2027.</p><p>The Daily Tribune says Executive Order No. 119 “establishes a framework for government data classification and residency” and “does not directly mandate AI adoption”. Gadget Pilipinas describes it as mandating stricter data residency and sovereignty requirements for sensitive workloads. Both are the outlets’ own descriptions, and whether the order binds private firms is unconfirmed.</p>`,
+  actions:[
+   {owner:"CIO", ownerClass:"owner-cio", text:"Ask hardware vendors for lead times and price quotes on memory and storage for planned 2027 deployments (proposed: before the 2027 IT budget is locked)."},
+   {owner:"CFO", ownerClass:"owner-cfo", text:"Add a hardware cost buffer line to the draft 2027 IT budget, sized from vendor quotes."},
+   {owner:"GC", ownerClass:"owner-gc", text:"Get counsel’s view on whether Executive Order No. 119 applies to any group workload before assuming it does or does not."}
+  ],
+  risks:[
+   {text:"Cost: a memory and storage squeeze could raise infrastructure costs and push deployments into 2027."},
+   {text:"Source bias: a distributor has a commercial interest in describing demand as strong and supply as tight."},
+   {text:"Regulatory: the two outlets describe EO 119 differently, and its reach for private firms is unconfirmed."}
+  ],
+  csuite:"A distributor’s view is self-interested, but the memory and storage squeeze it describes matches the Micron item in this edition. Group IT budgets for 2027 may need a hardware cost buffer, and counsel should confirm whether EO 119 applies.",
+  links:[
+   {source:"Daily Tribune", title:"PHL poised to expand AI adoption amid regional catch-up", url:"https://tribune.net.ph/2026/10/23/phl-poised-to-expand-ai-adoption-amid-regional-catch-up"},
+   {source:"Gadget Pilipinas", title:"VST ECS CXO Tech Summit 2026", url:"https://www.gadgetpilipinas.net/2026/10/vst-ecs-cxo-tech-summit-2026/"}
+  ], related:["micron-taoyuan-strike-call","dhs-deepseek-exclusion-order"] }
+]}
+];
+const watchlist = [
+ {item:"PHP2Shell exploitation and patch uptake (new)", trigger:"CISA Known Exploited Vulnerabilities listing; confirmed compromises; a PAN-OS fix; and a separate PHP session-handling flaw, CVE-2026-115560, which SOCRadar (single source) says PHP disclosed Oct 23 and the Oct 21 releases do not fix.", ref:"php2shell-ai-found-php-flaws"},
+ {item:"DHS DeepSeek order: exceptions and spillover (new)", trigger:"Exception-request window (60 days, per BleepingComputer); any Philippine or ASEAN regulator or vendor follow-on.", ref:"dhs-deepseek-exclusion-order"},
+ {item:"Walmart Agent Profiles (new)", trigger:"November rollout; the list of approved agents; any non-US rollout.", ref:"walmart-agent-gateway"},
+ {item:"OpenAI funding round (new)", trigger:"Close, final valuation and lead investor.", ref:"openai-30b-raise-report"},
+ {item:"Anthropic draft AI safety bill (new)", trigger:"Introduction, sponsor and any preemption language.", ref:"anthropic-draft-ai-safety-bill"},
+ {item:"Micron Taoyuan dispute (new)", trigger:"Whether the strike happened; further action; effect on memory pricing.", ref:"micron-taoyuan-strike-call"},
+ {item:"Anthropic IPO (updated)", trigger:"Public S-1, roadshow, listing. Dealroom reports a listing “as soon as November 2026” and a public filing “expected within weeks”; no primary source confirms either.", ref:"anthropic-draft-ipo-prospectus"},
+ {item:"China AI export-control proposal", trigger:"Comment period, final adoption, named models or chips. No news in the window; only pre-window coverage.", ref:null},
+ {item:"Exploited Windows Shell zero-day, CVE-2026-96951", trigger:"Group patch status; next Patch Tuesday on Nov 10, 2026. No news in the window; unread headlines say Microsoft patched it on Oct 13.", ref:null},
+ {item:"ASML 2028 capacity decision", trigger:"Commitment beyond the 30% increase; January 2027 results. No news found.", ref:null},
+ {item:"DepEd endorsement of the Google AI Educator Series", trigger:"Publication of the joint curricular issuance. No news; launch coverage was pre-window.", ref:null},
+ {item:"AI-lab incident disclosures", trigger:"Anthropic’s promised incident report; OpenAI and Wikimedia follow-up; regulator interest. No news found.", ref:null},
+ {item:"Google universal Gemini agent", trigger:"General availability, pricing, audit-log and identity terms. No news in the window; a source dated Oct 8 says private preview.", ref:null},
+ {item:"FTC civil investigative demands to OpenAI, Anthropic and METR", trigger:"Issuance and whether scope reaches deployers. No news found; undated headlines unread.", ref:null},
+ {item:"Florida injunction against OpenAI", trigger:"Hearing date and ruling. No news found.", ref:null},
+ {item:"US AI governance machinery", trigger:"Official confirmation of an AI lead; incident-reporting rule. Not re-checked this week.", ref:null},
+ {item:"Broadcom $60B AI chip financing", trigger:"Signing. No news found; earlier headlines conflict.", ref:null}
+];
+const watchNote = "Held, to promote only on the trigger: Anthropic–Nscale second $45B compute deal (signing); US “AI Cyber Defense Act” (formal introduction); Apple AppleCare automation; Tencent/Oracle Southeast Asia GPU lease. Retired: Google’s Finnish sites, after a Finnish regulator notice reported on Oct 23; reopen if enforcement follows. “No news found” means nothing dated in the window turned up in a thin search index, not that nothing happened. The Philippine regulator page (BSP) and the Senate news-release page returned no usable listings.";
+const questions = [
+ {q:"For every internet-facing PHP system we run or rely on, including vendor-hosted sites and appliances, can management show the PHP version, the patch date and whether logs were checked for exploitation since Oct 17?", owner:"CISO / CIO / GC", ownerClass:"owner-ciso", ref:"php2shell-ai-found-php-flaws"},
+ {q:"Do any of our vendors’ products or our internal tools use DeepSeek models or code, and would our vendor questionnaires tell us if a supplier built on one?", owner:"CIO / CISO / Procurement", ownerClass:"owner-cio", ref:"dhs-deepseek-exclusion-order"},
+ {q:"How dependent are we on any single frontier AI provider, and what would we do if its pricing, terms or finances changed after an IPO or a new funding round?", owner:"CFO / CIO", ownerClass:"owner-cfo", ref:"anthropic-draft-ipo-prospectus"},
+ {q:"Are employees connecting personal AI agents or aggregator sites to company email, accounts or data, and what policy and monitoring would show us if they were?", owner:"CISO / CHRO / DPO", ownerClass:"owner-ciso", ref:"ai-aggregator-302ai-exposure"},
+ {q:"When customers’ AI agents start buying or transacting through our channels, how will we approve them, cap their spending, log their actions and decide who bears fraud losses?", owner:"COO (retail) / CRO (banking)", ownerClass:"owner-ceo", ref:"walmart-agent-gateway"},
+ {q:"Does our 2027 IT budget allow for higher memory and storage prices, and has counsel confirmed whether Executive Order No. 119 applies to any of our workloads?", owner:"CIO / CFO / GC", ownerClass:"owner-cio", ref:"ph-it-distributor-hardware-shortage"}
+];
+
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function findCard(id){for(const s of sections)for(const c of s.cards)if(c.id===id)return{card:c,section:s};return null}
+function findCardTitle(id){const f=findCard(id);return f?f.card.headline:id}
+function chip(ref){return ref?`<span class="ref-chip" data-ref="${ref}" onclick="openModal('${ref}')">${esc(findCard(ref).card.cid)} ↗ Open story</span>`:''}
+document.getElementById('hero-sub').textContent=meta.heroSub;
+document.getElementById('exec-summary').textContent=meta.summary;
+document.getElementById('metrics-bar').innerHTML=metrics.map(m=>`<div class="metric" data-cid="${m.cid}"><div class="metric-value">${esc(m.value)}</div><div class="metric-label">${esc(m.label)}</div></div>`).join('');
+document.getElementById('nav-inner').innerHTML=`<button class="nav-btn active" data-section="all">All Topics</button>`+sections.map(s=>`<button class="nav-btn" data-section="${s.id}">${s.title}</button>`).join('')+`<button class="nav-btn" data-section="committee">For the Committee</button>`;
+function committeeHTML(){return `<div class="section" id="section-committee"><div class="section-header"><div class="section-icon icon-purple">📋</div><div class="section-title">For the Committee</div><div class="section-count">${watchlist.length} watch items · ${questions.length} questions</div></div><div class="committee-grid">
+<div class="committee-panel"><h3>Executive Watchlist</h3><ul class="committee-list">${watchlist.map(w=>`<li><span class="wl-item">${esc(w.item)}</span>${esc(w.trigger)}${w.ref?'<br>'+chip(w.ref):''}</li>`).join('')}</ul><div class="wl-note">${esc(watchNote)}</div></div>
+<div class="committee-panel"><h3>Questions for Management</h3><ul class="committee-list">${questions.map(q=>`<li><span class="owner ${q.ownerClass}">${esc(q.owner)}</span>${esc(q.q)}<br>${chip(q.ref)}</li>`).join('')}</ul></div></div></div>`}
+function renderSections(filter='all'){
+ const ca=document.getElementById('content-area');ca.innerHTML='';
+ const filtered=filter==='all'?sections:sections.filter(s=>s.id===filter);
+ filtered.forEach((section,si)=>{const el=document.createElement('div');el.className='section';el.id=`section-${section.id}`;el.style.animationDelay=`${si*0.08}s`;
+  const n=section.cards.length;
+  el.innerHTML=`<div class="section-header"><div class="section-icon ${section.iconClass}">${section.icon}</div><div class="section-title">${section.title}</div><div class="section-count">${n} ${n===1?'story':'stories'}</div></div><div class="cards-grid">${section.cards.map(c=>`<div class="card ${c.barClass}" data-cid="${c.cid}" onclick="openModal('${c.id}')"><div class="card-date">${c.date}</div><div class="card-headline">${c.headline}</div><div class="card-summary">${c.summary}</div><div class="card-tags">${c.tags.map(t=>`<span class="tag ${t[1]}">${t[0]}</span>`).join('')}</div><div class="card-bottom"><span class="card-risk-badge ${c.riskClass}">Risk: ${c.riskLevel}</span><span class="card-expand-hint">↗ Deep dive</span></div></div>`).join('')}</div>`;
+  ca.appendChild(el)});
+ if(filter==='all'||filter==='committee')ca.insertAdjacentHTML('beforeend',committeeHTML());
+}
+function openModal(id){const f=findCard(id);if(!f)return;const c=f.card;
+ const cat=document.getElementById('modal-category');cat.textContent=c.category;cat.className=`modal-category ${c.catColor}`;
+ document.getElementById('modal-headline').textContent=c.headline;document.getElementById('modal-date').textContent=c.date;
+ document.getElementById('modal-content').innerHTML=c.content;
+ document.getElementById('panel-grid').innerHTML=`<div class="panel panel-action"><div class="panel-label"><span>✓</span> Executive Actions</div><ul class="panel-list">${c.actions.map(a=>`<li><span class="owner ${a.ownerClass}">${a.owner}</span> ${a.text}</li>`).join('')}</ul></div><div class="panel panel-risk"><div class="panel-label"><span>⚠</span> Risks &amp; Watchouts</div><ul class="panel-list">${c.risks.map(r=>`<li>${r.text}</li>`).join('')}</ul></div>`;
+ document.getElementById('modal-csuite-text').textContent=c.csuite;
+ document.getElementById('modal-link-list').innerHTML=c.links.map(l=>`<a class="modal-link" href="${l.url}" target="_blank" rel="noopener"><span class="modal-link-source">${l.source}</span><span>${l.title}</span><span class="modal-link-arrow">↗</span></a>`).join('');
+ document.getElementById('related-chips').innerHTML=c.related.map(r=>{const t=findCardTitle(r);return `<div class="related-chip" onclick="event.stopPropagation();openModal('${r}')">${t.substring(0,50)}${t.length>50?'…':''}</div>`}).join('');
+ document.getElementById('modal-overlay').classList.add('active');document.body.style.overflow='hidden';document.getElementById('modal-overlay').scrollTop=0}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('active');document.body.style.overflow=''}
+document.getElementById('modal-close').addEventListener('click',closeModal);
+document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderSections(b.dataset.section)}));
+renderSections();
+(function(){const ni=document.getElementById('nav-inner'),sa=document.getElementById('nav-scroll-area'),bl=document.getElementById('nav-scroll-left'),br=document.getElementById('nav-scroll-right');
+ function u(){const sl=ni.scrollLeft,mx=ni.scrollWidth-ni.clientWidth;bl.classList.toggle('visible',sl>2);br.classList.toggle('visible',sl<mx-2);sa.classList.toggle('fade-left',sl>2);sa.classList.toggle('fade-right',sl<mx-2)}
+ bl.addEventListener('click',()=>ni.scrollBy({left:-200,behavior:'smooth'}));br.addEventListener('click',()=>ni.scrollBy({left:200,behavior:'smooth'}));
+ ni.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);setTimeout(u,100);u()})();
+(function(){const t=document.getElementById('theme-toggle'),h=document.documentElement;
+ try{if(localStorage.getItem('ai-briefing-theme')==='light')h.setAttribute('data-theme','light')}catch(e){}
+ t.addEventListener('click',()=>{const l=h.getAttribute('data-theme')==='light';if(l)h.removeAttribute('data-theme');else h.setAttribute('data-theme','light');try{localStorage.setItem('ai-briefing-theme',l?'dark':'light')}catch(e){}})})();
+</script>
+</body>
+</html>
